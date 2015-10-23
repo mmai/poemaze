@@ -1,4 +1,5 @@
 secret
+dumps
 
 www/*.log
 www/.htaccess
