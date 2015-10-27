@@ -1,6 +1,8 @@
 secret
 dumps
 
+node_modules
+
 www/*.log
 www/.htaccess
 www/sitemap.xml
@@ -19,3 +21,4 @@ www/wp-content/plugins/hello.php
 
 www/readme.html
 www/license.txt
+www/index.html

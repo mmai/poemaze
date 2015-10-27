@@ -2,32 +2,17 @@
 /**
  * The template for displaying the footer
  *
- * Contains the closing of the "site-content" div and all content after.
+ * Contains footer content and the closing of the #main and #page div elements.
  *
  * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
+ * @subpackage Twenty_Thirteen
+ * @since Twenty Thirteen 1.0
  */
 ?>
+		</div><!-- #main -->
+	</div><!-- #page -->
 
-	</div><!-- .site-content -->
-
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<?php
-				/**
-				 * Fires before the Twenty Fifteen footer text for footer customization.
-				 *
-				 * @since Twenty Fifteen 1.0
-				 */
-				do_action( 'twentyfifteen_credits' );
-			?>
-		</div><!-- .site-info -->
-	</footer><!-- .site-footer -->
-
-</div><!-- .site -->
-
-<?php wp_footer(); ?>
-
+	<?php wp_footer(); ?>
+    <script src="wp-content/themes/arbre-integral/bundle.js"></script>
 </body>
 </html>
