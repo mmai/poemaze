@@ -1,1 +1,58 @@
-[{"id":"0.2.2","word":"chute","content":"Vient le consentement \u00e0 l\u2019\u00e9lan, la chute dans l\u2019opacit\u00e9 sans odeur, l\u2019euphorie silencieuse du for\u00eat. Est-il un autre centre\u00a0?","circle":"cerne-2-biologique","position":2,"parent":"0.2"},{"id":"0.2.1","word":"agripper","content":"R\u00e9sister m\u00eame aux graisses de l\u2019humus. Tenir encore un peu \u00e0 la clart\u00e9. Jouer l\u2019envergure. Agripper les failles, le roc.","circle":"cerne-2-biologique","position":1,"parent":"0.2"},{"id":"0.1.2","word":"foug\u00e8re","content":"Est-il d\u2019autres choix\u00a0? franchir trois dimensions d\u2019un seul coup de ciseaux\u00a0? Tant contient de fini la crosse d\u2019une foug\u00e8re.","circle":"cerne-2-biologique","position":2,"parent":"0.1"},{"id":"0.1.1","word":"subdiviser","content":"Quand est perdu le meilleur du noyau, ce sym\u00e9trique \u00e9blouissement, cet endog\u00e8ne vital retourn\u00e9 par l\u2019obscur, subdiviser fait loi.","circle":"cerne-2-biologique","position":1,"parent":"0.1"},{"id":"0.2","word":"perfore","content":"Perfore, plonge, instance du d\u00e9pli, \u00e9bauche du fractal, sombre veine sous la glace, vers le bas.","circle":"cerne-1-biologique","position":2,"parent":"0"},{"id":"0.1","word":"persiste","content":"Persiste, perce, aisselle magn\u00e9tique, embryon clair, dans le feu dess\u00e9ch\u00e9, vers le haut.","circle":"cerne-1-biologique","position":1,"parent":"0"},{"id":"0","word":"","content":".","circle":"graine","position":0,"parent":"0"}]
+{
+    "0.2.2": {
+        "id": "0.2.2",
+        "word": "chute",
+        "content": "Vient le consentement \u00e0 l\u2019\u00e9lan, la chute dans l\u2019opacit\u00e9 sans odeur, l\u2019euphorie silencieuse du for\u00eat. Est-il un autre centre\u00a0?",
+        "circle": "cerne-2-biologique",
+        "position": 2,
+        "parent": "0.2"
+    },
+    "0.2.1": {
+        "id": "0.2.1",
+        "word": "agripper",
+        "content": "R\u00e9sister m\u00eame aux graisses de l\u2019humus. Tenir encore un peu \u00e0 la clart\u00e9. Jouer l\u2019envergure. Agripper les failles, le roc.",
+        "circle": "cerne-2-biologique",
+        "position": 1,
+        "parent": "0.2"
+    },
+    "0.1.2": {
+        "id": "0.1.2",
+        "word": "foug\u00e8re",
+        "content": "Est-il d\u2019autres choix\u00a0? franchir trois dimensions d\u2019un seul coup de ciseaux\u00a0? Tant contient de fini la crosse d\u2019une foug\u00e8re.",
+        "circle": "cerne-2-biologique",
+        "position": 2,
+        "parent": "0.1"
+    },
+    "0.1.1": {
+        "id": "0.1.1",
+        "word": "subdiviser",
+        "content": "Quand est perdu le meilleur du noyau, ce sym\u00e9trique \u00e9blouissement, cet endog\u00e8ne vital retourn\u00e9 par l\u2019obscur, subdiviser fait loi.",
+        "circle": "cerne-2-biologique",
+        "position": 1,
+        "parent": "0.1"
+    },
+    "0.2": {
+        "id": "0.2",
+        "word": "perfore",
+        "content": "Perfore, plonge, instance du d\u00e9pli, \u00e9bauche du fractal, sombre veine sous la glace, vers le bas.",
+        "circle": "cerne-1-biologique",
+        "position": 2,
+        "parent": "0"
+    },
+    "0.1": {
+        "id": "0.1",
+        "word": "persiste",
+        "content": "Persiste, perce, aisselle magn\u00e9tique, embryon clair, dans le feu dess\u00e9ch\u00e9, vers le haut.",
+        "circle": "cerne-1-biologique",
+        "position": 1,
+        "parent": "0"
+    },
+    "0": {
+        "id": "0",
+        "word": "",
+        "content": ".",
+        "circle": "graine",
+        "position": 0,
+        "parent": "0"
+    }
+}

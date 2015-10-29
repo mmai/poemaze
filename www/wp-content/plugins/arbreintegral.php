@@ -140,9 +140,11 @@ function ai_admin_page(){
         'parent' => $parent->post_title
       );
 
-      array_push($leafs, $leaf);
+      $leafs[$post->post_title] = $leaf;
+      // array_push($leafs, $leaf);
     }
-    $output = "window.arbreIntegralData = ".json_encode($leafs).";";
+    // $output = "window.arbreIntegralData = ".json_encode($leafs, JSON_PRETTY_PRINT).";";
+    $output = json_encode($leafs, JSON_PRETTY_PRINT);
     // echo $output;
 
     $url = wp_nonce_url('admin.php?page=arbreintegral','cbe-nonce');
@@ -161,12 +163,15 @@ function ai_admin_page(){
         request_filesystem_credentials($url, '', true, false, null);
         return;
       }
-      $contentdir = trailingslashit( $wp_filesystem->wp_content_dir() ); 
+      $filepath = trailingslashit( $wp_filesystem->wp_content_dir() ). 'arbreintegral.json'; 
       // $wp_filesystem->mkdir( $contentdir. 'cbe' );
-      if ( ! $wp_filesystem->put_contents(  $contentdir . 'arbreintegral-data.js', $output, FS_CHMOD_FILE) ) {
+      if ( ! $wp_filesystem->put_contents(  $filepath , $output, FS_CHMOD_FILE) ) {
         echo "il y a eu une erreur";
       } else {
-        echo "json mis à jour";
+?> json mis à jour
+<h3>Aperçu</h3>
+<pre><?php echo file_get_contents($filepath);?></pre>
+<?php
       }
     }
 
