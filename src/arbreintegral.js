@@ -9,6 +9,12 @@ export function makeAI(aiData){
       return leaf;
     },
 
+    getType: function getType(leaf){
+      let {circ, pos} = this.getCoords(leaf);
+      if (circ == 0) return 'ROOT';
+      return (pos > Math.pow(2, circ - 1))?'DOWN':'UP';
+    },
+
     getNeighbors: function getNeighbors(leaf){
       let coords = this.getCoords(leaf);
 

@@ -1,6 +1,6 @@
 /** @jsx hJSX */
 
-// require("./scss/main.scss")
+require("./arbreintegral.scss")
 
 import 'whatwg-fetch' // fetch polyfill for older browsers
 import {run, Rx} from '@cycle/core';
@@ -27,28 +27,89 @@ function renderLeaf(pathname){
     leafId = '0';
   }
   let leaf = AI.getLeaf(leafId);
-  let neighbors = AI.getNeighbors(leaf);
+
+  let circlesView = (id) => {
+    switch(AI.getType(leaf)){
+    case 'ROOT':
+      return renderRoot(leaf);
+    case 'DOWN': 
+      return renderLeafReversed(leaf);
+    default: 
+      return renderLeafUpside(leaf);
+    }
+  }(leafId);
 
   return (
     <div id="maincontainer">
-    {leaf.id} ({leaf.word})
-    <div>{leaf.content}</div>
+      <a href="/dashboard">dashboard</a><br/>
+      <hr />
 
-    <ul>
-    <li> leftChild : {neighbors.leftChild.id} ({neighbors.leftChild.word})</li>
-    <li> rightChild : {neighbors.rightChild.id} ({neighbors.rightChild.word})</li>
-    <li> leftBrother : {neighbors.leftBrother.id} ({neighbors.leftBrother.word})</li>
-    <li> rightBrother : {neighbors.rightBrother.id} ({neighbors.rightBrother.word})</li>
-    <li> parent : {neighbors.parent.id} ({neighbors.parent.word})</li>
-    </ul>
+        {circlesView}
 
-    <a href="/dashboard">dashboard</a><br/>
-    <a href="0.1">0.1</a><br/>
-    <a href="0.2.2">0.2.2</a><br/>
-    <a href="/"></a>
     </div>
     );
 }
+
+function renderRoot(leaf){
+  let neighbors = AI.getNeighbors(leaf);
+  return (
+      <div id="ai-text">
+        <div className="circle">
+          <div id="circle-children--left">
+            <a href={neighbors.leftChild.id}>{neighbors.leftChild.word}</a>
+          </div>
+        </div>
+
+        <div id="circle-current" className="circle">
+          <div id="circle-current--content">
+            {leaf.content}
+          </div>
+        </div>
+
+        <div className="circle">
+          <div id="circle-children--right">
+            <a href={neighbors.rightChild.id}>{neighbors.rightChild.word}</a>
+          </div>
+        </div>
+      </div>
+      )
+}
+
+function renderLeafReversed(leaf){
+  return renderLeafUpside(leaf);
+}
+
+function renderLeafUpside(leaf){
+  let neighbors = AI.getNeighbors(leaf);
+  return (
+      <div id="ai-text">
+        <div id="circle-children" className="circle">
+          <div id="circle-children--left">
+            <a href={neighbors.leftChild.id}>{neighbors.leftChild.word}</a>
+          </div>
+          <div id="circle-children--right">
+            <a href={neighbors.rightChild.id}>{neighbors.rightChild.word}</a>
+          </div>
+        </div>
+
+        <div id="circle-current" className="circle">
+          <div class="circle-current--left">
+            <a href={neighbors.leftBrother.id}>{neighbors.leftBrother.word}</a>
+          </div>
+          <div id="circle-current--content">
+            {leaf.content}
+          </div>
+          <div id="circle-current--right">
+            <a href={neighbors.rightBrother.id}>{neighbors.rightBrother.word}</a>
+          </div>
+        </div>
+
+        <div id="circle-parent" className="circle">
+            <a href={neighbors.parent.id}>{neighbors.parent.word}</a>
+        </div>
+      </div>
+      );
+    }
 
 function intent(DOM) {
   return {
