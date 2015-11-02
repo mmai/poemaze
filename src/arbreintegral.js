@@ -15,16 +15,37 @@ export function makeAI(aiData){
       return (pos > Math.pow(2, circ - 1))?'DOWN':'UP';
     },
 
-    getNeighbors: function getNeighbors(leaf){
+    getNeighbors: function getNeighbors(leaf, options = {exclude:[]}){
       let coords = this.getCoords(leaf);
 
       return {
-        leftChild: this.getLeftChild(coords),
-        rightChild: this.getRightChild(coords),
-        leftBrother: this.getLeftBrother(coords),
-        rightBrother: this.getRightBrother(coords),
-        parent: this.getParent(leaf)
+        leftChild:    this.getNewNeighbor(coords, (coords) => {return this.getLeftChild(coords);}, options.exclude),
+        rightChild:   this.getNewNeighbor(coords, (coords) => {return this.getRightChild(coords);}, options.exclude),
+        leftBrother:  this.getNewNeighbor(coords, (coords) => {return this.getLeftBrother(coords);}, options.exclude),
+        rightBrother: this.getNewNeighbor(coords, (coords) => {return this.getRightBrother(coords);}, options.exclude),
+        parent:       this.getNewParent(leaf, options.exclude)
       }
+    },
+
+    getNewNeighbor: function getNewNeighbor(coords, getNeighbor, exclude){
+      let neighbor = getNeighbor(coords);
+      let viewed = {};
+      while ((neighbor !== false) && (neighbor.id in exclude) && !(neighbor.id in viewed)){
+        viewed[neighbor.id] = true;
+        neighbor = getNeighbor(this.getCoords(neighbor));
+      } 
+      if (neighbor.id in viewed) return false;
+      return neighbor;
+    },
+
+    getNewParent: function (leaf, exclude){
+      let neighbor = this.getParent(leaf);
+      let viewed = {};
+      while ((neighbor !== false) && (neighbor.id in exclude) && !(neighbor.id in viewed)){
+        viewed[neighbor.id] = true;
+        neighbor = this.getParent(neighbor);
+      } 
+      return neighbor;
     },
 
     getLeftChild: function getLeftChild(coords){

@@ -7,6 +7,7 @@ import {run, Rx} from '@cycle/core';
 import {makeDOMDriver, hJSX, h} from '@cycle/dom';
 import { makeHistoryDriver, filterLinks } from '@cycle/history';
 import {makeAI} from './arbreintegral';
+import {storageAvailable} from './utils';
 
 function pageId(ev){
   return "o";
@@ -33,15 +34,19 @@ function renderLeaf(pathname){
     case 'ROOT':
       return renderRoot(leaf);
     case 'DOWN': 
+      setVisitedLeaf(leafId);
       return renderLeafReversed(leaf);
     default: 
+      setVisitedLeaf(leafId);
       return renderLeafUpside(leaf);
     }
   }(leafId);
 
+
   return (
     <div id="maincontainer">
       <a href="/dashboard">dashboard</a><br/>
+      <a href="/reset">Reset</a><br/>
       <hr />
 
         {circlesView}
@@ -51,7 +56,7 @@ function renderLeaf(pathname){
 }
 
 function renderRoot(leaf){
-  let neighbors = AI.getNeighbors(leaf);
+  let neighbors = AI.getNeighbors(leaf, {exclude:visitedLeafs});
   return (
       <div id="ai-text">
         <div className="circle">
@@ -80,7 +85,7 @@ function renderLeafReversed(leaf){
 }
 
 function renderLeafUpside(leaf){
-  let neighbors = AI.getNeighbors(leaf);
+  let neighbors = AI.getNeighbors(leaf, {exclude:visitedLeafs});
   return (
       <div id="ai-text">
         <div id="circle-children" className="circle">
@@ -97,6 +102,7 @@ function renderLeafUpside(leaf){
             <a href={neighbors.leftBrother.id}>{neighbors.leftBrother.word}</a>
           </div>
           <div id="circle-current--content">
+            {leaf.word}<br />
             {leaf.content}
           </div>
           <div id="circle-current--right">
@@ -138,6 +144,9 @@ function main({DOM, History}) {
       switch (location.pathname) {
         case '/dashboard':
           return renderDashboard()
+        case '/reset':
+          reset();
+          return renderLeaf('/')
         default:
           return renderLeaf(location.pathname)
       }
@@ -149,12 +158,35 @@ function main({DOM, History}) {
   }
 }
 
+let AI = null; 
+let hasStorage = storageAvailable('localStorage');
+
+//VisitedLeafs: implemented as a Set with an object.
+let visitedLeafs = {};
+if (hasStorage){
+  let json = localStorage.getItem("visitedLeafs");
+  visitedLeafs = JSON.parse(json) || visitedLeafs;
+}
+
+function reset(){
+  visitedLeafs = {};
+  if (hasStorage){
+    localStorage.setItem("visitedLeafs", visitedLeafs);
+  }
+}
+
+function setVisitedLeaf(id){
+  visitedLeafs[id] = true;
+  if (hasStorage){
+    localStorage.setItem("visitedLeafs", JSON.stringify(visitedLeafs));
+  }
+}
+
 let drivers = {
   DOM: makeDOMDriver('#page'),
   History: makeHistoryDriver()
 };
 
-let AI = null; 
 fetch('./wp-content/arbreintegral.json').then(function(response) {
     return response.json()
   }).then(function(json) {
