@@ -5,21 +5,27 @@ require("./arbreintegral.scss")
 import 'whatwg-fetch' // fetch polyfill for older browsers
 import {run, Rx} from '@cycle/core';
 import {makeDOMDriver, hJSX, h} from '@cycle/dom';
-import { makeHistoryDriver, filterLinks } from '@cycle/history';
+import {makeHistoryDriver, filterLinks } from '@cycle/history';
 import {makeAI} from './arbreintegral';
+import {AiTwoWidget} from './arbreintegral-two-widget';
 import {storageAvailable} from './utils';
+
+let AI = null; 
+let hasStorage = storageAvailable('localStorage');
 
 function pageId(ev){
   return "o";
 }
 
 function renderDashboard(){
-  return (
-    <div id="maincontainer">
-     <h2>dashboard</h2>
-    <a href="/">Lire</a>
-    </div>
-    );
+  return h('div#maincontainer', [ 
+      h('h2', "Tableau de bord"),
+      h('a', {href: "/"}, "Lire"),
+      // new AiTwoWidget({ width: 285, height: 200 }),
+      // new AiTwoWidget(AI, {fullscreen:true})
+      new AiTwoWidget(AI)
+    ]
+  );
 }
 
 function renderLeaf(pathname){
@@ -158,9 +164,6 @@ function main({DOM, History}) {
   }
 }
 
-let AI = null; 
-let hasStorage = storageAvailable('localStorage');
-
 //VisitedLeafs: implemented as a Set with an object.
 let visitedLeafs = {};
 if (hasStorage){
@@ -171,7 +174,7 @@ if (hasStorage){
 function reset(){
   visitedLeafs = {};
   if (hasStorage){
-    localStorage.setItem("visitedLeafs", visitedLeafs);
+    localStorage.setItem("visitedLeafs", JSON.stringify(visitedLeafs));
   }
 }
 
