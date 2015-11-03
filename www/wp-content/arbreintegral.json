@@ -1,4 +1,196 @@
 {
+    "0.2.2.2.2": {
+        "id": "0.2.2.2.2",
+        "word": "chevilles",
+        "content": "Chevilles. D\u2019avoir vu. En l\u2019\u00e9rable. Poumons. Epaules. Ligaments. Ame. Sang. D\u00e9sespoir de singe.",
+        "circle": "cerne-4-symbolique",
+        "position": 2,
+        "parent": "0.2.2.2"
+    },
+    "0.2.2.2.1": {
+        "id": "0.2.2.2.1",
+        "word": "clous",
+        "content": "Clous. A l\u2019endroit. De la croix. En tilleul. Loques nou\u00e9es. Gu\u00e9rir. De quoi.",
+        "circle": "cerne-4-symbolique",
+        "position": 1,
+        "parent": "0.2.2.2"
+    },
+    "0.2.2.1.2": {
+        "id": "0.2.2.1.2",
+        "word": "poulies",
+        "content": "Poulies. Combien d\u2019\u00e9tages. De m\u00e9tamorphoses. Double tremble. Et. Dans quel sens.",
+        "circle": "cerne-4-symbolique",
+        "position": 2,
+        "parent": "0.2.2.1"
+    },
+    "0.2.2.1.1": {
+        "id": "0.2.2.1.1",
+        "word": "drains",
+        "content": "Drains. Comme \u00e0 quai. Trois sources. L\u2019une d\u2019\u00e9ternit\u00e9. Attendent. L\u2019appel satellite. L\u2019\u00e9ternuement cosmique. Du fr\u00eane.",
+        "circle": "cerne-4-symbolique",
+        "position": 1,
+        "parent": "0.2.2.1"
+    },
+    "0.2.1.2.2": {
+        "id": "0.2.1.2.2",
+        "word": "rires",
+        "content": "Rires. Etreinte blanche. Boulot. Surgit. Par l\u2019enchev\u00eatrement. Des tunnels. Suc\u00e9e. La s\u00e8ve d\u00e9signe. L\u2019acc\u00e8s.",
+        "circle": "cerne-4-symbolique",
+        "position": 2,
+        "parent": "0.2.1.2"
+    },
+    "0.2.1.2.1": {
+        "id": "0.2.1.2.1",
+        "word": "rythmes",
+        "content": "Rythmes. Le grand \u0153uvre. Pari\u00e9tal. N\u2019a pas suscit\u00e9. De ch\u00eane. Mais. Andouillers. Ecarts de doigts.",
+        "circle": "cerne-4-symbolique",
+        "position": 1,
+        "parent": "0.2.1.2"
+    },
+    "0.2.1.1.2": {
+        "id": "0.2.1.1.2",
+        "word": "flocons",
+        "content": "Flocons. Lente patience. Des forges. Enfante au pied du pin. L\u2019hypoth\u00e8se. Le retour.",
+        "circle": "cerne-4-symbolique",
+        "position": 2,
+        "parent": "0.2.1.1"
+    },
+    "0.2.1.1.1": {
+        "id": "0.2.1.1.1",
+        "word": "flamm\u00e8ches",
+        "content": "Flamm\u00e8ches. L\u2019id\u00e9e de miroir. D\u2019axe. Dessouch\u00e9e. De l\u2019orme mort. Jonch\u00e9e asym\u00e9trique.",
+        "circle": "cerne-4-symbolique",
+        "position": 1,
+        "parent": "0.2.1.1"
+    },
+    "0.1.2.2.2": {
+        "id": "0.1.2.2.2",
+        "word": "noyer",
+        "content": "Murmures. Humides. Dans le m\u00e9andre. Noyer. Chaque esprit. Son rituel. Son Icario.",
+        "circle": "cerne-4-symbolique",
+        "position": 2,
+        "parent": "0.1.2.2"
+    },
+    "0.1.2.2.1": {
+        "id": "0.1.2.2.1",
+        "word": "ch\u00e2taigner",
+        "content": "Sciure. A l\u2019int\u00e9rieur. Ch\u00e2taigner. D\u2019autres sons. \u00c9rotisent. Un passage.",
+        "circle": "cerne-4-symbolique",
+        "position": 1,
+        "parent": "0.1.2.2"
+    },
+    "0.1.2.1.2": {
+        "id": "0.1.2.1.2",
+        "word": "\u00e9quilibre",
+        "content": "Poussi\u00e8re. Un poteau. Dress\u00e9. Pour le savoir. Gorge s\u00e8che. Charg\u00e9 de figues. A l\u2019\u00e9quilibre.",
+        "circle": "cerne-4-symbolique",
+        "position": 2,
+        "parent": "0.1.2.1"
+    },
+    "0.1.2.1.1": {
+        "id": "0.1.2.1.1",
+        "word": "pommier",
+        "content": "Gr\u00eale. L\u2019origine. Un pommier. Ses baies. Vulves. Ses p\u00e9pins. Verges.",
+        "circle": "cerne-4-symbolique",
+        "position": 1,
+        "parent": "0.1.2.1"
+    },
+    "0.1.1.2.2": {
+        "id": "0.1.1.2.2",
+        "word": "c\u00e8dre",
+        "content": "Pollen. Petit tas. Dans un bol. L\u2019essaim migre. Aux aiguilles. C\u00e8dre.",
+        "circle": "cerne-4-symbolique",
+        "position": 2,
+        "parent": "0.1.1.2"
+    },
+    "0.1.1.2.1": {
+        "id": "0.1.1.2.1",
+        "word": "cypr\u00e8s",
+        "content": "Pluie. Le style. Cypr\u00e8s. Pr\u00e9l\u00e8ve. Un nouveau signe. Fa\u00e7onne. Un cinqui\u00e8me \u00e9l\u00e9ment. Bois.",
+        "circle": "cerne-4-symbolique",
+        "position": 1,
+        "parent": "0.1.1.2"
+    },
+    "0.1.1.1.2": {
+        "id": "0.1.1.1.2",
+        "word": "baguette",
+        "content": "Neige. Sur le sol nu. La baguette. Saule. Trace deux lignes. Coup\u00e9es \u00e0 l\u2019angle droit.",
+        "circle": "cerne-4-symbolique",
+        "position": 2,
+        "parent": "0.1.1.1"
+    },
+    "0.1.1.1.1": {
+        "id": "0.1.1.1.1",
+        "word": "cendres",
+        "content": "Cendres. Dans l\u2019urne. Dernier arbre. Toutes ses faines. Eteintes.",
+        "circle": "cerne-4-symbolique",
+        "position": 1,
+        "parent": "0.1.1.1"
+    },
+    "0.2.2.2": {
+        "id": "0.2.2.2",
+        "word": "kayak",
+        "content": "Mais tu nourris, tu soignes encore. Et tu teindras, et tu tendras, et tu parfumeras la peau de mon dernier kayak.",
+        "circle": "cerne-3-symbiotique",
+        "position": 2,
+        "parent": "0.2.2"
+    },
+    "0.2.2.1": {
+        "id": "0.2.2.1",
+        "word": "encyclop\u00e9dies",
+        "content": "Et je m\u2019incline aux encyclop\u00e9dies, quand tu \u00e9lagues et attaches, quand tu greffes et boutures, lourd de fruits.",
+        "circle": "cerne-3-symbiotique",
+        "position": 1,
+        "parent": "0.2.2"
+    },
+    "0.2.1.2": {
+        "id": "0.2.1.2",
+        "word": "pouce",
+        "content": "Jadis, tu m\u2019abritais dans tes structures. Un pouce m\u2019est pouss\u00e9. Il maintient la cogn\u00e9e \u00e0 pr\u00e9sent et me fabrique un toit.",
+        "circle": "cerne-3-symbiotique",
+        "position": 2,
+        "parent": "0.2.1"
+    },
+    "0.2.1.1": {
+        "id": "0.2.1.1",
+        "word": "foudre",
+        "content": "Tu sais maintenant cueillir la foudre, ses p\u00e9tales de silex. Ami des braises, alli\u00e9 de la fum\u00e9e, tu me tors et m\u2019endurcis.",
+        "circle": "cerne-3-symbiotique",
+        "position": 1,
+        "parent": "0.2.1"
+    },
+    "0.1.2.2": {
+        "id": "0.1.2.2",
+        "word": "mac\u00e9r\u00e9",
+        "content": "Et mac\u00e9r\u00e9, et rapp\u00e9, et ferment\u00e9, ou grill\u00e9, ou s\u00e9ch\u00e9, ou fumig\u00e9,  et encore compot\u00e9, et distill\u00e9. Tu m\u2019aimes cru aussi.",
+        "circle": "cerne-3-symbiotique",
+        "position": 2,
+        "parent": "0.1.2"
+    },
+    "0.1.2.1": {
+        "id": "0.1.2.1",
+        "word": "bouche",
+        "content": "Mais c\u2019est encore ma bouche qui te conna\u00eet le mieux\u00a0: bourgeons, pistils, r\u00e9sines, raves, drupes, amandes, pois, cosses\u2026",
+        "circle": "cerne-3-symbiotique",
+        "position": 1,
+        "parent": "0.1.2"
+    },
+    "0.1.1.2": {
+        "id": "0.1.1.2",
+        "word": "mobile",
+        "content": "Le feu te ressemble d\u2019avantage. Tu es si mobile\u00a0! Le d\u00e9li\u00e9 de ta main conserve mon image. Comme le liber ton pens\u00e9.",
+        "circle": "cerne-3-symbiotique",
+        "position": 2,
+        "parent": "0.1.1"
+    },
+    "0.1.1.1": {
+        "id": "0.1.1.1",
+        "word": "brindille",
+        "content": "Le feu te ressemble dans ses \u00e9chelles. La brindille puis le rameau, puis la souche puis le tronc. Ainsi, tu nous ouvre l\u2019hiver.",
+        "circle": "cerne-3-symbiotique",
+        "position": 1,
+        "parent": "0.1.1"
+    },
     "0.2.2": {
         "id": "0.2.2",
         "word": "chute",

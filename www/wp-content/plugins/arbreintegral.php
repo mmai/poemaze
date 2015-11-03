@@ -122,7 +122,7 @@ function ai_admin_page(){
 <?php
   if (!empty($_REQUEST['jsonsubmit']) ){
     $leafs = array();
-    $query = new WP_Query( array( 'post_type' => 'leaf') );
+    $query = new WP_Query( array( 'post_type' => 'leaf', 'nopaging' => true) );
     while( $query->have_posts() ) {
       $query->the_post();
       $id =  get_the_ID();
