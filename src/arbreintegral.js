@@ -28,14 +28,18 @@ export function makeAI(aiData){
     },
 
     getNewNeighbor: function getNewNeighbor(coords, getNeighbor, exclude){
-      let neighbor = getNeighbor(coords);
       let viewed = {};
+      let neighbor = getNeighbor(coords);
       while ((neighbor !== false) && (neighbor.id in exclude) && !(neighbor.id in viewed)){
         viewed[neighbor.id] = true;
-        neighbor = getNeighbor(this.getCoords(neighbor));
+        coords = this.getCoords(neighbor);
+        neighbor = getNeighbor(coords);
       } 
       if (neighbor.id in viewed) return false;
-      return neighbor;
+      return {
+        leaf: neighbor,
+        fromId: this.getLeafId(coords) 
+      };
     },
 
     getNewParent: function (leaf, exclude){
@@ -43,9 +47,13 @@ export function makeAI(aiData){
       let viewed = {};
       while ((neighbor !== false) && (neighbor.id in exclude) && !(neighbor.id in viewed)){
         viewed[neighbor.id] = true;
-        neighbor = this.getParent(neighbor);
+        leaf = neighbor;
+        neighbor = this.getParent(leaf);
       } 
-      return neighbor;
+      return {
+        leaf: neighbor,
+        fromId: leaf.id
+      };
     },
 
     getLeftChild: function getLeftChild(coords){
