@@ -1,6 +1,6 @@
 <?php 
 
-/*############  Admin Menu Class for Coming Soon plugin  ################*/
+/*############  Admin Menu Class for Coming Soon  ################*/
 
 class coming_soon_admin_menu{
 	

@@ -3,12 +3,12 @@
  * Plugin Name: Coming soon and Maintenance mode WpDevArt
  * Plugin URI: http://wpdevart.com/wordpress-coming-soon-plugin
  * Description: Coming soon and Maintenance mode plugin is awesome tool to show your users that you are working on your website to make it better. Our coming soon plugin is the best way to create better coming soon page.  
- * Version: 2.1.8
+ * Version: 2.1.9
  * Author: maintenance mode GG, wpdevart, big ben keeper
  * License: GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
  
- //he main Class
+     // main Class
 class coming_soon_main{
 	// required variables
 	
@@ -38,7 +38,7 @@ class coming_soon_main{
 		require_once($this->coming_soon_plugin_path.'includes/admin_menu.php');
 		// Creation of admin menu object type 
 		$coming_soon_admin_menu = new coming_soon_admin_menu(array('menu_name' => 'Coming Soon','databese_parametrs'=>$this->coming_soon_options));
-		//Hook that will connect admin menu with class
+		//Hook that should connect admin menu with class
 		add_action('admin_menu', array($coming_soon_admin_menu,'create_menu'));
 		
 	}
