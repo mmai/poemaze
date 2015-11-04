@@ -2,8 +2,8 @@ export function AiTwoWidget(ai, twoParams) {
   this.type = 'Widget';
   this.two = new Two(twoParams);
   this.AI = ai;
-  this.leafRadius = 3;
-  this.circleRadius = 20;
+  this.leafRadius = 2;
+  this.circleRadius = 30;
   this.origin = {x:200, y:200};
 }
 
@@ -27,11 +27,16 @@ AiTwoWidget.prototype = {
 
   makeLeaf: function (leaf){
     let coords = this.AI.getCoords(leaf);
+    let type = this.AI.getType(leaf);
     console.log(coords);
+
     let pos = this.getPosFromCoords(coords);
     console.log(pos);
+
     let circle = this.two.makeCircle(pos.x, pos.y, this.leafRadius);
-    circle.fill = `rgba(${80 * coords.circ},${80 * coords.circ},${80 * coords.circ},0.75)`
+    let color = (type == 'UP')?"green":"brown";
+    circle.fill = color;
+    circle.stroke = color;
     return circle;
   },
 
