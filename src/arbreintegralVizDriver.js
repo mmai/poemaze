@@ -4,56 +4,54 @@ const origin = {x:200, y:200};
 const color_up = "green";
 const color_down = "brown";
 
-let vizRootElem = document.createElement('div');
+//Root element displayed by the cyclejs widget and used in the driver by the Two.js library 
+const vizRootElem = document.createElement('div');
 
-export function VizWidget() {
-  this.type = 'Widget';
-}
+//Minimal widget hosting the visualization root element used by the driver
+export function VizWidget() { this.type = 'Widget'; }
 VizWidget.prototype = {
-  init: function () {
-    return vizRootElem;
-  },
-  update: function (prev, elem) {
-  },
+  init: function () { return vizRootElem; },
+  update: function (prev, elem) {},
 };
 
+//Driver
 export function makeVizDriver(AI){
-  let two = new Two({});
+  const two = new Two({});
   two.appendTo(vizRootElem);
 
   return function vizDriver(leafDisplay$){
     leafDisplay$
       .subscribe(dleaf => {
-          let newLeaf = AI.data[dleaf.leafId];
-          let fromLeaf = AI.data[dleaf.fromId];
+          const newLeaf = AI.data[dleaf.leafId];
+          const fromLeaf = AI.data[dleaf.fromId];
 
-          let gleaf = makeLeaf(newLeaf);
-          let linefrom = makeLineBetweenLeafs(fromLeaf, newLeaf);
+          const gleaf = makeLeaf(newLeaf);
+          const linefrom = makeLineBetweenLeafs(fromLeaf, newLeaf);
 
           two.update();
         });
     };
 
   function makeLeaf (leaf){
-    let coords = AI.getCoords(leaf);
-    let type = AI.getType(leaf);
+    const coords = AI.getCoords(leaf);
+    const type = AI.getType(leaf);
     console.log(coords);
 
-    let pos = getPosFromCoords(coords);
+    const pos = getPosFromCoords(coords);
     // console.log(pos);
 
-    let circle = two.makeCircle(pos.x, pos.y, leafRadius);
-    let color = (type == 'UP')?color_up:color_down;
+    const circle = two.makeCircle(pos.x, pos.y, leafRadius);
+    const color = (type == 'UP')?color_up:color_down;
     circle.fill = color;
     circle.stroke = color;
     return circle;
   }
 
   function makeLineBetweenLeafs (from, to){
-    let posfrom = getPosFromCoords(AI.getCoords(from));
-    let posto = getPosFromCoords(AI.getCoords(to));
-    let line = two.makeLine(posfrom.x, posfrom.y, posto.x, posto.y);
-    let color = (AI.getType(to) == 'UP')?color_up:color_down;
+    const posfrom = getPosFromCoords(AI.getCoords(from));
+    const posto = getPosFromCoords(AI.getCoords(to));
+    const line = two.makeLine(posfrom.x, posfrom.y, posto.x, posto.y);
+    const color = (AI.getType(to) == 'UP')?color_up:color_down;
     line.stroke = color;
     return line;
   }
@@ -63,13 +61,13 @@ export function makeVizDriver(AI){
       return origin;
     }
 
-    let nbLeafs = Math.pow(2, circ);
-    let angleIncrement = Math.PI / (nbLeafs/2 + 1);
+    const nbLeafs = Math.pow(2, circ);
+    const angleIncrement = Math.PI / (nbLeafs/2 + 1);
     let angle = Math.PI - pos * angleIncrement;
     if (pos > nbLeafs/2) {
       angle -= angleIncrement; 
     }
-    let radial = circleRadius * circ; 
+    const radial = circleRadius * circ; 
     return {
       x: origin.x + radial * Math.cos(angle),
       y: origin.y - radial * Math.sin(angle)

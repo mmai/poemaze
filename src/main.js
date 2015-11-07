@@ -1,208 +1,131 @@
-/** @jsx hJSX */
-
 require("./arbreintegral.scss")
-
 import 'whatwg-fetch' // fetch polyfill for older browsers
 import {run, Rx} from '@cycle/core';
-import {makeDOMDriver, hJSX, h} from '@cycle/dom';
+import {makeDOMDriver, h} from '@cycle/dom';
 import {makeHistoryDriver, filterLinks } from '@cycle/history';
+
 import {makeAI} from './arbreintegral';
-import {VizWidget, makeVizDriver} from './arbreintegralVizDriver';
-import {storageAvailable} from './utils';
+import {makeVizDriver} from './arbreintegralVizDriver';
+import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './localstorageDriver';
+import {serialize, deserialize} from './visitedLeafSerializer';
+import {renderDashboard, renderLeaf} from './view';
+
+// import makeTimeTravel from 'cycle-time-travel';
 
 let AI = null; 
-let hasStorage = storageAvailable('localStorage');
 
-function pageId(ev){
-  return "o";
-}
-
-function renderDashboard(){
-  return h('div#maincontainer', [ 
-      h('h2', "Tableau de bord"),
-      h('a', {href: "/"}, "Lire"),
-      // new AiTwoWidget({ width: 285, height: 200 }),
-      // new AiTwoWidget(AI, {fullscreen:true})
-      // new AiTwoWidget(AI)
-    ]
-  );
-}
-
-function renderLeaf(leafId){
-  let leaf = AI.getLeaf(leafId);
-  if (!leaf){
-    throw new Error(`leaf ${leafId} not found`);
+// (state, url) -> state
+function model(state, url){
+  if (url.pathname == "reset"){
+    return  { pathname: '', currentLeafId: "0", visitedLeafs:{} };
   }
 
-  let circlesView = (id) => {
-    switch(AI.getType(leaf)){
-    case 'ROOT':
-      return renderRoot(leaf);
-    case 'DOWN': 
-      // setVisitedLeaf(leafId);
-      return renderLeafReversed(leaf);
-    default: 
-      // setVisitedLeaf(leafId);
-      return renderLeafUpside(leaf);
+  //Leaf
+  if (url.from){
+    const fromId = url.from || "0";
+    const leafId = url.pathname || "0";
+    state.currentLeafId = leafId;
+    if (!(leafId in state.visitedLeafs)){
+      state.visitedLeafs[leafId] = fromId;
     }
-  }(leafId);
+  }
 
-
-  return (
-    <div id="maincontainer">
-      <a href="/dashboard">dashboard</a><br/>
-      <a href="/reset">Reset</a><br/>
-      <hr />
-        {circlesView}
-      <hr />
-        {new VizWidget()}
-    </div>
-    );
+  state.pathname = url.pathname;
+  console.log(state);
+  return state;
 }
 
-function renderRoot(leaf){
-  let neighbors = AI.getNeighbors(leaf, {exclude:visitedLeafs});
-  return (
-      <div id="ai-text">
-        <div className="circle">
-          <div id="circle-children--left">
-            <a href={neighbors.leftChild.leaf.id + "?from=" + neighbors.leftChild.fromId}>{neighbors.leftChild.leaf.word}</a>
-          </div>
-        </div>
+function view(state){
+  switch (state.pathname) {
+  case '/dashboard':
+    return renderDashboard()
+  default:
+    let leaf = AI.getLeaf(state.currentLeafId);
+    if (!leaf) 
+      throw new Error(`leaf ${state.currentLeafId} not found`);
 
-        <div id="circle-current" className="circle">
-          <div id="circle-current--content">
-            {leaf.content}
-          </div>
-        </div>
-
-        <div className="circle">
-          <div id="circle-children--right">
-            <a href={neighbors.rightChild.leaf.id + "?from=" + neighbors.rightChild.fromId}>{neighbors.rightChild.leaf.word}</a>
-          </div>
-        </div>
-      </div>
-      )
+    let leafInfos = {
+      leaf: leaf,
+      type: AI.getType(leaf),
+      neighbors: AI.getNeighbors(leaf, {exclude:state.visitedLeafs})
+    };
+    return renderLeaf(leafInfos);
+  }
+  return h("div", 'Page non trouvée');
 }
 
-function renderLeafReversed(leaf){
-  return renderLeafUpside(leaf);
-}
-
-function renderLeafUpside(leaf){
-  let neighbors = AI.getNeighbors(leaf, {exclude:visitedLeafs});
-  return (
-      <div id="ai-text">
-        <div id="circle-children" className="circle">
-          <div id="circle-children--left">
-            <a href={neighbors.leftChild.leaf.id + "?from=" + neighbors.leftChild.fromId}>{neighbors.leftChild.leaf.word}</a>
-          </div>
-          <div id="circle-children--right">
-            <a href={neighbors.rightChild.leaf.id + "?from=" + neighbors.rightChild.fromId}>{neighbors.rightChild.leaf.word}</a>
-          </div>
-        </div>
-
-        <div id="circle-current" className="circle">
-          <div class="circle-current--left">
-            <a href={neighbors.leftBrother.leaf.id + "?from=" + neighbors.leftBrother.fromId}>{neighbors.leftBrother.leaf.word}</a>
-          </div>
-          <div id="circle-current--content">
-            {leaf.word}<br />
-            {leaf.content}
-          </div>
-          <div id="circle-current--right">
-            <a href={neighbors.rightBrother.leaf.id + "?from=" + neighbors.rightBrother.fromId}>{neighbors.rightBrother.leaf.word}</a>
-          </div>
-        </div>
-
-        <div id="circle-parent" className="circle">
-            <a href={neighbors.parent.leaf.id + "?from=" + neighbors.parent.fromId}>{neighbors.parent.leaf.word}</a>
-        </div>
-      </div>
-      );
-    }
-
-function intent(DOM) {
-  return {
-    wordClick$: DOM.select('a').events('click')
-  };
-}
-
-function model(history$){
-    history$.map(location => {
-        return location.pathname;
-    });
-}
-
-function main({DOM, History, Viz}) {
-   const url$ = DOM
+// function main({DOM, History, Viz, LocalStorageSource}) {
+let nbClicks = 0;
+function main({DOM, Viz, LocalStorageSource}) {
+  //DOM => History/Actions
+  let clicked$ = DOM
     .select('a')
-    .events('click')
-    .filter(filterLinks)
-    .map(event =>  event.target.pathname + event.target.search);
-
-  let state$ = History.startWith({ pathname: '/' })
-    .map(location => {
-        let leafId = location.pathname.slice(1);
-        if (leafId == ""){
-          leafId = '0';
-        }
-        let fromId = location.search?location.search.slice(6):"0";
-        setVisitedLeaf(leafId, fromId);
+    .events('mouseup')
+    .filter(filterLinks);
+  let url$ = clicked$
+    .map(event =>  {
+        nbClicks +=1;
+        console.log(`clicked ${nbClicks}`);
+        let [pathname, from] = event.target.hash.slice(1).split('-');
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        event.stopPropagation();
+        // nbClicks +=1;
+        // console.log(`clicked ${nbClicks}`);
         return {
-          pathname: location.pathname,
-          currentLeafId: leafId
+          pathname: pathname,
+          from: from 
         };
-    });
+      }).startWith({pathname:"0", from:"0"});
+  // const history$ = clicked$.map(event => event.target.href.replace(location.origin, ``));
 
-  let leafDisplay$ = state$
-    .map(state => {
-      return {
-        leafId: state.currentLeafId,
-        fromId: visitedLeafs[state.currentLeafId] || "0"
-      }
-    });
+  //LocalStorageSource & History/Actions => State
+  // const state$ = deserialize(LocalStorageSource)
+  // .flatMap( function(initialState){
+  //     return url$.scan(model, initialState);
+  //   }
+  // )
+  // .startWith({pathname: '/', currentLeafId: "0", visitedLeafs:{}});
 
-  let view$ = state$
+  //XXX test without localstorage source
+  let initialState = {pathname: '', currentLeafId: "0", visitedLeafs:{}};
+  // let state$ = url$.scan(model, initialState);
+  let state$ = url$.map(url => initialState);
+
+  //State => Viz
+  let visitedLeaf$ = state$
     .map(state => {
-      switch (state.pathname) {
-        case '/dashboard':
-          return renderDashboard()
-        case '/reset':
-          reset();
-          return renderLeaf("0")
-        default:
-          return renderLeaf(state.currentLeafId)
-      }
-    });
+        return {
+          leafId: state.currentLeafId,
+          fromId: state.visitedLeafs[state.currentLeafId] || "0"
+        }
+      })
+    .distinctUntilChanged();
+
+  //State => LocalStorageSink
+  let storedState$ = serialize(state$)
+
+  //State => DOM
+  const view$ = state$.map(view);
+
+  //Time travel debugging
+  // let {DOM: timeTravelBar$, timeTravel} = makeTimeTravel(DOM, [
+  //     {stream: url$, label: 'url$' },
+  //     // {stream: history$, label: 'history$' },
+  //     {stream: state$, label: 'state$' },
+  //     {stream: visitedLeaf$, label: 'visitedLeaf$'}
+  //   ]);  
+  // const view$ = Rx.Observable.combineLatest(
+  //     timeTravel.state$,
+  //     timeTravelBar$,
+  //     (state, timeTravelBar) => h('.debug', [ view(state), timeTravelBar ])
+  //   );
 
   return {
     DOM: view$,
-    History: url$,
-    Viz: leafDisplay$
-  }
-}
-
-//visitedLeafs: implemented as a Set with an object.
-let visitedLeafs = {};
-if (hasStorage){
-  let json = localStorage.getItem("visitedLeafs");
-  visitedLeafs = JSON.parse(json) || visitedLeafs;
-}
-
-function reset(){
-  visitedLeafs = {};
-  if (hasStorage){
-    localStorage.setItem("visitedLeafs", JSON.stringify(visitedLeafs));
-  }
-}
-
-function setVisitedLeaf(id, from){
-  if (!(id in visitedLeafs)){
-    visitedLeafs[id] = from || true;
-    if (hasStorage){
-      localStorage.setItem("visitedLeafs", JSON.stringify(visitedLeafs));
-    }
+    // History: history$,
+    Viz: visitedLeaf$,
+    LocalStorageSink: storedState$
   }
 }
 
@@ -212,8 +135,10 @@ fetch('./wp-content/arbreintegral.json').then(function(response) {
       AI = makeAI(json);
       let drivers = {
         DOM: makeDOMDriver('#page'),
+        // History: makeHistoryDriver(),
         Viz: makeVizDriver(AI),
-        History: makeHistoryDriver()
+        LocalStorageSource: makeLocalStorageSourceDriver('arbreintegral'),
+        LocalStorageSink: makeLocalStorageSinkDriver('arbreintegral')
       };
 
       run(main, drivers);
