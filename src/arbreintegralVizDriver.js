@@ -22,6 +22,8 @@ export function makeVizDriver(AI){
   return function vizDriver(leafDisplay$){
     leafDisplay$
       .subscribe(dleaf => {
+          if (dleaf.reset) two.clear();
+
           const newLeaf = AI.data[dleaf.leafId];
           const fromLeaf = AI.data[dleaf.fromId];
 
@@ -35,7 +37,7 @@ export function makeVizDriver(AI){
   function makeLeaf (leaf){
     const coords = AI.getCoords(leaf);
     const type = AI.getType(leaf);
-    console.log(coords);
+    // console.log(coords);
 
     const pos = getPosFromCoords(coords);
     // console.log(pos);
