@@ -22,7 +22,6 @@ function model(state, url){
 
   if (!(curleafid in state.visitedLeafs)){
     newVisited[curleafid] = url.from;
-    // newVisited[curleafid] = url.from || "0";
   }
 
   return {
