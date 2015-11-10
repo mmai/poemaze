@@ -19,12 +19,44 @@ export function makeAI(aiData){
       let coords = this.getCoords(leaf);
 
       return {
-        leftChild:    this.getNewNeighbor(coords, (coords) => {return this.getLeftChild(coords);}, options.exclude),
-        rightChild:   this.getNewNeighbor(coords, (coords) => {return this.getRightChild(coords);}, options.exclude),
+        leftChild:    this.getNewLeftChild(coords, options.exclude),
+        rightChild:   this.getNewRightChild(coords, options.exclude),
         leftBrother:  this.getNewNeighbor(coords, (coords) => {return this.getLeftBrother(coords);}, options.exclude),
         rightBrother: this.getNewNeighbor(coords, (coords) => {return this.getRightBrother(coords);}, options.exclude),
         parent:       this.getNewParent(leaf, options.exclude)
       }
+    },
+
+    getNewRightChild: function getNewRightChild(coords, exclude){
+      let that = this;
+      let getNeighbor = function (coords, exclude){
+        let neighbor = that.getRightChild(coords);
+        if (neighbor.id in exclude){
+          let leftChild = that.getLeftChild(coords);
+          if (!(leftChild in exclude)){
+            neighbor = leftChild;
+          }
+        }
+        return neighbor;
+      };
+
+      return this.getNewNeighbor(coords, (coords) => {return getNeighbor(coords, exclude);}, exclude);
+    },
+
+    getNewLeftChild: function getNewLeftChild(coords, exclude){
+      let that = this;
+      let getNeighbor = function (coords, exclude){
+        let neighbor = that.getLeftChild(coords);
+        if (neighbor.id in exclude){
+          let rightChild = that.getRightChild(coords);
+          if (!(rightChild in exclude)){
+            neighbor = rightChild;
+          }
+        }
+        return neighbor;
+      };
+
+      return this.getNewNeighbor(coords, (coords) => {return getNeighbor(coords, exclude);}, exclude);
     },
 
     getNewNeighbor: function getNewNeighbor(coords, getNeighbor, exclude){

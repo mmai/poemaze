@@ -14,7 +14,8 @@ export function renderDashboard(){
   );
 }
 
-export function renderLeaf(leafInfos){
+// export function renderLeaf(leafInfos){
+export function renderLeaf(leafInfos, history){
   let circlesView = h("div");
   switch(leafInfos.type){
   case 'ROOT':
@@ -29,12 +30,16 @@ export function renderLeaf(leafInfos){
 
   return (
     <div id="maincontainer">
-      <a href="#dashboard">dashboard</a><br/>
-      <a href="#reset">Reset</a><br/>
+      <a href="#reset">Remise à zéro</a><br/>
       <hr />
         {circlesView}
       <hr />
+      <div id="dasboard">
         {new VizWidget()}
+        <div id="history">
+        {h('ul', history.map(url => h("li", `${url.word} (${url.id})`)))}
+        </div>
+      </div>
     </div>
     );
 }

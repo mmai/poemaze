@@ -3,7 +3,7 @@ const circleRadius = 30;
 const origin = {x:200, y:200};
 const color_up = "green";
 const color_down = "brown";
-const color_brothers = "gray";
+const color_brothers = "#BBBBBB";
 const color_default = "black";
 
 //Root element displayed by the cyclejs widget and used in the driver by the Two.js library 
@@ -21,10 +21,17 @@ export function makeVizDriver(AI){
   const two = new Two({});
   two.appendTo(vizRootElem);
 
+  let displayedBranches = {};
+  let displayedLeafs = {};
+
   return function vizDriver(leafDisplay$){
     leafDisplay$
       .subscribe(dleaf => {
-          if (dleaf.reset) two.clear();
+          if (dleaf.reset) {
+            two.clear();
+            displayedBranches = {};
+            displayedLeafs = {};
+          }
 
           const newLeaf = AI.data[dleaf.leafId];
           const fromLeaf = AI.data[dleaf.fromId];
@@ -32,11 +39,31 @@ export function makeVizDriver(AI){
           const gleaf = makeLeaf(newLeaf);
 
           const joinLine = makeJoinLine(fromLeaf, newLeaf);
+
+          //Reveal branches
+          const neighbors = AI.getNeighbors(newLeaf);
+          revealBranchIfVisited(newLeaf, neighbors.leftChild.leaf);
+          revealBranchIfVisited(newLeaf, neighbors.rightChild.leaf);
+          revealBranchIfVisited(neighbors.parent.leaf, newLeaf);
+
+          // two.bind("update", function(frameCount){
+          //   });
+
           two.update();
+          // two.play();
         });
     };
 
+  function revealBranchIfVisited(parent, child){
+    const key = parent.id + "-"  + child.id;
+    if (displayedLeafs[parent.id] && displayedLeafs[child.id] && !displayedBranches[key]){
+      makeJoinLine(parent, child);
+      displayedBranches[key] = true;
+    }
+  }
+
   function makeLeaf (leaf){
+    displayedLeafs[leaf.id] = true;
     const coords = AI.getCoords(leaf);
     const type = AI.getType(leaf);
     // console.log(coords);

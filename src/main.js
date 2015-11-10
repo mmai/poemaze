@@ -31,7 +31,8 @@ function model(state, url){
   };
 }
 
-function view(state){
+// function view(state){
+function view({state, urlList}){
   switch (state.pathname) {
   case 'dashboard':
     return renderDashboard()
@@ -45,13 +46,19 @@ function view(state){
       type: AI.getType(leaf),
       neighbors: AI.getNeighbors(leaf, {exclude:state.visitedLeafs})
     };
-    return renderLeaf(leafInfos);
+    // return renderLeaf(leafInfos);
+
+    let history = [];
+    for (let i in urlList) {
+      history.push(AI.getLeaf(urlList[i]));
+    }
+    
+    return renderLeaf(leafInfos, history);
   }
   return h("div", 'Page non trouvée');
 }
 
 function main({DOM, History, Viz, LocalStorageSource}) {
-  let nbClicks = 0;
   //DOM => History/Actions
   const clicked$ = DOM
     .select('a')
@@ -93,7 +100,14 @@ function main({DOM, History, Viz, LocalStorageSource}) {
   ); 
 
   //State => DOM
-  const view$ = state$.map( view );
+  // const view$ = state$.map( view );
+  const view$ = state$.combineLatest(storedUrlList$, 
+    function (state, urlList){
+      return {
+        state: state,
+        urlList: JSON.parse(urlList).map(url => url.pathname)
+      };
+    }).map( view );
 
   //State => Viz
   const visitedLeaf$ = state$.map(state => {
