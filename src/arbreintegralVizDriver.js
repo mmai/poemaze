@@ -1,6 +1,7 @@
 const leafRadius = 2;
 const circleRadius = 30;
-const origin = {x:200, y:200};
+const origin = {x:0, y:0};
+// const origin = {x:200, y:200};
 const color_up = "green";
 const color_down = "brown";
 const color_brothers = "#BBBBBB";
@@ -21,24 +22,56 @@ export function makeVizDriver(AI){
   const two = new Two({});
   two.appendTo(vizRootElem);
 
+  const group = two.makeGroup();
+  group.translation.set(two.width/2, two.height/2);
+
   let displayedBranches = {};
   let displayedLeafs = {};
+  let svgLeafs = {};
+  let currentType = "UP";
+  let animType = "UP";
+
+  let animationLenth = 60; 
+  let animationProgression = 0;
+  two.bind('update', function(frameCount){
+      if (animType != currentType){
+        if (animationProgression < animationLenth){
+          let step = (animationProgression / animationLenth);
+          let factor = (animType == "UP")?(1 - step ):step;
+          group.rotation = Math.PI * factor; 
+          animationProgression += 1;
+        } else {
+          currentType = animType;
+          animationProgression = 0;
+        }
+      }
+    }).play();
 
   return function vizDriver(leafDisplay$){
     leafDisplay$
       .subscribe(dleaf => {
           if (dleaf.reset) {
-            two.clear();
+            group.remove(group.children);
+            group.rotation = 0;
             displayedBranches = {};
             displayedLeafs = {};
+            currentType = "UP";
           }
 
           const newLeaf = AI.data[dleaf.leafId];
+
           const fromLeaf = AI.data[dleaf.fromId];
 
-          const gleaf = makeLeaf(newLeaf);
+          let {leafElement, type} = makeLeaf(newLeaf);
+          animType = type;
+          if (animType == "ROOT"){
+            animType = "UP";
+          }
+          group.add(leafElement);
+          // svgLeafs[gleaf.id] = newLeaf.id;
 
           const joinLine = makeJoinLine(fromLeaf, newLeaf);
+          group.add(joinLine);
 
           //Reveal branches
           const neighbors = AI.getNeighbors(newLeaf);
@@ -46,18 +79,18 @@ export function makeVizDriver(AI){
           revealBranchIfVisited(newLeaf, neighbors.rightChild.leaf);
           revealBranchIfVisited(neighbors.parent.leaf, newLeaf);
 
-          // two.bind("update", function(frameCount){
-          //   });
-
-          two.update();
+          // two.update();
           // two.play();
+
+          // return svgLeafs;
         });
     };
 
   function revealBranchIfVisited(parent, child){
     const key = parent.id + "-"  + child.id;
     if (displayedLeafs[parent.id] && displayedLeafs[child.id] && !displayedBranches[key]){
-      makeJoinLine(parent, child);
+      let joinLine = makeJoinLine(parent, child);
+      group.add(joinLine);
       displayedBranches[key] = true;
     }
   }
@@ -75,7 +108,7 @@ export function makeVizDriver(AI){
     const color = (type == 'UP')?color_up:color_down;
     circle.fill = color;
     circle.stroke = color;
-    return circle;
+    return {leafElement:circle, type: type};
   }
 
   function makeJoinLine(fromLeaf, toLeaf) {

@@ -1,4 +1,252 @@
 {
+    "0.2.2.2.2.2": {
+        "id": "0.2.2.2.2.2",
+        "word": "objet",
+        "content": "Au fond du puit on gonfle, chaque semaine, un objet neuf\u00a0: femme <em>Durex<\/em>, s\u00e9quoia <em>Sempervirens<\/em>, fl\u00e8che <em>Saint-Michel<\/em>, fus\u00e9e <em>Ariane<\/em>.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.2.2.2.2"
+    },
+    "0.2.2.2.2.1": {
+        "id": "0.2.2.2.2.1",
+        "word": "griots",
+        "content": "D\u2019ailleurs, depuis la disparition des griots, jamais la g\u00e9n\u00e9alogie ne fut si populaire.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.2.2.2.2"
+    },
+    "0.2.2.2.1.2": {
+        "id": "0.2.2.2.1.2",
+        "word": "extinction",
+        "content": "Il a \u00e9t\u00e9 report\u00e9 qu\u2019en surface <em>34 %<\/em> des esp\u00e8ces conif\u00e8res non g\u00e9n\u00e9tiquement modifi\u00e9es seraient menac\u00e9es d\u2019extinction.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.2.2.2.1"
+    },
+    "0.2.2.2.1.1": {
+        "id": "0.2.2.2.1.1",
+        "word": "temp\u00e9rature",
+        "content": "Il a \u00e9t\u00e9 rapport\u00e9 qu\u2019en surface, la temp\u00e9rature moyenne serait mont\u00e9e d\u2019un degr\u00e9 en un si\u00e8cle.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.2.2.2.1"
+    },
+    "0.2.2.1.2.2": {
+        "id": "0.2.2.1.2.2",
+        "word": "puits",
+        "content": "Le seul fait concret \u00e9tant que, sur les parois circulaires de l\u2019immense puits de jour, l\u2019escalator progresse.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.2.2.1.2"
+    },
+    "0.2.2.1.2.1": {
+        "id": "0.2.2.1.2.1",
+        "word": "fra\u00eecheur",
+        "content": "Dans la fra\u00eecheur constante, - <em>18\u00b0 Celsius<\/em> - du centre commercial on ne peut \u00eatre certain de monter ou descendre.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.2.2.1.2"
+    },
+    "0.2.2.1.1.2": {
+        "id": "0.2.2.1.1.2",
+        "word": "linguistique",
+        "content": "Vous ne sauriez ignorer que sa s\u0153ur jumelle relisant <em>Anabase<\/em> \u00e9tudie la linguistique dans un local non loin.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.2.2.1.1"
+    },
+    "0.2.2.1.1.1": {
+        "id": "0.2.2.1.1.1",
+        "word": "paisible",
+        "content": "Vous n\u2019\u00eates pas sans savoir que ce pi\u00e9ton paisible rongeant une racine vers le niveau moins cinq a pour nom <em>Ego monstre<\/em>.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.2.2.1.1"
+    },
+    "0.2.1.2.2.2": {
+        "id": "0.2.1.2.2.2",
+        "word": "photo",
+        "content": "Aussi ce n\u2019est pas par les pieds qu\u2019on pendit tant de noirs et de juifs. Sans but de r\u00e9v\u00e9lation qu\u2019on les prit en photo.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.2.1.2.2"
+    },
+    "0.2.1.2.2.1": {
+        "id": "0.2.1.2.2.1",
+        "word": "nuques",
+        "content": "Repense aux pyramides. Brune et rouge, hier. Transparente aujourd\u2019hui. Toutes ces nuques sous leurs bases. Qui porte le chapeau\u00a0?",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.2.1.2.2"
+    },
+    "0.2.1.2.1.2": {
+        "id": "0.2.1.2.1.2",
+        "word": "engrenage",
+        "content": "L\u2019engrenage est causal, essieux, pignons, cames, pour le derviche tr\u00e9pan, ses fraises, son vertige centrifuge \u00e0 t\u00eate de cheval.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.2.1.2.1"
+    },
+    "0.2.1.2.1.1": {
+        "id": "0.2.1.2.1.1",
+        "word": "madriers",
+        "content": "Les madriers \u00e9tayent les mines de charbon et de fer. L\u2019acier tient le b\u00e9ton, les hautes fondations, les caves.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.2.1.2.1"
+    },
+    "0.2.1.1.2.2": {
+        "id": "0.2.1.1.2.2",
+        "word": "fossile",
+        "content": "N\u2019est-ce pas un cycle fossile qui s\u2019ach\u00e8ve, quand le serpent de naphte, <em>Standard Oil<\/em>, surgit des profondeurs\u00a0? ",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.2.1.1.2"
+    },
+    "0.2.1.1.2.1": {
+        "id": "0.2.1.1.2.1",
+        "word": "marchande",
+        "content": "La vraie, l\u2019unique valeur est marchande, fredonne <em>Orph\u00e9e<\/em> montant vers la surface.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.2.1.1.2"
+    },
+    "0.2.1.1.1.2": {
+        "id": "0.2.1.1.1.2",
+        "word": "sang",
+        "content": "L\u2019empreinte est si ancienne. Renverse une pyramide. Son sable coule, tranquille, dans le sommet  d\u2019une autre. Le sang autour.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.2.1.1.1"
+    },
+    "0.2.1.1.1.1": {
+        "id": "0.2.1.1.1.1",
+        "word": "impasse",
+        "content": "Mais, retour \u00e0 l\u2019antith\u00e8se justifi\u00e9e par la fourche, le m\u00e9tier de douter autorise l\u2019impasse, le refus de l\u2019inverse, du double.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.2.1.1.1"
+    },
+    "0.1.2.2.2.2": {
+        "id": "0.1.2.2.2.2",
+        "word": "houx",
+        "content": "Ou d\u2019un battement d\u2019aile, surplomber le d\u00e9dale depuis <em>Cystodinium<\/em>, commun a\u00efeul, jusqu\u2019au vieux houx,  <em>Lomatia<\/em>, de Tasmanie.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.1.2.2.2"
+    },
+    "0.1.2.2.2.1": {
+        "id": "0.1.2.2.2.1",
+        "word": "temps",
+        "content": "Et comme il est \u00e9trange que par cet \u00e9ventail, soit r\u00e9tabli le temps, ses ann\u00e9es, bobin\u00e9es en milliards.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.1.2.2.2"
+    },
+    "0.1.2.2.1.2": {
+        "id": "0.1.2.2.1.2",
+        "word": "termites",
+        "content": "Ainsi, pourvu du fil exact, et suivant les termites, il n\u2019y a qu\u2019un seul chemin du monarque au soleil.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.1.2.2.1"
+    },
+    "0.1.2.2.1.1": {
+        "id": "0.1.2.2.1.1",
+        "word": "parent\u00e8le",
+        "content": "Ainsi toute la parent\u00e8le du Dieu, momentan\u00e9ment unique, circule en ascenseur dans le tronc d\u2019un platane.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.1.2.2.1"
+    },
+    "0.1.2.1.2.2": {
+        "id": "0.1.2.1.2.2",
+        "word": "vertu",
+        "content": "Et combien peut porter de mensonges, telle g\u00e9om\u00e9trie de vertu\u00a0? Combien de v\u00e9rit\u00e9\u00a0? Combien de provisoire.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.1.2.1.2"
+    },
+    "0.1.2.1.2.1": {
+        "id": "0.1.2.1.2.1",
+        "word": "ak\u00e8ne",
+        "content": "La forme inscrite dans l\u2019ak\u00e8ne trace un chemin de logique pour la m\u00e9moire. Il est vain de chercher \u00e0 le dissoudre.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.1.2.1.2"
+    },
+    "0.1.2.1.1.2": {
+        "id": "0.1.2.1.1.2",
+        "word": "\u00e9chafaudage",
+        "content": "Donc ici, derri\u00e8res les stalles, doit s\u2019\u00e9riger l\u2019\u00e9chafaudage d\u2019allure arborescente. <em>Mod\u00e8le Scarrone<\/em>.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.1.2.1.1"
+    },
+    "0.1.2.1.1.1": {
+        "id": "0.1.2.1.1.1",
+        "word": "conqu\u00e9rant",
+        "content": "Alors, ce serait adroite botanique, de ne garder que celui-l\u00e0 seul, conqu\u00e9rant des lumi\u00e8res, qui surplombe et impose\u00a0?",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.1.2.1.1"
+    },
+    "0.1.1.2.2.2": {
+        "id": "0.1.1.2.2.2",
+        "word": "justice",
+        "content": "Une justice, sous son chapeau, piqu\u00e9e d\u2019\u00e9toiles, fut sur le point d\u2019\u00e9clore.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.1.1.2.2"
+    },
+    "0.1.1.2.2.1": {
+        "id": "0.1.1.2.2.1",
+        "word": "langues",
+        "content": "C\u2019est pourtant dans son ombre que se d\u00e9li\u00e8rent les langues.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.1.1.2.2"
+    },
+    "0.1.1.2.1.2": {
+        "id": "0.1.1.2.1.2",
+        "word": "symbole",
+        "content": "Qu\u2019\u00e9tait besoin de ce symbole\u00a0? D\u00e9j\u00e0 pourri, sonnant creux. Ce sont l\u2019insensible et le vide qui accouchent de toute science.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.1.1.2.1"
+    },
+    "0.1.1.2.1.1": {
+        "id": "0.1.1.2.1.1",
+        "word": "vent",
+        "content": "Ce que la main dessine, gale du ch\u00eane, le vent peut l\u2019effacer.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.1.1.2.1"
+    },
+    "0.1.1.1.2.2": {
+        "id": "0.1.1.1.2.2",
+        "word": "porphyre",
+        "content": "Donc ici qu\u2019un rectangle aux dalles de porphyre, s\u2019\u00e9tablisse \u00e0 la place.",
+        "circle": null,
+        "position": 2,
+        "parent": "0.1.1.1.2"
+    },
+    "0.1.1.1.2.1": {
+        "id": "0.1.1.1.2.1",
+        "word": "essarteurs",
+        "content": "Ce serait saine raison que d\u2019araser la table. Et juste police, \u00e0 la lumi\u00e8re, de faire donner les essarteurs.",
+        "circle": "cerne-5-politique",
+        "position": 1,
+        "parent": "0.1.1.1.2"
+    },
+    "0.1.1.1.1.2": {
+        "id": "0.1.1.1.1.2",
+        "word": "br\u00fbler",
+        "content": "Or c\u2019est de son propre bois, celui qu\u2019on ramasse, celui qu\u2019on fait tomber, qu\u2019on finit par br\u00fbler.",
+        "circle": "cerne-5-politique",
+        "position": 2,
+        "parent": "0.1.1.1.1"
+    },
     "0.1.1.1.1.1": {
         "id": "0.1.1.1.1.1",
         "word": "arbor",

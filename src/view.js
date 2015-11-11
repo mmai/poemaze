@@ -38,7 +38,13 @@ export function renderLeaf(leafInfos, history){
       <div id="dasboard">
         {new VizWidget()}
         <div id="history">
-        {h('ul', history.map(url => h("li", `${url.word} (${url.id})`)))}
+        <h2>Historique</h2>
+        {h('ul', 
+            history.map(url => h("li", [
+                  h("a", {href: `#${url.id}`}, `${url.word} (${url.id})`)
+                ])
+            )
+          )}
         </div>
       </div>
     </div>
