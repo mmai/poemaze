@@ -2,6 +2,7 @@
 
 import {hJSX, h} from '@cycle/dom';
 import {VizWidget} from './arbreintegralVizDriver';
+var parser = require("vdom-parser");
 
 export function renderDashboard(){
   return h('div#maincontainer', [ 
@@ -56,7 +57,7 @@ function renderRoot(leafInfos){
 
         <div id="circle-current" className="circle">
           <div id="circle-current--content">
-            {leafInfos.leaf.content}
+          o
           </div>
         </div>
 
@@ -72,6 +73,7 @@ function renderLeafReversed(leafInfos){
 }
 
 function renderLeafUpside(leafInfos){
+  // let hcontent = parser(leafInfos.leaf.content);
   return (
       <div id="ai-text">
         <div className="tree-breadcrumb">
@@ -85,7 +87,7 @@ function renderLeafUpside(leafInfos){
         <div id="circle-current" className="circle">
           {renderNeighorLink("circle-current--left", leafInfos.neighbors.leftBrother)}
           <div id="circle-current--content">
-            {leafInfos.leaf.content}
+          {parser(`<span>${leafInfos.leaf.content}</span>`)}
           </div>
           {renderNeighorLink("circle-current--right", leafInfos.neighbors.rightBrother)}
         </div>

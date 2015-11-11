@@ -26,6 +26,8 @@
     "node-sass": "^3.3.3",
     "sass-loader": "^3.0.0",
     "style-loader": "^0.12.4",
+    "vdom-parser": "^1.2.1",
+    "virtual-dom": "^2.1.1",
     "webpack": "^1.12.2",
     "whatwg-fetch": "^0.10.0"
   }
