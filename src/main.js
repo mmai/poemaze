@@ -58,29 +58,45 @@ function view({state, urlList}){
   return h("div", 'Page non trouvée');
 }
 
-function main({DOM, History, Viz, LocalStorageSource}) {
+function main({DOM, Viz, LocalStorageSource}) {
+// function main({DOM, History, Viz, LocalStorageSource}) {
   //DOM => History/Actions
   const clicked$ = DOM
     .select('a')
     .events('click')
     .filter(filterLinks);
+    // .map(e => e.target).share();
 
-
-  const url$ = Rx.Observable.concat(
-    deserialize(LocalStorageSource).flatMap( urlList => Rx.Observable.from(urlList)),
-    clicked$ 
-      .map(event =>  {
+  const navigationClick$ = clicked$
+    .map(event =>  {
         let [pathname, from] = event.target.hash.slice(1).split('-');
         return {
           pathname: pathname,
           from: from 
         };
-      })
+      });
+
+  // Clicks on the SVG nodes
+  // const leafClick$ = DOM
+  //   .select('path')
+  //   .events('click')
+  //   .filter(e => e.target.id.slice(0,8) == "two_leaf")
+  //   .map(e => {
+  //       return {
+  //         pathname: event.target.id.slice(9),
+  //         from: "0"
+  //       }
+  //     });
+  //
+  const url$ = Rx.Observable.concat(
+    deserialize(LocalStorageSource).flatMap( urlList => Rx.Observable.from(urlList)),
+    navigationClick$
+    // Rx.Observable.merge(navigationClick$, leafClick$)
   )
   .startWith({pathname:"0", from:"0"})
   .shareReplay()
 
-  const history$ = clicked$.map(event => event.target.href.replace(location.origin, ``));
+  // const history$ = clicked$.map(event => event.target.href.replace(location.origin, ``));
 
   const initialState = {pathname: '/', currentLeafId: "0", visitedLeafs:{}};
   const state$ = url$
@@ -105,7 +121,7 @@ function main({DOM, History, Viz, LocalStorageSource}) {
     function (state, urlList){
       return {
         state: state,
-        urlList: JSON.parse(urlList).map(url => url.pathname)
+        urlList: JSON.parse(urlList).map(url => url.pathname).filter(pathname => pathname !="0")
       };
     }).map( view );
 
@@ -125,7 +141,7 @@ function main({DOM, History, Viz, LocalStorageSource}) {
 
   return {
     DOM: view$,
-    History: history$,
+    // History: history$,
     Viz: visitedLeaf$,
     LocalStorageSink: storedUrlList$
   }
@@ -137,7 +153,7 @@ fetch('./wp-content/arbreintegral.json').then(function(response) {
       AI = makeAI(json);
       let drivers = {
         DOM: makeDOMDriver('#page'),
-        History: makeHistoryDriver(),
+        // History: makeHistoryDriver(),
         Viz: makeVizDriver(AI),
         LocalStorageSource: makeLocalStorageSourceDriver('arbreintegral'),
         LocalStorageSink: makeLocalStorageSinkDriver('arbreintegral')
