@@ -47,6 +47,9 @@ export function renderLeaf(leafInfos, history){
 function renderRoot(leafInfos){
   return (
       <div id="ai-text">
+        <div className="tree-breadcrumb">
+        AI/{leafInfos.leaf.id}
+        </div>
         <div className="circle">
           {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
         </div>
@@ -71,6 +74,9 @@ function renderLeafReversed(leafInfos){
 function renderLeafUpside(leafInfos){
   return (
       <div id="ai-text">
+        <div className="tree-breadcrumb">
+        AI/{leafInfos.leaf.id}
+        </div>
         <div id="circle-children" className="circle">
           {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
           {renderNeighorLink("circle-children--right", leafInfos.neighbors.rightChild)}
