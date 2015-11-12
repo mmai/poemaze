@@ -6,6 +6,7 @@ const color_up = "green";
 const color_down = "brown";
 const color_brothers = "#BBBBBB";
 const color_default = "black";
+const displayCircles = false;
 
 //Root element displayed by the cyclejs widget and used in the driver by the Two.js library 
 const vizRootElem = document.createElement('div');
@@ -26,6 +27,7 @@ export function makeVizDriver(AI){
   group.translation.set(two.width/2, two.height/2);
 
   let displayedBranches = {};
+  let previewBranches = {};
   let displayedLeafs = {};
   let svgLeafs = {};
   let currentType = "UP";
@@ -71,7 +73,9 @@ export function makeVizDriver(AI){
           // svgLeafs[gleaf.id] = newLeaf.id;
 
           const joinLine = makeJoinLine(fromLeaf, newLeaf);
-          group.add(joinLine);
+          if (joinLine) group.add(joinLine);
+
+          addPathFromRoot(newLeaf, group);
 
           //Reveal branches
           const neighbors = AI.getNeighbors(newLeaf);
@@ -92,6 +96,21 @@ export function makeVizDriver(AI){
       let joinLine = makeJoinLine(parent, child);
       group.add(joinLine);
       displayedBranches[key] = true;
+    }
+  }
+
+  function addPathFromRoot(leaf, group){
+    const parent = AI.getParent(leaf);
+    if (parent && parent.id != leaf.id){
+      const key = parent.id + "-"  + leaf.id;
+      if (!previewBranches[key] && !displayedBranches[key]){
+        let joinLine = makeLineBetweenLeafs(AI.getCoords(parent), AI.getCoords(leaf));
+        joinLine.stroke = color_brothers;
+
+        group.add(joinLine);
+        previewBranches[key] = true;
+        addPathFromRoot(parent, group);
+      }
     }
   }
 
@@ -117,16 +136,18 @@ export function makeVizDriver(AI){
 
     let joinLine;
     if (coordsFrom.circ == coordsTo.circ && coordsFrom.pos != coordsTo.pos){
-      //Reverse arc direction if destination is 'before' start leaf
-      let diff = coordsTo.pos - coordsFrom.pos;
-      if ( diff == -1 || diff > 1 ){
-        let tmp = coordsFrom;
-        coordsFrom = coordsTo;
-        coordsTo = tmp;
-      }
+      if (displayCircles){
+        //Reverse arc direction if destination is 'before' start leaf
+        let diff = coordsTo.pos - coordsFrom.pos;
+        if ( diff == -1 || diff > 1 ){
+          let tmp = coordsFrom;
+          coordsFrom = coordsTo;
+          coordsTo = tmp;
+        }
 
-      joinLine = makeArcBetweenLeafs(coordsFrom, coordsTo);
-      joinLine.stroke = color_brothers;
+        joinLine = makeArcBetweenLeafs(coordsFrom, coordsTo);
+        joinLine.stroke = color_brothers;
+      }
     } else {
       joinLine = makeLineBetweenLeafs(coordsFrom, coordsTo);
       joinLine.stroke = (AI.getType(fromLeaf) == 'UP')?color_up:color_down;
@@ -180,9 +201,12 @@ export function makeVizDriver(AI){
 
     const nbLeafs = Math.pow(2, circ);
     const angleIncrement = Math.PI / (nbLeafs/2 + 1);
-    let angle = Math.PI - pos * angleIncrement;
+    const random = Math.random() * angleIncrement / nbLeafs;
+    // let deviation = angleIncrement * 0.5 * (pos % 3 ? 1.2 : 0.9) * (circ % 2 ? 0.9 : 1.1);
+    let deviation = angleIncrement * 0.5;
+    let angle = Math.PI + deviation - pos * angleIncrement;
     if (pos > nbLeafs/2) {
-      angle -= angleIncrement; 
+      angle -= angleIncrement ; 
     }
     const radial = circleRadius * circ; 
     return {

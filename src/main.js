@@ -17,6 +17,7 @@ function model(state, url){
     return  { pathname: '', currentLeafId: "0", visitedLeafs:{} };
   }
 
+
   let newVisited = state.visitedLeafs;
   let curleafid = url.pathname || "0";
 
@@ -105,7 +106,7 @@ function main({DOM, Viz, LocalStorageSource}) {
 
   //Urls => LocalStorageSink
   const storedUrlList$ = serialize( url$
-      .filter(url => (url.pathname == 'reset' || url.from !== undefined))
+    .filter(url => ( url.pathname == 'reset' || url.from !== undefined))
       .distinctUntilChanged()
       .scan(function(urlList, url){
           if (url.pathname == 'reset') return [];
@@ -136,7 +137,6 @@ function main({DOM, Viz, LocalStorageSource}) {
       };
     })
   .filter(leaf => leaf.fromId !== undefined)
-  // .startWith({leafId:"0", fromId:"0"})
   .distinctUntilChanged();
 
   return {
