@@ -32,7 +32,6 @@ export function renderLeaf(leafInfos, history){
   return (
     <div id="maincontainer">
       <a href="#reset">Remise à zéro</a><br/>
-      <a href="#complete">Arbre complet</a><br/>
       <hr />
         {circlesView}
       <hr />

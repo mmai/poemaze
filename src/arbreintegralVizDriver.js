@@ -56,6 +56,7 @@ export function makeVizDriver(AI){
             group.remove(group.children);
             group.rotation = 0;
             displayedBranches = {};
+            previewBranches = {};
             displayedLeafs = {};
             currentType = "UP";
           }
