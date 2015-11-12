@@ -6,7 +6,12 @@ const color_up = "green";
 const color_down = "brown";
 const color_brothers = "#BBBBBB";
 const color_default = "black";
-const displayCircles = false;
+
+const display = {
+  circles: true,
+  rootPath: false,
+  revealedBranches: false
+}
 
 //Root element displayed by the cyclejs widget and used in the driver by the Two.js library 
 const vizRootElem = document.createElement('div');
@@ -76,13 +81,16 @@ export function makeVizDriver(AI){
           const joinLine = makeJoinLine(fromLeaf, newLeaf);
           if (joinLine) group.add(joinLine);
 
-          addPathFromRoot(newLeaf, group);
+          if (display.rootPath){
+            addPathFromRoot(newLeaf, group);
+          }
 
-          //Reveal branches
-          const neighbors = AI.getNeighbors(newLeaf);
-          revealBranchIfVisited(newLeaf, neighbors.leftChild.leaf);
-          revealBranchIfVisited(newLeaf, neighbors.rightChild.leaf);
-          revealBranchIfVisited(neighbors.parent.leaf, newLeaf);
+          if (display.revealedBranches){
+            const neighbors = AI.getNeighbors(newLeaf);
+            revealBranchIfVisited(newLeaf, neighbors.leftChild.leaf);
+            revealBranchIfVisited(newLeaf, neighbors.rightChild.leaf);
+            revealBranchIfVisited(neighbors.parent.leaf, newLeaf);
+          }
 
           // two.update();
           // two.play();
@@ -137,7 +145,7 @@ export function makeVizDriver(AI){
 
     let joinLine;
     if (coordsFrom.circ == coordsTo.circ && coordsFrom.pos != coordsTo.pos){
-      if (displayCircles){
+      if (display.circles){
         //Reverse arc direction if destination is 'before' start leaf
         let diff = coordsTo.pos - coordsFrom.pos;
         if ( diff == -1 || diff > 1 ){
@@ -147,7 +155,7 @@ export function makeVizDriver(AI){
         }
 
         joinLine = makeArcBetweenLeafs(coordsFrom, coordsTo);
-        joinLine.stroke = color_brothers;
+        joinLine.stroke = (AI.getType(fromLeaf) == 'UP')?color_up:color_down;
       }
     } else {
       joinLine = makeLineBetweenLeafs(coordsFrom, coordsTo);
