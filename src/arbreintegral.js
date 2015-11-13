@@ -71,6 +71,7 @@ export function makeAI(aiData){
 
     getNewParent: function (leaf, exclude){
       let neighbor = this.getParent(leaf);
+      if (neighbor.id == leaf.id) neighbor = false;
       let viewed = {};
       while ((neighbor !== false) && (neighbor.id in exclude) && !(neighbor.id in viewed)){
         viewed[neighbor.id] = true;
