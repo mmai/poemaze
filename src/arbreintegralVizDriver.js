@@ -34,12 +34,16 @@ export function makeVizDriver(AI){
   let displayedBranches = {};
   let previewBranches = {};
   let displayedLeafs = {};
-  let svgLeafs = {};
+  // let svgLeafs = {};
+  let neighborsIds = {};
+
   let currentType = "UP";
   let animType = "UP";
 
   let animationLenth = 60; 
   let animationProgression = 0;
+  let needUpdate = false;
+  let doUpdate = false;
   two.bind('update', function(frameCount){
       if (animType != currentType){
         if (animationProgression < animationLenth){
@@ -52,11 +56,31 @@ export function makeVizDriver(AI){
           animationProgression = 0;
         }
       }
-    }).play();
+
+      //If needed, the DOM will be updated at the next passage (after the current elements are set)
+      // if (doUpdate){ updateDOM(); doUpdate = false; }
+      // if (needUpdate){ doUpdate = true; needUpdate = false; }
+  }).play();
+
+  function updateDOM(){
+    let neighborsElementsIds = Object.keys(neighborsIds);
+    for (let eid of neighborsElementsIds){
+      let elem = document.getElementById(eid);
+      elem.setAttribute("class", "viz-neighbor");
+      elem.setAttribute("data-neighborid", neighborsIds[eid]);
+
+      // let aelem = document.createElement("a");
+      // aelem.setAttribute("href", `#${neighborsIds[eid]}`);
+      // let atxt = document.createTextNode(`#${neighborsIds[eid]}`);
+      // aelem.appendChild(atxt);
+      // let curnode = document.getElementById('page');
+      // document.body.insertBefore(aelem, curnode);
+    }
+  }
 
   return function vizDriver(leafDisplay$){
-    leafDisplay$
-      .subscribe(dleaf => {
+    // return leafDisplay$.map(dleaf => {
+      leafDisplay$.subscribe(dleaf => {
           if (dleaf.reset) {
             group.remove(group.children);
             group.rotation = 0;
@@ -66,7 +90,7 @@ export function makeVizDriver(AI){
             currentType = "UP";
           }
 
-          const newLeaf = AI.data[dleaf.leafId];
+          const newLeaf = dleaf.leaf;
 
           const fromLeaf = AI.data[dleaf.fromId];
 
@@ -77,6 +101,22 @@ export function makeVizDriver(AI){
           }
           group.add(leafElement);
           // svgLeafs[gleaf.id] = newLeaf.id;
+
+          //Remove neighbors of the previous leaf
+          let toRemove = Object.keys(neighborsIds);
+          group.remove(group.children.filter(child => toRemove.indexOf(child.id) > -1 ));
+
+          //Add new neighbors
+          neighborsIds = {};
+          for (let name in dleaf.neighbors){
+            let neighbor = dleaf.neighbors[name];
+            if (neighbor.leaf){
+              let leafElement = makeNeighborLeaf(neighbor.leaf);
+              group.add(leafElement);
+              neighborsIds[leafElement.id] = neighbor.leaf.id;
+            }
+          }
+          needUpdate = true;
 
           const joinLine = makeJoinLine(fromLeaf, newLeaf);
           if (joinLine) group.add(joinLine);
@@ -92,10 +132,7 @@ export function makeVizDriver(AI){
             revealBranchIfVisited(neighbors.parent.leaf, newLeaf);
           }
 
-          // two.update();
-          // two.play();
-
-          // return svgLeafs;
+          // return neighborsIds; }).startWith(neighborsIds);
         });
     };
 
@@ -137,6 +174,13 @@ export function makeVizDriver(AI){
     circle.fill = color;
     circle.stroke = color;
     return {leafElement:circle, type: type};
+  }
+
+  function makeNeighborLeaf (leaf){
+    const coords = AI.getCoords(leaf);
+    const pos = getPosFromCoords(coords);
+    const circle = two.makeCircle(pos.x, pos.y, leafRadius * 2);
+    return circle;
   }
 
   function makeJoinLine(fromLeaf, toLeaf) {

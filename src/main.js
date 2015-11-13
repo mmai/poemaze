@@ -38,23 +38,12 @@ function view({state, urlList}){
   case 'dashboard':
     return renderDashboard()
   default:
-    let leaf = AI.getLeaf(state.currentLeafId);
-    if (!leaf) 
-      throw new Error(`leaf ${state.currentLeafId} not found`);
-
-    let leafInfos = {
-      leaf: leaf,
-      type: AI.getType(leaf),
-      neighbors: AI.getNeighbors(leaf, {exclude:state.visitedLeafs})
-    };
-    // return renderLeaf(leafInfos);
-
     let history = [];
     for (let i in urlList) {
       history.push(AI.getLeaf(urlList[i]));
     }
     
-    return renderLeaf(leafInfos, history);
+    return renderLeaf(state.leafInfos, history);
   }
   return h("div", 'Page non trouvée');
 }
@@ -78,21 +67,21 @@ function main({DOM, Viz, LocalStorageSource}) {
       });
 
   // Clicks on the SVG nodes
-  // const leafClick$ = DOM
-  //   .select('path')
-  //   .events('click')
-  //   .filter(e => e.target.id.slice(0,8) == "two_leaf")
-  //   .map(e => {
-  //       return {
-  //         pathname: event.target.id.slice(9),
-  //         from: "0"
-  //       }
-  //     });
-  //
+  const svgClick$ = DOM
+    .select('.viz-neighbor')
+    .events('click')
+    .map(ev => {
+        console.log(ev);
+        return {
+          pathname: ev.target.data-neighborid,
+          from: "0"
+        }
+      });
+
   const url$ = Rx.Observable.concat(
     deserialize(LocalStorageSource).flatMap( urlList => Rx.Observable.from(urlList)),
-    navigationClick$
-    // Rx.Observable.merge(navigationClick$, leafClick$)
+    // navigationClick$
+    Rx.Observable.merge(navigationClick$, svgClick$)
   )
   .startWith({pathname:"0", from:"0"})
   .shareReplay()
@@ -102,7 +91,23 @@ function main({DOM, Viz, LocalStorageSource}) {
   const initialState = {pathname: '/', currentLeafId: "0", visitedLeafs:{}};
   const state$ = url$
     .scan(model, initialState)
-    .shareReplay();
+    .map(state => {
+        let newState = state;
+        let leaf = AI.getLeaf(state.currentLeafId);
+        newState.leafInfos = {
+          leaf: leaf,
+          type: AI.getType(leaf),
+          neighbors: AI.getNeighbors(leaf, {exclude:state.visitedLeafs})
+        };
+        return state;
+      })
+    // .combineLatest(Viz, function(state, neighborsIds){
+    //     let newState = state;
+    //     newState.neighborsIds = neighborsIds;
+    //     return newState;
+    //   })
+    .shareReplay()
+    .distinctUntilChanged();
 
   //Urls => LocalStorageSink
   const storedUrlList$ = serialize( url$
@@ -132,7 +137,8 @@ function main({DOM, Viz, LocalStorageSource}) {
       if (fromId === undefined && state.currentLeafId === "0") fromId = "0";
       return {
         reset: Object.keys(state.visitedLeafs).length < 1,
-        leafId: state.currentLeafId,
+        leaf: state.leafInfos.leaf,
+        neighbors: state.leafInfos.neighbors,
         fromId: fromId
       };
     })
