@@ -31,7 +31,6 @@ export function renderLeaf(leafInfos, history){
 
   return (
     <div id="maincontainer">
-      <a id="viz-left" href="#">Voisin</a><br/>
       <a href="#reset">Remise à zéro</a><br/>
       <hr />
         {circlesView}
