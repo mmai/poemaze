@@ -58,8 +58,8 @@ export function makeVizDriver(AI){
       }
 
       //If needed, the DOM will be updated at the next passage (after the current elements are set)
-      // if (doUpdate){ updateDOM(); doUpdate = false; }
-      // if (needUpdate){ doUpdate = true; needUpdate = false; }
+      if (doUpdate){ updateDOM(); doUpdate = false; }
+      if (needUpdate){ doUpdate = true; needUpdate = false; }
   }).play();
 
   function updateDOM(){
@@ -67,14 +67,7 @@ export function makeVizDriver(AI){
     for (let eid of neighborsElementsIds){
       let elem = document.getElementById(eid);
       elem.setAttribute("class", "viz-neighbor");
-      elem.setAttribute("data-neighborid", neighborsIds[eid]);
-
-      // let aelem = document.createElement("a");
-      // aelem.setAttribute("href", `#${neighborsIds[eid]}`);
-      // let atxt = document.createTextNode(`#${neighborsIds[eid]}`);
-      // aelem.appendChild(atxt);
-      // let curnode = document.getElementById('page');
-      // document.body.insertBefore(aelem, curnode);
+      elem.setAttribute("data-neighbor-href", `${neighborsIds[eid].leaf.id}-${neighborsIds[eid].fromId}`);
     }
   }
 
@@ -113,7 +106,8 @@ export function makeVizDriver(AI){
             if (neighbor.leaf){
               let leafElement = makeNeighborLeaf(neighbor.leaf);
               group.add(leafElement);
-              neighborsIds[leafElement.id] = neighbor.leaf.id;
+              // neighborsIds[leafElement.id] = neighbor.leaf.id;
+              neighborsIds[leafElement.id] = neighbor;
             }
           }
           needUpdate = true;
@@ -132,7 +126,7 @@ export function makeVizDriver(AI){
             revealBranchIfVisited(neighbors.parent.leaf, newLeaf);
           }
 
-          // return neighborsIds; }).startWith(neighborsIds);
+          // return neighborsIds; 
         });
     };
 
@@ -180,6 +174,7 @@ export function makeVizDriver(AI){
     const coords = AI.getCoords(leaf);
     const pos = getPosFromCoords(coords);
     const circle = two.makeCircle(pos.x, pos.y, leafRadius * 2);
+    circle.stroke = "gray";
     return circle;
   }
 
@@ -222,22 +217,10 @@ export function makeVizDriver(AI){
     const line = two.makeArcSegment(
       origin.x, origin.y,
       radius, radius + 0.1,
-      // 0, twoAngle(polarto.angle - polarfrom.angle),
-      // 0, polarto.angle - polarfrom.angle,
       0, polarfrom.angle - polarto.angle,
     );
-    line.rotation = -twoAngle(polarto.angle);
+    line.rotation = 0 - Math.PI/2 - polarto.angle;
     return line;
-  }
-
-  function twoAngle(angle){
-    return Math.PI/2 + angle ;
-  }
-
-  function polarCoords(pos){
-    const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2)); 
-    const angle = 2 * Math.atan(pos.y/(pos.x + r));
-    return {r:r, angle:angle};
   }
 
   function makeLineBetweenLeafs (from, to){
@@ -247,6 +230,8 @@ export function makeVizDriver(AI){
     return line;
   }
 
+  /*********** Coordinates converters *******/
+ 
   function getPosFromCoords ({circ, pos}){
     if (circ < 1){
       return origin;
@@ -267,6 +252,13 @@ export function makeVizDriver(AI){
       y: origin.y - radial * Math.sin(angle)
     };
   }
+
+  function polarCoords(pos){
+    const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2)); 
+    const angle = 2 * Math.atan(pos.y/(pos.x + r));
+    return {r:r, angle:angle};
+  }
+
 }
 
 

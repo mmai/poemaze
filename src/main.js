@@ -66,15 +66,25 @@ function main({DOM, Viz, LocalStorageSource}) {
         };
       });
 
+  // Viz.subscribe(neighborsIds => {
+  //     console.log('received neiborsIds');
+  //     console.log(neighborsIds);
+  //     
+  //   }
+  // );
+
   // Clicks on the SVG nodes
   const svgClick$ = DOM
-    .select('.viz-neighbor')
+    // .select('.viz-neighbor')
+    .select('svg')
     .events('click')
-    .map(ev => {
-        console.log(ev);
+    .map(ev => { return ev.target.getAttribute('data-neighbor-href')})
+    .filter(href => href != null) 
+    .map(href => {
+        let [pathname, from] = href.split('-');
         return {
-          pathname: ev.target.data-neighborid,
-          from: "0"
+          pathname: pathname,
+          from: from
         }
       });
 
