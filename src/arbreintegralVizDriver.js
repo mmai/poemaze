@@ -107,14 +107,14 @@ export function makeVizDriver(AI){
             let neighbor = dleaf.neighbors[name];
             let neighborFromLeaf = AI.data[neighbor.fromId];
             if (neighbor.leaf){
-              //Add leaf
-              let leafElement = makeNeighborLeaf(neighbor.leaf);
-              group.add(leafElement);
-              neighborsIds[leafElement.id] = neighbor;
               //Add path to leaf
               let joinLine = makeJoinLine(neighborFromLeaf, neighbor.leaf, true);
               if (joinLine) group.add(joinLine);
               neighborsPathsIds.push(joinLine.id);
+              //Add leaf
+              let leafElement = makeNeighborLeaf(neighbor.leaf);
+              group.add(leafElement);
+              neighborsIds[leafElement.id] = neighbor;
             }
           }
           needUpdate = true;
