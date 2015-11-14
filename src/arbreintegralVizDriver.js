@@ -36,6 +36,7 @@ export function makeVizDriver(AI){
   let displayedLeafs = {};
   // let svgLeafs = {};
   let neighborsIds = {};
+  let neighborsPathsIds = [];
 
   let currentType = "UP";
   let animType = "UP";
@@ -96,18 +97,24 @@ export function makeVizDriver(AI){
           // svgLeafs[gleaf.id] = newLeaf.id;
 
           //Remove neighbors of the previous leaf
-          let toRemove = Object.keys(neighborsIds);
+          let toRemove = Object.keys(neighborsIds).concat(neighborsPathsIds);
           group.remove(group.children.filter(child => toRemove.indexOf(child.id) > -1 ));
 
           //Add new neighbors
           neighborsIds = {};
+          neighborsPathsIds = [];
           for (let name in dleaf.neighbors){
             let neighbor = dleaf.neighbors[name];
+            let neighborFromLeaf = AI.data[neighbor.fromId];
             if (neighbor.leaf){
+              //Add leaf
               let leafElement = makeNeighborLeaf(neighbor.leaf);
               group.add(leafElement);
-              // neighborsIds[leafElement.id] = neighbor.leaf.id;
               neighborsIds[leafElement.id] = neighbor;
+              //Add path to leaf
+              let joinLine = makeJoinLine(neighborFromLeaf, neighbor.leaf, true);
+              if (joinLine) group.add(joinLine);
+              neighborsPathsIds.push(joinLine.id);
             }
           }
           needUpdate = true;
@@ -178,7 +185,7 @@ export function makeVizDriver(AI){
     return circle;
   }
 
-  function makeJoinLine(fromLeaf, toLeaf) {
+  function makeJoinLine(fromLeaf, toLeaf, isNeighbor = false) {
     let coordsFrom = AI.getCoords(fromLeaf);
     let coordsTo = AI.getCoords(toLeaf);
 
@@ -194,11 +201,17 @@ export function makeVizDriver(AI){
         }
 
         joinLine = makeArcBetweenLeafs(coordsFrom, coordsTo);
-        joinLine.stroke = (AI.getType(fromLeaf) == 'UP')?color_up:color_down;
       }
     } else {
       joinLine = makeLineBetweenLeafs(coordsFrom, coordsTo);
-      joinLine.stroke = (AI.getType(fromLeaf) == 'UP')?color_up:color_down;
+    }
+
+    if (joinLine){
+      if (isNeighbor){
+        joinLine.stroke = color_brothers;
+      } else {
+        joinLine.stroke = (AI.getType(fromLeaf) == 'UP')?color_up:color_down;
+      }
     }
 
     return joinLine;
