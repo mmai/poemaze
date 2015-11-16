@@ -31,6 +31,9 @@ export function renderLeaf(leafInfos, history){
 
   return (
     <div id="maincontainer">
+      <div>
+        {h('ai-progression', {max:127, value:history.length})}
+      </div>
       <a href="#reset">Remise à zéro</a><br/>
       <hr />
         {circlesView}

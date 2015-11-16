@@ -9,6 +9,7 @@ import {makeVizDriver} from './arbreintegralVizDriver';
 import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './localstorageDriver';
 import {serialize, deserialize} from './visitedLeafSerializer';
 import {renderDashboard, renderLeaf} from './view';
+import {progressionComponent} from './progressionComponent';
 
 let AI = null; 
 
@@ -168,7 +169,7 @@ fetch('./wp-content/arbreintegral.json').then(function(response) {
   }).then(function(json) {
       AI = makeAI(json);
       let drivers = {
-        DOM: makeDOMDriver('#page'),
+        DOM: makeDOMDriver('#page', {'ai-progression':progressionComponent}),
         // History: makeHistoryDriver(),
         Viz: makeVizDriver(AI),
         LocalStorageSource: makeLocalStorageSourceDriver('arbreintegral'),
