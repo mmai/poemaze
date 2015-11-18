@@ -1,4 +1,516 @@
 {
+    "0.2.2.2.2.2.2": {
+        "id": "0.2.2.2.2.2.2",
+        "word": "out",
+        "content": "fatal-error-out-of-memory.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.2.2.2.2"
+    },
+    "0.2.2.2.2.2.1": {
+        "id": "0.2.2.2.2.2.1",
+        "word": "eschatologique",
+        "content": "Rhizomique \/eschatologique",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.2.2.2.2"
+    },
+    "0.2.2.2.2.1.2": {
+        "id": "0.2.2.2.2.1.2",
+        "word": "111101",
+        "content": "111101",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.2.2.2.1"
+    },
+    "0.2.2.2.2.1.1": {
+        "id": "0.2.2.2.2.1.1",
+        "word": "111100",
+        "content": "111100",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.2.2.2.1"
+    },
+    "0.2.2.2.1.2.2": {
+        "id": "0.2.2.2.1.2.2",
+        "word": "111011",
+        "content": "111011",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.2.2.1.2"
+    },
+    "0.2.2.2.1.2.1": {
+        "id": "0.2.2.2.1.2.1",
+        "word": "111010",
+        "content": "111010",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.2.2.1.2"
+    },
+    "0.2.2.2.1.1.2": {
+        "id": "0.2.2.2.1.1.2",
+        "word": "0111001",
+        "content": "0111001",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.2.2.1.1"
+    },
+    "0.2.2.2.1.1.1": {
+        "id": "0.2.2.2.1.1.1",
+        "word": "donn\u00e9e",
+        "content": "disparition-du-texte-au-profit-de-la donn\u00e9e.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.2.2.1.1"
+    },
+    "0.2.2.1.2.2.2": {
+        "id": "0.2.2.1.2.2.2",
+        "word": "sid\u00e9ral",
+        "content": "le-sid\u00e9ral-virtuel-te-plait-tu-es-bien.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.2.1.2.2"
+    },
+    "0.2.2.1.2.2.1": {
+        "id": "0.2.2.1.2.2.1",
+        "word": "n\u00e9matodes",
+        "content": "ni-n\u00e9matodes-ni-singularit\u00e9-ni-entropie-ne-pourraient-te-convaincre-de-reprendre-ton-corps.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.2.1.2.2"
+    },
+    "0.2.2.1.2.1.2": {
+        "id": "0.2.2.1.2.1.2",
+        "word": "oubli",
+        "content": "tous-tes-hiers-d\u00e9j\u00e0-tu-les-confies-aux-\u00e9lectriques-convois-de-l-immediat-premier-symptome-de-l-oubli.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.2.1.2.1"
+    },
+    "0.2.2.1.2.1.1": {
+        "id": "0.2.2.1.2.1.1",
+        "word": "neuromantique",
+        "content": "devenir-vegetal-devenir-machine-l\u2019hesitation-neuromantique-transhume-dans-un-cable-ethernet.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.2.1.2.1"
+    },
+    "0.2.2.1.1.2.2": {
+        "id": "0.2.2.1.1.2.2",
+        "word": "samarres",
+        "content": "et-masque-\u00e0-jet-de-samarres-l-app\u00e9tit-co\u00eftal-du-dendrite-pour-l\u2019octet.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.2.1.1.2"
+    },
+    "0.2.2.1.1.2.1": {
+        "id": "0.2.2.1.1.2.1",
+        "word": "g\u00e9opo\u00e9tique",
+        "content": "est-ce-geopoetique-du-code-cette-errance-chronocide-dans-le-q-i-global",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.2.1.1.2"
+    },
+    "0.2.2.1.1.1.2": {
+        "id": "0.2.2.1.1.1.2",
+        "word": "solidaire",
+        "content": "juste-un-boug\u00e9-de-forme-un-autre-branchement-tout-deviendrait-possible-libre-genereux-solidaire.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.2.1.1.1"
+    },
+    "0.2.2.1.1.1.1": {
+        "id": "0.2.2.1.1.1.1",
+        "word": "greffes",
+        "content": "fin-des-c\u00e9p\u00e9es-trognes-porte-greffes-des-matrices-g\u00e9antes-distribuent-d\u00e9sormais-les-paniers-de-savoir-le-vim-assange-est-soumarin.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.2.1.1.1"
+    },
+    "0.2.1.2.2.2.2": {
+        "id": "0.2.1.2.2.2.2",
+        "word": "cortex",
+        "content": "le-sch\u00e9ma-du roncier-marcotte-les-plus-jeunes-cortex-epines-du-devoir-massivement-multijoueurs-baisers-de-reine-aux-facebrokers.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.1.2.2.2"
+    },
+    "0.2.1.2.2.2.1": {
+        "id": "0.2.1.2.2.2.1",
+        "word": "cage \u00e0 poules",
+        "content": "l-innocente-cage-a-poules-de-l-enfance-l\u2019entrecroix-de-ses-barreaux-son-metal-froid-l-appel-au-meurtre-circulant-dedans.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.1.2.2.2"
+    },
+    "0.2.1.2.2.1.2": {
+        "id": "0.2.1.2.2.1.2",
+        "word": "calque",
+        "content": "Klaus-katrina-sans-risque-de-calque-copie-colle-ce-meme-meme-ouragan-incendie-coupe-claire-ad-nauseam.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.1.2.2.1"
+    },
+    "0.2.1.2.2.1.1": {
+        "id": "0.2.1.2.2.1.1",
+        "word": "peupl\u00e9",
+        "content": "tout-le-monde-peut-participer-est-l-etat-le-plus-peupl\u00e9-de-la-plan\u00e8te",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.1.2.2.1"
+    },
+    "0.2.1.2.1.2.2": {
+        "id": "0.2.1.2.1.2.2",
+        "word": "am\u00e9lioration",
+        "content": "chaque-am\u00e9lioration-est-utile-tatonne-encore-son-protocole-decroissant-en-forme-de-bonsa\u00ef.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.1.2.1.2"
+    },
+    "0.2.1.2.1.2.1": {
+        "id": "0.2.1.2.1.2.1",
+        "word": "or",
+        "content": "cet-or-benjoin-cet-or-opoponax-cet-or-digital-camphre-argente-s-extrait-avec-des-mains-manettes-des-cases-non-d\u00e9cochees.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.1.2.1.2"
+    },
+    "0.2.1.2.1.1.2": {
+        "id": "0.2.1.2.1.1.2",
+        "word": "galactique",
+        "content": "ou-gigapole-galactique-deterre-des-campagnes-dans-le-chevron-\u00e9troit-des-gaz-d-echappement.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.1.2.1.1"
+    },
+    "0.2.1.2.1.1.1": {
+        "id": "0.2.1.2.1.1.1",
+        "word": "panopticon",
+        "content": "ou-carceral-panopticon-autosecrete-ses-propres-fuites-ses-revers-clandestins-ses-guerillas-ses-f\u00eates.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.1.2.1.1"
+    },
+    "0.2.1.1.2.2.2": {
+        "id": "0.2.1.1.2.2.2",
+        "word": "chalut",
+        "content": "acc\u00e9l\u00e9rant-la-grille-du-tissage-les-effets-du-chalut-se-presse-l-in\u00e9dit-empyreume-d-un-vin-possiblement-fraternel.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.1.1.2.2"
+    },
+    "0.2.1.1.2.2.1": {
+        "id": "0.2.1.1.2.2.1",
+        "word": "restitu\u00e9e",
+        "content": "solide-revenu-au-liquide-lettre-restitu\u00e9e-au-chiffre-ouest-et-droite-passes-est-et-gauche-terme-infini-de-la-boucle-silice.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.1.1.2.2"
+    },
+    "0.2.1.1.2.1.2": {
+        "id": "0.2.1.1.2.1.2",
+        "word": "combien",
+        "content": "combien-coute-ce-mot-combien-coute cette-phrase-combien-rapporte-t-elle-combien-de-chiffres-sur-le-ch\u00e8que-a-valoir-tel-alphabet.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.1.1.2.1"
+    },
+    "0.2.1.1.2.1.1": {
+        "id": "0.2.1.1.2.1.1",
+        "word": "\u00e9crans",
+        "content": "\u00e9nucleer-va-pair-a-pair-avec-cecite-tes-vieux-regards-upgrad\u00e9s-mille-prunelles-\u00e9crans-pay\u00e9es-premium-plug-in-infosynth\u00e8se-offert.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.1.1.2.1"
+    },
+    "0.2.1.1.1.2.2": {
+        "id": "0.2.1.1.1.2.2",
+        "word": "titan",
+        "content": "sublime-plutonium-239-le-mur-plut\u00f4t-que-de-l-abattre-que-chaque-titan-s\u2019\u00e9tiole-depuis-sa-geole-ouverte-en-des-nodosit\u00e9s-neuves.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.1.1.1.2"
+    },
+    "0.2.1.1.1.2.1": {
+        "id": "0.2.1.1.1.2.1",
+        "word": "embolie",
+        "content": "comme-nos-deux-noyaux-matiere-antimatiere-tenteraient-de-blinder-leur-orbite-envers-toute-embolie-fusionelle-",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.1.1.1.2"
+    },
+    "0.2.1.1.1.1.2": {
+        "id": "0.2.1.1.1.1.2",
+        "word": "moore",
+        "content": "la-moore-loi-de-toujours-la-moore-loi-de-toujours-accroit-le-dense-algorithmique-dans-ton-rein-de-pulsar",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.2.1.1.1.1"
+    },
+    "0.2.1.1.1.1.1": {
+        "id": "0.2.1.1.1.1.1",
+        "word": "exponentiel",
+        "content": "acentrique-invention-exponentiel-outil-l-utopie-du-possible-utopique-l-anarchique-bombe-rameale-fragment\u00e9e-subitement-deboure.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.2.1.1.1.1"
+    },
+    "0.1.2.2.2.2.2": {
+        "id": "0.1.2.2.2.2.2",
+        "word": "femtoseconde",
+        "content": "faute-de-lime-vrille-laser-femtoseconde-l-a-capital-l-a-captif-en-gel\u00e9e-incube-l-a-caudal-l-a-d\u00e9capit\u00e9- pour fendre-sa-vesicule.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.2.2.2.2"
+    },
+    "0.1.2.2.2.2.1": {
+        "id": "0.1.2.2.2.2.1",
+        "word": "transgenre",
+        "content": "sans-m\u00eame-lsd-sentir-les points-d-aiguilles-trouer-le-derme-de-l\u2019espece-rejoindre-le-solidaire-transgenre-de-l\u2019atome.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.2.2.2.2"
+    },
+    "0.1.2.2.2.1.2": {
+        "id": "0.1.2.2.2.1.2",
+        "word": "chaosmos",
+        "content": "par-quel-jeu-de-miroirs-cet-\u0153il-huble-exorbit\u00e9-vers-l\u2019originel-chaosmos-entre-cuisses -se-retourne-cauchemar-vers-toi.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.2.2.2.1"
+    },
+    "0.1.2.2.2.1.1": {
+        "id": "0.1.2.2.2.1.1",
+        "word": "skyline",
+        "content": "Rubiks-oblique-a-tant-de-faces-plan-de-la-ville-multi-strates-vous-etes-ici-et-n\u2019y-\u00eates-plus-\u00e9changeurs-sous-le-skyline",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.2.2.2.1"
+    },
+    "0.1.2.2.1.2.2": {
+        "id": "0.1.2.2.1.2.2",
+        "word": "carnaval",
+        "content": "Ici-puis-la-le-fou-cousin-le-carnaval-perenne-detricottent-a-grandes-mailles-le-costume-president-et-sa-cravatte-hermes.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.2.2.1.2"
+    },
+    "0.1.2.2.1.2.1": {
+        "id": "0.1.2.2.1.2.1",
+        "word": "origami",
+        "content": "la-vitesse-est-milieu-la-profusion-levres-obturees-du-n\u00e9ant-un-pli-d-origami-releve-l-horizontal-d-une-illusion-puissante.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.2.2.1.2"
+    },
+    "0.1.2.2.1.1.2": {
+        "id": "0.1.2.2.1.1.2",
+        "word": "stroboscopes",
+        "content": "ce-sont-des-milliards-d-yeux-stroboscopes-sans-paupiere-sans-larme-arc-irisant-leurs-flux -via-des-missiles-solaires.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.2.2.1.1"
+    },
+    "0.1.2.2.1.1.1": {
+        "id": "0.1.2.2.1.1.1",
+        "word": "tabou",
+        "content": "quel-opaque-nemeton-ventre-tabou-horreur-fermente-l\u2019esprit-transcendantal-erige-en-phallus-quand-aux-lisi\u00e8res-partout-caresses.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.2.2.1.1"
+    },
+    "0.1.2.1.2.2.2": {
+        "id": "0.1.2.1.2.2.2",
+        "word": "drupe",
+        "content": "tien-le-drupe-hemorragique-de-ton-dire-couche-de-ton-reve-branche-branche-aux-adventices-\u00e7a-moi-surmoi-hors-moi-indehiscentes.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.2.1.2.2"
+    },
+    "0.1.2.1.2.2.1": {
+        "id": "0.1.2.1.2.2.1",
+        "word": "\u6f38",
+        "content": "tsien-kapla-lego-cube-brique-agence-les-jambes-divinatoires-du-yi-king-vers -le-progres-graduel-de-la-figure-53-",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.2.1.2.2"
+    },
+    "0.1.2.1.2.1.2": {
+        "id": "0.1.2.1.2.1.2",
+        "word": "babel",
+        "content": "que-calculer-babel-un-livre-\u00e9crit-non-\u00e9crit-pass\u00e9-\u00e0-venir-soit-devenu-plus-simple-que-de-s-en-souvenir-crispation-aux-pages.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.2.1.2.1"
+    },
+    "0.1.2.1.2.1.1": {
+        "id": "0.1.2.1.2.1.1",
+        "word": "effervescence",
+        "content": "effervescence-maison-de-feuilles-ce-qu-heberge-d-infini-le-fini-d-un-cerveau-escaliers-d\u00e9duits-passages.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.2.1.2.1"
+    },
+    "0.1.2.1.1.2.2": {
+        "id": "0.1.2.1.1.2.2",
+        "word": "ondes",
+        "content": "ou-antenne-asexuee-dans-le-tamis-des-ondes-electro-magnetiques-gresille-l\u2019incessant-codex-decodex-de-l-hypermarche-conversation.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.2.1.1.2"
+    },
+    "0.1.2.1.1.2.1": {
+        "id": "0.1.2.1.1.2.1",
+        "word": "pylone",
+        "content": "Il-chante-le-desastreux-pylone-son-hymne-de-nudite-cours-de-frere-en-frere-sur-le-croise-frole-des-lignes-aux-contours-de-nuage.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.2.1.1.2"
+    },
+    "0.1.2.1.1.1.2": {
+        "id": "0.1.2.1.1.1.2",
+        "word": "pompe",
+        "content": "sectionne-le-c\u0153ur-enleve-la-pompe-unique-laisse-coopeerer-les-myriades-chloroplastiques-fonctionner-le timide.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.2.1.1.1"
+    },
+    "0.1.2.1.1.1.1": {
+        "id": "0.1.2.1.1.1.1",
+        "word": "sephiroth",
+        "content": "joue-au-billard-avec-les-sephiroth-queue-de-drageon-s\u00e4igon-niamey-segment-de-soif-inaltere.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.2.1.1.1"
+    },
+    "0.1.1.2.2.2.2": {
+        "id": "0.1.1.2.2.2.2",
+        "word": "free jazz",
+        "content": "d\u00e9route-zodiacale-explosion-des-neuf-spheres-c\u00e9lestes-newton-est-un batteur-free-jazz-les-lois-sont-toujours-provisoires.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.1.2.2.2"
+    },
+    "0.1.1.2.2.2.1": {
+        "id": "0.1.1.2.2.2.1",
+        "word": "dreamlifter",
+        "content": "l-industrie-papeti\u00e8re-et-la-c\u00f4te-dewey-decolent-boeing-747-dreamlifter-bient\u00f4t-pulverisees-par-transponding-astra.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.1.2.2.2"
+    },
+    "0.1.1.2.2.1.2": {
+        "id": "0.1.1.2.2.1.2",
+        "word": "heuristique",
+        "content": "bataille-navale-echiquier-heuristique-une-caravelle-chargees-de-caisses-lexiques-grammaires-pr\u00e9cis-de-traduction-sombre.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.1.2.2.1"
+    },
+    "0.1.1.2.2.1.1": {
+        "id": "0.1.1.2.2.1.1",
+        "word": "stridulation",
+        "content": "Ici-et-l\u00e0-encore-l\u2019homme-de-su-se-fait-synapse-bulbe-simple-relais-inspire-expire-dans-la-stridulation-forrestiere.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.1.2.2.1"
+    },
+    "0.1.1.2.1.2.2": {
+        "id": "0.1.1.2.1.2.2",
+        "word": "marteau",
+        "content": "\u00e0-la-r\u00e8gle-au-marteau-parcelles-m\u00e9ridiens-ponts-et-chauss\u00e9es-une-route-saigne-vers-l-oc\u00e9an-monde.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.1.2.1.2"
+    },
+    "0.1.1.2.1.2.1": {
+        "id": "0.1.1.2.1.2.1",
+        "word": "circuits",
+        "content": "courant-gibier-\u00e0-travers-sentes-terriers-rus-s\u2019impriment-les-circuits-d-esquives-cartes-m\u00e9moires-chants-de-l-embsucade.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.1.2.1.2"
+    },
+    "0.1.1.2.1.1.2": {
+        "id": "0.1.1.2.1.1.2",
+        "word": "effac\u00e9",
+        "content": "ombres-d-ombres-peuple-sans-trace-aucune-ni-de-passage-ni-de-halte-o\u00f9-seul-l-anc\u00eatre-se-tient-visible-dans-l\u2019effac\u00e9.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.1.2.1.1"
+    },
+    "0.1.1.2.1.1.1": {
+        "id": "0.1.1.2.1.1.1",
+        "word": "liane",
+        "content": "et-lui-m\u00e9ta-baron-de-liane-en-liane-se-cavalant-dans-la-sauve.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.1.2.1.1"
+    },
+    "0.1.1.1.2.2.2": {
+        "id": "0.1.1.1.2.2.2",
+        "word": "crottes",
+        "content": "\u00e9missaires-na\u00effs-plumes-pelages-cris-crottes-hasards-app\u00e2ts-charnus-roses-d\u00e9vorent-hackent-forniquent-tombent.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.1.1.2.2"
+    },
+    "0.1.1.1.2.2.1": {
+        "id": "0.1.1.1.2.2.1",
+        "word": "patience",
+        "content": "se-taire-la-mort-la cendre-patience-pyrophile-du-g\u00e8ne-viral-ins\u00e9min\u00e9-aux-caches-latentes-du-signal.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.1.1.2.2"
+    },
+    "0.1.1.1.2.1.2": {
+        "id": "0.1.1.1.2.1.2",
+        "word": "frelon",
+        "content": "laisse-le-vent-r\u00e9v\u00e9ler-en-rebrousse-le-continuel-frelon-le-parle-parle-ajour\u00e9-de-clairi\u00e8res.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.1.1.2.1"
+    },
+    "0.1.1.1.2.1.1": {
+        "id": "0.1.1.1.2.1.1",
+        "word": "flagelles",
+        "content": "attouchements-catacombes-trembl\u00e9s-de-flagelles-passe-moi-le-sel-nutriment-le-sel-anxyolitique.info",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.1.1.2.1"
+    },
+    "0.1.1.1.1.2.2": {
+        "id": "0.1.1.1.1.2.2",
+        "word": "canope",
+        "content": "apical-message-\u00e9tat-gazeux-de-l-alerte-canope-encapsul\u00e9e-propagation-du-programme-antidote.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.1.1.1.2"
+    },
+    "0.1.1.1.1.2.1": {
+        "id": "0.1.1.1.1.2.1",
+        "word": "systoles",
+        "content": "multiple-ensuite-aux-massifs-mobiles-\u00e9migrations-immigrations-aux-lentes-systoles-pal\u00e9o-climatiques.",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.1.1.1.2"
+    },
+    "0.1.1.1.1.1.2": {
+        "id": "0.1.1.1.1.1.2",
+        "word": "polype",
+        "content": "foule-d\u00e9j\u00e0-d\u00e8s-l-orbe-close-des-cellules-d\u00e8s-le-polype-individu.",
+        "circle": "cerne-6-rhizomique",
+        "position": 2,
+        "parent": "0.1.1.1.1.1"
+    },
+    "0.1.1.1.1.1.1": {
+        "id": "0.1.1.1.1.1.1",
+        "word": "bozon",
+        "content": "bozon-de-higgs-impair-et-manque.arpa",
+        "circle": "cerne-6-rhizomique",
+        "position": 1,
+        "parent": "0.1.1.1.1.1"
+    },
     "0.2.2.2.2.2": {
         "id": "0.2.2.2.2.2",
         "word": "objet",
