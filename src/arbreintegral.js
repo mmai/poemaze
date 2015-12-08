@@ -126,7 +126,7 @@ export function makeAI(aiData){
       let position = 1;
       let lcircle = circle - 1;
       for (let pos of path.slice(1)){
-        position += Math.pow(2, lcircle) * (parseInt(pos) - 1);
+        position += Math.pow(2, lcircle) * (parseInt(pos));
         lcircle -= 1;
       }
       return {circ:circle, pos:position};
@@ -148,9 +148,9 @@ export function makeAI(aiData){
       while (level > 0){
         let half = Math.pow(2, level - 1);
         if (cpos <= half) {
-          id += "." + 1;
+          id += "." + 0;
         } else {
-          id += "." + 2;
+          id += "." + 1;
           cpos -= half;
         }
         level -= 1;
