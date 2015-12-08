@@ -58,7 +58,7 @@ function renderRoot(leafInfos){
   return (
       <div id="ai-text">
         <div className="tree-breadcrumb">
-        AI/{leafInfos.leaf.id}
+        AI / {leafInfos.leaf.name}
         </div>
         <div className="circle">
           {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
@@ -86,7 +86,7 @@ function renderLeafUpside(leafInfos){
   return (
       <div id="ai-text">
         <div className="tree-breadcrumb">
-        AI/{leafInfos.leaf.id}
+        AI / {leafInfos.leaf.name}
         </div>
         <div id="circle-children" className="circle">
           {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}

@@ -105,10 +105,17 @@ function main({DOM, Viz, LocalStorageSource}) {
     .map(state => {
         let newState = state;
         let leaf = AI.getLeaf(state.currentLeafId);
+
+        let exclude = JSON.parse(JSON.stringify(state.visitedLeafs));
+        //Last leaf only available when all tree has been seen
+        if(Object.keys(exclude).length < 126) {
+          exclude["0.1.1.1.1.1.1"] = "0.1.1.1.1.1.1";
+        } 
+
         newState.leafInfos = {
           leaf: leaf,
           type: AI.getType(leaf),
-          neighbors: AI.getNeighbors(leaf, {exclude:state.visitedLeafs})
+          neighbors: AI.getNeighbors(leaf, {exclude:exclude})
         };
         return state;
       })

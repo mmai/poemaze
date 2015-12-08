@@ -120,7 +120,7 @@ export function makeAI(aiData){
     //XXX lié à la nomenclature choisie pour les id des fragments
     getCoords(leaf){
       if (leaf === false) throw new Error("Can't get coordinates of a 'false' leaf");
-      //Nomenclature : 0.1.2.2.1
+      //Nomenclature : 0.0.1.1.0
       let path = leaf.id.split('.');
       let circle = path.length - 1;  
       let position = 1;

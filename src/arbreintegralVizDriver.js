@@ -40,13 +40,14 @@ export function makeVizDriver(AI){
 
   let currentType = "UP";
   let animType = "UP";
+  let doAnim = false;
 
   let animationLenth = 60; 
   let animationProgression = 0;
   let needUpdate = false;
   let doUpdate = false;
   two.bind('update', function(frameCount){
-      if (animType != currentType){
+      if ( doAnim && animType != currentType){
         if (animationProgression < animationLenth){
           let step = (animationProgression / animationLenth);
           let factor = (animType == "UP")?(1 - step ):step;
@@ -88,8 +89,9 @@ export function makeVizDriver(AI){
 
           const fromLeaf = AI.data[dleaf.fromId];
 
-          let {leafElement, type} = makeLeaf(newLeaf);
+          let {leafElement, type, isAnim} = makeLeaf(newLeaf);
           animType = type;
+          doAnim = isAnim;
           if (animType == "ROOT"){
             animType = "UP";
           }
@@ -165,6 +167,7 @@ export function makeVizDriver(AI){
     displayedLeafs[leaf.id] = true;
     const coords = AI.getCoords(leaf);
     const type = AI.getType(leaf);
+    const isAnim = coords.circ == 4;
     // console.log(coords);
 
     const pos = getPosFromCoords(coords);
@@ -174,7 +177,7 @@ export function makeVizDriver(AI){
     const color = (type == 'UP')?color_up:color_down;
     circle.fill = color;
     circle.stroke = color;
-    return {leafElement:circle, type: type};
+    return {leafElement:circle, type: type, isAnim: isAnim};
   }
 
   function makeNeighborLeaf (leaf){
