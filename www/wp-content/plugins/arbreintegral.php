@@ -125,7 +125,7 @@ add_action( 'admin_menu', 'ai_admin_menu' );
 //Export de la structure en json
 function ai_admin_menu() {
 	add_menu_page( 'Arbre Integral', 'Arbre Integral', 'manage_options', 'arbreintegral', 'ai_admin_page', 'dashicons-tickets', 4  );
-	add_menu_page( 'Arbre Integral maj', 'AI maj', 'manage_options', 'arbreintegral_update', 'ai_update_page', 'dashicons-tickets', 5  );
+	// add_menu_page( 'Arbre Integral maj', 'AI maj', 'manage_options', 'arbreintegral_update', 'ai_update_page', 'dashicons-tickets', 5  );
 }
 
 function ai_admin_page(){
