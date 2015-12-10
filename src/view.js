@@ -18,21 +18,25 @@ export function renderDashboard(){
 // export function renderLeaf(leafInfos){
 export function renderLeaf(leafInfos, history){
   let circlesView = h("div");
-  switch(leafInfos.type){
-  case 'ROOT':
-    circlesView = renderRoot(leafInfos);
-    break;
-  case 'DOWN': 
-    circlesView = renderLeafReversed(leafInfos);
-    break;
-  default: 
-    circlesView = renderLeafUpside(leafInfos);
+  if (history.length == 126) {
+    circlesView = renderEnd(leafInfos);
+  } else {
+    switch(leafInfos.type){
+    case 'ROOT':
+      circlesView = renderRoot(leafInfos);
+      break;
+    case 'DOWN': 
+      circlesView = renderLeafReversed(leafInfos);
+      break;
+    default: 
+      circlesView = renderLeafUpside(leafInfos);
+    }
   }
 
   return (
     <div id="maincontainer">
       <div>
-        {h('ai-progression', {max:127, value:history.length})}
+        {h('ai-progression', {max:126, value:history.length})}
       </div>
       <a href="#reset">Remise à zéro</a><br/>
       <hr />
@@ -72,6 +76,26 @@ function renderRoot(leafInfos){
 
         <div className="circle">
           {renderNeighorLink("circle-children--right", leafInfos.neighbors.rightChild)}
+        </div>
+      </div>
+      )
+}
+
+function renderEnd(){
+  return (
+      <div id="ai-text">
+        <div>Imprimez votre parcours avec Blook-up</div>
+
+        <div>
+          <a href="#reset">Recommencer</a><br/>
+        </div>
+
+        <div>
+        <ul>
+          <li><a href="mailto:?subject=Arbre intégral&body=Explorez l'Arbre Intégral">Partager par email</a></li>
+          <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//arbre-integral.net">Partager sur Facebook</a></li> 
+          <li><a href="https://twitter.com/home?status=l'arbre%20int%C3%A9gral%20http%3A//arbre-integral.net">Partager sur Twitter</a></li>
+        </ul>
         </div>
       </div>
       )
