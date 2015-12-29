@@ -18,6 +18,9 @@ export function renderDashboard(){
 // export function renderLeaf(leafInfos){
 export function renderLeaf(leafInfos, history){
   let circlesView = h("div");
+  let interstice = (history.length == 1) ? renderInterstice(): ""
+
+  // if (true) {
   if (history.length == 126) {
     circlesView = renderEnd(leafInfos);
   } else {
@@ -40,6 +43,7 @@ export function renderLeaf(leafInfos, history){
       </div>
       <a href="#reset">Remise à zéro</a><br/>
       <hr />
+        {interstice}
         {circlesView}
       <hr />
       <div id="dasboard">
@@ -56,6 +60,14 @@ export function renderLeaf(leafInfos, history){
       </div>
     </div>
     );
+}
+
+function renderInterstice(){
+  return (
+    <div id="ai-interstice">
+      L'arbre intégral par Donatien Garnier
+    </div>
+  )
 }
 
 function renderRoot(leafInfos){
@@ -84,19 +96,12 @@ function renderRoot(leafInfos){
 function renderEnd(){
   return (
       <div id="ai-text">
-        <div>Imprimez votre parcours avec Blook-up</div>
+        <div><a href="#pdf">Conservez le livre de votre parcours</a></div>
 
         <div>
           <a href="#reset">Recommencer</a><br/>
         </div>
 
-        <div>
-        <ul>
-          <li><a href="mailto:?subject=Arbre intégral&body=Explorez l'Arbre Intégral">Partager par email</a></li>
-          <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//arbre-integral.net">Partager sur Facebook</a></li> 
-          <li><a href="https://twitter.com/home?status=l'arbre%20int%C3%A9gral%20http%3A//arbre-integral.net">Partager sur Twitter</a></li>
-        </ul>
-        </div>
       </div>
       )
 }

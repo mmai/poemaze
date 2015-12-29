@@ -3,6 +3,27 @@
   flex-direction: column;
 }
 
+#ai-interstice {
+  background: white;
+  text-align: center;
+
+  z-index: 999;
+  overflow:hidden;
+  position:absolute;
+
+  width: 100%;
+  height: 100%;
+  animation: ai-interstice-animation 0s ease-in 2s forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes ai-interstice-animation {
+  to {
+    width:0%;
+    height:0%;
+  }
+}
+
 .tree-breadcrumb {
   height: 2em;
 }
