@@ -9,21 +9,37 @@ export function makeAI(aiData){
       return leaf;
     },
 
+    // getType: function getTypeNormalized(leaf){
+    //   let {circ, pos} = this.getCoords(leaf);
+    //   if (circ == 0) return 'ROOT';
+    //   return (pos > Math.pow(2, circ - 1))?'DOWN':'UP';
+    // },
+
+  //XXX lié à la syntaxe des feuilles pour performance. Utiliser getTypeNormalized pour la version indépendante de la syntaxe 
     getType: function getType(leaf){
-      let {circ, pos} = this.getCoords(leaf);
-      if (circ == 0) return 'ROOT';
-      return (pos > Math.pow(2, circ - 1))?'DOWN':'UP';
+      let elems = leaf.id.split('.');
+      if (elems.length === 1) return 'ROOT';
+      return (elems[1] === "0") ? "UP" : "DOWN"
     },
 
     getNeighbors: function getNeighbors(leaf, options = {exclude:[]}){
       let coords = this.getCoords(leaf);
+
+      let parent = this.getNewParent(leaf, options.exclude) 
+      if (parent.leaf && parent.leaf.id === "0"){
+        let child =  (this.getType(leaf) === 'UP') ? this.getRightChild(this.getCoords(parent.leaf)) : this.getLeftChild(this.getCoords(parent.leaf));
+        parent = this.ensureNewChild(child, options.exclude);
+      }
+      if (!parent){
+        console.log('ERROR')
+      }
 
       return {
         leftChild:    this.ensureNewChild(this.getLeftChild(coords), options.exclude),
         rightChild:   this.ensureNewChild(this.getRightChild(coords), options.exclude),
         leftBrother:  this.getNewBrother(coords, (coords) => {return this.getLeftBrother(coords);}, options.exclude),
         rightBrother: this.getNewBrother(coords, (coords) => {return this.getRightBrother(coords);}, options.exclude),
-        parent:       this.getNewParent(leaf, options.exclude)
+        parent: parent
       }
     },
 

@@ -36,10 +36,16 @@ export function renderLeaf(leafInfos, history){
     }
   }
 
+      // {h('ai-progression', { max:126, value: history.length })}
   return (
     <div id="maincontainer">
       <div>
-        {h('ai-progression', {max:126, value:history.length})}
+      {h('ai-progression', {
+            value:history.map( leaf => {
+                let elems = leaf.id.split('.');
+                return (elems.length === 1) ? "" : (elems[1] === "0" )
+              })
+          })}
       </div>
       <a href="#reset">Remise à zéro</a><br/>
       <hr />
@@ -70,32 +76,51 @@ function renderInterstice(){
   )
 }
 
+
 function renderRoot(leafInfos){
+  let leftchild = leafInfos.neighbors.leftChild;
+  let rightchild = leafInfos.neighbors.rightChild;
   return (
       <div id="ai-text">
         <div className="tree-breadcrumb">
         AI / {leafInfos.leaf.name}
         </div>
+
         <div className="circle">
-          {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
+          <div id="circle-children--left">
+          {h('a',
+             {href: "#" + leftchild.leaf.id + "-" + leftchild.fromId},
+              leftchild.leaf.word
+            )}
+          </div>
         </div>
 
         <div id="circle-current" className="circle">
           <div id="circle-current--content">
-          o
+          ==oOo==
           </div>
         </div>
 
         <div className="circle">
-          {renderNeighorLink("circle-children--right", leafInfos.neighbors.rightChild)}
+          <div id="circle-children--right">
+          {h('a',
+             {href: "#" + rightchild.leaf.id + "-" + rightchild.fromId},
+              rightchild.leaf.word
+            )}
+          </div>
         </div>
       </div>
       )
 }
 
-function renderEnd(){
+function renderEnd(leafInfos){
   return (
       <div id="ai-text">
+        <div id="circle-current" className="circle">
+          <div id="circle-current--content" >
+          {parser(`<span class="ai-last">${leafInfos.leaf.content}</span>`)}
+          </div>
+        </div>
         <div><a href="#pdf">Conservez le livre de votre parcours</a></div>
 
         <div>
@@ -112,8 +137,9 @@ function renderLeafReversed(leafInfos){
 
 function renderLeafUpside(leafInfos){
   // let hcontent = parser(leafInfos.leaf.content);
+  let circleLevel = leafInfos.leaf.id.split('.').length - 1;
   return (
-      <div id="ai-text">
+      <div id="ai-text" className={"circle-" + circleLevel}>
         <div className="tree-breadcrumb">
         AI / {leafInfos.leaf.name}
         </div>

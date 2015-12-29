@@ -37,6 +37,7 @@ export function makeVizDriver(AI){
   // let svgLeafs = {};
   let neighborsIds = {};
   let neighborsPathsIds = [];
+  let currentPositionId = [];
 
   let currentType = "UP";
   let animType = "UP";
@@ -89,18 +90,20 @@ export function makeVizDriver(AI){
 
           const fromLeaf = AI.data[dleaf.fromId];
 
-          let {leafElement, type, isAnim} = makeLeaf(newLeaf);
+          //Remove neighbors, paths and positions of the previous leaf
+          let toRemove = Object.keys(neighborsIds).concat(neighborsPathsIds).concat(currentPositionId);
+          group.remove(group.children.filter(child => toRemove.indexOf(child.id) > -1 ));
+
+          let {leafElement, type, isAnim, curPos} = makeLeaf(newLeaf);
           animType = type;
           doAnim = isAnim;
           if (animType == "ROOT"){
             animType = "UP";
           }
+          group.add(curPos);
           group.add(leafElement);
+          currentPositionId.push(curPos.id);
           // svgLeafs[gleaf.id] = newLeaf.id;
-
-          //Remove neighbors of the previous leaf
-          let toRemove = Object.keys(neighborsIds).concat(neighborsPathsIds);
-          group.remove(group.children.filter(child => toRemove.indexOf(child.id) > -1 ));
 
           //Add new neighbors
           neighborsIds = {};
@@ -177,7 +180,11 @@ export function makeVizDriver(AI){
     const color = (type == 'UP')?color_up:color_down;
     circle.fill = color;
     circle.stroke = color;
-    return {leafElement:circle, type: type, isAnim: isAnim};
+
+    const circlePos = two.makeCircle(pos.x, pos.y, leafRadius * 3);
+    circlePos.stroke = "blue";
+
+    return {leafElement:circle, type: type, isAnim: isAnim, curPos: circlePos};
   }
 
   function makeNeighborLeaf (leaf){

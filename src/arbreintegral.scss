@@ -24,6 +24,17 @@
   }
 }
 
+.ai-last {
+  text-transform: uppercase;
+  animation: ai-blink 1s steps(5, start) infinite;
+}
+
+@keyframes ai-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
 .tree-breadcrumb {
   height: 2em;
 }
@@ -34,6 +45,20 @@
 
   display: flex;
   flex-direction: row;
+}
+
+.circle-1 {
+}
+.circle-2 {
+}
+.circle-3 {
+}
+.circle-4 {
+}
+.circle-5 {
+}
+.circle-6 {
+  background-color: gray;
 }
 
 #dasboard {
