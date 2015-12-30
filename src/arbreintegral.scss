@@ -1,3 +1,7 @@
+$color-up: green;
+$color-down: brown;
+$color-background: white;
+
 #ai-text {
   display: flex;
   flex-direction: column;
@@ -65,6 +69,34 @@
   display: flex;
   flex-direction: row;
 }
+
+.ai-progress {
+  width: 30%;
+  height: 1em;
+  background-color: $color-background;
+  border: 0 none $color-background;
+  border-right: medium solid gray;
+  border-left: medium solid gray;
+  vertical-align: middle;
+  div {
+    display: inline-block;
+    border-color: $color-background; 
+    border: 0 none $color-background;
+    width: 0.79%;
+    height: 70%;
+  }
+
+  .ai-progress-up {
+    border-top: medium solid $color-up;
+    background-color: lightgray;
+  }
+
+  .ai-progress-down {
+    border-bottom: medium solid $color-down;
+    background-color: lightgray;
+  }
+}
+
 
 .viz-neighbor {
   cursor: pointer;
