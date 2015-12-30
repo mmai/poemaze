@@ -16,7 +16,7 @@ export function renderDashboard(){
 }
 
 // export function renderLeaf(leafInfos){
-export function renderLeaf(leafInfos, history){
+export function renderLeaf(isUpside, leafInfos, history){
   let circlesView = h("div");
   let interstice = (history.length == 1) ? renderInterstice(): ""
 
@@ -29,10 +29,10 @@ export function renderLeaf(leafInfos, history){
       circlesView = renderRoot(leafInfos);
       break;
     case 'DOWN': 
-      circlesView = renderLeafReversed(leafInfos);
+      circlesView = isUpside?renderLeafReversed(leafInfos):renderLeafUpside(leafInfos);
       break;
     default: 
-      circlesView = renderLeafUpside(leafInfos);
+      circlesView = isUpside?renderLeafUpside(leafInfos):renderLeafReversed(leafInfos);
     }
   }
 
@@ -47,7 +47,7 @@ export function renderLeaf(leafInfos, history){
               })
           })}
       </div>
-      <a href="#reset">Remise à zéro</a><br/>
+      <a href="#reset">Recommencer</a><br/>
       <hr />
         {interstice}
         {circlesView}
@@ -132,11 +132,34 @@ function renderEnd(leafInfos){
 }
 
 function renderLeafReversed(leafInfos){
-  return renderLeafUpside(leafInfos);
+  let circleLevel = leafInfos.leaf.id.split('.').length - 1;
+  return (
+      <div id="ai-text" className={"circle-" + circleLevel}>
+        <div className="tree-breadcrumb">
+        AI / {leafInfos.leaf.name}
+        </div>
+
+        <div id="circle-children" className="circle">
+          {renderNeighorLink("circle-parent", leafInfos.neighbors.parent)}
+        </div>
+
+        <div id="circle-current" className="circle">
+          {renderNeighorLink("circle-current--left", leafInfos.neighbors.leftBrother)}
+          <div id="circle-current--content">
+          {parser(`<span>${leafInfos.leaf.content}</span>`)}
+          </div>
+          {renderNeighorLink("circle-current--right", leafInfos.neighbors.rightBrother)}
+        </div>
+
+        <div id="circle-children" className="circle">
+          {renderNeighorLink("circle-children--right", leafInfos.neighbors.rightChild)}
+          {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
+        </div>
+      </div>
+    );
 }
 
 function renderLeafUpside(leafInfos){
-  // let hcontent = parser(leafInfos.leaf.content);
   let circleLevel = leafInfos.leaf.id.split('.').length - 1;
   return (
       <div id="ai-text" className={"circle-" + circleLevel}>

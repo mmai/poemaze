@@ -39,24 +39,23 @@ export function makeVizDriver(AI){
   let neighborsPathsIds = [];
   let currentPositionId = [];
 
-  let currentType = "UP";
-  let animType = "UP";
-  let doAnim = false;
+  let currentIsUpside = true;
+  let isUpside = true;
 
   let animationLenth = 60; 
   let animationProgression = 0;
   let needUpdate = false;
   let doUpdate = false;
   two.bind('update', function(frameCount){
-      if ( doAnim && animType != currentType){
+      if ( isUpside != currentIsUpside){
         if (animationProgression < animationLenth){
           let step = (animationProgression / animationLenth);
-          let factor = (animType == "UP")?(1 - step ):step;
+          let factor = isUpside?(1 - step ):step;
           group.rotation = Math.PI * factor; 
           animationProgression += 1;
         } else {
-          currentType = animType;
           animationProgression = 0;
+          currentIsUpside = isUpside;
         }
       }
 
@@ -83,8 +82,10 @@ export function makeVizDriver(AI){
             displayedBranches = {};
             previewBranches = {};
             displayedLeafs = {};
-            currentType = "UP";
+            currentIsUpside = true;
           }
+
+          isUpside = dleaf.isUpside;
 
           const newLeaf = dleaf.leaf;
 
@@ -94,12 +95,7 @@ export function makeVizDriver(AI){
           let toRemove = Object.keys(neighborsIds).concat(neighborsPathsIds).concat(currentPositionId);
           group.remove(group.children.filter(child => toRemove.indexOf(child.id) > -1 ));
 
-          let {leafElement, type, isAnim, curPos} = makeLeaf(newLeaf);
-          animType = type;
-          doAnim = isAnim;
-          if (animType == "ROOT"){
-            animType = "UP";
-          }
+          let {leafElement, curPos} = makeLeaf(newLeaf);
           group.add(curPos);
           group.add(leafElement);
           currentPositionId.push(curPos.id);
@@ -170,11 +166,8 @@ export function makeVizDriver(AI){
     displayedLeafs[leaf.id] = true;
     const coords = AI.getCoords(leaf);
     const type = AI.getType(leaf);
-    const isAnim = coords.circ == 4;
-    // console.log(coords);
 
     const pos = getPosFromCoords(coords);
-    // console.log(pos);
 
     const circle = two.makeCircle(pos.x, pos.y, leafRadius);
     const color = (type == 'UP')?color_up:color_down;
@@ -184,7 +177,7 @@ export function makeVizDriver(AI){
     const circlePos = two.makeCircle(pos.x, pos.y, leafRadius * 3);
     circlePos.stroke = "blue";
 
-    return {leafElement:circle, type: type, isAnim: isAnim, curPos: circlePos};
+    return {leafElement:circle, curPos: circlePos};
   }
 
   function makeNeighborLeaf (leaf){

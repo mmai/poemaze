@@ -15,9 +15,8 @@ let AI = null;
 
 function model(state, url){
   if (url.pathname == "reset"){
-    return  { pathname: '', currentLeafId: "0", visitedLeafs:{} };
+    return makeInitialState();
   }
-
 
   let newVisited = state.visitedLeafs;
   let curleafid = url.pathname || "0";
@@ -26,10 +25,30 @@ function model(state, url){
     newVisited[curleafid] = url.from;
   }
 
+  let isUpside = state.isUpside;
+  let elems = curleafid.split('.');
+  if (elems.length === 5){
+    isUpside = elems[1] == 0;
+  }
+
+  let exclude = JSON.parse(JSON.stringify(newVisited));
+  //Last leaf only available when all tree has been seen
+  if(Object.keys(exclude).length < 126) {
+    exclude["0.1.1.1.1.1.1"] = "0.1.1.1.1.1.1";
+  } 
+
+  let leaf = AI.getLeaf(curleafid);
+
   return {
     pathname: url.pathname,
     currentLeafId: curleafid,
-    visitedLeafs: newVisited
+    visitedLeafs: newVisited,
+    isUpside: isUpside,
+    leafInfos: {
+      leaf: leaf,
+      type: AI.getType(leaf),
+      neighbors: AI.getNeighbors(leaf, {exclude:exclude})
+    }
   };
 }
 
@@ -44,7 +63,7 @@ function view({state, urlList}){
       history.push(AI.getLeaf(urlList[i]));
     }
     
-    return renderLeaf(state.leafInfos, history);
+    return renderLeaf(state.isUpside, state.leafInfos, history);
   }
   return h("div", 'Page non trouvée');
 }
@@ -66,13 +85,6 @@ function main({DOM, Viz, LocalStorageSource}) {
           from: from 
         };
       });
-
-  // Viz.subscribe(neighborsIds => {
-  //     console.log('received neiborsIds');
-  //     console.log(neighborsIds);
-  //     
-  //   }
-  // );
 
   // Clicks on the SVG nodes
   const svgClick$ = DOM
@@ -99,31 +111,8 @@ function main({DOM, Viz, LocalStorageSource}) {
 
   // const history$ = clicked$.map(event => event.target.href.replace(location.origin, ``));
 
-  const initialState = {pathname: '/', currentLeafId: "0", visitedLeafs:{}};
   const state$ = url$
-    .scan(model, initialState)
-    .map(state => {
-        let newState = state;
-        let leaf = AI.getLeaf(state.currentLeafId);
-
-        let exclude = JSON.parse(JSON.stringify(state.visitedLeafs));
-        //Last leaf only available when all tree has been seen
-        if(Object.keys(exclude).length < 126) {
-          exclude["0.1.1.1.1.1.1"] = "0.1.1.1.1.1.1";
-        } 
-
-        newState.leafInfos = {
-          leaf: leaf,
-          type: AI.getType(leaf),
-          neighbors: AI.getNeighbors(leaf, {exclude:exclude})
-        };
-        return state;
-      })
-    // .combineLatest(Viz, function(state, neighborsIds){
-    //     let newState = state;
-    //     newState.neighborsIds = neighborsIds;
-    //     return newState;
-    //   })
+    .scan(model, makeInitialState())
     .shareReplay()
     .distinctUntilChanged();
 
@@ -157,7 +146,8 @@ function main({DOM, Viz, LocalStorageSource}) {
         reset: Object.keys(state.visitedLeafs).length < 1,
         leaf: state.leafInfos.leaf,
         neighbors: state.leafInfos.neighbors,
-        fromId: fromId
+        fromId: fromId,
+        isUpside: state.isUpside,
       };
     })
   .filter(leaf => leaf.fromId !== undefined)
@@ -169,6 +159,19 @@ function main({DOM, Viz, LocalStorageSource}) {
     Viz: visitedLeaf$,
     LocalStorageSink: storedUrlList$
   }
+}
+
+function makeInitialState(){
+  return {
+    pathname: '/',
+    currentLeafId: "0",
+    visitedLeafs:{},
+    isUpside: true,
+    leafInfos: {
+      leaf: { id: "0" },
+      type: "ROOT",
+      neighbors: AI.getNeighbors({ id: "0" })
+    }};
 }
 
 fetch('./wp-content/arbreintegral.json').then(function(response) {
