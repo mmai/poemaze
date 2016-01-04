@@ -47,24 +47,24 @@ export function renderLeaf(isUpside, leafInfos, history){
 
       <div id="dashboard">
         {new VizWidget()}
-        <div>
-          {h('ai-progression', {
-                value:history.map( leaf => {
-                    let elems = leaf.id.split('.');
-                    return (elems.length === 1) ? "" : (elems[1] === "0" )
-                  })
-              })}
 
-          <div id="history">
-            <h2>Historique</h2>
-            {h('ul', 
-                history.map(url => h("li", [
-                      h("a", {href: `#${url.id}`}, `${url.word} (${url.id})`)
-                    ])
-                )
-              )}
-          </div>
+        {h('ai-progression', {
+              value:history.map( leaf => {
+                  let elems = leaf.id.split('.');
+                  return (elems.length === 1) ? "" : (elems[1] === "0" )
+                })
+            })}
+
+        <div id="history">
+          <h2>Historique</h2>
+          {h('ul', 
+              history.map(url => h("li", [
+                    h("a", {href: `#${url.id}`}, `${url.word} (${url.id})`)
+                  ])
+              )
+            )}
         </div>
+
       </div>
     </div>
     );

@@ -1,6 +1,12 @@
-$color-up: green;
-$color-down: brown;
+$color-up: rgb(72,122,189);
+$color-down: rgb(128,120,48);
 $color-background: white;
+$color-text: rgb(47,46,12);
+$color-background-dashboard: rgb(245,245,245); //F5F5F5 white-smoke;
+$color-background-light: rgb(220,220,220);
+$color-background-black: black; 
+
+$color-background-circle6: #E2FBBC; //caper
 
 #ai-text {
   display: flex;
@@ -8,7 +14,7 @@ $color-background: white;
 }
 
 #ai-interstice {
-  background: white;
+  background: $color-background;
   text-align: center;
 
   z-index: 999;
@@ -62,40 +68,48 @@ $color-background: white;
 .circle-5 {
 }
 .circle-6 {
-  background-color: gray;
+  background-color: $color-background-circle6;
 }
 
 #dashboard {
-  display: flex;
-  flex-direction: row;
+  background-color: $color-background-dashboard;
+}
+
+.ai-progress-container {
+  // &::before { content: "["; }
+  // &::after { content: "]"; }
 }
 
 .ai-progress {
-  // width: 30%;
   width: 20em;
-  height: 1em;
-  background-color: $color-background;
-  border: 1px dotted gray;
-  // vertical-align: middle;
+  display: inline-block;
+  background-color: lightgray;
+  border-bottom: 0.3em solid lightgray;
+  height: 0.6em;
+  vertical-align: middle;
 
   div {
     display: inline-block;
-    box-sizing: border-box;
-    border-color: $color-background; 
-    border: 0 none $color-background;
+    // box-sizing: border-box;
+    border-color: $color-background-dashboard; 
+    border: 0 none $color-background-dashboard;
     width: 0.79%;
     height: 100%;
   }
 
   .ai-progress-up {
-    border-top: medium solid $color-up;
+    border-top: 0.3em solid $color-up;
     background-color: #EEE;
   }
 
   .ai-progress-down {
-    border-bottom: medium solid $color-down;
+    border-bottom: 0.3em solid $color-down;
     background-color: #EEE;
   }
+
+  // .ai-progress-left {
+  //   background-color: lightgray;
+  // }
 }
 
 
