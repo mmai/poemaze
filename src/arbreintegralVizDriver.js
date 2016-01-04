@@ -6,6 +6,7 @@ const color_up = "green";
 const color_down = "brown";
 const color_brothers = "#BBBBBB";
 const color_default = "black";
+const color_skeleton= "lightgray";
 
 const display = {
   circles: true,
@@ -26,8 +27,13 @@ export function makeVizDriver(AI){
   const two = new Two({});
   two.appendTo(vizRootElem);
 
-  const group = two.makeGroup();
-  group.translation.set(two.width/2, two.height/2);
+  const mainGroup = two.makeGroup();
+  mainGroup.translation.set(two.width/2, two.height/2);
+
+  const group = two.makeGroup();//group displaying visitor path
+
+  mainGroup.add(drawSkeleton(two));
+  mainGroup.add(group);
 
   let vizState = {
     displayedLeafs: {},
@@ -51,7 +57,7 @@ export function makeVizDriver(AI){
         if (animationProgression < animationLenth){
           let step = (animationProgression / animationLenth);
           let factor = newState.isUpside?(1 - step ):step;
-          group.rotation = Math.PI * factor; 
+          mainGroup.rotation = Math.PI * factor; 
           animationProgression += 1;
         } else {
           animationProgression = 0;
@@ -78,7 +84,7 @@ export function makeVizDriver(AI){
       leafDisplay$.subscribe(dleaf => {
           if (dleaf.reset) {
             group.remove(group.children);
-            group.rotation = 0;
+            mainGroup.rotation = 0;
             vizState.displayedLeafs = {};
             vizState.isUpside = true;
           }
@@ -182,7 +188,6 @@ export function makeVizDriver(AI){
   function makeArcBetweenLeafs (from, to){
     const posfrom = getPosFromCoords(from);
     const posto = getPosFromCoords(to);
-    // const line = two.makeLine(posfrom.x, posfrom.y, posto.x, posto.y);
 
     const radius = Math.sqrt(Math.pow(posto.x - origin.x, 2) + Math.pow(posto.y - origin.y, 2));
 
@@ -205,6 +210,27 @@ export function makeVizDriver(AI){
     return line;
   }
 
+  /**
+   * Draw dots at each final tree node
+   * @param {object} two - Two.js svg engine object
+   */
+  function drawSkeleton(two){
+    const group = two.makeGroup();
+    // group.translation.set(two.width/2, two.height/2);
+
+    for (let circ = 0; circ < 7; circ++){
+      const nbLeafs = Math.pow(2, circ);
+      for (let pos = 1; pos <= nbLeafs; pos++){
+        const svgpos = getPosFromCoords({circ, pos});
+
+        const circle = two.makeCircle(svgpos.x, svgpos.y, leafRadius);
+        circle.fill = color_skeleton;
+        circle.stroke = color_skeleton;
+        group.add(circle);
+      }
+    }
+    return group;
+  }
   /*********** Coordinates converters *******/
  
   function getPosFromCoords ({circ, pos}){
@@ -214,8 +240,7 @@ export function makeVizDriver(AI){
 
     const nbLeafs = Math.pow(2, circ);
     const angleIncrement = Math.PI / (nbLeafs/2 + 1);
-    const random = Math.random() * angleIncrement / nbLeafs;
-    // let deviation = angleIncrement * 0.5 * (pos % 3 ? 1.2 : 0.9) * (circ % 2 ? 0.9 : 1.1);
+
     let deviation = angleIncrement * 0.5;
     let angle = Math.PI + deviation - pos * angleIncrement;
     if (pos > nbLeafs/2) {
@@ -235,5 +260,6 @@ export function makeVizDriver(AI){
   }
 
 }
+
 
 
