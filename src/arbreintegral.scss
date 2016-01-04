@@ -65,36 +65,36 @@ $color-background: white;
   background-color: gray;
 }
 
-#dasboard {
+#dashboard {
   display: flex;
   flex-direction: row;
 }
 
 .ai-progress {
-  width: 30%;
+  // width: 30%;
+  width: 20em;
   height: 1em;
   background-color: $color-background;
-  border: 0 none $color-background;
-  border-right: medium solid gray;
-  border-left: medium solid gray;
-  vertical-align: middle;
+  border: 1px dotted gray;
+  // vertical-align: middle;
 
   div {
     display: inline-block;
+    box-sizing: border-box;
     border-color: $color-background; 
     border: 0 none $color-background;
     width: 0.79%;
-    height: 70%;
+    height: 100%;
   }
 
   .ai-progress-up {
     border-top: medium solid $color-up;
-    background-color: lightgray;
+    background-color: #EEE;
   }
 
   .ai-progress-down {
     border-bottom: medium solid $color-down;
-    background-color: lightgray;
+    background-color: #EEE;
   }
 }
 
