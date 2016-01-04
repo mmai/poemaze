@@ -9,8 +9,6 @@ const color_default = "black";
 
 const display = {
   circles: true,
-  rootPath: false,
-  revealedBranches: false
 }
 
 //Root element displayed by the cyclejs widget and used in the driver by the Two.js library 
@@ -31,31 +29,33 @@ export function makeVizDriver(AI){
   const group = two.makeGroup();
   group.translation.set(two.width/2, two.height/2);
 
-  let displayedBranches = {};
-  let previewBranches = {};
-  let displayedLeafs = {};
-  // let svgLeafs = {};
-  let neighborsIds = {};
-  let neighborsPathsIds = [];
-  let currentPositionId = [];
+  let vizState = {
+    displayedLeafs: {},
+    neighborsIds: {},
+    neighborsPathsIds: [],
+    currentPositionId: [],
+    isUpside: true,
+  }
 
-  let currentIsUpside = true;
-  let isUpside = true;
+  //Store data needed for the animation
+  let newState = {
+    isUpside: true,
+  }
 
   let animationLenth = 60; 
   let animationProgression = 0;
   let needUpdate = false;
   let doUpdate = false;
   two.bind('update', function(frameCount){
-      if ( isUpside != currentIsUpside){
+      if ( newState.isUpside != vizState.isUpside){
         if (animationProgression < animationLenth){
           let step = (animationProgression / animationLenth);
-          let factor = isUpside?(1 - step ):step;
+          let factor = newState.isUpside?(1 - step ):step;
           group.rotation = Math.PI * factor; 
           animationProgression += 1;
         } else {
           animationProgression = 0;
-          currentIsUpside = isUpside;
+          vizState.isUpside = newState.isUpside;
         }
       }
 
@@ -65,11 +65,11 @@ export function makeVizDriver(AI){
   }).play();
 
   function updateDOM(){
-    let neighborsElementsIds = Object.keys(neighborsIds);
+    let neighborsElementsIds = Object.keys(vizState.neighborsIds);
     for (let eid of neighborsElementsIds){
       let elem = document.getElementById(eid);
       elem.setAttribute("class", "viz-neighbor");
-      elem.setAttribute("data-neighbor-href", `${neighborsIds[eid].leaf.id}-${neighborsIds[eid].fromId}`);
+      elem.setAttribute("data-neighbor-href", `${vizState.neighborsIds[eid].leaf.id}-${vizState.neighborsIds[eid].fromId}`);
     }
   }
 
@@ -79,91 +79,50 @@ export function makeVizDriver(AI){
           if (dleaf.reset) {
             group.remove(group.children);
             group.rotation = 0;
-            displayedBranches = {};
-            previewBranches = {};
-            displayedLeafs = {};
-            currentIsUpside = true;
+            vizState.displayedLeafs = {};
+            vizState.isUpside = true;
           }
 
-          isUpside = dleaf.isUpside;
+          newState.isUpside = dleaf.isUpside;
 
           const newLeaf = dleaf.leaf;
-
           const fromLeaf = AI.data[dleaf.fromId];
 
           //Remove neighbors, paths and positions of the previous leaf
-          let toRemove = Object.keys(neighborsIds).concat(neighborsPathsIds).concat(currentPositionId);
+          const toRemove = Object.keys(vizState.neighborsIds).concat(vizState.neighborsPathsIds).concat(vizState.currentPositionId);
           group.remove(group.children.filter(child => toRemove.indexOf(child.id) > -1 ));
 
-          let {leafElement, curPos} = makeLeaf(newLeaf);
+          const {leafElement, curPos} = makeLeaf(newLeaf);
           group.add(curPos);
           group.add(leafElement);
-          currentPositionId.push(curPos.id);
-          // svgLeafs[gleaf.id] = newLeaf.id;
+          vizState.currentPositionId.push(curPos.id);
 
           //Add new neighbors
-          neighborsIds = {};
-          neighborsPathsIds = [];
+          vizState.neighborsIds = {};
+          vizState.neighborsPathsIds = [];
           for (let name in dleaf.neighbors){
-            let neighbor = dleaf.neighbors[name];
-            let neighborFromLeaf = AI.data[neighbor.fromId];
+            const neighbor = dleaf.neighbors[name];
+            const neighborFromLeaf = AI.data[neighbor.fromId];
             if (neighbor.leaf){
               //Add path to leaf
-              let joinLine = makeJoinLine(neighborFromLeaf, neighbor.leaf, true);
+              const joinLine = makeJoinLine(neighborFromLeaf, neighbor.leaf, true);
               if (joinLine) group.add(joinLine);
-              neighborsPathsIds.push(joinLine.id);
+              vizState.neighborsPathsIds.push(joinLine.id);
               //Add leaf
-              let leafElement = makeNeighborLeaf(neighbor.leaf);
+              const leafElement = makeNeighborLeaf(neighbor.leaf);
               group.add(leafElement);
-              neighborsIds[leafElement.id] = neighbor;
+              vizState.neighborsIds[leafElement.id] = neighbor;
             }
           }
           needUpdate = true;
 
           const joinLine = makeJoinLine(fromLeaf, newLeaf);
           if (joinLine) group.add(joinLine);
-
-          if (display.rootPath){
-            addPathFromRoot(newLeaf, group);
-          }
-
-          if (display.revealedBranches){
-            const neighbors = AI.getNeighbors(newLeaf);
-            revealBranchIfVisited(newLeaf, neighbors.leftChild.leaf);
-            revealBranchIfVisited(newLeaf, neighbors.rightChild.leaf);
-            revealBranchIfVisited(neighbors.parent.leaf, newLeaf);
-          }
-
-          // return neighborsIds; 
         });
     };
 
-  function revealBranchIfVisited(parent, child){
-    const key = parent.id + "-"  + child.id;
-    if (displayedLeafs[parent.id] && displayedLeafs[child.id] && !displayedBranches[key]){
-      let joinLine = makeJoinLine(parent, child);
-      group.add(joinLine);
-      displayedBranches[key] = true;
-    }
-  }
-
-  function addPathFromRoot(leaf, group){
-    const parent = AI.getParent(leaf);
-    if (parent && parent.id != leaf.id){
-      const key = parent.id + "-"  + leaf.id;
-      if (!previewBranches[key] && !displayedBranches[key]){
-        let joinLine = makeLineBetweenLeafs(AI.getCoords(parent), AI.getCoords(leaf));
-        joinLine.stroke = color_brothers;
-
-        group.add(joinLine);
-        previewBranches[key] = true;
-        addPathFromRoot(parent, group);
-      }
-    }
-  }
-
   function makeLeaf (leaf){
-    displayedLeafs[leaf.id] = true;
+    vizState.displayedLeafs[leaf.id] = true;
     const coords = AI.getCoords(leaf);
     const type = AI.getType(leaf);
 
