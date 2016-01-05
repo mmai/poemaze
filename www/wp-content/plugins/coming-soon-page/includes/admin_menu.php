@@ -1846,6 +1846,12 @@ class coming_soon_admin_menu{
 						'title'			=>	'Coming soon and Maintenance mode',
 						'description'	=>	'Coming soon and Maintenance mode plugin is an awesome tool to show your visitors that you are working on your website to make it better.'
 						),
+			'Booking Calendar'=>array(
+						'image_url'		=>	$this->plugin_url.'images/featured_plugins/Booking_calendar_featured.png',
+						'site_url'		=>	'http://wpdevart.com/wordpress-booking-calendar-plugin/',
+						'title'			=>	'Booking Calendar',
+						'description'	=>	'WordPress Booking Calendar plugin is an awesome tool to create a booking system for your website. Create booking calendars in a few minutes.'
+						),	
 			'youtube'=>array(
 						'image_url'		=>	$this->plugin_url.'images/featured_plugins/youtube.png',
 						'site_url'		=>	'http://wpdevart.com/wordpress-youtube-embed-plugin',
@@ -1857,6 +1863,12 @@ class coming_soon_admin_menu{
 						'site_url'		=>	'http://wpdevart.com/wordpress-countdown-plugin/',
 						'title'			=>	'WordPress Countdown plugin',
 						'description'	=>	'WordPress Countdown plugin is an nice tool to create and insert countdown timers into your posts/pages and widgets.'
+						),
+			'lightbox'=>array(
+						'image_url'		=>	$this->plugin_url.'images/featured_plugins/lightbox.png',
+						'site_url'		=>	'http://wpdevart.com/wordpress-lightbox-plugin',
+						'title'			=>	'WordPress Lightbox plugin',
+						'description'	=>	'WordPress lightbox plugin is an high customizable and responsive product for displaying images and videos in popup.'
 						),
             'facebook-comments'=>array(
 						'image_url'		=>	$this->plugin_url.'images/featured_plugins/facebook-comments-icon.png',

@@ -49,6 +49,9 @@ class UpdraftPlus_Backup {
 	// Used for reporting
 	private $remotestorage_extrainfo = array();
 
+	// Used when deciding to use the 'store' or 'deflate' zip storage method
+	private $extensions_to_not_compress = array();
+
 	public function __construct($backup_files, $altered_since = -1) {
 
 		global $updraftplus;
@@ -78,6 +81,8 @@ class UpdraftPlus_Backup {
 			$this->use_zip_object = 'UpdraftPlus_PclZip';
 			return;
 		}
+
+		$this->extensions_to_not_compress = array_unique(array_map('strtolower', array_map('trim', explode(',', UPDRAFTPLUS_ZIP_NOCOMPRESS))));
 
 		$this->altered_since = $altered_since;
 
@@ -125,7 +130,7 @@ class UpdraftPlus_Backup {
 	// Public, because called from the 'More Files' add-on
 	public function create_zip($create_from_dir, $whichone, $backup_file_basename, $index, $first_linked_index = false) {
 		// Note: $create_from_dir can be an array or a string
-		@set_time_limit(900);
+		@set_time_limit(UPDRAFTPLUS_SET_TIME_LIMIT);
 		$original_index = $index;
 		$this->index = $index;
 		$this->first_linked_index = (false === $first_linked_index) ? 0 : $first_linked_index;
@@ -337,7 +342,7 @@ class UpdraftPlus_Backup {
 
 			$log_extra = ($this->last_service) ? ' (last)' : '';
 			$updraftplus->log("Cloud backup selection (".($ind+1)."/".count($services)."): ".$service.$log_extra);
-			@set_time_limit(900);
+			@set_time_limit(UPDRAFTPLUS_SET_TIME_LIMIT);
 
 			$method_include = UPDRAFTPLUS_DIR.'/methods/'.$service.'.php';
 			if (file_exists($method_include)) require_once($method_include);
@@ -363,16 +368,19 @@ class UpdraftPlus_Backup {
 						$sarray[$bind] = $file;
 					}
 				}
-				if (count($sarray)>0) {
-					$objname = "UpdraftPlus_BackupModule_${service}";
-					if (class_exists($objname)) {
-						$remote_obj = new $objname;
+				$objname = "UpdraftPlus_BackupModule_$service";
+				if (class_exists($objname)) {
+					$remote_obj = new $objname;
+					if (count($sarray)>0) {
 						$pass_to_prune = $remote_obj->backup($sarray);
 						$do_prune[$service] = array($remote_obj, $pass_to_prune);
 					} else {
-						$updraftplus->log("Unexpected error: no class '$objname' was found ($method_include)");
-						$updraftplus->log(__("Unexpected error: no class '$objname' was found (your UpdraftPlus installation seems broken - try re-installing)",'updraftplus'), 'error');
+						// We still need to make sure that prune is run on this remote storage method, even if all entities were previously uploaded
+						$do_prune[$service] = array($remote_obj, null);
 					}
+				} else {
+					$updraftplus->log("Unexpected error: no class '$objname' was found ($method_include)");
+					$updraftplus->log(sprintf(__("Unexpected error: no class '%s' was found (your UpdraftPlus installation seems broken - try re-installing)", 'updraftplus'), $objname), 'error');
 				}
 			}
 		}
@@ -830,8 +838,17 @@ class UpdraftPlus_Backup {
 	}
 
 	// The purpose of this function is to make sure that the options table is put in the database first, then the users table, then the usermeta table; and after that the core WP tables - so that when restoring we restore the core tables first
-	private function backup_db_sorttables($a, $b) {
+	private function backup_db_sorttables($a_arr, $b_arr) {
 
+		$a = $a_arr['name'];
+		$a_table_type = $a_arr['type'];
+		$b = $b_arr['name'];
+		$b_table_type = $b_arr['type'];
+	
+		// Views must always go after tables (since they can depend upon them)
+		if ('VIEW' == $a_table_type && 'VIEW' != $b_table_type) return 1;
+		if ('VIEW' == $b_table_type && 'VIEW' != $a_table_type) return -1;
+	
 		if ('wp' != $this->whichdb) return strcmp($a, $b);
 
 		global $updraftplus;
@@ -1215,8 +1232,15 @@ class UpdraftPlus_Backup {
 			}
 		}
 
-		$all_tables = $this->wpdb_obj->get_results("SHOW TABLES", ARRAY_N);
-		$all_tables = array_map(create_function('$a', 'return $a[0];'), $all_tables);
+		// SHOW FULL - so that we get to know whether it's a BASE TABLE or a VIEW
+		$all_tables = $this->wpdb_obj->get_results("SHOW FULL TABLES", ARRAY_N);
+		
+		if (empty($all_tables) && !empty($this->wpdb_obj->last_error)) {
+			$all_tables = $this->wpdb_obj->get_results("SHOW TABLES", ARRAY_N);
+			$all_tables = array_map(create_function('$a', 'return array("name" => $a[0], "type" => "BASE TABLE");'), $all_tables);
+		} else {
+			$all_tables = array_map(create_function('$a', 'return array("name" => $a[0], "type" => $a[1]);'), $all_tables);
+		}
 
 		# If this is not the WP database, then we do not consider it a fatal error if there are no tables
 		if ('wp' == $whichdb && 0 == count($all_tables)) {
@@ -1228,6 +1252,8 @@ class UpdraftPlus_Backup {
 
 		// Put the options table first
 		usort($all_tables, array($this, 'backup_db_sorttables'));
+		
+		$all_table_names = array_map(create_function('$a', 'return $a["name"];'), $all_tables);
 
 		if (!$updraftplus->really_is_writable($this->updraft_dir)) {
 			$updraftplus->log("The backup directory (".$this->updraft_dir.") could not be written to (could be account/disk space full, or wrong permissions).");
@@ -1237,8 +1263,8 @@ class UpdraftPlus_Backup {
 
 		# This check doesn't strictly get all possible duplicates; it's only designed for the case that can happen when moving between deprecated Windows setups and Linux
 		$this->duplicate_tables_exist = false;
-		foreach ($all_tables as $table) {
-			if (strtolower($table) != $table && in_array(strtolower($table), $all_tables)) {
+		foreach ($all_table_names as $table) {
+			if (strtolower($table) != $table && in_array(strtolower($table), $all_table_names)) {
 				$this->duplicate_tables_exist = true;
 				$updraftplus->log("Tables with names differing only based on case-sensitivity exist in the MySQL database: $table / ".strtolower($table));
 			}
@@ -1249,13 +1275,16 @@ class UpdraftPlus_Backup {
 		$found_options_table = false;
 		$is_multisite = is_multisite();
 
-		foreach ($all_tables as $table) {
+		foreach ($all_tables as $ti) {
 
+			$table = $ti['name'];
+			$table_type = $ti['type'];
+		
 			$manyrows_warning = false;
 			$total_tables++;
 
 			// Increase script execution time-limit to 15 min for every table.
-			@set_time_limit(900);
+			@set_time_limit(UPDRAFTPLUS_SET_TIME_LIMIT);
 			// The table file may already exist if we have produced it on a previous run
 			$table_file_prefix = $file_base.'-db'.$this->whichdb_suffix.'-table-'.$table.'.table';
 
@@ -1306,7 +1335,7 @@ class UpdraftPlus_Backup {
 						$bindump_threshold = (!$updraftplus->something_useful_happened && !empty($updraftplus->current_resumption) && ($updraftplus->current_resumption - $updraftplus->last_successful_resumption == 2 )) ? 1000 : 8000;
 
 						$bindump = (isset($rows) && ($rows>$bindump_threshold || (defined('UPDRAFTPLUS_ALWAYS_TRY_MYSQLDUMP') && UPDRAFTPLUS_ALWAYS_TRY_MYSQLDUMP)) && is_string($binsqldump)) ? $this->backup_table_bindump($binsqldump, $table, $where) : false;
-						if (true !== $bindump) $this->backup_table($table, $where);
+						if (true !== $bindump) $this->backup_table($table, $where, 'none', $table_type);
 
 						if (!empty($manyrows_warning)) $updraftplus->log_removewarning('manyrows_'.$this->whichdb_suffix.$table);
 
@@ -1360,7 +1389,11 @@ class UpdraftPlus_Backup {
 
 		// Finally, stitch the files together
 		if (!function_exists('gzopen')) {
-			$updraftplus->log("PHP function is disabled; abort expected: gzopen");
+			if (function_exists('gzopen64')) {
+				$updraftplus->log("PHP function is disabled; abort expected: gzopen - buggy Ubuntu PHP version; try this plugin to help: https://wordpress.org/plugins/wp-ubuntu-gzopen-fix/");
+			} else {
+				$updraftplus->log("PHP function is disabled; abort expected: gzopen");
+			}
 		}
 
 		if (false === $this->backup_db_open($backup_final_file_name, true)) return false;
@@ -1475,7 +1508,7 @@ class UpdraftPlus_Backup {
 	 * @param string $segment
 	 * @return void
 	 */
-	private function backup_table($table, $where = '', $segment = 'none') {
+	private function backup_table($table, $where = '', $segment = 'none', $table_type = 'BASE TABLE') {
 		global $updraftplus;
 
 		$microtime = microtime(true);
@@ -1484,7 +1517,7 @@ class UpdraftPlus_Backup {
 		// Deal with Windows/old MySQL setups with erroneous table prefixes differing in case
 		$dump_as_table = ($this->duplicate_tables_exist == false && stripos($table, $this->table_prefix) === 0 && strpos($table, $this->table_prefix) !== 0) ? $this->table_prefix.substr($table, strlen($this->table_prefix)) : $table;
 
-		$table_structure = $this->wpdb_obj->get_results("DESCRIBE $table");
+		$table_structure = $this->wpdb_obj->get_results("DESCRIBE ".$updraftplus->backquote($table));
 		if (! $table_structure) {
 			//$updraftplus->log(__('Error getting table details','wp-db-backup') . ": $table", 'error');
 			return false;
@@ -1495,11 +1528,18 @@ class UpdraftPlus_Backup {
 			$this->stow("\n# Delete any existing table ".$updraftplus->backquote($table)."\n\n");
 			$this->stow("DROP TABLE IF EXISTS " . $updraftplus->backquote($dump_as_table) . ";\n");
 			
+			if ('VIEW' == $table_type) {
+				$this->stow("DROP VIEW IF EXISTS " . $updraftplus->backquote($dump_as_table) . ";\n");
+			}
+			
 			// Table structure
 			// Comment in SQL-file
-			$this->stow("\n# Table structure of table ".$updraftplus->backquote($table)."\n\n");
 			
-			$create_table = $this->wpdb_obj->get_results("SHOW CREATE TABLE `$table`", ARRAY_N);
+			$description = ('VIEW' == $table_type) ? 'view' : 'table';
+			
+			$this->stow("\n# Table structure of $description ".$updraftplus->backquote($table)."\n\n");
+			
+			$create_table = $this->wpdb_obj->get_results("SHOW CREATE TABLE ".$updraftplus->backquote($table), ARRAY_N);
 			if (false === $create_table) {
 				$err_msg ='Error with SHOW CREATE TABLE for '.$table;
 				//$updraftplus->log($err_msg, 'error');
@@ -1520,12 +1560,12 @@ class UpdraftPlus_Backup {
 			$this->stow($create_line.' ;');
 			
 			if (false === $table_structure) {
-				$err_msg = sprintf('Error getting table structure of %s', $table);
+				$err_msg = sprintf("Error getting $description structure of %s", $table);
 				$this->stow("#\n# $err_msg\n#\n");
 			}
 		
 			// Comment in SQL-file
-			$this->stow("\n\n# " . sprintf('Data contents of table %s',$updraftplus->backquote($table)) . "\n\n");
+			$this->stow("\n\n# " . sprintf("Data contents of $description %s",$updraftplus->backquote($table)) . "\n\n");
 
 		}
 
@@ -1540,7 +1580,7 @@ class UpdraftPlus_Backup {
 		}
 
 		// In UpdraftPlus, segment is always 'none'
-		if($segment == 'none' || $segment >= 0) {
+		if('VIEW' != $table_type && ($segment == 'none' || $segment >= 0)) {
 			$defs = array();
 			$integer_fields = array();
 			// $table_structure was from "DESCRIBE $table"
@@ -1574,7 +1614,7 @@ class UpdraftPlus_Backup {
 			if ($where) $where = "WHERE $where";
 
 			do {
-				@set_time_limit(900);
+				@set_time_limit(UPDRAFTPLUS_SET_TIME_LIMIT);
 
 				$table_data = $this->wpdb_obj->get_results("SELECT * FROM $table $where LIMIT {$row_start}, {$row_inc}", ARRAY_A);
 				$entries = 'INSERT INTO ' . $updraftplus->backquote($dump_as_table) . ' VALUES ';
@@ -1683,12 +1723,14 @@ class UpdraftPlus_Backup {
 		# (function_exists('mysql_get_server_info')) ? @mysql_get_server_info() : '?';
 
 		if ('wp' == $this->whichdb) {
+			$wp_upload_dir = wp_upload_dir();
 			$this->stow("# WordPress MySQL database backup\n");
 			$this->stow("# Created by UpdraftPlus version ".$updraftplus->version." (https://updraftplus.com)\n");
 			$this->stow("# WordPress Version: $wp_version, running on PHP ".phpversion()." (".$_SERVER["SERVER_SOFTWARE"]."), MySQL $mysql_version\n");
 			$this->stow("# Backup of: ".untrailingslashit(site_url())."\n");
 			$this->stow("# Home URL: ".untrailingslashit(home_url())."\n");
 			$this->stow("# Content URL: ".untrailingslashit(content_url())."\n");
+			$this->stow("# Uploads URL: ".untrailingslashit($wp_upload_dir['baseurl'])."\n");
 			$this->stow("# Table prefix: ".$this->table_prefix_raw."\n");
 			$this->stow("# Filtered table prefix: ".$this->table_prefix."\n");
 			$this->stow("# Site info: multisite=".(is_multisite() ? '1' : '0')."\n");
@@ -1766,6 +1808,8 @@ class UpdraftPlus_Backup {
 		if (is_file($fullpath)) {
 			if (!empty($this->excluded_extensions) && $this->is_entity_excluded_by_extension($fullpath)) {
 				$updraftplus->log("Entity excluded by configuration option (extension): ".basename($fullpath));
+			} elseif (!empty($this->excluded_prefixes) && $this->is_entity_excluded_by_prefix($fullpath)) {
+				$updraftplus->log("Entity excluded by configuration option (prefix): ".basename($fullpath));
 			} elseif (is_readable($fullpath)) {
 				$mtime = filemtime($fullpath);
 				$key = ($fullpath == $original_fullpath) ? ((2 == $startlevels) ? $use_path_when_storing : $this->basename($fullpath)) : $use_path_when_storing.'/'.$this->basename($fullpath);
@@ -1808,6 +1852,8 @@ class UpdraftPlus_Backup {
 								unset($exclude[$fkey]);
 							} elseif (!empty($this->excluded_extensions) && $this->is_entity_excluded_by_extension($e)) {
 								$updraftplus->log("Entity excluded by configuration option (extension): $use_stripped");
+							} elseif (!empty($this->excluded_prefixes) && $this->is_entity_excluded_by_prefix($e)) {
+								$updraftplus->log("Entity excluded by configuration option (prefix): $use_stripped");
 							} else {
 								$mtime = filemtime($deref);
 								if ($mtime > 0 && $mtime > $if_altered_since) {
@@ -1833,6 +1879,8 @@ class UpdraftPlus_Backup {
 							unset($exclude[$fkey]);
 						} elseif (!empty($this->excluded_extensions) && $this->is_entity_excluded_by_extension($e)) {
 							$updraftplus->log("Entity excluded by configuration option (extension): $use_stripped");
+						} elseif (!empty($this->excluded_prefixes) && $this->is_entity_excluded_by_prefix($e)) {
+							$updraftplus->log("Entity excluded by configuration option (prefix): $use_stripped");
 						} else {
 							$mtime = filemtime($fullpath.'/'.$e);
 							if ($mtime > 0 && $mtime > $if_altered_since) {
@@ -1884,11 +1932,33 @@ class UpdraftPlus_Backup {
 		return $exclude_extensions;
 	}
 
+	private function get_excluded_prefixes($exclude) {
+		if (!is_array($exclude)) $exclude = array();
+		$exclude_prefixes = array();
+		foreach ($exclude as $pref) {
+			if (preg_match('/^prefix:(.+)$/i', $pref, $matches)) {
+				$exclude_prefixes[] = strtolower($matches[1]);
+			}
+		}
+
+		return $exclude_prefixes;
+	}
+
 	private function is_entity_excluded_by_extension($entity) {
 		foreach ($this->excluded_extensions as $ext) {
 			if (!$ext) continue;
 			$eln = strlen($ext);
 			if (strtolower(substr($entity, -$eln, $eln)) == $ext) return true;
+		}
+		return false;
+	}
+
+	private function is_entity_excluded_by_prefix($entity) {
+		$entity = basename($entity);
+		foreach ($this->excluded_prefixes as $pref) {
+			if (!$pref) continue;
+			$eln = strlen($pref);
+			if (strtolower(substr($entity, 0, $eln)) == $pref) return true;
 		}
 		return false;
 	}
@@ -2108,6 +2178,7 @@ class UpdraftPlus_Backup {
 		$time_counting_began = time();
 
 		$this->excluded_extensions = $this->get_excluded_extensions($exclude);
+		$this->excluded_prefixes = $this->get_excluded_prefixes($exclude);
 
 		foreach ($source as $element) {
 			#makezip_recursive_add($fullpath, $use_path_when_storing, $original_fullpath, $startlevels = 1, $exclude_array)
@@ -2273,6 +2344,15 @@ class UpdraftPlus_Backup {
 		return $basename;
 	}
 
+	private function file_should_be_stored_without_compression($file) {
+		if (!is_array($this->extensions_to_not_compress)) return false;
+		foreach ($this->extensions_to_not_compress as $ext) {
+			$ext_len = strlen($ext);
+			if (strtolower(substr($file, -$ext_len, $ext_len)) == $ext) return true;
+		}
+		return false;
+	}
+
 	// Q. Why don't we only open and close the zip file just once?
 	// A. Because apparently PHP doesn't write out until the final close, and it will return an error if anything file has vanished in the meantime. So going directory-by-directory reduces our chances of hitting an error if the filesystem is changing underneath us (which is very possible if dealing with e.g. 1Gb of files)
 
@@ -2381,6 +2461,13 @@ class UpdraftPlus_Backup {
 				@touch($zipfile);
 				$zip->addFile($file, $add_as);
 				$zipfiles_added_thisbatch++;
+
+				if (method_exists($zip, 'setCompressionName') && $this->file_should_be_stored_without_compression($add_as)) {
+					if (false == ($set_compress = $zip->setCompressionName($add_as, ZipArchive::CM_STORE))) {
+						$updraftplus->log("Zip: setCompressionName failed on: $add_as");
+					}
+				}
+
 				// N.B., Since makezip_addfiles() can get called more than once if there were errors detected, potentially $zipfiles_added_thisrun can exceed the total number of batched files (if they get processed twice).
 				$this->zipfiles_added_thisrun++;
 				$files_zipadded_since_open[] = array('file' => $file, 'addas' => $add_as);
@@ -2399,7 +2486,7 @@ class UpdraftPlus_Backup {
 
 				if (!$force_allinone && ($zipfiles_added_thisbatch > UPDRAFTPLUS_MAXBATCHFILES || $reaching_split_limit || $data_added_since_reopen > $maxzipbatch || (time() - $this->zipfiles_lastwritetime) > 2)) {
 
-					@set_time_limit(900);
+					@set_time_limit(UPDRAFTPLUS_SET_TIME_LIMIT);
 					$something_useful_sizetest = false;
 
 					if ($data_added_since_reopen > $maxzipbatch) {
@@ -2715,3 +2802,4 @@ class UpdraftPlus_WPDB_OtherDB extends wpdb {
 		return false;
 	}
 }
+

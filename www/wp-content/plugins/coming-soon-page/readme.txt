@@ -1,10 +1,10 @@
 === Coming soon and Maintenance mode ===
 Contributors: maintenance mode GG, wpdevart, big ben keeper
 Donate link: http://wpdevart.com/wordpress-coming-soon-plugin/
-Tags: widget, Post , plugin, admin, twitter, page, coming soon, coming soon page, construction, landing page, launch, launch page, maintenance, maintenance mode, newsletter, offline, unavailable, under construction, wordpress coming soon, wordpress maintenance mode, wordpress under construction, landing page, underconstruction, squeeze page, countdown, maintenance page, site offline, wordpress maintenance plugin, wordpress maintenance mode. wordpress under constructio, email, gmail, message, notify, preview, subscriber, user, meta, under maintenance, site maintenance, schedule maintenance, admin maintenance, Maintenance Checklist, mode, custom maintenence mode, menu   
+Tags: widget, Post , plugin, admin, twitter, page, coming soon, coming soon page, construction, landing page, launch, launch page, maintenance, maintenance mode, newsletter, offline, unavailable, under construction, wordpress coming soon, wordpress maintenance mode, wordpress under construction, landing page, underconstruction, squeeze page, countdown, maintenance page, site offline, wordpress maintenance plugin, wordpress maintenance mode. wordpress under constructio, email, gmail, message, notify, preview, subscriber, user, meta, under maintenance, site maintenance, schedule maintenance, admin maintenance, Maintenance Checklist, mode, custom maintenence mode, responsive, video background, yahoo    
 Requires at least: 3.4.0
 Tested up to: 4.2.3
-Stable tag: 2.1.9
+Stable tag: 2.2.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -110,7 +110,11 @@ The Coming Soon and Maintenance mode plugin allows you to create Coming Soon pag
 The Coming Soon and Maintenance mode plugin plugin works without any problem with all popular WordPress themes that we tested, so you can use our Coming Soon and Maintenance mode plugin on any theme you like, if something goes wrong just let us know about it.
 Logged out users of your website will see the Maintenance mode while logged-in users will have access to your website. Maintenance mode is ideal solution for web developers who want to show their clients that website is in Maintenance mode while they working on the website.
 
-We recommend you to take a look for this useful plugins - [WordPress Poll plugin](https://wordpress.org/plugins/polls-widget/), [WordPress Facebook like box](https://wordpress.org/plugins/like-box), [WordPress YouTube](https://wordpress.org/plugins/youtube-video-player), [WordPress Countdown plugin](https://wordpress.org/plugins/widget-countdown), [Facebook comments WordPress](https://wordpress.org/plugins/comments-from-facebook) .
+### The Best Offer From WpDevArt
+
+**You can check the best offer page here - [Best Price](http://wpdevart.com/the-best-offer-from-wpdevart)**
+
+We recommend you to take a look for this useful plugins - [WordPress booking calendar](https://wordpress.org/plugins/booking-calendar), [WordPress Poll plugin](https://wordpress.org/plugins/polls-widget/), [WordPress Facebook like box](https://wordpress.org/plugins/like-box), [WordPress YouTube](https://wordpress.org/plugins/youtube-video-player), [WordPress Countdown plugin](https://wordpress.org/plugins/widget-countdown), [Facebook comments WordPress](https://wordpress.org/plugins/comments-from-facebook), [WordPress lightbox](https://wordpress.org/plugins/lightbox-popup) .
 
 == Installation ==
 
@@ -121,11 +125,15 @@ Installing the WordPress **Coming Soon and Maintenance mode** plugin
 2. Go to Plugins page Add New > Upload Plugin .    
 3. Click "Choose file" then select the [WordPress Coming Soon](https://wordpress.org/plugins/coming-soon-page/) and Maintenance mode plugin zip file. 
 4. Then Install and activate our WordPress Maintenance mode plugin.     
-5. Then, from the left panel of Dashboard, click on the gear icon - Coming Soon link to fully customize the plugin
+5. From the left panel of Dashboard, click on the gear icon - Coming Soon link to fully customize the plugin
 	  
 That's all, now you can build your Coming soon page and run website to Maintenance mode. If any problem occurs, contact us at [support@wpdevart.com](mailto:support@wpdevart.com).
 
-We recommend you to take a look for this useful plugins - [WordPress Poll plugin](https://wordpress.org/plugins/polls-widget/), [WordPress Facebook like box](https://wordpress.org/plugins/like-box), [WordPress YouTube](https://wordpress.org/plugins/youtube-video-player), [WordPress Countdown plugin](https://wordpress.org/plugins/widget-countdown), [Facebook comments WordPress](https://wordpress.org/plugins/comments-from-facebook) .
+### The Best Offer From WpDevArt
+
+**You can check the best offer page here - [Best Price](http://wpdevart.com/the-best-offer-from-wpdevart)**
+
+We recommend you to take a look for this useful plugins - [WordPress booking calendar](https://wordpress.org/plugins/booking-calendar), [WordPress Poll plugin](https://wordpress.org/plugins/polls-widget/), [WordPress Facebook like box](https://wordpress.org/plugins/like-box), [WordPress YouTube](https://wordpress.org/plugins/youtube-video-player), [WordPress Countdown plugin](https://wordpress.org/plugins/widget-countdown), [Facebook comments WordPress](https://wordpress.org/plugins/comments-from-facebook), [WordPress lightbox](https://wordpress.org/plugins/lightbox-popup) .
 
 == Frequently Asked Questions ==
 
@@ -146,7 +154,11 @@ Android doesn't allow set autoplay functionality on YouTube embedded videos, so 
 
 Yes, we have such option and you can do this using drop down functionality.
 
-We recommend you to take a look for this useful plugins - [WordPress Poll plugin](https://wordpress.org/plugins/polls-widget/), [WordPress Facebook like box plugin](https://wordpress.org/plugins/like-box), [WordPress YouTube](https://wordpress.org/plugins/youtube-video-player), [WordPress Countdown plugin](https://wordpress.org/plugins/widget-countdown), [Facebook comments WordPress](https://wordpress.org/plugins/comments-from-facebook) .
+### The Best Offer From WpDevArt
+
+**You can check the best offer page here - [Best Price](http://wpdevart.com/the-best-offer-from-wpdevart)**
+
+We recommend you to take a look for this useful plugins - [WordPress booking calendar](https://wordpress.org/plugins/booking-calendar), [WordPress Poll plugin](https://wordpress.org/plugins/polls-widget/), [WordPress Facebook like box plugin](https://wordpress.org/plugins/like-box), [WordPress YouTube](https://wordpress.org/plugins/youtube-video-player), [WordPress Countdown plugin](https://wordpress.org/plugins/widget-countdown), [Facebook comments WordPress](https://wordpress.org/plugins/comments-from-facebook), [WordPress lightbox](https://wordpress.org/plugins/lightbox-popup) .
 
 == Screenshots ==
 
@@ -233,6 +245,38 @@ We recommend you to take a look for this useful plugins - [WordPress Poll plugin
 = 2.1.8 =
 
 *  Fixed mistakes.
+
+= 2.1.9 =
+
+*  Made changes.
+
+= 2.2.0 =
+
+*  Fixed notice.
+
+= 2.2.1 =
+
+*  Made changes.
+
+= 2.2.2 =
+
+*  Fixed notice.
+
+= 2.2.3 =
+
+*  Fixed mistakes.
+
+= 2.2.4 =
+
+*  Added new featured plugin.
+
+= 2.2.5 =
+
+*  Some changes.
+
+= 2.2.6 =
+
+*  Added new featured plugin.
 
 ==Wordpress Coming soon step by step guide==
 
@@ -412,4 +456,8 @@ all fields are requared - All fields are required
 
 All fields required, so fill all fields and click on send button, that's all.
 
-We recommend you to take a look for this useful plugins - [WordPress Polls plugin](https://wordpress.org/plugins/polls-widget/), [WordPress Facebook like box](https://wordpress.org/plugins/like-box), [WordPress YouTube](https://wordpress.org/plugins/youtube-video-player), [WordPress Countdown plugin](https://wordpress.org/plugins/widget-countdown), [Facebook comments WordPress](https://wordpress.org/plugins/comments-from-facebook) .
+### The Best Offer From WpDevArt
+
+**You can check the best offer page here - [Best Price](http://wpdevart.com/the-best-offer-from-wpdevart)**
+
+We recommend you to take a look for this useful plugins - [WordPress booking calendar](https://wordpress.org/plugins/booking-calendar), [WordPress Polls plugin](https://wordpress.org/plugins/polls-widget/), [WordPress Facebook like box](https://wordpress.org/plugins/like-box), [WordPress YouTube](https://wordpress.org/plugins/youtube-video-player), [WordPress Countdown plugin](https://wordpress.org/plugins/widget-countdown), [Facebook comments WordPress](https://wordpress.org/plugins/comments-from-facebook), [WordPress lightbox](https://wordpress.org/plugins/lightbox-popup) .
