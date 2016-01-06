@@ -15,6 +15,14 @@ export function renderDashboard(){
   );
 }
 
+export function renderPdf(editionId){
+  return h('div#maincontainer', [ 
+      h('h2', "Edition"),
+      h('a', {href: "#"}, `n° ${editionId}`),
+    ]
+  );
+}
+
 // export function renderLeaf(leafInfos){
 export function renderLeaf(isUpside, leafInfos, history){
   let circlesView = h("div");

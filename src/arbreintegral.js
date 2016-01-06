@@ -25,22 +25,52 @@ export function makeAI(aiData){
     getNeighbors: function getNeighbors(leaf, options = {exclude:[]}){
       let coords = this.getCoords(leaf);
 
+      //Parent
       let parent = this.getNewParent(leaf, options.exclude) 
       if (parent.leaf && parent.leaf.id === "0"){
-        let child =  (this.getType(leaf) === 'UP') ? this.getRightChild(this.getCoords(parent.leaf)) : this.getLeftChild(this.getCoords(parent.leaf));
+        const rootCoords = this.getCoords(parent.leaf);
+        const leafType = this.getType(leaf);
+
+        //We search on the opposite semi-circle
+        let child =  ( leafType === 'UP') ? this.getRightChild(rootCoords) : this.getLeftChild(rootCoords);
         parent = this.ensureNewChild(child, options.exclude);
+
+        if (!parent.leaf){
+          //No parent found on the opposite semi-circle, we now search on this current semi-circle
+          let child =  ( leafType === 'UP') ? this.getLeftChild(rootCoords) : this.getRightChild(rootCoords);
+          parent = this.ensureNewChild(child, options.exclude);
+        }
       }
-      if (!parent){
-        console.log('ERROR')
+      // if (!parent.leaf){ console.log('END') }
+
+      //Childs
+      let leftChild = this.ensureNewChild(this.getLeftChild(coords), options.exclude);
+      let rightChild = this.ensureNewChild(this.getRightChild(coords), options.exclude);
+
+      //Brothers
+      let leftdistance = 0; let rightdistance = 0; // how far are the brothers from the current leaf
+      let leftBrother =  this.getNewBrother(coords, (coords) => {leftdistance += 1; return this.getLeftBrother(coords);}, options.exclude);
+      let rightBrother = this.getNewBrother(coords, (coords) => {rightdistance += 1; return this.getRightBrother(coords);}, options.exclude);
+
+      if (parent.leaf && (
+        (leftBrother.leaf && leftBrother.leaf.id === parent.leaf.id) ||
+        (rightBrother.leaf && rightBrother.leaf.id === parent.leaf.id) 
+      )) {
+        parent.leaf = false;
       }
 
-      return {
-        leftChild:    this.ensureNewChild(this.getLeftChild(coords), options.exclude),
-        rightChild:   this.ensureNewChild(this.getRightChild(coords), options.exclude),
-        leftBrother:  this.getNewBrother(coords, (coords) => {return this.getLeftBrother(coords);}, options.exclude),
-        rightBrother: this.getNewBrother(coords, (coords) => {return this.getRightBrother(coords);}, options.exclude),
-        parent: parent
+      //Display only the right brother if the two brothers points to the same leaf
+      if (leftBrother.leaf && leftBrother.leaf.id === rightBrother.leaf.id) {
+        if (leftdistance < rightdistance){
+          rightBrother.leaf = false;
+        } else {
+          leftBrother.leaf = false;
+        }
       }
+
+      
+
+      return { leftChild, rightChild, leftBrother, rightBrother, parent }
     },
 
     ensureNewChild: function ensureNewChild(child, exclude){

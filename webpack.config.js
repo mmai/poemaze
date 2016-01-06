@@ -20,5 +20,6 @@ module.exports = {
     new webpack.ProvidePlugin({
         'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
       })
-  ]
+  ],
+  devServer: { proxy: { '/wp-json/*': 'http://arbre-integral.net' }},//XXX do not work :-( 
 };

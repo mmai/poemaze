@@ -3,23 +3,36 @@ import 'whatwg-fetch' // fetch polyfill for older browsers
 import {run, Rx} from '@cycle/core';
 import {makeDOMDriver, h} from '@cycle/dom';
 import {makeHistoryDriver, filterLinks } from '@cycle/history';
+import {makeHTTPDriver} from '@cycle/http';
 
 import {makeAI} from './arbreintegral';
 import {makeVizDriver} from './arbreintegralVizDriver';
 import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './localstorageDriver';
 import {serialize, deserialize} from './visitedLeafSerializer';
-import {renderDashboard, renderLeaf} from './view';
+import {renderDashboard, renderLeaf, renderPdf} from './view';
 import {progressionComponent} from './progressionComponent';
 
 let AI = null; 
 
 function model(state, url){
-  if (url.pathname == "reset"){
-    return makeInitialState();
-  }
-
   let newVisited = state.visitedLeafs;
   let curleafid = url.pathname || "0";
+  let editionId = state.editionId;
+
+  if (url.pathname == "reset"){
+    return makeInitialState();
+  }  
+
+  if (url.pathname == "pdf"){
+    return {
+      pathname: url.pathname,
+      currentLeafId: state.curleafid,
+      visitedLeafs: state.visitedLeafs,
+      isUpside: state.isUpside,
+      editionId: "pending",
+      leafInfos: state.leafInfos
+    };
+  }
 
   if (!(curleafid in state.visitedLeafs)){
     newVisited[curleafid] = url.from;
@@ -32,8 +45,9 @@ function model(state, url){
   }
 
   let exclude = JSON.parse(JSON.stringify(newVisited));
+  const nbVisited = Object.keys(exclude).length;
   //Last leaf only available when all tree has been seen
-  if(Object.keys(exclude).length < 126) {
+  if(nbVisited < 126) {
     exclude["0.1.1.1.1.1.1"] = "0.1.1.1.1.1.1";
   } 
 
@@ -44,6 +58,7 @@ function model(state, url){
     currentLeafId: curleafid,
     visitedLeafs: newVisited,
     isUpside: isUpside,
+    editionId: editionId,
     leafInfos: {
       leaf: leaf,
       type: AI.getType(leaf),
@@ -54,9 +69,17 @@ function model(state, url){
 
 // function view(state){
 function view({state, urlList}){
+  //XXX : logged twice, why ?
+  // console.log(`view:${state.pathname}`);
   switch (state.pathname) {
   case 'dashboard':
     return renderDashboard()
+  case 'pdf':
+    if (state.editionId === "pending") {
+      return h('div#maincontainer', "Edition du document...");
+    } else {
+      return renderPdf(state.editionId);
+    }
   default:
     let history = [];
     for (let i in urlList) {
@@ -68,7 +91,7 @@ function view({state, urlList}){
   return h("div", 'Page non trouvée');
 }
 
-function main({DOM, Viz, LocalStorageSource}) {
+function main({DOM, HTTP, Viz, LocalStorageSource}) {
 // function main({DOM, History, Viz, LocalStorageSource}) {
   //DOM => History/Actions
   const clicked$ = DOM
@@ -111,10 +134,21 @@ function main({DOM, Viz, LocalStorageSource}) {
 
   // const history$ = clicked$.map(event => event.target.href.replace(location.origin, ``));
 
-  const state$ = url$
+  const stateFromUrl$ = url$
     .scan(model, makeInitialState())
     .shareReplay()
     .distinctUntilChanged();
+
+  const apiRes$ = HTTP
+  .mergeAll()
+  // .map(res => {console.log("got from HTTP!!"); console.log(res);return res;})
+   // .filter(res => res.request.indexOf(WP_API) === 0)
+   .withLatestFrom(stateFromUrl$, function(res, state){ 
+       state.editionId = res.body;
+       return state;
+     });
+
+ const state$ = stateFromUrl$.merge(apiRes$);
 
   //Urls => LocalStorageSink
   const storedUrlList$ = serialize( url$
@@ -129,14 +163,23 @@ function main({DOM, Viz, LocalStorageSource}) {
   ); 
 
   //State => DOM
-  // const view$ = state$.map( view );
-  const view$ = state$.combineLatest(storedUrlList$, 
-    function (state, urlList){
+  const view$ = state$
+    .combineLatest(storedUrlList$, function (state, urlList){
       return {
         state: state,
         urlList: JSON.parse(urlList).map(url => url.pathname).filter(pathname => pathname !="0")
       };
     }).map( view );
+
+  //url => HTTP (wordpress API calls)
+  let apiCall$ = url$
+    .filter(url => ( url.pathname == 'pdf' ))
+    .withLatestFrom(storedUrlList$, function(url, urlList){
+        let path = JSON.parse(urlList).map(url => getPathIndex(url.pathname)).join('-');
+        // let apiUrl = `fakeapi.json`;
+        let apiUrl = `wp-json/arbreintegral/v1/path/${path}`;
+        return apiUrl;
+      })
 
   //State => Viz
   const visitedLeaf$ = state$.map(state => {
@@ -155,10 +198,18 @@ function main({DOM, Viz, LocalStorageSource}) {
 
   return {
     DOM: view$,
+    HTTP: apiCall$,
     // History: history$,
     Viz: visitedLeaf$,
     LocalStorageSink: storedUrlList$
   }
+}
+
+function getPathIndex(path){
+  //Translate path to its binary representation: replace initial '0' by '1' and remove dots. ex : "0.1.0.1" => "1101"
+  const binaryPath = "1" + path.replace(/\./g, '').slice(1);
+  //Convert to decimal base integer
+  return parseInt(binaryPath, 2)
 }
 
 function makeInitialState(){
@@ -167,6 +218,7 @@ function makeInitialState(){
     currentLeafId: "0",
     visitedLeafs:{},
     isUpside: true,
+    editionId: false,
     leafInfos: {
       leaf: { id: "0" },
       type: "ROOT",
@@ -181,6 +233,7 @@ fetch('./wp-content/arbreintegral.json').then(function(response) {
       let drivers = {
         DOM: makeDOMDriver('#page', {'ai-progression':progressionComponent}),
         // History: makeHistoryDriver(),
+        HTTP: makeHTTPDriver(),
         Viz: makeVizDriver(AI),
         LocalStorageSource: makeLocalStorageSourceDriver('arbreintegral'),
         LocalStorageSink: makeLocalStorageSinkDriver('arbreintegral')
