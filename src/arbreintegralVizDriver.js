@@ -1,18 +1,11 @@
-const leafRadius = 2;
-const circleRadius = 30;
-const origin = {x:0, y:0};
-// const origin = {x:200, y:200};
-const color_up = "rgb(72,122,189)";
-const color_down = "rgb(128,120,48)";
-const color_brothers = "#BBBBBB";
-const color_default = "black";
-const color_skeleton= "#DFDFDF";
-const color_background= "whitesmoke";
 
 const display = {
   circles: true,
 }
 
+/************************
+ * Main visualization
+ */
 //Root element displayed by the cyclejs widget and used in the driver by the Two.js library 
 const vizRootElem = document.createElement('div');
 
@@ -25,13 +18,63 @@ VizWidget.prototype = {
 
 //Driver
 export function makeVizDriver(AI){
-  const two = new Two({});
-  two.appendTo(vizRootElem);
+  return makeDriver(AI, vizRootElem, {});
+}
+
+/***********************
+ * Logo visualization
+ */
+const logoVizRootElem = document.createElement('div');
+
+//Minimal widget hosting the visualization root element used by the driver
+export function LogoVizWidget() { this.type = 'Widget'; }
+LogoVizWidget.prototype = {
+  init: function () { return logoVizRootElem; },
+  update: function (prev, elem) {},
+};
+
+//Driver
+export function makeLogoVizDriver(AI){
+  return makeDriver(AI, logoVizRootElem, {
+      width: 120,
+      height: 120,
+      leafRadius: 0.3,
+      circleRadius: 8,
+      color_background: "black"
+    });
+}
+
+/***********************
+ * Common behavior
+ */
+//Driver
+function makeDriver(AI, vizElem, {
+    width = 480,
+    height = 480,
+    leafRadius = 2,
+    circleRadius = 30,
+    origin = {x:0, y:0},
+    color_up = "rgb(72,122,189)",
+    color_down = "rgb(128,120,48)",
+    color_brothers = "#BBBBBB",
+    color_default = "black",
+    color_skeleton= "#DFDFDF",
+    color_background= "whitesmoke"
+  }){
+  const two = new Two({width, height});
+  two.appendTo(vizElem);
 
   const mainGroup = two.makeGroup();
   mainGroup.translation.set(two.width/2, two.height/2);
 
+
+
   const group = two.makeGroup();//group displaying visitor path
+
+  const bground = two.makeCircle(0, 0, circleRadius * 7);
+  bground.fill = color_background;
+  bground.stroke = color_background;
+  mainGroup.add(bground);
 
   mainGroup.add(drawSkeleton(two));
   mainGroup.add(group);

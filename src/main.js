@@ -6,7 +6,7 @@ import {makeHistoryDriver, filterLinks } from '@cycle/history';
 import {makeHTTPDriver} from '@cycle/http';
 
 import {makeAI} from './arbreintegral';
-import {makeVizDriver} from './arbreintegralVizDriver';
+import {makeVizDriver, makeLogoVizDriver} from './arbreintegralVizDriver';
 import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './localstorageDriver';
 import {serialize, deserialize} from './visitedLeafSerializer';
 import {renderLeaf, renderPdf} from './view';
@@ -109,7 +109,7 @@ fetch('./wp-content/arbreintegral.json')
          return h("div", 'Page non trouvée');
        }
 
-       function main({DOM, HTTP, Viz, LocalStorageSource}) {
+       function main({DOM, HTTP, Viz, LogoViz, LocalStorageSource}) {
          // function main({DOM, History, Viz, LocalStorageSource}) {
            //DOM => History/Actions
            const clicked$ = DOM
@@ -201,8 +201,7 @@ fetch('./wp-content/arbreintegral.json')
 
 
            //State => Viz
-           const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
-           const visitedLeafBuffer$ = state$.map(state => {
+           const visitedLeaf$ = state$.map(state => {
                let fromId = state.visitedLeafs[state.currentLeafId];
                if (fromId === undefined && state.currentLeafId === "0") fromId = "0";
                return {
@@ -215,13 +214,16 @@ fetch('./wp-content/arbreintegral.json')
              })
            .filter(leaf => leaf.fromId !== undefined)
            .distinctUntilChanged()
-           .buffer(dashboardOpened$)
+
+           const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
+           const visitedLeafBuffer$ = visitedLeaf$.buffer(dashboardOpened$)
 
            return {
              DOM: view$,
              HTTP: apiCall$,
              // History: history$,
              Viz: visitedLeafBuffer$,
+             LogoViz: visitedLeaf$,
              LocalStorageSink: storedUrlList$
            }
          }
@@ -254,6 +256,7 @@ fetch('./wp-content/arbreintegral.json')
            // History: makeHistoryDriver(),
            HTTP: makeHTTPDriver(),
            Viz: makeVizDriver(AI),
+           LogoViz: makeLogoVizDriver(AI),
            LocalStorageSource: makeLocalStorageSourceDriver('arbreintegral'),
            LocalStorageSink: makeLocalStorageSinkDriver('arbreintegral')
          };

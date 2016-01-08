@@ -2,6 +2,7 @@
 
 import {hJSX, h} from '@cycle/dom';
 import {VizWidget} from './arbreintegralVizDriver';
+import {LogoVizWidget} from './arbreintegralVizDriver';
 var parser = require("vdom-parser");
 
 export function renderPdf(editionId){
@@ -42,7 +43,7 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
 
       <div id="dashboard" className={showDashboard?"ai-opened":"ai-closed"}>
         <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
-          <img src="wp-content/themes/arbre-integral/buttonDashboard.png"/>
+          {new LogoVizWidget()}
         </a>
         {new VizWidget()}
 
