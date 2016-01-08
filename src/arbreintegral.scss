@@ -8,6 +8,11 @@ $color-background-black: black;
 
 $color-background-circle6: #E2FBBC; //caper
 
+#maincontainer {
+  // position: relative;
+  // overflow: hidden;
+}
+
 #ai-text {
   display: flex;
   flex-direction: column;
@@ -72,7 +77,22 @@ $color-background-circle6: #E2FBBC; //caper
 }
 
 #dashboard {
+  position: absolute; 
+  top:0;
+
   background-color: $color-background-dashboard;
+  border: 1px solid black;
+}
+.dashboardLink {
+  position: absolute; 
+  left:-82px;
+}
+
+.ai-closed {
+  left:100%;
+}
+.ai-opened {
+  right:0;
 }
 
 .ai-progress-container {

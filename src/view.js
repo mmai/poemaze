@@ -4,17 +4,6 @@ import {hJSX, h} from '@cycle/dom';
 import {VizWidget} from './arbreintegralVizDriver';
 var parser = require("vdom-parser");
 
-export function renderDashboard(){
-  return h('div#maincontainer', [ 
-      h('h2', "Tableau de bord"),
-      h('a', {href: "#"}, "Lire"),
-      // new AiTwoWidget({ width: 285, height: 200 }),
-      // new AiTwoWidget(AI, {fullscreen:true})
-      // new AiTwoWidget(AI)
-    ]
-  );
-}
-
 export function renderPdf(editionId){
   return h('div#maincontainer', [ 
       h('h2', "Edition"),
@@ -24,7 +13,7 @@ export function renderPdf(editionId){
 }
 
 // export function renderLeaf(leafInfos){
-export function renderLeaf(isUpside, leafInfos, history){
+export function renderLeaf(showDashboard, isUpside, leafInfos, history){
   let circlesView = h("div");
   let interstice = (history.length == 1) ? renderInterstice(): ""
 
@@ -48,12 +37,13 @@ export function renderLeaf(isUpside, leafInfos, history){
   return (
     <div id="maincontainer">
       <a href="#reset">Recommencer</a><br/>
-      <hr />
-        {interstice}
-        {circlesView}
-      <hr />
+      {interstice}
+      {circlesView}
 
-      <div id="dashboard">
+      <div id="dashboard" className={showDashboard?"ai-opened":"ai-closed"}>
+        <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
+          <img src="wp-content/themes/arbre-integral/buttonDashboard.png"/>
+        </a>
         {new VizWidget()}
 
         {h('ai-progression', {
