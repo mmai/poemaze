@@ -17,6 +17,7 @@ export function renderPdf(editionId){
 export function renderLeaf(showDashboard, isUpside, leafInfos, history){
   let circlesView = h("div");
   let interstice = (history.length == 1) ? renderInterstice(): ""
+  let mainClass = "";
 
   // if (true) {
   if (history.length == 126) {
@@ -25,6 +26,7 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
     switch(leafInfos.type){
     case 'ROOT':
       circlesView = renderRoot(leafInfos);
+      mainClass = "ai-root";
       break;
     case 'DOWN': 
       circlesView = isUpside?renderLeafReversed(leafInfos):renderLeafUpside(leafInfos);
@@ -36,8 +38,7 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
 
       // {h('ai-progression', { max:126, value: history.length })}
   return (
-    <div id="maincontainer">
-      <a href="#reset">Recommencer</a><br/>
+    <div id="maincontainer" className={mainClass}>
       {interstice}
       {circlesView}
 
@@ -45,6 +46,7 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
         <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
           {new LogoVizWidget()}
         </a>
+        <a href="#reset">Recommencer</a><br/>
         {new VizWidget()}
 
         {h('ai-progression', {
@@ -58,7 +60,7 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
           <h2>Historique</h2>
           {h('ul', 
               history.map(url => h("li", [
-                    h("a", {href: `#${url.id}`}, `${url.word} (${url.id})`)
+                    h(`a.${isUp(url)?'ai-word--up':'ai-word--down'}`, {href: `#${url.id}`}, `${url.word} (${url.id})`)
                   ])
               )
             )}
@@ -72,7 +74,10 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
 function renderInterstice(){
   return (
     <div id="ai-interstice">
-      L'arbre intégral par Donatien Garnier
+      <img src="wp-content/themes/arbre-integral/couverture.png"/>
+      <div>par</div>
+      <div className="ai-cover--author">Donatien Garnier</div>
+      <div className="ai-cover--credits">graphisme Franck Tallon</div>
     </div>
   )
 }
@@ -81,34 +86,49 @@ function renderInterstice(){
 function renderRoot(leafInfos){
   let leftchild = leafInfos.neighbors.leftChild;
   let rightchild = leafInfos.neighbors.rightChild;
+
+  let linkUp = "#" + leftchild.leaf.id + "-" + leftchild.fromId;
+  let linkDown = "#" + rightchild.leaf.id + "-" + rightchild.fromId;
   return (
       <div id="ai-text">
-        <div className="tree-breadcrumb">
-        AI / {leafInfos.leaf.name}
-        </div>
-
         <div className="circle">
-          <div id="circle-children--left">
-          {h('a',
-             {href: "#" + leftchild.leaf.id + "-" + leftchild.fromId},
-              leftchild.leaf.word
-            )}
-          </div>
-        </div>
-
-        <div id="circle-current" className="circle">
-          <div id="circle-current--content">
-          ==oOo==
-          </div>
-        </div>
-
-        <div className="circle">
-          <div id="circle-children--right">
-          {h('a',
-             {href: "#" + rightchild.leaf.id + "-" + rightchild.fromId},
-              rightchild.leaf.word
-            )}
-          </div>
+          <table>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><a href={linkUp}>E</a></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><a href={linkUp}>L</a></td>
+              <td></td>
+              <td><a href={linkUp}>N</a></td>
+              <td></td>
+            </tr>
+            <tr>
+            <td style="text-align:right;"><a href={linkUp}>H</a></td>
+              <td></td>
+              <td style="width:2em;height:2em;">O</td>
+              <td></td>
+              <td style="text-align:left;"><a href={linkDown}>M</a></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><a href={linkDown}>I</a></td>
+              <td></td>
+              <td><a href={linkDown}>G</a></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><a href={linkDown}>R</a></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
         </div>
       </div>
       )
@@ -118,7 +138,7 @@ function renderEnd(leafInfos){
   return (
       <div id="ai-text">
         <div id="circle-current" className="circle">
-          <div id="circle-current--content" >
+          <div className="circle-current--content" >
           {parser(`<span class="ai-last">${leafInfos.leaf.content}</span>`)}
           </div>
         </div>
@@ -133,11 +153,12 @@ function renderEnd(leafInfos){
 }
 
 function renderLeafReversed(leafInfos){
+  let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
   let circleLevel = leafInfos.leaf.id.split('.').length - 1;
   return (
-      <div id="ai-text" className={"circle-" + circleLevel}>
-        <div className="tree-breadcrumb">
-        AI / {leafInfos.leaf.name}
+      <div id="ai-text" className={"circle-" + circleLevel + " " + classUp}>
+        <div>
+         <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
         </div>
 
         <div id="circle-children" className="circle">
@@ -146,7 +167,7 @@ function renderLeafReversed(leafInfos){
 
         <div id="circle-current" className="circle">
           {renderNeighorLink("circle-current--left", leafInfos.neighbors.leftBrother)}
-          <div id="circle-current--content">
+          <div className="circle-current--content">
           {parser(`<span>${leafInfos.leaf.content}</span>`)}
           </div>
           {renderNeighorLink("circle-current--right", leafInfos.neighbors.rightBrother)}
@@ -161,11 +182,12 @@ function renderLeafReversed(leafInfos){
 }
 
 function renderLeafUpside(leafInfos){
+  let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
   let circleLevel = leafInfos.leaf.id.split('.').length - 1;
   return (
-      <div id="ai-text" className={"circle-" + circleLevel}>
-        <div className="tree-breadcrumb">
-        AI / {leafInfos.leaf.name}
+      <div id="ai-text" className={"circle-" + circleLevel + " " + classUp}>
+        <div>
+         <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
         </div>
         <div id="circle-children" className="circle">
           {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
@@ -174,7 +196,7 @@ function renderLeafUpside(leafInfos){
 
         <div id="circle-current" className="circle">
           {renderNeighorLink("circle-current--left", leafInfos.neighbors.leftBrother)}
-          <div id="circle-current--content">
+          <div className="circle-current--content">
           {parser(`<span>${leafInfos.leaf.content}</span>`)}
           </div>
           {renderNeighorLink("circle-current--right", leafInfos.neighbors.rightBrother)}
@@ -190,7 +212,13 @@ function renderLeafUpside(leafInfos){
 function renderNeighorLink(id, neighbor){
   let links = [];
   if (neighbor){
-    links.push(h('a', {href: "#" + neighbor.leaf.id + "-" + neighbor.fromId}, neighbor.leaf.word));
+    let classUp = isUp(neighbor.leaf)?"ai-word--up":"ai-word--down";
+    links.push(h(`a.${classUp}`, {href: "#" + neighbor.leaf.id + "-" + neighbor.fromId}, neighbor.leaf.word));
   }  
-  return h("div#" + id, links);
+  return h("div.ai-word#" + id, links);
+}
+
+function isUp (leaf){
+  if (!leaf.id) return true;
+  return leaf.id.split('.')[1] === '0';
 }

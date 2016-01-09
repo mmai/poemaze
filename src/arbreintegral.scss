@@ -1,16 +1,40 @@
 $color-up: rgb(72,122,189);
 $color-down: rgb(128,120,48);
-$color-background: white;
+$color-background: rgb(245,245,245);
 $color-text: rgb(47,46,12);
+
+$color-background-up: rgb(190,207,195);
+$color-background-down: rgb(47,46,12); 
+
 $color-background-dashboard: rgb(245,245,245); //F5F5F5 white-smoke;
-$color-background-light: rgb(220,220,220);
-$color-background-black: black; 
 
 $color-background-circle6: #E2FBBC; //caper
 
+body {
+  font-family: 'Sanchez', serif;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.ai-word--up {
+    font-family: 'Kite One', sans-serif;
+    color: $color-up; 
+  }
+
+  &.ai-word--down {
+    font-family: 'Kite One', sans-serif;
+    color: $color-down; 
+  }
+}
+
 #maincontainer {
-  // position: relative;
-  // overflow: hidden;
+  bottom: 0;
+  margin: 0;
+  border: 0;
 }
 
 #ai-text {
@@ -18,9 +42,87 @@ $color-background-circle6: #E2FBBC; //caper
   flex-direction: column;
 }
 
+.ai-root {
+  background-color: black;
+  font-size: 5em;
+  td, a {
+    color: white;
+  }
+  td {
+    text-align: center;
+  }
+  
+}
+
+.ai-up {
+  background-color: $color-background-up;
+}
+
+.ai-down {
+  background-color: $color-background-down;
+  .circle-current--content {
+    color: white;
+  }
+}
+
+.ai-word {
+  padding: 2em;
+  font-size: 1.6em;
+  font-family: 'Kite One', sans-serif;
+}
+
+.tree-breadcrumb {
+  font-size: 1.4em;
+  color: white;
+  transform-origin: right top;
+  transform: translatex(-100%) rotate(-90deg);
+  float: left;
+}
+
+.circle {
+  min-height: 5em;
+  justify-content: space-around;
+
+  display: flex;
+  flex-direction: row;
+}
+
+//Defaults font for circles 1 to 5
+.circle-current--content {
+  font-size: 2.5em;
+  font-family: 'Crimson Text', serif;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.circle-6 {
+  background-color: $color-background-circle6;
+  .circle-current--content {
+    font-family: 'Asap', sans-serif;
+    color: black;
+  }
+
+  .tree-breadcrumb {
+    color: black;
+  }
+}
+
+/***************
+ * interstice
+ ***************/
+
 #ai-interstice {
   background: $color-background;
   text-align: center;
+  font-size: 2.5em;
+
+  .ai-cover--author {
+    font-size: 1.5em;
+  }
+  .ai-cover--credits {
+    font-size: 0.8em; 
+  }
 
   z-index: 999;
   overflow:hidden;
@@ -39,6 +141,10 @@ $color-background-circle6: #E2FBBC; //caper
   }
 }
 
+/***************
+ * last text
+ ***************/
+
 .ai-last {
   text-transform: uppercase;
   animation: ai-blink 1s steps(5, start) infinite;
@@ -50,31 +156,10 @@ $color-background-circle6: #E2FBBC; //caper
   }
 }
 
-.tree-breadcrumb {
-  height: 2em;
-}
 
-.circle {
-  height: 5em;
-  justify-content: space-around;
-
-  display: flex;
-  flex-direction: row;
-}
-
-.circle-1 {
-}
-.circle-2 {
-}
-.circle-3 {
-}
-.circle-4 {
-}
-.circle-5 {
-}
-.circle-6 {
-  background-color: $color-background-circle6;
-}
+/***********************
+ * DASHBOARD
+ **********************/
 
 #dashboard {
   position: absolute; 
@@ -82,6 +167,7 @@ $color-background-circle6: #E2FBBC; //caper
 
   background-color: $color-background-dashboard;
   border: 1px solid black;
+  text-align: center;
 }
 .dashboardLink {
   position: absolute; 
@@ -101,6 +187,7 @@ $color-background-circle6: #E2FBBC; //caper
 }
 
 .ai-progress {
+  text-align: left;
   width: 20em;
   display: inline-block;
   background-color: lightgray;
@@ -132,6 +219,14 @@ $color-background-circle6: #E2FBBC; //caper
   // }
 }
 
+#history {
+  text-align: left;
+  padding: 2em;
+}
+
+/********************
+ * SVG
+ ********************/
 
 .viz-neighbor {
   cursor: pointer;

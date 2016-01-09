@@ -175,9 +175,10 @@ function makeDriver(AI, vizElem, {
       const neighborFromLeaf = AI.data[neighbor.fromId];
       if (neighbor.leaf){
         //Add path to leaf
-        const joinLine = makeJoinLine(neighborFromLeaf, neighbor.leaf, true);
-        if (joinLine) group.add(joinLine);
-        vizState.neighborsPathsIds.push(joinLine.id);
+        // const joinLine = makeJoinLine(neighborFromLeaf, neighbor.leaf, true);
+        // if (joinLine) group.add(joinLine);
+        // vizState.neighborsPathsIds.push(joinLine.id);
+
         //Add leaf
         const leafElement = makeNeighborLeaf(neighbor.leaf);
         group.add(leafElement);
