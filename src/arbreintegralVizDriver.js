@@ -118,8 +118,10 @@ function makeDriver(AI, vizElem, {
     let neighborsElementsIds = Object.keys(vizState.neighborsIds);
     for (let eid of neighborsElementsIds){
       let elem = document.getElementById(eid);
-      elem.setAttribute("class", "viz-neighbor");
-      elem.setAttribute("data-neighbor-href", `${vizState.neighborsIds[eid].leaf.id}-${vizState.neighborsIds[eid].fromId}`);
+      if (elem){
+        elem.setAttribute("class", "viz-neighbor");
+        elem.setAttribute("data-neighbor-href", `${vizState.neighborsIds[eid].leaf.id}-${vizState.neighborsIds[eid].fromId}`);
+      }
     }
   }
 

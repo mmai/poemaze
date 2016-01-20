@@ -5,6 +5,8 @@ import {VizWidget} from './arbreintegralVizDriver';
 import {LogoVizWidget} from './arbreintegralVizDriver';
 var parser = require("vdom-parser");
 
+let aiDomain = 'http://arbre-integral.net';
+
 export function renderPdf(editionId){
   return h('div#maincontainer', [ 
       h('h2', "Edition"),
@@ -16,9 +18,6 @@ export function renderPdf(editionId){
 // export function renderLeaf(leafInfos){
 export function renderLeaf(showDashboard, isUpside, leafInfos, history){
   let circlesView = h("div");
-  let interstice = (history.length == 1) ? renderInterstice(): ""
-  let mainClass = "";
-
   // if (true) {
   if (history.length == 126) {
     circlesView = renderEnd(leafInfos);
@@ -26,7 +25,6 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
     switch(leafInfos.type){
     case 'ROOT':
       circlesView = renderRoot(leafInfos);
-      mainClass = "ai-root";
       break;
     case 'DOWN': 
       circlesView = isUpside?renderLeafReversed(leafInfos):renderLeafUpside(leafInfos);
@@ -36,12 +34,25 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
     }
   }
 
-      // {h('ai-progression', { max:126, value: history.length })}
-  return (
-    <div id="maincontainer" className={mainClass}>
-      {interstice}
-      {circlesView}
+  let dashboardView = (history.length > 0 || window.aiPageType === "wordpress") ? renderDashboard(showDashboard, isUpside, history) : renderInterstice();
 
+  if (window.aiPageType === "wordpress") {
+    //Only the cyclejs dashboard
+    return ( <div id="maincontainer"> {dashboardView} </div>);
+  }
+
+  return (
+    <div id="maincontainer">
+      {circlesView}
+      {dashboardView}
+    </div>
+  );
+
+      // {h('ai-progression', { max:126, value: history.length })}
+}
+
+function renderDashboard(showDashboard, isUpside, history){
+  return (
       <div id="dashboard" className={showDashboard?"ai-opened":"ai-closed"}>
         <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
           {new LogoVizWidget()}
@@ -56,6 +67,9 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
                 })
             })}
 
+        <div id="Forum">
+          <h2><a rel="external" href={aiDomain + '/forums/forum/suggestions'}>Forum</a></h2>
+       </div>
         <div id="history">
           <h2>Historique</h2>
           {h('ul', 
@@ -67,14 +81,13 @@ export function renderLeaf(showDashboard, isUpside, leafInfos, history){
         </div>
 
       </div>
-    </div>
     );
 }
 
 function renderInterstice(){
   return (
     <div id="ai-interstice">
-      <img src="wp-content/themes/arbre-integral/couverture.png"/>
+      <img src="/wp-content/themes/arbre-integral/couverture.png"/>
       <div>par</div>
       <div className="ai-cover--author">Donatien Garnier</div>
       <div className="ai-cover--credits">graphisme Franck Tallon</div>
@@ -90,41 +103,41 @@ function renderRoot(leafInfos){
   let linkUp = "#" + leftchild.leaf.id + "-" + leftchild.fromId;
   let linkDown = "#" + rightchild.leaf.id + "-" + rightchild.fromId;
   return (
-      <div id="ai-text">
+      <div className="ai-root ai-text">
         <div className="circle">
           <table>
             <tr>
               <td></td>
               <td></td>
-              <td><a href={linkUp}>E</a></td>
+              <td><a className='ai-seed-up' href={linkUp}>E</a></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td></td>
-              <td><a href={linkUp}>L</a></td>
+              <td><a className='ai-seed-up' href={linkUp}>L</a></td>
               <td></td>
-              <td><a href={linkUp}>N</a></td>
+              <td><a className='ai-seed-up' href={linkUp}>N</a></td>
               <td></td>
             </tr>
             <tr>
-            <td style="text-align:right;"><a href={linkUp}>H</a></td>
+            <td style="text-align:right;"><a className='ai-seed-up' href={linkUp}>H</a></td>
               <td></td>
               <td style="width:2em;height:2em;">O</td>
               <td></td>
-              <td style="text-align:left;"><a href={linkDown}>M</a></td>
+              <td style="text-align:left;"><a className='ai-seed-down' href={linkDown}>M</a></td>
             </tr>
             <tr>
               <td></td>
-              <td><a href={linkDown}>I</a></td>
+              <td><a className='ai-seed-down' href={linkDown}>I</a></td>
               <td></td>
-              <td><a href={linkDown}>G</a></td>
+              <td><a className='ai-seed-down' href={linkDown}>G</a></td>
               <td></td>
             </tr>
             <tr>
               <td></td>
               <td></td>
-              <td><a href={linkDown}>R</a></td>
+              <td><a className='ai-seed-down' href={linkDown}>R</a></td>
               <td></td>
               <td></td>
             </tr>
@@ -136,7 +149,7 @@ function renderRoot(leafInfos){
 
 function renderEnd(leafInfos){
   return (
-      <div id="ai-text">
+      <div className="ai-text">
         <div id="circle-current" className="circle">
           <div className="circle-current--content" >
           {parser(`<span class="ai-last">${leafInfos.leaf.content}</span>`)}
@@ -156,7 +169,7 @@ function renderLeafReversed(leafInfos){
   let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
   let circleLevel = leafInfos.leaf.id.split('.').length - 1;
   return (
-      <div id="ai-text" className={"circle-" + circleLevel + " " + classUp}>
+      <div className={"ai-text circle-" + circleLevel + " " + classUp}>
         <div>
          <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
         </div>
@@ -185,7 +198,7 @@ function renderLeafUpside(leafInfos){
   let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
   let circleLevel = leafInfos.leaf.id.split('.').length - 1;
   return (
-      <div id="ai-text" className={"circle-" + circleLevel + " " + classUp}>
+      <div className={"ai-text circle-" + circleLevel + " " + classUp}>
         <div>
          <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
         </div>

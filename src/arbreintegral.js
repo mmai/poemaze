@@ -68,8 +68,6 @@ export function makeAI(aiData){
         }
       }
 
-      
-
       return { leftChild, rightChild, leftBrother, rightBrother, parent }
     },
 
@@ -168,6 +166,8 @@ export function makeAI(aiData){
       if (leaf === false) throw new Error("Can't get coordinates of a 'false' leaf");
       //Nomenclature : 0.0.1.1.0
       let path = leaf.id.split('.');
+      if (path == 0) return {circ:0, pos:1};
+
       let circle = path.length - 1;  
       let position = 1;
       let lcircle = circle - 1;

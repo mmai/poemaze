@@ -1,5 +1,11 @@
 require("./arbreintegral.scss")
-import 'whatwg-fetch' // fetch polyfill for older browsers
+
+//Polyfills
+import 'babel-polyfill' // for the "ReferenceError: Can't find variable: Symbol" in casperjs tests
+import 'es6-promise' // Promise polyfill needed by fetch polyfill
+import 'whatwg-fetch' // fetch polyfill for ie
+
+//Cyclejs
 import {run, Rx} from '@cycle/core';
 import {makeDOMDriver, h} from '@cycle/dom';
 import {makeHistoryDriver, filterLinks } from '@cycle/history';
@@ -12,10 +18,11 @@ import {serialize, deserialize} from './visitedLeafSerializer';
 import {renderLeaf, renderPdf} from './view';
 import {progressionComponent} from './progressionComponent';
 
-fetch('./wp-content/arbreintegral.json')
-  .then(function(response) {
-    return response.json()
-  })
+fetch('/wp-content/arbreintegral.json')
+  .then(
+    (response) => { return response.json() }, 
+    (reason) => { console.log(`fetch failed : ${reason}`) }
+    )
   .then(function(json) {
      const AI = makeAI(json);
 
@@ -52,7 +59,7 @@ fetch('./wp-content/arbreintegral.json')
            leafInfos: state.leafInfos
          };
        }
-
+       
        if (!(curleafid in state.visitedLeafs)){
          newVisited[curleafid] = url.from;
        }
@@ -115,7 +122,7 @@ fetch('./wp-content/arbreintegral.json')
            const clicked$ = DOM
            .select('a')
            .events('click')
-           .filter(filterLinks);
+           .filter(filterLinks)
            // .map(e => e.target).share();
 
            const navigationClick$ = clicked$
@@ -142,14 +149,19 @@ fetch('./wp-content/arbreintegral.json')
                }
              });
 
-
-           const url$ = Rx.Observable.concat(
-             deserialize(LocalStorageSource).flatMap( urlList => Rx.Observable.from(urlList)),
-             // navigationClick$
-             Rx.Observable.merge(navigationClick$, svgClick$)
-           )
-           .startWith({pathname:"0", from:"0"})
-           .shareReplay()
+           const url$ = deserialize(LocalStorageSource)
+            .flatMap( urlList => Rx.Observable.from(urlList))
+            .concat(
+              navigationClick$.merge(svgClick$).map(url => {
+                  //XXX side effect  
+                  if (["dashboard", "main"].indexOf(url.pathname) === -1 ){
+                    window.aiPageType = "poem";
+                  }
+                  return url;
+                })
+            )
+            .shareReplay()
+             .startWith({pathname:"reset"})
 
            // const history$ = clicked$.map(event => event.target.href.replace(location.origin, ``));
 
@@ -166,7 +178,8 @@ fetch('./wp-content/arbreintegral.json')
                return state;
              });
 
-           const state$ = stateFromUrl$.merge(apiRes$);
+           const state$ = stateFromUrl$.merge(apiRes$)
+           .startWith(makeInitialState());
 
            //Urls => LocalStorageSink
            const storedUrlList$ = serialize( url$
@@ -177,9 +190,11 @@ fetch('./wp-content/arbreintegral.json')
 
                  urlList.push(url);
                  return urlList;
-               }, []).share()
-           ); 
-
+               }, [])
+             .share()
+           ) 
+             
+            
            //State => DOM
            const view$ = state$
            .combineLatest(storedUrlList$, function (state, urlList){
@@ -194,13 +209,14 @@ fetch('./wp-content/arbreintegral.json')
            .filter(url => ( url.pathname == 'pdf' ))
            .withLatestFrom(storedUrlList$, function(url, urlList){
                let path = JSON.parse(urlList).map(url => getPathIndex(url.pathname)).join('-');
-               // let apiUrl = `fakeapi.json`;
-               let apiUrl = `wp-json/arbreintegral/v1/path/${path}`;
+               let apiUrl = `fakeapi.json`;
+               // let apiUrl = `wp-json/arbreintegral/v1/path/${path}`;
                return apiUrl;
              })
 
 
            //State => Viz
+           let initialState = makeInitialState();
            const visitedLeaf$ = state$.map(state => {
                let fromId = state.visitedLeafs[state.currentLeafId];
                if (fromId === undefined && state.currentLeafId === "0") fromId = "0";
@@ -222,8 +238,8 @@ fetch('./wp-content/arbreintegral.json')
              DOM: view$,
              HTTP: apiCall$,
              // History: history$,
-             Viz: visitedLeafBuffer$,
              LogoViz: visitedLeaf$,
+             Viz: visitedLeafBuffer$,
              LocalStorageSink: storedUrlList$
            }
          }
@@ -251,12 +267,14 @@ fetch('./wp-content/arbreintegral.json')
              }};
          }
 
+         // let domElement = window.aiPageType === 'wordpress' ? '#ai-menu' || '#page';
+
          let drivers = {
-           DOM: makeDOMDriver('#page', {'ai-progression':progressionComponent}),
+           DOM: makeDOMDriver('#ai-page', {'ai-progression':progressionComponent}),
            // History: makeHistoryDriver(),
            HTTP: makeHTTPDriver(),
-           Viz: makeVizDriver(AI),
            LogoViz: makeLogoVizDriver(AI),
+           Viz: makeVizDriver(AI),
            LocalStorageSource: makeLocalStorageSourceDriver('arbreintegral'),
            LocalStorageSink: makeLocalStorageSinkDriver('arbreintegral')
          };

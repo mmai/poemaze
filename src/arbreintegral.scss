@@ -12,6 +12,7 @@ $color-background-circle6: #E2FBBC; //caper
 
 body {
   font-family: 'Sanchez', serif;
+  margin:0;
 }
 
 a {
@@ -35,11 +36,19 @@ a {
   bottom: 0;
   margin: 0;
   border: 0;
+  height:100%;
 }
 
-#ai-text {
+#ai-page {
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
+.ai-text {
   display: flex;
   flex-direction: column;
+  height:100%;
 }
 
 .ai-root {
@@ -72,6 +81,7 @@ a {
 }
 
 .tree-breadcrumb {
+  padding-right: 1em;
   font-size: 1.4em;
   color: white;
   transform-origin: right top;
@@ -115,29 +125,53 @@ a {
 #ai-interstice {
   background: $color-background;
   text-align: center;
-  font-size: 2.5em;
+  font-size: 12em;
+  opacity: 1;
 
   .ai-cover--author {
-    font-size: 1.5em;
+    font-size: 7em;
   }
   .ai-cover--credits {
-    font-size: 0.8em; 
+    font-size: 4em; 
   }
 
   z-index: 999;
   overflow:hidden;
   position:absolute;
+  top:0;
 
   width: 100%;
   height: 100%;
-  animation: ai-interstice-animation 0s ease-in 2s forwards;
-  animation-fill-mode: forwards;
+  animation: ai-interstice-animation 5s forwards;
+}
+
+.ai-seed-down {
+  &:hover{
+    text-decoration: none;
+    color: $color-down;
+  }
+}
+
+.ai-seed-up {
+  &:hover{
+    text-decoration: none;
+    color: $color-up;
+  }
 }
 
 @keyframes ai-interstice-animation {
-  to {
+  25% {
+    opacity: 1;
+  }
+  99% {
+    width:100%;
+    height:100%;
+    opacity: 0;
+  }
+  100% {
     width:0%;
     height:0%;
+    opacity: 0;
   }
 }
 
@@ -171,7 +205,14 @@ a {
 }
 .dashboardLink {
   position: absolute; 
-  left:-82px;
+  left:0px;
+  animation: ai-dashboardlink-animation 1s forwards;
+}
+
+@keyframes ai-dashboardlink-animation {
+  to {
+    left:-82px;
+  }
 }
 
 .ai-closed {

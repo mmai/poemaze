@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
- 
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -21,5 +21,14 @@ module.exports = {
         'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
       })
   ],
-  devServer: { proxy: { '/wp-json/*': 'http://arbre-integral.net' }},//XXX do not work :-( 
-};
+  devServer: {
+    host: "arbre-integral.net",
+    port: 1234,
+    proxy: {
+      '/wp-json/*': {
+                target: 'http://arbre-integral.net',
+                secure: false,
+              }
+            }
+          },
+        };

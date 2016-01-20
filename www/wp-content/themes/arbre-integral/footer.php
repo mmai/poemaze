@@ -13,6 +13,11 @@
 	</div><!-- #page -->
 
 	<?php wp_footer(); ?>
-    <script src="wp-content/themes/arbre-integral/bundle.js"></script>
+    <div id="ai-page"></div>
+    <script language="javascript">
+      window.aiPageType = "wordpress";
+    </script>
+    <script src="/wp-content/themes/arbre-integral/two.min.js"></script>
+    <script src="http://arbre-integral.net:1234/wp-content/themes/arbre-integral/bundle.js"></script>
 </body>
 </html>
