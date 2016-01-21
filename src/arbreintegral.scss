@@ -8,7 +8,7 @@ $color-background-down: rgb(47,46,12);
 
 $color-background-dashboard: rgb(245,245,245); //F5F5F5 white-smoke;
 
-$color-background-circle6: #E2FBBC; //caper
+$color-background-circle6: #DFDFDF; //caper
 
 body {
   font-family: 'Sanchez', serif;
@@ -223,22 +223,18 @@ a {
 }
 
 .ai-progress-container {
-  // &::before { content: "["; }
-  // &::after { content: "]"; }
+  &::before { content: "O "; }
+  &::after { content: " X"; }
 }
 
 .ai-progress {
-  text-align: left;
-  width: 20em;
   display: inline-block;
-  background-color: lightgray;
-  border-bottom: 0.3em solid lightgray;
-  height: 0.6em;
+  width: 20em;
   vertical-align: middle;
+  text-align: left;
 
   div {
     display: inline-block;
-    // box-sizing: border-box;
     border-color: $color-background-dashboard; 
     border: 0 none $color-background-dashboard;
     width: 0.79%;
@@ -247,17 +243,18 @@ a {
 
   .ai-progress-up {
     border-top: 0.3em solid $color-up;
-    background-color: #EEE;
+    border-bottom: 0.3em solid $color-background-dashboard;
   }
 
   .ai-progress-down {
+    border-top: 0.3em solid $color-background-dashboard;
     border-bottom: 0.3em solid $color-down;
-    background-color: #EEE;
   }
 
-  // .ai-progress-left {
-  //   background-color: lightgray;
-  // }
+  .ai-progress-remaining {
+    border-top: 0.3em solid lightgray;
+    border-bottom: 0.3em solid lightgray;
+  }
 }
 
 #history {
