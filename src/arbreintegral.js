@@ -113,7 +113,7 @@ export function makeAI(aiData){
       };
     },
 
-    getNewParent: function (leaf, exclude){
+    getNewParent: function getNewParent(leaf, exclude){
       let neighbor = this.getParent(leaf);
       if (neighbor.id == leaf.id) neighbor = false;
       let viewed = {};
@@ -202,6 +202,21 @@ export function makeAI(aiData){
         level -= 1;
       }
       return id;
-    }
+    },
+
+    makeInitialState (){
+        return {
+          pathname: '/',
+          currentLeafId: "0",
+          visitedLeafs:{},
+          isUpside: true,
+          editionId: false,
+          showDashboard: false,
+          leafInfos: {
+            leaf: { id: "0" },
+            type: "ROOT",
+            neighbors: this.getNeighbors({ id: "0" })
+          }};
+      }
   };
 }

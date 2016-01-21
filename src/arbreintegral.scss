@@ -8,7 +8,7 @@ $color-background-down: rgb(47,46,12);
 
 $color-background-dashboard: rgb(245,245,245); //F5F5F5 white-smoke;
 
-$color-background-circle6: #DFDFDF; //caper
+$color-background-circle6: #DFDFDF;
 
 body {
   font-family: 'Sanchez', serif;
@@ -257,9 +257,8 @@ a {
   }
 }
 
-#history {
+.dashboard--menu {
   text-align: left;
-  padding: 2em;
 }
 
 /********************

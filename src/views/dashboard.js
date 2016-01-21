@@ -23,19 +23,17 @@ export function renderDashboard(showDashboard, isUpside, history){
                 })
             })}
 
-        <div id="Forum">
-          <h2><a rel="external" href={aiDomain + '/forums/forum/suggestions'}>Forum</a></h2>
-       </div>
-        <div id="history">
-          <h2>Historique</h2>
-          {h('ul', 
+        <ul className="dashboard--menu">
+          <li><a rel="external" href={aiDomain + '/forums/forum/suggestions'}>Forum</a></li>
+          <li> Historique
+          {h('ul#history', 
               history.map(url => h("li", [
                     h(`a.${isUp(url)?'ai-word--up':'ai-word--down'}`, {href: `#${url.id}`}, `${url.word} (${url.id})`)
                   ])
               )
             )}
-        </div>
-
+          </li>
+        </ul>
       </div>
     );
 }
