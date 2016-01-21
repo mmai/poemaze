@@ -15,8 +15,13 @@ import {makeAI} from './arbreintegral';
 import {makeVizDriver, makeLogoVizDriver} from './arbreintegralVizDriver';
 import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './localstorageDriver';
 import {serialize, deserialize} from './visitedLeafSerializer';
-import {renderLeaf, renderPdf} from './view';
 import {progressionComponent} from './progressionComponent';
+
+import {renderDashboard} from './views/dashboard'
+import {renderCover}     from './views/cover'
+import {renderPoem}      from './views/poem';
+import {renderEnd}       from './views/end'
+import {renderPdf}       from './views/pdf';
 
 fetch('/wp-content/arbreintegral.json')
   .then(
@@ -111,7 +116,30 @@ fetch('/wp-content/arbreintegral.json')
              history.push(AI.getLeaf(urlList[i]));
            }
 
-           return renderLeaf(state.showDashboard, state.isUpside, state.leafInfos, history);
+           let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history);
+
+           let views = [];
+           if (window.aiPageType === "wordpress") {
+             views.push(dashboardView)
+           } else {
+             switch (history.length){
+             case 0:
+               views.push(renderPoem(state.showDashboard, state.isUpside, state.leafInfos))
+               views.push(renderCover());
+               break;
+             case 126:
+               views.push(renderEnd(state.leafInfos));
+               views.push(dashboardView);
+               break;
+             default:
+               // views.push(renderEnd(state.leafInfos));
+               views.push(renderPoem(state.showDashboard, state.isUpside, state.leafInfos))
+               views.push(dashboardView);
+             }
+           }
+
+           return h("div#maincontainer", views)
+
          }
          return h("div", 'Page non trouvée');
        }
