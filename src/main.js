@@ -6,14 +6,16 @@ import {Observable} from 'rx';
 import {makeDOMDriver, h} from '@cycle/dom';
 import {makeHistoryDriver, filterLinks } from '@cycle/history';
 import {makeHTTPDriver} from '@cycle/http';
+// import {isolate} from '@cycle/isolate';
+var isolate = require('@cycle/isolate');
 
 import {makeAI} from './arbreintegral';
 import {makeModel} from './model';
 import {makeVizDriver, makeLogoVizDriver} from './arbreintegralVizDriver';
 import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './localstorageDriver';
 import {serialize, deserialize} from './visitedLeafSerializer';
-import {progressionComponent} from './progressionComponent';
 
+import ProgressionComponent from './progressionComponent'
 import {renderDashboard} from './views/dashboard'
 import {renderCover}     from './views/cover'
 import {renderPoem}      from './views/poem';
@@ -46,8 +48,18 @@ function startAI(json) {
           return renderPdf(state.editionId);
         }
       default:
+        //Progression component
+        const progressionSources = {
+          prop$: Observable.of(urlList.map( url => {
+              let elems = url.split('.');
+              return (elems.length === 1) ? "" : (elems[1] === "0" )
+            }))
+        }
+        const progression = isolate(ProgressionComponent)(progressionSources);
+        const progressionVtree = progression.DOM;
+
         let history = urlList.map(AI.getLeaf);
-        let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history);
+        let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree);
         let views = [];
         if (window.aiPageType === "wordpress") {
           views.push(h('div'))//XXX if not present, it seems to harm virtual-dom (it makes fail e2e test "poem is made of 3 circles divs" for example), I don't know exactly why :-( ...
@@ -210,7 +222,7 @@ function startAI(json) {
       }
 
       let drivers = {
-        DOM: makeDOMDriver('#ai-page', {'ai-progression':progressionComponent}),
+        DOM: makeDOMDriver('#ai-page'),
         // History: makeHistoryDriver(),
         HTTP: makeHTTPDriver(),
         LogoViz: makeLogoVizDriver(AI),

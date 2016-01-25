@@ -8,7 +8,7 @@ import {settings} from '../settings'
 
 let pagesUrl = settings.pagesUrl || '';
 
-export function renderDashboard(showDashboard, isUpside, history){
+export function renderDashboard(showDashboard, isUpside, history, progressionVtree){
   return (
       <div id="dashboard" className={showDashboard?"ai-opened":"ai-closed"}>
         <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
@@ -17,12 +17,7 @@ export function renderDashboard(showDashboard, isUpside, history){
         <a href="#reset">Recommencer</a><br/>
         {new VizWidget()}
 
-        {h('ai-progression', {
-              value:history.map( leaf => {
-                  let elems = leaf.id.split('.');
-                  return (elems.length === 1) ? "" : (elems[1] === "0" )
-                })
-            })}
+        {progressionVtree}
 
         <ul className="dashboard--menu">
           <li><a rel="external" href={pagesUrl + '/forums/forum/suggestions'}>Forum</a></li>
