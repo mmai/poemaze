@@ -1,4 +1,3 @@
-import {Rx} from '@cycle/core';
 import {h} from '@cycle/dom';
 
 export function progressionComponent(responses) {

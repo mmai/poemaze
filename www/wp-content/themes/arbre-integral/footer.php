@@ -18,6 +18,6 @@
       window.aiPageType = "wordpress";
     </script>
     <script src="/wp-content/themes/arbre-integral/two.min.js"></script>
-    <script src="http://arbre-integral.net:1234/wp-content/themes/arbre-integral/bundle.js"></script>
+    <script src="/wp-content/themes/arbre-integral/bundle.js"></script>
 </body>
 </html>

@@ -4,8 +4,9 @@ import {hJSX, h} from '@cycle/dom';
 import {VizWidget} from '../arbreintegralVizDriver';
 import {LogoVizWidget} from '../arbreintegralVizDriver';
 import {isUp} from './utils'
+import {settings} from '../settings'
 
-let aiDomain = 'http://arbre-integral.net';
+let pagesUrl = settings.pagesUrl || '';
 
 export function renderDashboard(showDashboard, isUpside, history){
   return (
@@ -24,7 +25,7 @@ export function renderDashboard(showDashboard, isUpside, history){
             })}
 
         <ul className="dashboard--menu">
-          <li><a rel="external" href={aiDomain + '/forums/forum/suggestions'}>Forum</a></li>
+          <li><a rel="external" href={pagesUrl + '/forums/forum/suggestions'}>Forum</a></li>
           <li> Historique
           {h('ul#history', 
               history.map(url => h("li", [

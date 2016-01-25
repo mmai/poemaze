@@ -22,7 +22,8 @@ module.exports = {
       })
   ],
   devServer: {
-    host: "arbre-integral.net",
+    // host: "arbre-integral.net",
+    host: "localhost",
     port: 1234,
     proxy: {
       '/wp-json/*': {

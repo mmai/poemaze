@@ -1,5 +1,11 @@
+// var settings = require('../../src/settings.dev');//aargh es6 modules
+var settings = {
+  baseUrl: 'http://localhost:1234',
+  pagesUrl: 'http://localhost:1234/testpages'
+}
+
 casper.test.begin('Display mini viz on wordpress pages', 2, function suite(test) {
-    casper.start('http://arbre-integral.net/forums/', function(){
+    casper.start(pagesUrl + '/forums', function(){
         test.assertExists('#ai-page', 'html container is found')
       })
     .waitForSelector('#maincontainer', function(){
@@ -12,7 +18,7 @@ casper.test.begin('Display mini viz on wordpress pages', 2, function suite(test)
   })
 
 casper.test.begin('Display mini viz on poem pages', 3,  function suite(test) {
-    casper.thenOpen('http://arbre-integral.net:1234/', function (){
+    casper.thenOpen(baseUrl, function(){
         test.assertExists('#ai-page', 'html container is found on the home page')
       })
     .waitForSelector('#maincontainer', function(){
@@ -29,19 +35,42 @@ casper.test.begin('Display mini viz on poem pages', 3,  function suite(test) {
       })
 })
 
+casper.test.begin('Display main viz on wordpress pages', 3, function suite(test) {
+    casper.thenOpen(pagesUrl + '/forums', function(){
+        test.assertExists('#ai-page', 'html container is found')
+      })
+    .waitForSelector('#maincontainer', function(){
+        this.click('a.dashboardLink');
+      })
+    .then(function() {
+        test.assertElementCount("#history li", 1, "history has one entry");
+        this.click("#history li a");
+      })
+    .waitForSelector('#maincontainer', function(){
+        this.click('a.dashboardLink');
+      })
+    .then(function() {
+        test.assertElementCount("svg", 2, "the two visualization are enabled");
+      })
+    .run(function(){
+          test.done()
+        })
+
+  })
+
 casper.test.begin('Keep poem navigation history on wordpress pages', 8,  function suite(test) {
-    casper.thenOpen('http://arbre-integral.net/forums/')
+    casper.thenOpen(pagesUrl + '/forums')
     .waitForSelector('#maincontainer')
     .then(function() { this.click('a.dashboardLink'); })
     .waitForSelector('#maincontainer', function(){
-        test.assertElementCount("#history li", 0, "history has no entry");
+        test.assertElementCount("#history li", 1, "history has one entry");
         test.assertVisible('.viz-neighbor', 'dashboard neighbors are visible')
         this.click('.viz-neighbor');
       })
     .then(function() { this.click('a.dashboardLink'); })
     .then(function(){
         test.assertVisible('#history', 'dashboard history is visible')
-        test.assertElementCount("#history li", 1, "history has one entry on forum page");
+        test.assertElementCount("#history li", 2, "history has two entres on forum page");
       })
     .then(function() {
         this.click('a[rel~="external"]');
@@ -58,8 +87,10 @@ casper.test.begin('Keep poem navigation history on wordpress pages', 8,  functio
         this.click('a.dashboardLink');
       })
     .then(function(){
-        // test.assertVisible('.ai-word--up', 'dashboard history is not empty')
-        test.assertElementCount("#history li", 1, "history has one entries on internal forum page");
+        test.assertElementCount("#history li", 2, "history has two entries on internal forum page");
+      })
+    .then(function(){
+        this.evaluate(function() { localStorage.clear(); }, {});
       })
     .run(function(){
         test.done()

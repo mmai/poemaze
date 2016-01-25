@@ -31,11 +31,11 @@ function renderLeafReversed(leafInfos){
          <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
         </div>
 
-        <div id="circle-children" className="circle">
+        <div className="circle">
           {renderNeighorLink("circle-parent", leafInfos.neighbors.parent)}
         </div>
 
-        <div id="circle-current" className="circle">
+        <div className="circle">
           {renderNeighorLink("circle-current--left", leafInfos.neighbors.leftBrother)}
           <div className="circle-current--content">
           {parser(`<span>${leafInfos.leaf.content}</span>`)}
@@ -43,7 +43,7 @@ function renderLeafReversed(leafInfos){
           {renderNeighorLink("circle-current--right", leafInfos.neighbors.rightBrother)}
         </div>
 
-        <div id="circle-children" className="circle">
+        <div className="circle">
           {renderNeighorLink("circle-children--right", leafInfos.neighbors.rightChild)}
           {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
         </div>
@@ -54,17 +54,17 @@ function renderLeafReversed(leafInfos){
 function renderLeafUpside(leafInfos){
   let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
   let circleLevel = leafInfos.leaf.id.split('.').length - 1;
-  return (
+  let vdom = (
       <div className={"ai-text circle-" + circleLevel + " " + classUp}>
         <div>
          <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
         </div>
-        <div id="circle-children" className="circle">
+        <div className="circle">
           {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
           {renderNeighorLink("circle-children--right", leafInfos.neighbors.rightChild)}
         </div>
 
-        <div id="circle-current" className="circle">
+        <div className="circle">
           {renderNeighorLink("circle-current--left", leafInfos.neighbors.leftBrother)}
           <div className="circle-current--content">
           {parser(`<span>${leafInfos.leaf.content}</span>`)}
@@ -72,10 +72,12 @@ function renderLeafUpside(leafInfos){
           {renderNeighorLink("circle-current--right", leafInfos.neighbors.rightBrother)}
         </div>
 
-        <div id="circle-children" className="circle">
+        <div className="circle">
           {renderNeighorLink("circle-parent", leafInfos.neighbors.parent)}
         </div>
       </div>
       );
+
+    return vdom;
     }
 

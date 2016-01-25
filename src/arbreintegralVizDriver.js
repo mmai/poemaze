@@ -10,7 +10,7 @@ const display = {
 const vizRootElem = document.createElement('div');
 
 //Minimal widget hosting the visualization root element used by the driver
-export function VizWidget() { this.type = 'Widget'; }
+export function VizWidget() { this.type = 'Widget'}
 VizWidget.prototype = {
   init: function () { return vizRootElem; },
   update: function (prev, elem) {},

@@ -6,7 +6,8 @@ import 'es6-promise' // Promise polyfill needed by fetch polyfill
 import 'whatwg-fetch' // fetch polyfill for ie
 
 //Cyclejs
-import {run, Rx} from '@cycle/core';
+import {run} from '@cycle/core';
+import {Observable} from 'rx';
 import {makeDOMDriver, h} from '@cycle/dom';
 import {makeHistoryDriver, filterLinks } from '@cycle/history';
 import {makeHTTPDriver} from '@cycle/http';
@@ -52,6 +53,7 @@ function startAI(json) {
         let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history);
         let views = [];
         if (window.aiPageType === "wordpress") {
+          views.push(h('div'))//XXX if not present, it seems to harm virtual-dom (it makes fail e2e test "poem is made of 3 circles divs" for example), I don't know exactly why :-( ...
           views.push(dashboardView)
         } else {
           switch (history.length){
@@ -109,7 +111,7 @@ function startAI(json) {
           });
 
         const url$ = deserialize(LocalStorageSource)
-        .flatMap( urlList => Rx.Observable.from(urlList))
+        .flatMap( urlList => Observable.from(urlList))
         .concat(
           navigationClick$.merge(svgClick$).map(url => {
               //XXX side effect  
