@@ -1,10 +1,5 @@
 require("./arbreintegral.scss")
 
-//Polyfills
-import 'babel-polyfill' // for the "ReferenceError: Can't find variable: Symbol" in casperjs tests
-import 'es6-promise' // Promise polyfill needed by fetch polyfill
-import 'whatwg-fetch' // fetch polyfill for ie
-
 //Cyclejs
 import {run} from '@cycle/core';
 import {Observable} from 'rx';
@@ -25,13 +20,15 @@ import {renderPoem}      from './views/poem';
 import {renderEnd}       from './views/end'
 import {renderPdf}       from './views/pdf';
 
-//Load poem data before launching app
-fetch('/wp-content/arbreintegral.json')
-  .then(
-    (response) => { return response.json() }, 
-    (reason) => { console.log(`fetch failed : ${reason}`) }
-    )
-  .then(json => startAI(json))
+const xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = () => {
+  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    startAI(JSON.parse(xmlhttp.responseText));
+  }
+};
+xmlhttp.open("GET", '/wp-content/arbreintegral.json', true);
+xmlhttp.send();
+
 
 function startAI(json) {
   const AI = makeAI(json);
