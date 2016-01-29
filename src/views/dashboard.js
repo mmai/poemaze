@@ -8,7 +8,7 @@ import {settings} from '../settings'
 
 let pagesUrl = settings.pagesUrl || '';
 
-export function renderDashboard(showDashboard, isUpside, history, progressionVtree){
+export function renderDashboard(showDashboard, isUpside, history, progressionVtree, aisvgVtree){
   return (
       <div id="dashboard" className={showDashboard?"ai-opened":"ai-closed"}>
         <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
@@ -18,6 +18,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
         {new VizWidget()}
 
         {progressionVtree}
+        {aisvgVtree}
 
         <ul className="dashboard--menu">
           <li><a rel="external" href={pagesUrl + '/forums/forum/suggestions'}>Forum</a></li>

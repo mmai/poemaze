@@ -6,8 +6,7 @@ import {Observable} from 'rx';
 import {makeDOMDriver, h} from '@cycle/dom';
 import {makeHistoryDriver, filterLinks } from '@cycle/history';
 import {makeHTTPDriver} from '@cycle/http';
-// import {isolate} from '@cycle/isolate';
-var isolate = require('@cycle/isolate');
+import isolate from '@cycle/isolate';
 
 import {makeAI} from './arbreintegral';
 import {makeModel} from './model';
@@ -16,6 +15,7 @@ import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './locals
 import {serialize, deserialize} from './visitedLeafSerializer';
 
 import ProgressionComponent from './progressionComponent'
+import {makeAiSvgComponent} from './arbreintegralSvgComponent'
 import {renderDashboard} from './views/dashboard'
 import {renderCover}     from './views/cover'
 import {renderPoem}      from './views/poem';
@@ -35,9 +35,35 @@ xmlhttp.send();
 function startAI(json) {
   const AI = makeAI(json);
   const model = makeModel(AI);
+  const AiLogoSvgComponent = makeAiSvgComponent(AI, {
+      width: 120,
+      height: 120,
+      leafRadius: 1,
+      circleRadius: 8,
+      color_background: "black",
+      origin: {x:0, y:0},
+      color_up: "rgb(72,122,189)",
+      color_down: "rgb(128,120,48)",
+      color_brothers: "#BBBBBB",
+      color_default: "black",
+      color_skeleton: "#DFDFDF",
+  })
+  // const AiSvgComponent = makeAiSvgComponent(AI, {
+  //   width: 480,
+  //   height: 480,
+  //   leafRadius: 2,
+  //   circleRadius: 30,
+  //   color_background: "whitesmoke",
+      // origin: {x:0, y:0},
+      // color_up: "rgb(72,122,189)",
+      // color_down: "rgb(128,120,48)",
+      // color_brothers: "#BBBBBB",
+      // color_default: "black",
+      // color_skeleton: "#DFDFDF",
+  // })
 
   // function view(state){
-    function view({state, urlList}){
+    function view(state, urlList, progressionVtree, aisvgVTree){
       //XXX : logged twice, why ?
       // console.log(`view:${state.pathname}`);
       switch (state.pathname) {
@@ -48,18 +74,8 @@ function startAI(json) {
           return renderPdf(state.editionId);
         }
       default:
-        //Progression component
-        const progressionSources = {
-          prop$: Observable.of(urlList.map( url => {
-              let elems = url.split('.');
-              return (elems.length === 1) ? "" : (elems[1] === "0" )
-            }))
-        }
-        const progression = isolate(ProgressionComponent)(progressionSources);
-        const progressionVtree = progression.DOM;
-
         let history = urlList.map(AI.getLeaf);
-        let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree);
+        let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree, aisvgVTree);
         let views = [];
         if (window.aiPageType === "wordpress") {
           views.push(h('div'))//XXX if not present, it seems to harm virtual-dom (it makes fail e2e test "poem is made of 3 circles divs" for example), I don't know exactly why :-( ...
@@ -164,14 +180,26 @@ function startAI(json) {
           .share()
         ) 
 
+        const urlList$ =  storedUrlList$.map(urlList => 
+          JSON.parse(urlList).map(url => url.pathname).filter(pathname => pathname !="0")
+        )
+
         //State => DOM
-        const view$ = state$
-        .combineLatest(storedUrlList$, function (state, urlList){
-            return {
-              state: state,
-              urlList: JSON.parse(urlList).map(url => url.pathname).filter(pathname => pathname !="0")
-            };
-          }).map( view );
+        //Progression component
+        const progressionSources = {
+          prop$: urlList$.map(
+            urlList => urlList.map(
+              url => {
+                let elems = url.split('.');
+                return (elems.length === 1) ? "" : (elems[1] === "0" )
+              }
+            )
+          )
+        }
+        const progression = isolate(ProgressionComponent)(progressionSources);
+        const aisvg = isolate(AiLogoSvgComponent)({props$:state$});
+
+        const view$ = state$.combineLatest( urlList$, progression.DOM, aisvg.DOM, view);
 
         //url => HTTP (wordpress API calls)
         let apiCall$ = url$
@@ -183,9 +211,7 @@ function startAI(json) {
             return apiUrl;
           })
 
-
         //State => Viz
-        let initialState = AI.makeInitialState();
         const visitedLeaf$ = state$.map(state => {
             let fromId = state.visitedLeafs[state.currentLeafId];
             if (fromId === undefined && state.currentLeafId === "0") fromId = "0";

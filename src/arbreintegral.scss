@@ -222,6 +222,20 @@ a {
   right:0;
 }
 
+//Tests tmp
+#logoviz { position: absolute; left:-200px; top:100px; }
+
+.viz-animate {
+  animation: viz-animation 1s forwards;
+}
+
+@keyframes viz-animation {
+  to {
+    transform:rotate(180deg);
+  }
+}
+
+
 .ai-progress-container {
   &::before { content: "O "; }
   &::after { content: " X"; }

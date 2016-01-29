@@ -1,3 +1,4 @@
+import {circToCartesian, cartesianToPolar} from './arbreintegralGeometry'
 
 const display = {
   circles: true,
@@ -61,13 +62,13 @@ function makeDriver(AI, vizElem, {
     color_skeleton= "#DFDFDF",
     color_background= "whitesmoke"
   }){
+  let getPosFromCoords = pos => circToCartesian(origin, circleRadius, pos)
+
   const two = new Two({width, height});
   two.appendTo(vizElem);
 
   const mainGroup = two.makeGroup();
   mainGroup.translation.set(two.width/2, two.height/2);
-
-
 
   const group = two.makeGroup();//group displaying visitor path
 
@@ -262,8 +263,8 @@ function makeDriver(AI, vizElem, {
 
     const radius = Math.sqrt(Math.pow(posto.x - origin.x, 2) + Math.pow(posto.y - origin.y, 2));
 
-    let polarfrom = polarCoords({x: posfrom.x - origin.x, y:origin.y - posfrom.y});
-    let polarto = polarCoords({x: posto.x - origin.x, y:origin.y - posto.y});
+    let polarfrom = cartesianToPolar({x: posfrom.x - origin.x, y:origin.y - posfrom.y});
+    let polarto = cartesianToPolar({x: posto.x - origin.x, y:origin.y - posto.y});
 
     const line = two.makeArcSegment(
       origin.x, origin.y,
@@ -302,34 +303,6 @@ function makeDriver(AI, vizElem, {
     }
     return group;
   }
-  /*********** Coordinates converters *******/
- 
-  function getPosFromCoords ({circ, pos}){
-    if (circ < 1){
-      return origin;
-    }
-
-    const nbLeafs = Math.pow(2, circ);
-    const angleIncrement = Math.PI / (nbLeafs/2 + 1);
-
-    let deviation = angleIncrement * 0.5;
-    let angle = Math.PI + deviation - pos * angleIncrement;
-    if (pos > nbLeafs/2) {
-      angle -= angleIncrement ; 
-    }
-    const radial = circleRadius * circ; 
-    return {
-      x: origin.x + radial * Math.cos(angle),
-      y: origin.y - radial * Math.sin(angle)
-    };
-  }
-
-  function polarCoords(pos){
-    const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2)); 
-    const angle = 2 * Math.atan(pos.y/(pos.x + r));
-    return {r:r, angle:angle};
-  }
-
 }
 
 
