@@ -2,23 +2,22 @@
 
 import {hJSX, h} from '@cycle/dom';
 import {VizWidget} from '../arbreintegralVizDriver';
-import {LogoVizWidget} from '../arbreintegralVizDriver';
 import {isUp} from './utils'
 import {settings} from '../settings'
 
 let pagesUrl = settings.pagesUrl || '';
 
-export function renderDashboard(showDashboard, isUpside, history, progressionVtree, aisvgVtree){
+export function renderDashboard(showDashboard, isUpside, history, progressionVtree, aiLogoSvgVtree, aiSvgVtree){
   return (
       <div id="dashboard" className={showDashboard?"ai-opened":"ai-closed"}>
         <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
-          {new LogoVizWidget()}
+          {aiLogoSvgVtree}
         </a>
         <a href="#reset">Recommencer</a><br/>
+        {aiSvgVtree}
         {new VizWidget()}
 
         {progressionVtree}
-        {aisvgVtree}
 
         <ul className="dashboard--menu">
           <li><a rel="external" href={pagesUrl + '/forums/forum/suggestions'}>Forum</a></li>

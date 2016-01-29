@@ -8,6 +8,7 @@ export function makeAiSvgComponent(AI, {
     color_up, color_down,
     color_brothers,
     color_skeleton,
+    displayNeighbors = true
   }){
 
   const getCoordsFromPos = pos => circToCartesian(origin, circleRadius, pos)
@@ -16,10 +17,6 @@ export function makeAiSvgComponent(AI, {
   let pathsVtree = []
 
   let vizState = {
-    displayedLeafs: {},
-    neighborsIds: {},
-    neighborsPathsIds: [],
-    currentPositionId: [],
     isUpside: true,
   }
 
@@ -43,20 +40,23 @@ export function makeAiSvgComponent(AI, {
     const vtree$ = visitedLeaf$.map(dleaf => {
         if (dleaf.reset) {
           pathsVtree = []
-          vizState.displayedLeafs = {};
           vizState.isUpside = true;
         }
 
-        const {rotation, animationClass} = getRotationAnimationInfo(dleaf)
-
         const newLeaf = dleaf.leaf;
         const fromLeaf = AI.data[dleaf.fromId];
-        pathsVtree = amendPathsVtree(AI, pathsVtree, newLeaf, fromLeaf)
 
+        pathsVtree.push( makeJoinLine(fromLeaf, newLeaf))
+
+        const {rotation, animationClass} = getRotationAnimationInfo(dleaf)
         const transform = `translate(${width/2},${height/2}), rotate(${rotation})`
-        return svg(`svg#logoviz`, {class: animationClass, width, height }, [
+        return svg('svg', {class: animationClass, width, height }, [
             skeletonVtree,
-            svg('g', {transform}, pathsVtree)
+            svg('g', {transform}, [
+                ...pathsVtree,
+                currentPositionVtree(newLeaf),
+                ...neighborsVtree(dleaf),
+              ]),
           ])
       })
 
@@ -65,17 +65,39 @@ export function makeAiSvgComponent(AI, {
     };
   }
 
-  function amendPathsVtree(AI, pathsVtree, newLeaf, fromLeaf){
+  function currentPositionVtree(newLeaf){
     const coords = AI.getCoords(newLeaf);
-    const type = AI.getType(newLeaf);
-
     const {x, y} = getCoordsFromPos(coords);
-    pathsVtree.push(
-      // svg('circle', {cx:x, cy:y, r:leafRadius*2, stroke: "black", fill:color_background})
-      // svg('circle', {cx:x, cy:y, r:leafRadius*2, stroke: "black", fill:color_background})
-      makeJoinLine(fromLeaf, newLeaf)
+    return svg('circle', {cx:x, cy:y, r:leafRadius*2, stroke: "black", fill:color_background})
+  }
+
+  function neighborsVtree(dleaf){
+    if (!displayNeighbors) return [];
+
+    let vtree = []
+    for (let name in dleaf.neighbors){
+      const neighbor = dleaf.neighbors[name];
+      if (neighbor.leaf){
+        vtree.push(makeNeighborLeaf(neighbor))
+      }
+    }
+    return vtree
+  }
+
+  function makeNeighborLeaf (neighbor){
+    const leaf = neighbor.leaf
+    const coords = AI.getCoords(leaf);
+    const {x, y} = getCoordsFromPos(coords);
+
+    const type = AI.getType(leaf);
+    const color = (type == 'UP')?color_up:color_down;
+
+    return svg('circle', {
+        cx: x, cy: y, r: leafRadius * 2,
+        stroke: color, fill: color, class: 'viz-neighbor',
+        attributes: {'data-neighbor-href': `${leaf.id}-${neighbor.fromId}`}
+      }
     )
-    return pathsVtree;
   }
 
   function getRotationAnimationInfo(dleaf){
@@ -85,10 +107,10 @@ export function makeAiSvgComponent(AI, {
     let animationClass = ""
     if (dleaf.isUpside != vizState.isUpside){
       //Add a class for CSS animation (for IE browser support)
-      animationClass = 'viz-animate'
+      animationClass = 'viz-animate-' + (dleaf.isUpside ? 'up':'down')
       vizState.isUpside = dleaf.isUpside
       //Invert the value of rotation : we want the value of the start of the animation
-      rotation = rotation == 180 ? 0 : 180
+      rotation = rotation - 180
     }
 
     return {rotation, animationClass}
@@ -129,6 +151,7 @@ export function makeAiSvgComponent(AI, {
     return svg('path', {
         d: describeSvgArc(radius, 0 - polarfrom.angle, 0 - polarto.angle),
         stroke: color,
+        fill: color_background,
         'stroke-width': 1
       })
   }

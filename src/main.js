@@ -47,23 +47,25 @@ function startAI(json) {
       color_brothers: "#BBBBBB",
       color_default: "black",
       color_skeleton: "#DFDFDF",
+      displayNeighbors:false
+    })
+
+  const AiSvgComponent = makeAiSvgComponent(AI, {
+    width: 480,
+    height: 480,
+    leafRadius: 3,
+    circleRadius: 30,
+    color_background: "whitesmoke",
+    origin: {x:0, y:0},
+    color_up: "rgb(72,122,189)",
+    color_down: "rgb(128,120,48)",
+    color_brothers: "#BBBBBB",
+    color_default: "black",
+    color_skeleton: "#DFDFDF",
   })
-  // const AiSvgComponent = makeAiSvgComponent(AI, {
-  //   width: 480,
-  //   height: 480,
-  //   leafRadius: 2,
-  //   circleRadius: 30,
-  //   color_background: "whitesmoke",
-      // origin: {x:0, y:0},
-      // color_up: "rgb(72,122,189)",
-      // color_down: "rgb(128,120,48)",
-      // color_brothers: "#BBBBBB",
-      // color_default: "black",
-      // color_skeleton: "#DFDFDF",
-  // })
 
   // function view(state){
-    function view(state, urlList, progressionVtree, aisvgVTree){
+    function view(state, urlList, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
       //XXX : logged twice, why ?
       // console.log(`view:${state.pathname}`);
       switch (state.pathname) {
@@ -75,7 +77,7 @@ function startAI(json) {
         }
       default:
         let history = urlList.map(AI.getLeaf);
-        let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree, aisvgVTree);
+        let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree);
         let views = [];
         if (window.aiPageType === "wordpress") {
           views.push(h('div'))//XXX if not present, it seems to harm virtual-dom (it makes fail e2e test "poem is made of 3 circles divs" for example), I don't know exactly why :-( ...
@@ -102,7 +104,7 @@ function startAI(json) {
       return h("div", 'Page non trouvée');
     }
 
-    function main({DOM, HTTP, Viz, LogoViz, LocalStorageSource}) {
+    function main({DOM, HTTP, Viz, LocalStorageSource}) {
       // function main({DOM, History, Viz, LocalStorageSource}) {
         //DOM => History/Actions
         const clicked$ = DOM
@@ -128,6 +130,7 @@ function startAI(json) {
         .map(ev => { return ev.target.getAttribute('data-neighbor-href')})
         .filter(href => href != null) 
         .map(href => {
+            console.log('clicked')
             let [pathname, from] = href.split('-');
             return {
               pathname: pathname,
@@ -197,9 +200,15 @@ function startAI(json) {
           )
         }
         const progression = isolate(ProgressionComponent)(progressionSources);
-        const aisvg = isolate(AiLogoSvgComponent)({props$:state$});
 
-        const view$ = state$.combineLatest( urlList$, progression.DOM, aisvg.DOM, view);
+        //Mini viz component
+        const aiLogoSvg = isolate(AiLogoSvgComponent)({props$:state$});
+
+        //Main viz compononent
+        const aiSvg = isolate(AiSvgComponent)({props$:state$});
+
+        //Final view
+        const view$ = state$.combineLatest( urlList$, progression.DOM, aiLogoSvg.DOM, aiSvg.DOM, view);
 
         //url => HTTP (wordpress API calls)
         let apiCall$ = url$
@@ -212,7 +221,8 @@ function startAI(json) {
           })
 
         //State => Viz
-        const visitedLeaf$ = state$.map(state => {
+        const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
+        const visitedLeafBuffer$ = state$.map(state => {
             let fromId = state.visitedLeafs[state.currentLeafId];
             if (fromId === undefined && state.currentLeafId === "0") fromId = "0";
             return {
@@ -225,15 +235,12 @@ function startAI(json) {
           })
         .filter(leaf => leaf.fromId !== undefined)
         .distinctUntilChanged()
-
-        const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
-        const visitedLeafBuffer$ = visitedLeaf$.buffer(dashboardOpened$)
+        .buffer(dashboardOpened$)
 
         return {
           DOM: view$,
           HTTP: apiCall$,
           // History: history$,
-          LogoViz: visitedLeaf$,
           Viz: visitedLeafBuffer$,
           LocalStorageSink: storedUrlList$
         }
@@ -251,7 +258,6 @@ function startAI(json) {
         DOM: makeDOMDriver('#ai-page'),
         // History: makeHistoryDriver(),
         HTTP: makeHTTPDriver(),
-        LogoViz: makeLogoVizDriver(AI),
         Viz: makeVizDriver(AI),
         LocalStorageSource: makeLocalStorageSourceDriver('arbreintegral'),
         LocalStorageSink: makeLocalStorageSinkDriver('arbreintegral')

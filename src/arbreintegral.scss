@@ -222,14 +222,20 @@ a {
   right:0;
 }
 
-//Tests tmp
-#logoviz { position: absolute; left:-200px; top:100px; }
-
-.viz-animate {
-  animation: viz-animation 1s forwards;
+.viz-animate-up {
+  animation: viz-animation-up 1s forwards;
+}
+@keyframes viz-animation-up{
+  to {
+    transform:rotate(-180deg);
+  }
 }
 
-@keyframes viz-animation {
+.viz-animate-down {
+  animation: viz-animation-down 1s forwards;
+}
+
+@keyframes viz-animation-down{
   to {
     transform:rotate(180deg);
   }
