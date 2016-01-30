@@ -1,6 +1,13 @@
 import {svg, h} from '@cycle/dom';
 import {circToCartesian, cartesianToPolar} from './arbreintegralGeometry'
 
+/**
+ * AiSvgComponent factory 
+ * @param {Object} AI - Arbre integral object
+ * @param {Object} settings
+ *
+ * @return {function} - AiSvg Cycle.js component
+ */
 export function makeAiSvgComponent(AI, {
     origin, width, height,
     leafRadius, circleRadius,
@@ -20,23 +27,14 @@ export function makeAiSvgComponent(AI, {
     isUpside: true,
   }
 
-  return function AiSvgComponent({props$}) {
+  /**
+   * AiSvgComponent - Cycle.js component
+   *
+   * @param {visitedLeaf$} - component sources
+   * @return {DOM}
+   */
+  return function AiSvgComponent({visitedLeaf$}) {
     let rotation = 0
-
-    const visitedLeaf$ = props$.map(state => {
-        let fromId = state.visitedLeafs[state.currentLeafId];
-        if (fromId === undefined && state.currentLeafId === "0") fromId = "0";
-        return {
-          reset: Object.keys(state.visitedLeafs).length < 1,
-          leaf: state.leafInfos.leaf,
-          neighbors: state.leafInfos.neighbors,
-          fromId: fromId,
-          isUpside: state.isUpside,
-        };
-      })
-    .filter(leaf => leaf.fromId !== undefined)
-    .distinctUntilChanged()
-
     const vtree$ = visitedLeaf$.map(dleaf => {
         if (dleaf.reset) {
           pathsVtree = []
@@ -65,12 +63,24 @@ export function makeAiSvgComponent(AI, {
     };
   }
 
-  function currentPositionVtree(newLeaf){
-    const coords = AI.getCoords(newLeaf);
+  /**
+   * Virtual DOM of a SVG circle at the current position
+   *
+   * @param {AI leaf} leaf - current visited leaf
+   * @return {vdom tree}
+   */
+  function currentPositionVtree(leaf){
+    const coords = AI.getCoords(leaf);
     const {x, y} = getCoordsFromPos(coords);
     return svg('circle', {cx:x, cy:y, r:leafRadius*2, stroke: "black", fill:color_background})
   }
 
+  /**
+   * Virtual DOM of SVG circles for each neighbor of the leaf 
+   *
+   * @param {Object} dleaf - leaf informations
+   * @return {vdom tree}
+   */
   function neighborsVtree(dleaf){
     if (!displayNeighbors) return [];
 
@@ -84,6 +94,12 @@ export function makeAiSvgComponent(AI, {
     return vtree
   }
 
+  /**
+   * Virtual DOM of a SVG circle for a neighbor
+   *
+   * @param {leaf} neighbor
+   * @return {vdom tree}
+   */
   function makeNeighborLeaf (neighbor){
     const leaf = neighbor.leaf
     const coords = AI.getCoords(leaf);
@@ -100,6 +116,12 @@ export function makeAiSvgComponent(AI, {
     )
   }
 
+  /**
+   * getRotationAnimationInfo
+   *
+   * @param {object} dleaf - current leaf information
+   * @return {number, string} - rotation angle and animation class name 
+   */
   function getRotationAnimationInfo(dleaf){
     let rotation = dleaf.isUpside ? 0 : 180
 

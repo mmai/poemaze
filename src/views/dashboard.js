@@ -1,7 +1,6 @@
 /** @jsx hJSX */
 
 import {hJSX, h} from '@cycle/dom';
-import {VizWidget} from '../arbreintegralVizDriver';
 import {isUp} from './utils'
 import {settings} from '../settings'
 
@@ -15,7 +14,6 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
         </a>
         <a href="#reset">Recommencer</a><br/>
         {aiSvgVtree}
-        {new VizWidget()}
 
         {progressionVtree}
 

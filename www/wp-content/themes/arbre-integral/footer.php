@@ -17,7 +17,6 @@
     <script language="javascript">
       window.aiPageType = "wordpress";
     </script>
-    <script src="/wp-content/themes/arbre-integral/two.min.js"></script>
     <script src="/wp-content/themes/arbre-integral/bundle.js"></script>
 </body>
 </html>

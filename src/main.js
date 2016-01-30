@@ -10,7 +10,6 @@ import isolate from '@cycle/isolate';
 
 import {makeAI} from './arbreintegral';
 import {makeModel} from './model';
-import {makeVizDriver, makeLogoVizDriver} from './arbreintegralVizDriver';
 import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './localstorageDriver';
 import {serialize, deserialize} from './visitedLeafSerializer';
 
@@ -130,7 +129,6 @@ function startAI(json) {
         .map(ev => { return ev.target.getAttribute('data-neighbor-href')})
         .filter(href => href != null) 
         .map(href => {
-            console.log('clicked')
             let [pathname, from] = href.split('-');
             return {
               pathname: pathname,
@@ -201,11 +199,31 @@ function startAI(json) {
         }
         const progression = isolate(ProgressionComponent)(progressionSources);
 
-        //Mini viz component
-        const aiLogoSvg = isolate(AiLogoSvgComponent)({props$:state$});
+        //State => Viz
+        const visitedLeaf$ = state$.map(state => {
+            let fromId = state.visitedLeafs[state.currentLeafId];
+            if (fromId === undefined && state.currentLeafId === "0") fromId = "0";
+            return {
+              reset: Object.keys(state.visitedLeafs).length < 1,
+              leaf: state.leafInfos.leaf,
+              neighbors: state.leafInfos.neighbors,
+              fromId: fromId,
+              isUpside: state.isUpside,
+            };
+          })
+        .filter(leaf => leaf.fromId !== undefined)
+        .distinctUntilChanged()
+
+        //Mini viz component : show live evolution
+        const aiLogoSvg = isolate(AiLogoSvgComponent)({ visitedLeaf$ });
 
         //Main viz compononent
-        const aiSvg = isolate(AiSvgComponent)({props$:state$});
+        const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
+        const delayedVisitedLeaf$ = visitedLeaf$
+          .buffer(dashboardOpened$) // Wait for the dashboard to be opened before showing progression
+          .flatMap(visitedLeafs => yieldByInterval(visitedLeafs, 100)) // wait 0.1s between each line drawing (animation)
+          .startWith({ reset:true, leaf: {id:"0"}, fromId: "0", neighbors:[], isUpside:true }) //Init rendering with dummy leaf
+        const aiSvg = isolate(AiSvgComponent)({ visitedLeaf$: delayedVisitedLeaf$});
 
         //Final view
         const view$ = state$.combineLatest( urlList$, progression.DOM, aiLogoSvg.DOM, aiSvg.DOM, view);
@@ -220,28 +238,10 @@ function startAI(json) {
             return apiUrl;
           })
 
-        //State => Viz
-        const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
-        const visitedLeafBuffer$ = state$.map(state => {
-            let fromId = state.visitedLeafs[state.currentLeafId];
-            if (fromId === undefined && state.currentLeafId === "0") fromId = "0";
-            return {
-              reset: Object.keys(state.visitedLeafs).length < 1,
-              leaf: state.leafInfos.leaf,
-              neighbors: state.leafInfos.neighbors,
-              fromId: fromId,
-              isUpside: state.isUpside,
-            };
-          })
-        .filter(leaf => leaf.fromId !== undefined)
-        .distinctUntilChanged()
-        .buffer(dashboardOpened$)
-
         return {
           DOM: view$,
           HTTP: apiCall$,
           // History: history$,
-          Viz: visitedLeafBuffer$,
           LocalStorageSink: storedUrlList$
         }
       }
@@ -258,10 +258,23 @@ function startAI(json) {
         DOM: makeDOMDriver('#ai-page'),
         // History: makeHistoryDriver(),
         HTTP: makeHTTPDriver(),
-        Viz: makeVizDriver(AI),
         LocalStorageSource: makeLocalStorageSourceDriver('arbreintegral'),
         LocalStorageSink: makeLocalStorageSinkDriver('arbreintegral')
       };
 
       run(main, drivers);
+    }
+
+    /**
+     * Make an Observable from an array and wait a given amount of time between each emission
+     *
+     * @param {array} items - array of values to yield
+     * @param {number} time - interval in milliseconds
+     * @return {Observable}
+     */
+    function yieldByInterval(items, time) {
+      return Rx.Observable.from(items).zip(
+        Rx.Observable.interval(time),
+        function(item, index) { return item; }
+      );
     }
