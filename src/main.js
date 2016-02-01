@@ -10,16 +10,19 @@ import isolate from '@cycle/isolate';
 
 import {makeAI} from './arbreintegral';
 import {makeModel} from './model';
-import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './localstorageDriver';
+import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './drivers/localstorageDriver';
 import {serialize, deserialize} from './visitedLeafSerializer';
 
-import ProgressionComponent from './progressionComponent'
-import {makeAiSvgComponent} from './arbreintegralSvgComponent'
+import ProgressionComponent from './components/progressionComponent'
+import {makeAiSvgComponent} from './components/arbreintegralSvgComponent'
+
 import {renderDashboard} from './views/dashboard'
 import {renderCover}     from './views/cover'
 import {renderPoem}      from './views/poem';
 import {renderEnd}       from './views/end'
 import {renderPdf}       from './views/pdf';
+
+import {env} from 'settings'
 
 const xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = () => {
@@ -233,8 +236,8 @@ function startAI(json) {
         .filter(url => ( url.pathname == 'pdf' ))
         .withLatestFrom(storedUrlList$, function(url, urlList){
             let path = JSON.parse(urlList).map(url => getPathIndex(url.pathname)).join('-');
-            let apiUrl = `fakeapi.json`;
-            // let apiUrl = `wp-json/arbreintegral/v1/path/${path}`;
+            let apiUrl = `wp-json/arbreintegral/v1/path/${path}`;
+            if (env === 'dev') { apiUrl =  'fakeapi.json'; }
             return apiUrl;
           })
 

@@ -58,7 +58,7 @@ casper.test.begin('Display main viz on wordpress pages', 3, function suite(test)
 
   })
 
-casper.test.begin('Keep poem navigation history on wordpress pages', 8,  function suite(test) {
+casper.test.begin('Keep poem navigation history on wordpress pages', 7,  function suite(test) {
     casper.thenOpen(pagesUrl + '/forums')
     .waitForSelector('#maincontainer')
     .then(function() { this.click('a.dashboardLink'); })

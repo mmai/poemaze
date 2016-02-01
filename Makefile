@@ -1,3 +1,5 @@
+size:
+	NODE_ENV=prod webpack --json | analyze-bundle-size
 dev:
 	NODE_ENV=dev webpack-dev-server -d --progress --colors --content-base www/
 
