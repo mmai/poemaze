@@ -3,6 +3,11 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
+  resolve: {
+    alias: {
+      settings: path.join(__dirname, `src/settings.${process.env.NODE_ENV}.js`)
+    }
+  },
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'www/wp-content/themes/arbre-integral/'),

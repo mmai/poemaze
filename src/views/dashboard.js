@@ -2,9 +2,7 @@
 
 import {hJSX, h} from '@cycle/dom';
 import {isUp} from './utils'
-import {settings} from '../settings'
-
-let pagesUrl = settings.pagesUrl || '';
+import {pagesUrl} from 'settings'
 
 export function renderDashboard(showDashboard, isUpside, history, progressionVtree, aiLogoSvgVtree, aiSvgVtree){
   return (

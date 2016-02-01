@@ -1,8 +1,8 @@
 dev:
-	webpack-dev-server -d --progress --colors --content-base www/
+	NODE_ENV=dev webpack-dev-server -d --progress --colors --content-base www/
 
 build: 
-	webpack -p
+	NODE_ENV=prod webpack -p
 
 testunit:
 	./node_modules/.bin/mocha --compilers js:babel-core/register
