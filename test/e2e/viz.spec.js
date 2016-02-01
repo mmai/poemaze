@@ -62,7 +62,10 @@ casper.test.begin('Keep poem navigation history on wordpress pages', 8,  functio
     casper.thenOpen(pagesUrl + '/forums')
     .waitForSelector('#maincontainer')
     .then(function() { this.click('a.dashboardLink'); })
-    .waitForSelector('.viz-neighbor', function(){
+    // .waitUntilVisible('.viz-neighbor', function(){
+    .wait(300, function(){
+        // test.assertVisible('.viz-neighbor', 'svg neighbors are visible')
+        // console.log("found neighbors : " + this.evaluate(() => __utils__.findAll('.viz-neigbhor').length))
         test.assertElementCount("#history li", 1, "history has one entry");
         this.click('.viz-neighbor');
       })
