@@ -145,6 +145,10 @@ a {
   animation: ai-cover-animation 5s forwards;
 }
 
+.ai-cover--nofade {
+  animation: none !important;
+}
+
 .ai-seed-down {
   &:hover{
     text-decoration: none;
