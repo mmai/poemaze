@@ -20,7 +20,7 @@ import {renderDashboard} from './views/dashboard'
 import {renderCover}     from './views/cover'
 import {renderPoem}      from './views/poem';
 import {renderEnd}       from './views/end'
-import {renderPdf}       from './views/pdf';
+import {renderPdf, cleanSvgCover} from './views/pdf';
 
 import {env} from 'settings'
 
@@ -91,6 +91,7 @@ function startAI(json) {
             views.push(renderCover());
             break;
           case 126:
+          case 5:
             views.push(renderEnd(state.leafInfos));
             views.push(dashboardView);
             break;
@@ -237,11 +238,19 @@ function startAI(json) {
         //url => HTTP (wordpress API calls)
         let apiCall$ = url$
         .filter(url => ( url.pathname == 'pdf' ))
-        .withLatestFrom(storedUrlList$, function(url, urlList){
+        .withLatestFrom(aiLogoSvg.DOM, (url, svg) => cleanSvgCover(svg))
+        .withLatestFrom(storedUrlList$, function(svgCover, urlList){
             let path = JSON.parse(urlList).map(url => getPathIndex(url.pathname)).join('-');
-            let apiUrl = `wp-json/arbreintegral/v1/path/${path}`;
-            if (env === 'dev') { apiUrl =  'fakeapi.json'; }
-            return apiUrl;
+            // let url = `http://arbre-integral.net/wp-json/arbreintegral/v1/path/${path}`;
+            let url = `wp-json/arbreintegral/v1/path/${path}`;
+            if (env === 'dev') { url =  'fakeapi.json'; }
+            return {
+              url,
+              method: 'POST',
+              send: {
+                'svg': svgCover
+              }
+            };
           })
 
         return {

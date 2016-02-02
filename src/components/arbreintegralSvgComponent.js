@@ -47,7 +47,7 @@ export function makeAiSvgComponent(AI, {
             skeletonVtree,
             svg('g', {transform}, [
                 ...pathsVtree,
-                currentPositionVtree(newLeaf),
+                ...currentPositionVtree(newLeaf),
                 ...neighborsVtree(dleaf),
               ]),
           ])
@@ -65,9 +65,10 @@ export function makeAiSvgComponent(AI, {
    * @return {vdom tree}
    */
   function currentPositionVtree(leaf){
+    if (!displayNeighbors) return [];
     const coords = AI.getCoords(leaf);
     const {x, y} = getCoordsFromPos(coords);
-    return svg('circle', {cx:x, cy:y, r:leafRadius*2, stroke: "black", fill:color_background})
+    return [svg('circle', {cx:x, cy:y, r:leafRadius*2, stroke: "black", fill:color_background})]
   }
 
   /**

@@ -11,6 +11,8 @@ function registerPath($data){
   $id = null;
 
   $path = $data["path"];
+  $svg = $data["svg"];
+  error_log($svg);
 
   $sql = $wpdb->prepare("SELECT id FROM aipaths WHERE path='%s'", $path);
   $res = $wpdb->get_row($sql);
@@ -67,9 +69,10 @@ function isPath($path){
 
 add_action( 'rest_api_init', function () {
     register_rest_route( 'arbreintegral/v1', '/path/(?P<path>[-\w]+)', array(
-        'methods' => 'GET',
+        'methods' => 'POST',
         'callback' => 'registerPath',
         'args' => array(
+          'svg' => array(),
           'path' => array(
             'validate_callback' => 'isPath'
           )
