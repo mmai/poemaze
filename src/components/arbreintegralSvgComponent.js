@@ -23,10 +23,6 @@ export function makeAiSvgComponent(AI, {
   const skeletonVtree = drawSkeleton();
   let pathsVtree = []
 
-  let vizState = {
-    isUpside: true,
-  }
-
   /**
    * AiSvgComponent - Cycle.js component
    *
@@ -38,7 +34,6 @@ export function makeAiSvgComponent(AI, {
     const vtree$ = visitedLeaf$.map(dleaf => {
         if (dleaf.reset) {
           pathsVtree = []
-          vizState.isUpside = true;
         }
 
         const newLeaf = dleaf.leaf;
@@ -127,10 +122,9 @@ export function makeAiSvgComponent(AI, {
 
     //do we need to do a rotation animation ?
     let animationClass = ""
-    if (dleaf.isUpside != vizState.isUpside){
+    if (dleaf.needRotation){
       //Add a class for CSS animation (for IE browser support)
       animationClass = 'viz-animate-' + (dleaf.isUpside ? 'up':'down')
-      vizState.isUpside = dleaf.isUpside
       //Invert the value of rotation : we want the value of the start of the animation
       rotation = rotation - 180
     }

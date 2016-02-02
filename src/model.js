@@ -57,6 +57,7 @@ export function makeModel(AI) {
       currentLeafId: curleafid,
       visitedLeafs: newVisited,
       isUpside,
+      needRotation: (isUpside != state.isUpside),
       showDashboard,
       editionId,
       leafInfos: {

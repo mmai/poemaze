@@ -210,6 +210,7 @@ export function makeAI(aiData){
           currentLeafId: "0",
           visitedLeafs:{},
           isUpside: true,
+          needRotation: false,
           editionId: false,
           showDashboard: false,
           leafInfos: {

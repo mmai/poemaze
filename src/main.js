@@ -212,6 +212,7 @@ function startAI(json) {
               neighbors: state.leafInfos.neighbors,
               fromId: fromId,
               isUpside: state.isUpside,
+              needRotation: state.needRotation,
             };
           })
         .filter(leaf => leaf.fromId !== undefined)
@@ -224,7 +225,9 @@ function startAI(json) {
         const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
         const delayedVisitedLeaf$ = visitedLeaf$
           .buffer(dashboardOpened$) // Wait for the dashboard to be opened before showing progression
+          .map(addRotationAnimationDelay) // add fake leafs to delay rotation animation
           .flatMap(visitedLeafs => yieldByInterval(visitedLeafs, 100)) // wait 0.1s between each line drawing (animation)
+          .filter(dleaf => dleaf !== false) //remove fake leafs
           .startWith({ reset:true, leaf: {id:"0"}, fromId: "0", neighbors:[], isUpside:true }) //Init rendering with dummy leaf
         const aiSvg = isolate(AiSvgComponent)({ visitedLeaf$: delayedVisitedLeaf$});
 
@@ -280,4 +283,18 @@ function startAI(json) {
         Rx.Observable.interval(time),
         function(item, index) { return item; }
       );
+    }
+
+    /**
+     * Add fake visited leafs when a rotation is needed in order to
+     * simulate a longuer delay before next real visited leaf event
+     *
+     * @param visitedLeaf
+     * @return {array}
+     */
+    function addRotationAnimationDelay(visitedLeafs){
+      const fakeLeafs = [ false, false, false, false, false ]
+      return visitedLeafs.map(
+        vleaf => (vleaf.needRotation)?[vleaf, ...fakeLeafs]:[vleaf]
+      ).reduce((acc, vleafs) => acc.concat(vleafs))
     }
