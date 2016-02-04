@@ -1,8 +1,9 @@
 require("./arbreintegral.scss")
 
 //Cyclejs
-import {run} from '@cycle/core';
 import {Observable} from 'rx';
+import {run} from '@cycle/core';
+import storageDriver from '@cycle/storage';
 import {makeDOMDriver, h} from '@cycle/dom';
 import {makeHistoryDriver, filterLinks } from '@cycle/history';
 import {makeHTTPDriver} from '@cycle/http';
@@ -10,7 +11,6 @@ import isolate from '@cycle/isolate';
 
 import {makeAI} from './arbreintegral';
 import {makeModel} from './model';
-import {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver} from './drivers/localstorageDriver';
 import {serialize, deserialize} from './visitedLeafSerializer';
 
 import ProgressionComponent from './components/progressionComponent'
@@ -107,8 +107,7 @@ function startAI(json) {
       return h("div", 'Page non trouvée');
     }
 
-    function main({DOM, HTTP, Viz, LocalStorageSource}) {
-      // function main({DOM, History, Viz, LocalStorageSource}) {
+    function main({DOM, HTTP, storage}) {
         //DOM => History/Actions
         const clicked$ = DOM
         .select('a')
@@ -140,7 +139,8 @@ function startAI(json) {
             }
           });
 
-        const url$ = deserialize(LocalStorageSource)
+        const localStorage$ = storage.local.getItem('arbreintegral').take(1);//initial data
+        const url$ = deserialize(localStorage$)
         .flatMap( urlList => Observable.from(urlList))
         .concat(
           navigationClick$.merge(svgClick$).map(url => {
@@ -172,7 +172,7 @@ function startAI(json) {
         const state$ = stateFromUrl$.merge(apiRes$)
         .startWith(AI.makeInitialState());
 
-        //Urls => LocalStorageSink
+        //Urls => storage
         const storedUrlList$ = serialize( url$
           .filter(url => ( url.pathname == 'reset' || url.from !== undefined))
           .distinctUntilChanged()
@@ -253,11 +253,15 @@ function startAI(json) {
             };
           })
 
+        const storage$ = storedUrlList$.map((urlList) => ({
+              key: 'arbreintegral', value: urlList
+            }));
+
         return {
           DOM: view$,
           HTTP: apiCall$,
           // History: history$,
-          LocalStorageSink: storedUrlList$
+          storage: storage$
         }
       }
 
@@ -273,8 +277,7 @@ function startAI(json) {
         DOM: makeDOMDriver('#ai-page'),
         // History: makeHistoryDriver(),
         HTTP: makeHTTPDriver(),
-        LocalStorageSource: makeLocalStorageSourceDriver('arbreintegral'),
-        LocalStorageSink: makeLocalStorageSinkDriver('arbreintegral')
+        storage: storageDriver,
       };
 
       run(main, drivers);
