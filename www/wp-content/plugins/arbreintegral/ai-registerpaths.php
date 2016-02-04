@@ -12,7 +12,6 @@ function registerPath($data){
 
   $path = $data["path"];
   $svg = $data["svg"];
-  error_log($svg);
 
   $sql = $wpdb->prepare("SELECT id FROM aipaths WHERE path='%s'", $path);
   $res = $wpdb->get_row($sql);
@@ -26,8 +25,14 @@ function registerPath($data){
     }
   } 
 
+  createCover($svg);
   registerVisitorForPath($id);
   return $id;
+}
+
+function createCover($svg){
+  // error_log($svg);
+
 }
 
 function registerVisitorForPath($pathId){

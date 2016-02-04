@@ -1,9 +1,10 @@
+import {h} from '@cycle/dom'
 import createElement from 'virtual-dom/create-element';
 
 export function renderPdf(editionId){
   return h('div#maincontainer', [ 
       h('h2', "Edition"),
-      h('a', {href: "#"}, `n° ${editionId}`),
+      h('a', {href: `/aibooks/ArbreIntegral-${editionId}.pdf`}, `n° ${editionId}`),
     ]
   );
 }

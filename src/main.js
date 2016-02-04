@@ -174,16 +174,15 @@ function startAI(json) {
 
         //Urls => storage
         const storedUrlList$ = serialize( url$
-          .filter(url => ( url.pathname == 'reset' || url.from !== undefined))
+          .filter(url => ( url.pathname == 'reset' || url.pathname == 'pdf' || url.from !== undefined))
           .distinctUntilChanged()
           .scan(function(urlList, url){
               if (url.pathname == 'reset') return [];
-
-              urlList.push(url);
+              if (url.pathname !== 'pdf') urlList.push(url);
               return urlList;
             }, [])
           .share()
-        ) 
+        )
 
         const urlList$ =  storedUrlList$.map(urlList => 
           JSON.parse(urlList).map(url => url.pathname).filter(pathname => pathname !="0")
@@ -241,12 +240,12 @@ function startAI(json) {
         .withLatestFrom(aiLogoSvg.DOM, (url, svg) => cleanSvgCover(svg))
         .withLatestFrom(storedUrlList$, function(svgCover, urlList){
             let path = JSON.parse(urlList).map(url => getPathIndex(url.pathname)).join('-');
-            // let url = `http://arbre-integral.net/wp-json/arbreintegral/v1/path/${path}`;
             let url = `wp-json/arbreintegral/v1/path/${path}`;
             if (env === 'dev') { url =  'fakeapi.json'; }
             return {
               url,
               method: 'POST',
+              eager: true, //XXX if 'eager: false', it makes  4 requests to the backend...
               send: {
                 'svg': svgCover
               }
