@@ -29,14 +29,10 @@ function registerPath($data){
     }
   } 
 
-  createCover($id, $svg);
-  createContent($path);
   registerVisitorForPath($id);
+  createCover($id, $svg);
+  createContent($id, $path);
   return $id;
-}
-
-function createContent($path){
-
 }
 
 function registerVisitorForPath($pathId){
