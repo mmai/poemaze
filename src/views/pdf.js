@@ -4,7 +4,8 @@ import createElement from 'virtual-dom/create-element';
 export function renderPdf(editionId){
   return h('div#maincontainer', [ 
       h('h2', "Edition"),
-      h('a', {href: `/aibooks/ArbreIntegral-${editionId}.pdf`}, `n° ${editionId}`),
+      h('a', {rel: "external", href: `/aibooks/ArbreIntegral-${editionId}-couverture.pdf`}, `couverture n° ${editionId}`),
+      h('a', {rel: "external", href: `/aibooks/ArbreIntegral-${editionId}.pdf`}, `contenu n° ${editionId}`),
     ]
   );
 }

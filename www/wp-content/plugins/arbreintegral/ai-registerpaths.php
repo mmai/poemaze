@@ -1,4 +1,5 @@
 <?php
+require_once(dirname(__FILE__).'/makeAiPdf.php');
 
 /**
  * Check a path in the database and returns its exisiting or new id
@@ -13,6 +14,9 @@ function registerPath($data){
   $path = $data["path"];
   $svg = $data["svg"];
 
+  //for curl tests only
+  $svg = stripslashes($svg);
+
   $sql = $wpdb->prepare("SELECT id FROM aipaths WHERE path='%s'", $path);
   $res = $wpdb->get_row($sql);
 
@@ -25,13 +29,13 @@ function registerPath($data){
     }
   } 
 
-  createCover($svg);
+  createCover($id, $svg);
+  createContent($path);
   registerVisitorForPath($id);
   return $id;
 }
 
-function createCover($svg){
-  // error_log($svg);
+function createContent($path){
 
 }
 

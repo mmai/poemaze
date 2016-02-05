@@ -11,6 +11,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
           {aiLogoSvgVtree}
         </a>
         <a href="#reset">Recommencer</a><br/>
+        <a href="#pdf">pdf</a><br/>
         {aiSvgVtree}
 
         {progressionVtree}

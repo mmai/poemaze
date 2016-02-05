@@ -15,7 +15,8 @@ export function makeAiSvgComponent(AI, {
     color_up, color_down,
     color_brothers,
     color_skeleton,
-    displayNeighbors = true
+    displayNeighbors = true,
+    fixedSize = "none"
   }){
 
   const getCoordsFromPos = pos => circToCartesian(origin, circleRadius, pos)
@@ -42,8 +43,20 @@ export function makeAiSvgComponent(AI, {
         pathsVtree.push( makeJoinLine(fromLeaf, newLeaf))
 
         const {rotation, animationClass} = getRotationAnimationInfo(dleaf)
-        const transform = `translate(${width/2},${height/2}), rotate(${rotation})`
-        return svg('svg', {class: animationClass, width, height }, [
+        let transform = `translate(${width/2},${height/2})`
+        if (rotation !== 0) transform += `, rotate(${rotation})`
+
+        const mainAttributes = (fixedSize === 'none') ? {
+          class: animationClass,
+          width,
+          height
+        } : {
+          width: fixedSize,
+          height: fixedSize,
+          viewBox: `0 0 ${width} ${height}`
+        }
+
+        return svg('svg', mainAttributes, [
             skeletonVtree,
             svg('g', {transform}, [
                 ...pathsVtree,

@@ -52,6 +52,22 @@ function startAI(json) {
       displayNeighbors:false
     })
 
+  const AiPdfSvgComponent = makeAiSvgComponent(AI, {
+      fixedSize: '90mm',
+      width: 480,
+      height: 480,
+      leafRadius: 2,
+      circleRadius: 30,
+      color_background: "whitesmoke",
+      origin: {x:0, y:0},
+      color_up: "rgb(72,122,189)",
+      color_down: "rgb(128,120,48)",
+      color_brothers: "#BBBBBB",
+      color_default: "black",
+      color_skeleton: "#DFDFDF",
+      displayNeighbors:false
+    })
+
   const AiSvgComponent = makeAiSvgComponent(AI, {
     width: 480,
     height: 480,
@@ -91,7 +107,6 @@ function startAI(json) {
             views.push(renderCover());
             break;
           case 126:
-          case 5:
             views.push(renderEnd(state.leafInfos));
             views.push(dashboardView);
             break;
@@ -221,6 +236,9 @@ function startAI(json) {
         //Mini viz component : show live evolution
         const aiLogoSvg = isolate(AiLogoSvgComponent)({ visitedLeaf$ });
 
+        //Svg used in pdf cover
+        const aiPdfSvg = isolate(AiPdfSvgComponent)({ visitedLeaf$ });
+
         //Main viz compononent
         const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
         const delayedVisitedLeaf$ = visitedLeaf$
@@ -237,7 +255,7 @@ function startAI(json) {
         //url => HTTP (wordpress API calls)
         let apiCall$ = url$
         .filter(url => ( url.pathname == 'pdf' ))
-        .withLatestFrom(aiLogoSvg.DOM, (url, svg) => cleanSvgCover(svg))
+        .withLatestFrom(aiPdfSvg.DOM, (url, svg) => cleanSvgCover(svg))
         .withLatestFrom(storedUrlList$, function(svgCover, urlList){
             let path = JSON.parse(urlList).map(url => getPathIndex(url.pathname)).join('-');
             let url = `wp-json/arbreintegral/v1/path/${path}`;
