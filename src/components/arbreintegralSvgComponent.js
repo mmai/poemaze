@@ -42,9 +42,12 @@ export function makeAiSvgComponent(AI, {
 
         pathsVtree.push( makeJoinLine(fromLeaf, newLeaf))
 
-        const {rotation, animationClass} = getRotationAnimationInfo(dleaf)
         let transform = `translate(${width/2},${height/2})`
-        if (rotation !== 0) transform += `, rotate(${rotation})`
+
+        const {rotation, animationClass} = getRotationAnimationInfo(dleaf)
+        if (fixedSize === 'none' && rotation !== 0) {
+          transform += `, rotate(${rotation})`
+        }
 
         const mainAttributes = (fixedSize === 'none') ? {
           class: animationClass,

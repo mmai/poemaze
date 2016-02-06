@@ -86,19 +86,18 @@ function startAI(json) {
     function view(state, urlList, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
       //XXX : logged twice, why ?
       // console.log(`view:${state.pathname}`);
-      switch (state.pathname) {
-      case 'pdf':
-        if (state.editionId === "pending") {
-          return h('div#maincontainer', "Edition du document...");
-        } else {
-          return renderPdf(state.editionId);
-        }
-      default:
-        let history = urlList.map(AI.getLeaf);
-        let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree);
-        let views = [];
-        if (window.aiPageType === "wordpress") {
-          views.push(h('div'))//XXX if not present, it seems to harm virtual-dom (it makes fail e2e test "poem is made of 3 circles divs" for example), I don't know exactly why :-( ...
+      let views = [];
+      let history = urlList.map(AI.getLeaf);
+      let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree);
+      if (window.aiPageType === "wordpress") {
+        views.push(h('div'))//XXX if not present, it seems to harm virtual-dom (it makes fail e2e test "poem is made of 3 circles divs" for example), I don't know exactly why :-( ...
+          views.push(dashboardView)
+        } else if (state.pathname === 'pdf') {
+          if (state.editionId === "pending") {
+            views.push(h('div', "Edition des documents..."));
+          } else {
+            views.push(renderPdf(state.editionId));
+          }
           views.push(dashboardView)
         } else {
           switch (history.length){
@@ -117,10 +116,8 @@ function startAI(json) {
           }
         }
         return h("div#maincontainer", views)
+        // return h("div", 'Page non trouvée');
       }
-
-      return h("div", 'Page non trouvée');
-    }
 
     function main({DOM, HTTP, storage}) {
         //DOM => History/Actions
