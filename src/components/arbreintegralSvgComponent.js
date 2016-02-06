@@ -181,7 +181,8 @@ export function makeAiSvgComponent(AI, {
     return svg('path', {
         d: describeSvgArc(radius, 0 - polarfrom.angle, 0 - polarto.angle),
         stroke: color,
-        fill: color_background,
+        // fill: color_background,
+        'fill-opacity': 0,
         'stroke-width': 1
       })
   }
@@ -196,6 +197,9 @@ export function makeAiSvgComponent(AI, {
  * Draw dots at each final tree node
  */
  function drawSkeleton(){
+   //If pdf cover visualization : no skeleton
+   if  (fixedSize !== 'none') { return  svg('g'); }
+
    let points = []
    for (let circ = 0; circ < 7; circ++){
      const nbLeafs = Math.pow(2, circ);
