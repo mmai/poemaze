@@ -46,7 +46,7 @@ export function makeModel(AI) {
     let exclude = JSON.parse(JSON.stringify(newVisited));
     const nbVisited = Object.keys(exclude).length;
     //Last leaf only available when all tree has been seen
-    if(nbVisited < 126) {
+    if(nbVisited < 125) {
       exclude["0.1.1.1.1.1.1"] = "0.1.1.1.1.1.1";
     } 
 

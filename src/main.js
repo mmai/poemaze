@@ -91,33 +91,33 @@ function startAI(json) {
       let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree);
       if (window.aiPageType === "wordpress") {
         views.push(h('div'))//XXX if not present, it seems to harm virtual-dom (it makes fail e2e test "poem is made of 3 circles divs" for example), I don't know exactly why :-( ...
-          views.push(dashboardView)
-        } else if (state.pathname === 'pdf') {
-          if (state.editionId === "pending") {
-            views.push(h('div', "Edition des documents..."));
-          } else {
-            views.push(renderPdf(state.editionId));
-          }
-          views.push(dashboardView)
+        views.push(dashboardView)
+      } else if (state.pathname === 'pdf') {
+        if (state.editionId === "pending") {
+          views.push(h('div', "Edition des documents..."));
         } else {
-          switch (history.length){
-          case 0:
-            views.push(renderPoem(state.showDashboard, state.isUpside, state.leafInfos))
-            views.push(renderCover());
-            break;
-          case 126:
-            views.push(renderEnd(state.leafInfos));
-            views.push(dashboardView);
-            break;
-          default:
-            // views.push(renderEnd(state.leafInfos));
-            views.push(renderPoem(state.showDashboard, state.isUpside, state.leafInfos))
-            views.push(dashboardView);
-          }
+          views.push(renderPdf(state.editionId));
         }
-        return h("div#maincontainer", views)
-        // return h("div", 'Page non trouvée');
+        views.push(dashboardView)
+      } else {
+        switch (history.length){
+        case 0:
+          views.push(renderPoem(state.showDashboard, state.isUpside, state.leafInfos))
+          views.push(renderCover());
+          break;
+        case 126:
+          views.push(renderEnd(state.leafInfos));
+          views.push(dashboardView);
+          break;
+        default:
+          // views.push(renderEnd(state.leafInfos));
+          views.push(renderPoem(state.showDashboard, state.isUpside, state.leafInfos))
+          views.push(dashboardView);
+        }
       }
+      return h("div#maincontainer", views)
+      // return h("div", 'Page non trouvée');
+    }
 
     function main({DOM, HTTP, storage}) {
         //DOM => History/Actions
@@ -319,6 +319,8 @@ function startAI(json) {
      * @return {array}
      */
     function addRotationAnimationDelay(visitedLeafs){
+      if (visitedLeafs.length === 0) return []
+
       const fakeLeafs = [ false, false, false, false, false ]
       return visitedLeafs.map(
         vleaf => (vleaf.needRotation)?[vleaf, ...fakeLeafs]:[vleaf]
