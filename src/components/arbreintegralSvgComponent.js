@@ -1,6 +1,8 @@
 import {svg, h} from '@cycle/dom';
 import {circToCartesian, cartesianToPolar} from './arbreintegralGeometry'
 
+const basetime = Date.now();
+console.log('Init component: ' + (Date.now() - basetime));
 /**
  * AiSvgComponent factory 
  * @param {Object} AI - Arbre integral object
@@ -18,6 +20,11 @@ export function makeAiSvgComponent(AI, {
     displayNeighbors = true,
     fixedSize = "none"
   }){
+
+  let debugName = 'pdf'
+  if (fixedSize === 'none') {
+    debugName = (displayNeighbors ? 'main' : 'logo')
+  }
 
   const getCoordsFromPos = pos => circToCartesian(origin, circleRadius, pos)
 
@@ -59,6 +66,7 @@ export function makeAiSvgComponent(AI, {
           viewBox: `0 0 ${width} ${height}`
         }
 
+        console.log(`Component ${debugName}: ` + (Date.now() - basetime));
         return svg('svg', mainAttributes, [
             skeletonVtree,
             svg('g', {transform}, [

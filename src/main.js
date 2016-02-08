@@ -24,6 +24,8 @@ import {renderPdf, cleanSvgCover} from './views/pdf';
 
 import {env} from 'settings'
 
+const basetime = Date.now();
+console.log('Init: ' + (Date.now() - basetime));
 const xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = () => {
   if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -35,6 +37,7 @@ xmlhttp.send();
 
 
 function startAI(json) {
+  console.log('Json loaded: ' + (Date.now() - basetime));
   const AI = makeAI(json);
   const model = makeModel(AI);
   const AiLogoSvgComponent = makeAiSvgComponent(AI, {
@@ -81,6 +84,7 @@ function startAI(json) {
     color_default: "black",
     color_skeleton: "#DFDFDF",
   })
+  console.log('Components initiated: ' + (Date.now() - basetime));
 
   // function view(state){
     function view(state, urlList, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
