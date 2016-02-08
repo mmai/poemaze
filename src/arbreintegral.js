@@ -208,13 +208,14 @@ export function makeAI(aiData){
         return {
           pathname: '/',
           currentLeafId: "0",
-          visitedLeafs:{},
+          history:[],
           isUpside: true,
           needRotation: false,
           editionId: false,
           showDashboard: false,
           leafInfos: {
             leaf: { id: "0" },
+            fromId: "0",
             type: "ROOT",
             neighbors: this.getNeighbors({ id: "0" })
           }};

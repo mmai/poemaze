@@ -21,10 +21,8 @@ casper.test.begin('Display mini viz on poem pages', 3,  function suite(test) {
     casper.thenOpen(baseUrl, function(){
         test.assertExists('#ai-page', 'html container is found on the home page')
       })
-    .waitForSelector('#maincontainer', function(){
+    .waitForSelector('a.ai-seed-up', function(){
         test.assertNotExists('.dashboardLink', 'dashboardLink is not displayed on the home page')
-      })
-    .then(function() {
         this.click('a.ai-seed-up');
       })
     .waitForSelector('#maincontainer', function(){
@@ -58,10 +56,14 @@ casper.test.begin('Display main viz on wordpress pages', 3, function suite(test)
 
   })
 
-casper.test.begin('Keep poem navigation history on wordpress pages', 7,  function suite(test) {
+casper.test.begin('Keep poem navigation history on wordpress pages', 8,  function suite(test) {
     casper.thenOpen(pagesUrl + '/forums')
+    // .waitForSelector('a.dashboardLink')
     .waitForSelector('#maincontainer')
-    .then(function() { this.click('a.dashboardLink'); })
+    .then(function() {
+        test.assertVisible('.ai-closed', 'dashboard is closed')
+        this.click('a.dashboardLink');
+      })
     // .waitUntilVisible('.viz-neighbor', function(){
     .wait(300, function(){
         // test.assertVisible('.viz-neighbor', 'svg neighbors are visible')
@@ -84,7 +86,7 @@ casper.test.begin('Keep poem navigation history on wordpress pages', 7,  functio
     .waitForSelector('#maincontainer', function(){
         test.assertUrlMatch(/forums\/topic\/.+/, 'current page is a topic forum page');
       })
-    .waitForSelector('#maincontainer', function(){
+    .waitForSelector('a.dashboardLink', function(){
         test.assertVisible('.dashboardLink', 'dashboardLink is displayed on internal forum pages')
         this.click('a.dashboardLink');
       })
@@ -98,6 +100,20 @@ casper.test.begin('Keep poem navigation history on wordpress pages', 7,  functio
         test.done()
       })
 })
+
+/*
+//XXX  Casperjs runs in an infinite loop with this test suite ?!
+caster.test.begin('Draw SVG paths', 1, function suite(test){
+    casper.thenOpen(pagesUrl)
+    .waitForSelector('#maincontainer')
+    .then(function() {
+        test.assertElementCount('.dashboardLink line', 2, 'logo visualization SVG has 2 lines')
+      })
+    .run(function(){
+        test.done()
+      })
+})
+//*/
 
 // casper.options.waitTimeout = 20000;
 casper.on('remote.message', function(message) {

@@ -4,28 +4,27 @@ require("./arbreintegral.scss")
 import {Observable} from 'rx';
 import {run} from '@cycle/core';
 import storageDriver from '@cycle/storage';
-import {makeDOMDriver, h} from '@cycle/dom';
-import {makeHistoryDriver, filterLinks } from '@cycle/history';
+import {makeDOMDriver} from '@cycle/dom';
+// import {makeHistoryDriver} from '@cycle/history';
 import {makeHTTPDriver} from '@cycle/http';
 import isolate from '@cycle/isolate';
 
+import intent from './intent'
+
 import {makeAI} from './arbreintegral';
 import {makeModel} from './model';
-import {serialize, deserialize} from './visitedLeafSerializer';
+import {serialize, deserialize} from './aiStateSerializer';
 
 import ProgressionComponent from './components/progressionComponent'
 import {makeAiSvgComponent} from './components/arbreintegralSvgComponent'
 
+import view from './view'
 import {renderDashboard} from './views/dashboard'
-import {renderCover}     from './views/cover'
-import {renderPoem}      from './views/poem';
-import {renderEnd}       from './views/end'
-import {renderPdf, cleanSvgCover} from './views/pdf';
+import {cleanSvgCover} from './views/pdf';
 
 import {env} from 'settings'
 
 const basetime = Date.now();
-console.log('Init: ' + (Date.now() - basetime));
 const xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = () => {
   if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -35,9 +34,7 @@ xmlhttp.onreadystatechange = () => {
 xmlhttp.open("GET", '/wp-content/arbreintegral.json', true);
 xmlhttp.send();
 
-
 function startAI(json) {
-  console.log('Json loaded: ' + (Date.now() - basetime));
   const AI = makeAI(json);
   const model = makeModel(AI);
   const AiLogoSvgComponent = makeAiSvgComponent(AI, {
@@ -84,250 +81,172 @@ function startAI(json) {
     color_default: "black",
     color_skeleton: "#DFDFDF",
   })
-  console.log('Components initiated: ' + (Date.now() - basetime));
 
-  // function view(state){
-    function view(state, urlList, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
-      //XXX : logged twice, why ?
-      // console.log(`view:${state.pathname}`);
-      let views = [];
-      let history = urlList.map(AI.getLeaf);
-      let dashboardView = renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree);
-      if (window.aiPageType === "wordpress") {
-        views.push(h('div'))//XXX if not present, it seems to harm virtual-dom (it makes fail e2e test "poem is made of 3 circles divs" for example), I don't know exactly why :-( ...
-        views.push(dashboardView)
-      } else if (state.pathname === 'pdf') {
-        if (state.editionId === "pending") {
-          views.push(h('div', "Edition des documents..."));
-        } else {
-          views.push(renderPdf(state.editionId));
-        }
-        views.push(dashboardView)
-      } else {
-        switch (history.length){
-        case 0:
-          views.push(renderPoem(state.showDashboard, state.isUpside, state.leafInfos))
-          views.push(renderCover());
-          break;
-        case 126:
-          views.push(renderEnd(state.leafInfos));
-          views.push(dashboardView);
-          break;
-        default:
-          // views.push(renderEnd(state.leafInfos));
-          views.push(renderPoem(state.showDashboard, state.isUpside, state.leafInfos))
-          views.push(dashboardView);
-        }
-      }
-      console.log('view: ' + (Date.now() - basetime));
-      return h("div#maincontainer", views)
-      // return h("div", 'Page non trouvée');
+  function main({DOM, HTTP, storage}) {
+    const editionIdFromPdfAPI$ = HTTP.mergeAll().map(res => res.body).share()
+    const initialState$ = deserialize(
+      storage.local.getItem('arbreintegralState'),
+      AI.makeInitialState()
+    ).take(1)
+
+    const actions = intent(DOM)
+    const state$ = model(initialState$, editionIdFromPdfAPI$, actions)
+
+    //XXX side effect to avoid all the cycle.js driver boilerplate for a single variable 
+    //better put this in state$ ?
+    actions.readPoem$.subscribe((click) => {window.aiPageType = "poem" })
+
+    const leafLinks$ =  state$.map( state => state.history ).share()
+
+    //State => DOM
+    //Progression component
+    const progressionSources = {
+      prop$: leafLinks$.map(
+        leafLinks => leafLinks.map(
+          url => {
+            let elems = url.pathname.split('.');
+            return (elems.length === 1) ? "" : (elems[1] === "0" )
+          }
+        )
+      )
     }
+    const progression = isolate(ProgressionComponent)(progressionSources);
 
-    function main({DOM, HTTP, storage}) {
-        //DOM => History/Actions
-        const clicked$ = DOM
-        .select('a')
-        .events('click')
-        .filter(filterLinks)
-        // .map(e => e.target).share();
+    //State => Viz
+    const visitedLeaf$ = state$.map(
+      state => ({
+          history: state.history,
+          leaf: state.leafInfos.leaf,
+          fromId: state.leafInfos.fromId,
+          neighbors: state.leafInfos.neighbors,
+          isUpside: state.isUpside,
+          needRotation: state.needRotation,
+        })
+    )
+    .filter(leafInfos => leafInfos.fromId !== undefined)
 
-        const navigationClick$ = clicked$
-        .map(event =>  {
-            let [pathname, from] = event.currentTarget.hash.slice(1).split('-');
-            return {
-              pathname: pathname,
-              from: from 
-            };
-          });
+    //Mini viz component : show live evolution
+    const aiLogoSvg = isolate(AiLogoSvgComponent)({ visitedLeaf$ })
 
-        // Clicks on the SVG nodes
-        const svgClick$ = DOM
-        // .select('.viz-neighbor')
-        .select('svg')
-        .events('click')
-        .map(ev => { return ev.target.getAttribute('data-neighbor-href')})
-        .filter(href => href != null) 
-        .map(href => {
-            let [pathname, from] = href.split('-');
-            return {
-              pathname: pathname,
-              from: from
-            }
-          });
+    //Svg used in pdf cover
+    const aiPdfSvg = isolate(AiPdfSvgComponent)({ visitedLeaf$ })
 
-        const localStorage$ = storage.local.getItem('arbreintegral').take(1);//initial data
-        const url$ = deserialize(localStorage$)
-        .flatMap( urlList => Observable.from(urlList))
-        .concat(
-          navigationClick$.merge(svgClick$).map(url => {
-              //XXX side effect  
-              if (["dashboard", "main"].indexOf(url.pathname) === -1 ){
-                window.aiPageType = "poem";
-              }
-              return url;
-            })
-        )
-        .shareReplay()
-        .startWith({pathname:"reset"})
+    //Main viz compononent
+    const delayedVisitedLeaf$ = visitedLeaf$
+    .buffer(actions.dashboardOpen$.startWith(true)) // Wait for the dashboard to be opened before showing progression
+    // .buffer(state$.map(s => s.showDashboard)) // Wait for the dashboard to be opened before showing progression
+    .map(addRotationAnimationDelay) // add fake leafs to delay rotation animation
+    .flatMap(visitedLeafs => yieldByInterval(visitedLeafs, 100)) // wait 0.1s between each line drawing (animation)
+    .filter(leafInfos => leafInfos !== false) //remove fake leafs
+    .share()
+    const aiSvg = isolate(AiSvgComponent)({ visitedLeaf$: delayedVisitedLeaf$});
 
-        // const history$ = clicked$.map(event => event.target.href.replace(location.origin, ``));
+    //Final view
+    let history$ = leafLinks$
+    .map( leafLinks =>
+      leafLinks.map(leafLink => AI.getLeaf(leafLink.pathname))
+    )
+    .share()
 
-        const stateFromUrl$ = url$
-        .scan(model, AI.makeInitialState())
-        .shareReplay()
-        .distinctUntilChanged();
 
-        const apiRes$ = HTTP
-        .mergeAll()
-        // .filter(res => res.request.indexOf(WP_API) === 0)
-        .withLatestFrom(stateFromUrl$, function(res, state){ 
-            state.editionId = res.body;
-            return state;
-          });
 
-        const state$ = stateFromUrl$.merge(apiRes$)
-        .startWith(AI.makeInitialState());
+    // const dashboardView$ = Observable.combineLatest([state$, history$, progression.DOM, aiLogoSvg.DOM, aiSvg.DOM],
+      // function(state, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
+        // return renderDashboard(state.showDashboard, state.isUpside, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree)
+    //XXX beware : we can't directly use state$  
+    const stateInfos$ = state$.map(s => ({showDashboard: s.showDashboard, isUpside: s.isUpside}))
 
-        //Urls => storage
-        const storedUrlList$ = serialize( url$
-          .filter(url => ( url.pathname == 'reset' || url.pathname == 'pdf' || url.from !== undefined))
-          .distinctUntilChanged()
-          .scan(function(urlList, url){
-              if (url.pathname == 'reset') return [];
-              if (url.pathname !== 'pdf') urlList.push(url);
-              return urlList;
-            }, [])
-          .share()
-        )
+    const dashboardView$ = Observable.combineLatest([stateInfos$, history$, progression.DOM, aiLogoSvg.DOM, aiSvg.DOM],
+      function(stateInfos, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
+        return renderDashboard(stateInfos.showDashboard, stateInfos.isUpside, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree)
+      }
+    )
+    .share()
 
-        const urlList$ =  storedUrlList$.map(urlList => 
-          JSON.parse(urlList).map(url => url.pathname).filter(pathname => pathname !="0")
-        )
+    const view$ = dashboardView$.withLatestFrom(state$, view)
 
-        //State => DOM
-        //Progression component
-        const progressionSources = {
-          prop$: urlList$.map(
-            urlList => urlList.map(
-              url => {
-                let elems = url.split('.');
-                return (elems.length === 1) ? "" : (elems[1] === "0" )
-              }
-            )
-          )
-        }
-        const progression = isolate(ProgressionComponent)(progressionSources);
-
-        //State => Viz
-        const visitedLeaf$ = state$.map(state => {
-            let fromId = state.visitedLeafs[state.currentLeafId];
-            if (fromId === undefined && state.currentLeafId === "0") fromId = "0";
-            return {
-              reset: Object.keys(state.visitedLeafs).length < 1,
-              leaf: state.leafInfos.leaf,
-              neighbors: state.leafInfos.neighbors,
-              fromId: fromId,
-              isUpside: state.isUpside,
-              needRotation: state.needRotation,
-            };
-          })
-        .filter(leaf => leaf.fromId !== undefined)
-        .distinctUntilChanged()
-
-        //Mini viz component : show live evolution
-        const aiLogoSvg = isolate(AiLogoSvgComponent)({ visitedLeaf$ });
-
-        //Svg used in pdf cover
-        const aiPdfSvg = isolate(AiPdfSvgComponent)({ visitedLeaf$ });
-
-        //Main viz compononent
-        const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
-        const delayedVisitedLeaf$ = visitedLeaf$
-          .buffer(dashboardOpened$) // Wait for the dashboard to be opened before showing progression
-          // .map(addRotationAnimationDelay) // add fake leafs to delay rotation animation
-          // .flatMap(visitedLeafs => yieldByInterval(visitedLeafs, 100)) // wait 0.1s between each line drawing (animation)
-          // .filter(dleaf => dleaf !== false) //remove fake leafs
-          .startWith({ reset:true, leaf: {id:"0"}, fromId: "0", neighbors:[], isUpside:true }) //Init rendering with dummy leaf
-        const aiSvg = isolate(AiSvgComponent)({ visitedLeaf$: delayedVisitedLeaf$});
-
-        //Final view
-        const view$ = state$.combineLatest( urlList$, progression.DOM, aiLogoSvg.DOM, aiSvg.DOM, view);
-
-        //url => HTTP (wordpress API calls)
-        let apiCall$ = url$
-        .filter(url => ( url.pathname == 'pdf' ))
-        .withLatestFrom(aiPdfSvg.DOM, (url, svg) => cleanSvgCover(svg))
-        .withLatestFrom(storedUrlList$, function(svgCover, urlList){
-            let path = JSON.parse(urlList).map(url => getPathIndex(url.pathname)).join('-');
-            let url = `wp-json/arbreintegral/v1/path/${path}`;
-            if (env === 'dev') { url =  'fakeapi.json'; }
-            return {
-              url,
-              method: 'POST',
-              eager: true, //XXX if 'eager: false', it makes  4 requests to the backend...
-              send: {
-                'svg': svgCover
-              }
-            };
-          })
-
-        const storage$ = storedUrlList$.map((urlList) => ({
-              key: 'arbreintegral', value: urlList
-            }));
-
+    //url => HTTP (wordpress API calls)
+    let apiCall$ = actions.makePdf$
+    .withLatestFrom(aiPdfSvg.DOM, (url, svg) => cleanSvgCover(svg))
+    .withLatestFrom(leafLinks$, function(svgCover, leafLinks){
+        let path = leafLinks.map(leafLink => getPathIndex(leafLink.pathname)).join('-');
+        let url = `wp-json/arbreintegral/v1/path/${path}`;
+        if (env === 'dev') { url =  'fakeapi.json'; }
         return {
-          DOM: view$,
-          HTTP: apiCall$,
-          // History: history$,
-          storage: storage$
-        }
-      }
+          url,
+          method: 'POST',
+          eager: true, //XXX if 'eager: false', it makes  4 requests to the backend...
+          send: {
+            'svg': svgCover
+          }
+        };
+      })
 
-      function getPathIndex(path){
-        //Translate path to its binary representation: replace initial '0' by '1' and
-        //remove dots. ex : "0.1.0.1" => "1101"
-        const binaryPath = "1" + path.replace(/\./g, '').slice(1);
-        //Convert to decimal base integer
-        return parseInt(binaryPath, 2)
-      }
+    const storage$ = serialize(state$).map(state => ({
+          key: 'arbreintegralState', value: state
+        }));
 
-      let drivers = {
-        DOM: makeDOMDriver('#ai-page'),
-        // History: makeHistoryDriver(),
-        HTTP: makeHTTPDriver(),
-        storage: storageDriver,
-      };
-
-      run(main, drivers);
+    return {
+      DOM: view$,
+      HTTP: apiCall$,
+      // History: history$,
+      storage: storage$
     }
+  }
 
-    /**
-     * Make an Observable from an array and wait a given amount of time between each emission
-     *
-     * @param {array} items - array of values to yield
-     * @param {number} time - interval in milliseconds
-     * @return {Observable}
-     */
-    function yieldByInterval(items, time) {
-      return Rx.Observable.from(items).zip(
-        Rx.Observable.interval(time),
-        function(item, index) { return item; }
-      );
-    }
+  let drivers = {
+    DOM: makeDOMDriver('#ai-page'),
+    // History: makeHistoryDriver(),
+    HTTP: makeHTTPDriver(),
+    storage: storageDriver,
+  };
 
-    /**
-     * Add fake visited leafs when a rotation is needed in order to
-     * simulate a longuer delay before next real visited leaf event
-     *
-     * @param visitedLeaf
-     * @return {array}
-     */
-    function addRotationAnimationDelay(visitedLeafs){
-      if (visitedLeafs.length === 0) return []
+  run(main, drivers);
+}
 
-      const fakeLeafs = [ false, false, false, false, false ]
-      return visitedLeafs.map(
-        vleaf => (vleaf.needRotation)?[vleaf, ...fakeLeafs]:[vleaf]
-      ).reduce((acc, vleafs) => acc.concat(vleafs))
-    }
+/**
+ * Translate leaf path to an integer via its binary representation
+ *
+ * @param {string} path
+ * @return {number}
+ */
+function getPathIndex(path){
+  //Translate path to its binary representation:
+  //replace initial '0' by '1' and remove dots
+  //ex : "0.1.0.1" => "1101"
+  const binaryPath = "1" + path.replace(/\./g, '').slice(1);
+  //Convert to decimal base integer
+  return parseInt(binaryPath, 2)
+}
+
+/**
+ * Make an Observable from an array and wait a given amount of time between each emission
+ *
+ * @param {array} items - array of values to yield
+ * @param {number} time - interval in milliseconds
+ * @return {Observable}
+ */
+ function yieldByInterval(items, time) {
+   return Observable.zip(
+     Observable.from(items), Observable.interval(time),
+     (item, index) => item
+   )
+ }
+
+ /**
+  * Add fake visited leafs when a rotation is needed in order to
+  * simulate a longuer delay before next real visited leaf event
+  *
+  * @param visitedLeaf
+  * @return {array}
+  */
+  function addRotationAnimationDelay(visitedLeafs){
+    if (visitedLeafs.length === 0) return []
+
+    const fakeLeafs = [ false, false, false, false, false ]
+    return visitedLeafs.map(
+      vleaf => (vleaf.needRotation)?[vleaf, ...fakeLeafs]:[vleaf]
+    ).reduce(
+      (acc, vleafs) => acc.concat(vleafs)
+    )
+  }

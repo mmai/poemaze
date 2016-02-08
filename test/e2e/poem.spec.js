@@ -8,7 +8,7 @@ var pagesUrl = settings.pagesUrl;
 
 casper.test.begin('Display poem after navigating wordpress pages', 1,  function suite(test) {
     casper.start(baseUrl)
-    .waitForSelector('#maincontainer')
+    .waitForSelector('a.ai-seed-up')
     .then(function() {
         this.click('a.ai-seed-up');
       })

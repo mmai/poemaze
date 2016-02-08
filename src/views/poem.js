@@ -6,7 +6,7 @@ import {renderRoot} from './cover'
 var parser = require("vdom-parser");
 
 // export function renderLeaf(leafInfos){
-export function renderPoem(showDashboard, isUpside, leafInfos){
+export function renderPoem(isUpside, leafInfos){
   let circlesView = h("div");
   switch(leafInfos.type){
   case 'ROOT':

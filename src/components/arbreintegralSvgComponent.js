@@ -2,7 +2,6 @@ import {svg, h} from '@cycle/dom';
 import {circToCartesian, cartesianToPolar} from './arbreintegralGeometry'
 
 const basetime = Date.now();
-console.log('Init component: ' + (Date.now() - basetime));
 /**
  * AiSvgComponent factory 
  * @param {Object} AI - Arbre integral object
@@ -39,19 +38,23 @@ export function makeAiSvgComponent(AI, {
    */
   return function AiSvgComponent({visitedLeaf$}) {
     let rotation = 0
-    const vtree$ = visitedLeaf$.map(dleaf => {
-        if (dleaf.reset) {
+    const vtree$ = visitedLeaf$.map(leafInfos => {
+        // console.log(`[svgComponent] history:${leafInfos.history.length} pathsVtree: ${pathsVtree.length}`)
+        if (leafInfos.history.length < 1) {
+          //Reset
           pathsVtree = []
+        } else if (pathsVtree.length === 0) {
+          pathsVtree = makePathsFromHistory(leafInfos.history)
         }
 
-        const newLeaf = dleaf.leaf;
-        const fromLeaf = AI.data[dleaf.fromId];
+        const newLeaf = leafInfos.leaf;
+        const fromLeaf = AI.data[leafInfos.fromId];
 
         pathsVtree.push( makeJoinLine(fromLeaf, newLeaf))
 
         let transform = `translate(${width/2},${height/2})`
 
-        const {rotation, animationClass} = getRotationAnimationInfo(dleaf)
+        const {rotation, animationClass} = getRotationAnimationInfo(leafInfos)
         if (fixedSize === 'none' && rotation !== 0) {
           transform += `, rotate(${rotation})`
         }
@@ -66,13 +69,12 @@ export function makeAiSvgComponent(AI, {
           viewBox: `0 0 ${width} ${height}`
         }
 
-        console.log(`Component ${debugName}: ` + (Date.now() - basetime));
         return svg('svg', mainAttributes, [
             skeletonVtree,
             svg('g', {transform}, [
                 ...pathsVtree,
                 ...currentPositionVtree(newLeaf),
-                ...neighborsVtree(dleaf),
+                ...neighborsVtree(leafInfos),
               ]),
           ])
       })
@@ -80,6 +82,12 @@ export function makeAiSvgComponent(AI, {
     return {
       DOM: vtree$
     };
+  }
+
+  function makePathsFromHistory(history){
+    return history.slice(0, -1).map(({pathname, from}) =>
+      makeJoinLine(AI.data[from], AI.data[pathname])
+    )
   }
 
   /**
@@ -98,15 +106,15 @@ export function makeAiSvgComponent(AI, {
   /**
    * Virtual DOM of SVG circles for each neighbor of the leaf 
    *
-   * @param {Object} dleaf - leaf informations
+   * @param {Object} leafInfos - leaf informations
    * @return {vdom tree}
    */
-  function neighborsVtree(dleaf){
+  function neighborsVtree(leafInfos){
     if (!displayNeighbors) return [];
 
     let vtree = []
-    for (let name in dleaf.neighbors){
-      const neighbor = dleaf.neighbors[name];
+    for (let name in leafInfos.neighbors){
+      const neighbor = leafInfos.neighbors[name];
       if (neighbor.leaf){
         vtree.push(makeNeighborLeaf(neighbor))
       }
@@ -139,17 +147,17 @@ export function makeAiSvgComponent(AI, {
   /**
    * getRotationAnimationInfo
    *
-   * @param {object} dleaf - current leaf information
+   * @param {object} leafInfos - current leaf information
    * @return {number, string} - rotation angle and animation class name 
    */
-  function getRotationAnimationInfo(dleaf){
-    let rotation = dleaf.isUpside ? 0 : 180
+  function getRotationAnimationInfo(leafInfos){
+    let rotation = leafInfos.isUpside ? 0 : 180
 
     //do we need to do a rotation animation ?
     let animationClass = ""
-    if (dleaf.needRotation){
+    if (leafInfos.needRotation){
       //Add a class for CSS animation (for IE browser support)
-      animationClass = 'viz-animate-' + (dleaf.isUpside ? 'up':'down')
+      animationClass = 'viz-animate-' + (leafInfos.isUpside ? 'up':'down')
       //Invert the value of rotation : we want the value of the start of the animation
       rotation = rotation - 180
     }
