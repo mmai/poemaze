@@ -119,6 +119,7 @@ function startAI(json) {
           views.push(dashboardView);
         }
       }
+      console.log('view: ' + (Date.now() - basetime));
       return h("div#maincontainer", views)
       // return h("div", 'Page non trouvée');
     }
@@ -244,9 +245,9 @@ function startAI(json) {
         const dashboardOpened$ = url$.filter(({pathname, from}) => pathname === "dashboard")
         const delayedVisitedLeaf$ = visitedLeaf$
           .buffer(dashboardOpened$) // Wait for the dashboard to be opened before showing progression
-          .map(addRotationAnimationDelay) // add fake leafs to delay rotation animation
-          .flatMap(visitedLeafs => yieldByInterval(visitedLeafs, 100)) // wait 0.1s between each line drawing (animation)
-          .filter(dleaf => dleaf !== false) //remove fake leafs
+          // .map(addRotationAnimationDelay) // add fake leafs to delay rotation animation
+          // .flatMap(visitedLeafs => yieldByInterval(visitedLeafs, 100)) // wait 0.1s between each line drawing (animation)
+          // .filter(dleaf => dleaf !== false) //remove fake leafs
           .startWith({ reset:true, leaf: {id:"0"}, fromId: "0", neighbors:[], isUpside:true }) //Init rendering with dummy leaf
         const aiSvg = isolate(AiSvgComponent)({ visitedLeaf$: delayedVisitedLeaf$});
 
