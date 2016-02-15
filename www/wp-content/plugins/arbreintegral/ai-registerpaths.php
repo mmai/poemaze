@@ -24,7 +24,7 @@ function registerPath($data){
     $id = $res->id;
   } else {
     $ok = $wpdb->insert("aipaths", array( 'path' => $path), array( '%s'));
-    if (false !== $ok) {
+    if ($ok) {
       $id = $wpdb->insert_id;
     }
   } 

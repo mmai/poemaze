@@ -194,7 +194,7 @@ function startAI(json) {
         };
       })
 
-    const storage$ = serialize(state$).map(state => ({
+    const storage$ = serialize(state$.filter(s => s.editionId !== 'pending')).map(state => ({
           key: 'arbreintegralState', value: state
         }));
 
