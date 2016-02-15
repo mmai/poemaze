@@ -96,7 +96,8 @@ function startAI(json) {
     //better put this in state$ ?
     actions.readPoem$.subscribe((click) => {window.aiPageType = "poem" })
 
-    const leafLinks$ =  state$.map( state => state.history ).share()
+    const leafLinks$ =  state$.map( state => state.history )
+    .share()
 
     //State => DOM
     //Progression component
@@ -113,17 +114,30 @@ function startAI(json) {
     const progression = isolate(ProgressionComponent)(progressionSources);
 
     //State => Viz
-    const visitedLeaf$ = state$.map(
-      state => ({
-          history: state.history,
-          leaf: state.leafInfos.leaf,
-          fromId: state.leafInfos.fromId,
-          neighbors: state.leafInfos.neighbors,
-          isUpside: state.isUpside,
-          needRotation: state.needRotation,
-        })
-    )
-    .filter(leafInfos => leafInfos.fromId !== undefined)
+    const visitedLeaf$ = state$
+    .map( s => ({
+          history:s.history,
+          hl: s.history.length,//need a additional variable because history is an array
+          leaf: s.leafInfos.leaf,
+          fromId: s.leafInfos.fromId,
+          neighbors: s.leafInfos.neighbors,
+          isUpside: s.isUpside,
+          needRotation: s.needRotation,
+          isNewLeaf: true
+        }))
+    .scan( (acc, vf) => {
+        return {
+          history:vf.history,
+          hl:vf.history.length,
+          leaf: vf.leaf,
+          fromId: vf.fromId,
+          neighbors: vf.neighbors,
+          isUpside: vf.isUpside,
+          needRotation: vf.needRotation,
+          isNewLeaf: vf.hl !== acc.hl //beware : do not use directly vf.history.length : array mutates during the scan
+        }
+      })
+    .share()
 
     //Mini viz component : show live evolution
     const aiLogoSvg = isolate(AiLogoSvgComponent)({ visitedLeaf$ })
@@ -147,8 +161,6 @@ function startAI(json) {
       leafLinks.map(leafLink => AI.getLeaf(leafLink.pathname))
     )
     .share()
-
-
 
     // const dashboardView$ = Observable.combineLatest([state$, history$, progression.DOM, aiLogoSvg.DOM, aiSvg.DOM],
       // function(state, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree){

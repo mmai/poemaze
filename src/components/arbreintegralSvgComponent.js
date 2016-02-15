@@ -39,8 +39,8 @@ export function makeAiSvgComponent(AI, {
   return function AiSvgComponent({visitedLeaf$}) {
     let rotation = 0
     const vtree$ = visitedLeaf$.map(leafInfos => {
-        // console.log(`[svgComponent] history:${leafInfos.history.length} pathsVtree: ${pathsVtree.length}`)
-        if (leafInfos.history.length < 1) {
+        // console.log(`[svgComponent ${debugName}] history:${leafInfos.history.length} pathsVtree: ${pathsVtree.length}`)
+        if (leafInfos.history.length < pathsVtree.length - 1) {
           //Reset
           pathsVtree = []
         } else if (pathsVtree.length === 0) {
@@ -48,9 +48,10 @@ export function makeAiSvgComponent(AI, {
         }
 
         const newLeaf = leafInfos.leaf;
-        const fromLeaf = AI.data[leafInfos.fromId];
-
-        pathsVtree.push( makeJoinLine(fromLeaf, newLeaf))
+        if (leafInfos.isNewLeaf) {
+          const fromLeaf = AI.data[leafInfos.fromId];
+          pathsVtree.push( makeJoinLine(fromLeaf, newLeaf))
+        }
 
         let transform = `translate(${width/2},${height/2})`
 
