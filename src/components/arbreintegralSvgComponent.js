@@ -251,7 +251,7 @@ function describeSvgArc(radius, startAngle, endAngle){
     radius,
     radius,
     0,
-    endAngle - startAngle <= Math.PI / 2 ? "0" : "1",
+    0, // endAngle - startAngle <= Math.PI / 2 ? "0" : "1",
     1, 
     radius * Math.cos(endAngle), radius * Math.sin(endAngle), 
   ].join(" ");
