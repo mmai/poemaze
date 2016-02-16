@@ -23,15 +23,14 @@ function registerPath($data){
   if (null !== $res){
     $id = $res->id;
   } else {
-    $ok = $wpdb->insert("aipaths", array( 'path' => $path), array( '%s'));
-    if ($ok) {
+    if ($wpdb->insert("aipaths", array( 'path' => $path), array( '%s'))) {
       $id = $wpdb->insert_id;
     }
   } 
 
-  registerVisitorForPath($id);
   createCover($id, $svg);
   createContent($id, $path);
+  registerVisitorForPath($id);
   return $id;
 }
 
