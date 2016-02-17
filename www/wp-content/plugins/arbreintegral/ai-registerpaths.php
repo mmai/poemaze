@@ -28,16 +28,17 @@ function registerPath($data){
     }
   } 
 
+  $visitorId = getVisitorId();
+  $visitorNumber = registerVisitorForPath($id, $visitorId);
   createCover($id, $svg);
-  createContent($id, $path);
-  registerVisitorForPath($id);
+  createContent($id, $path, $visitorNumber);
   return $id;
 }
 
-function registerVisitorForPath($pathId){
+function registerVisitorForPath($pathId, $visitorId){
   global $wpdb;
-  $visitorId = getVisitorId();
 
+  $id = null;
   $sql = $wpdb->prepare("SELECT id FROM aivisitors WHERE pathid=%d AND visitor='%s' ", $pathId, $visitorId);
   $res = $wpdb->get_row($sql);
 
@@ -47,7 +48,11 @@ function registerVisitorForPath($pathId){
       'visitor' => $visitorId,
       'date' => date('Y-m-d h:i:s')
     ), array( '%d', '%s', '%s'));
-  } 
+    $id = $wpdb->insert_id;
+  } else {
+    $id = $res['id'];
+  }
+  return $id;
 }
 
 function getVisitorId(){

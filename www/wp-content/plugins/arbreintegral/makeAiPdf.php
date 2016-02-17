@@ -1,33 +1,12 @@
 <?php
-//============================================================+
-// File name   : ai.php
-//
-// Description : Example Arbre Integral for TCPDF class
-//               SVG Image
-//
-// Author: Henri Bourcereau
-//
-//============================================================+
-
-// Include the main TCPDF library 
 require_once(dirname(__FILE__).'/vendor/tcpdf/tcpdf.php');
 $aiBooksDir = realpath(dirname(__FILE__).'/../../../aibooks/')."/";
-
+$aiBooksSrc = realpath(dirname(__FILE__))."/";
 $aiData = json_decode(file_get_contents(dirname(__FILE__).'/../../arbreintegral.json'));
-
 $edition_id = "?";
 
-
-/**
- * content 
- */
-
 class AIPDF extends TCPDF {
-
-	public function Header() {
-	}
-
-	// Page footer
+	public function Header() {}
 	public function Footer() {
 		// $this->SetFont('sanchez', '', 6);
 		$this->SetY(-10);
@@ -37,8 +16,9 @@ class AIPDF extends TCPDF {
 	}
 }
 
-function createContent($id, $path){
+function createContent($id, $path, $visitorId){
   global $aiBooksDir;
+  global $aiBooksSrc;
   global $aiData;
   global $edition_id;
   $edition_id = $id;
@@ -55,17 +35,77 @@ function createContent($id, $path){
     $pdf->SetMargins(5, 10);
     $pdf->setFooterFont(Array('sanchez', '', 6));
 
-    //First pages 
+    //======== First pages 
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
 
+    //Page blanche
+    $pdf->AddPage();
+
+    //Page blanche
+    $pdf->AddPage();
+
+    //Faux titre
+    $pdf->AddPage();
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_arbre.svg", 37, 20, '', 8, '', '', 1, false);
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_integral.svg", 37, 30, '', 8, '', '', 1, false);
+
+    //Page blanche avec copyright
     $pdf->AddPage();
     $pdf->SetFont('sanchez', '', 6);
     $pdf->setY(-30);
     $pdf->Write(0, "© Donatien Garnier", '', false, 'C', true, 0, false, false, 0);
     $pdf->Write(0, "www.arbre-integral.net", '', false, 'C', true, 0, false, false, 0);
 
-    //main content
+    //Titre
+    $pdf->AddPage();
+    $pdf->Circle(53, 40, 27, 0, 360, 'F', null, array(0,0,0));
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_white_arbre.svg", 36, 29, '', 10, '', '', 1, false);
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_white_integral.svg", 31, 39, '', 10, '', '', 1, false);
+    $pdf->setY(72);
+    $pdf->SetFont('sanchez', '', 10);
+    $pdf->Write(0, "par", '', false, 'C', true, 0, false, false, 0);
+    $pdf->SetFont('sanchez', '', 12);
+    $pdf->Write(0, "Donatien Garnier", '', false, 'C', true, 0, false, false, 0);
+    $pdf->SetFont('sanchez', '', 8);
+    $pdf->Write(0, "graphisme Franck Tallon", '', false, 'C', true, 0, false, false, 0);
+    $pdf->setY(-30);
+    $pdf->SetFont('sanchez', '', 6);
+    $pdf->Write(0, "© Donatien Garnier", '', false, 'C', true, 0, false, false, 0);
+    $pdf->Write(0, "www.arbre-integral.net", '', false, 'C', true, 0, false, false, 0);
+
+    //Page blanche
+    $pdf->AddPage();
+
+    //Exergue
+    $pdf->AddPage();
+    $pdf->SetY(30);
+    $pdf->SetX(30);
+    $pdf->SetFont('sanchez', '', 9);
+    $pdf->MultiCell(47, 0, "Qu’enregistrerait-on dans une forêt (série de configurations ressemblantes) qu’on ne parcourrait qu’une seule fois sinon le risque de s’y perdre / (et d’ailleurs) à partir de quel stade d’enfoncement ? /", 0, 'L');
+    $pdf->SetY(65);
+    $pdf->SetX(30);
+    $pdf->SetFont('sanchez', '', 7);
+    $pdf->Write(10, "Cécile Mainardi");
+    $pdf->SetY(68);
+    $pdf->SetX(30);
+    $pdf->SetFont('sanchez', 'I', 7);
+    $pdf->Write(10, "La forêt de Porphyre");
+
+    //Page blanche
+    $pdf->AddPage();
+
+    //TODO Dedicace (ex libris...)
+    $pdf->AddPage();
+    $pdf->SetY(30);
+    $pdf->SetX(30);
+    $pdf->SetFont('sanchez', 'I', 9);
+    $pdf->MultiCell(55, 0, "Ex libris arbre idéal", 0, 'R');
+
+    //Page blanche
+    $pdf->AddPage();
+
+    //=========== Main content
     $pdf->setPrintFooter(true);
     $leafs = explode('-', $path);
     $pdf->isOdd = false;
@@ -96,6 +136,110 @@ function createContent($id, $path){
       //Set infos for footer
       $pdf->currentLeafPath = $leafpath;
     } 
+
+    //======== Last pages 
+    $pdf->setPrintFooter(false);
+
+    //Page blanche
+    $pdf->AddPage();
+
+    //Du même auteur
+    $lineHeight = 3;
+    $fontHeight = 8;
+    $pdf->SetFont('sanchez', '', $fontHeight);
+    $pdf->SetMargins(25, 20, 0);
+    $pdf->AddPage();
+    $pdf->Write($lineHeight, 'Du même auteur :');
+    $pdf->Ln();
+    $pdf->Ln();
+    $pdf->Ln();
+
+    $pdf->SetFont('sanchez', '', 7);
+    $pdf->Write($lineHeight, 'OBJETS CONVERGENTS');
+    $pdf->Ln();
+    $pdf->Ln();
+    $pdf->SetFont('sanchez', 'I', $fontHeight);
+    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Le Bibliomane,');
+    $pdf->Ln();
+    $pdf->SetFont('sanchez', '', $fontHeight);
+    $pdf->Write($lineHeight, 'Les bords perdus, 2016.');
+    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Avec Walid Salem');
+    $pdf->Ln();
+    $pdf->Ln();
+
+    $pdf->SetFont('sanchez', 'I', $fontHeight);
+    $pdf->Write($lineHeight, 'Fluxus, destin pulsé,');
+    $pdf->Ln();
+    $pdf->SetFont('sanchez', '', $fontHeight);
+    $pdf->Write($lineHeight, 'Atelier B A I E / Le poème en volume, 2015.');
+    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Avec Guillaume Bullat');
+    $pdf->Ln();
+    $pdf->Ln();
+    $pdf->SetFont('sanchez', 'I', $fontHeight);
+    $pdf->Write($lineHeight, 'Le Recueil d’Écueils');
+    // $pdf->Ln();
+    $pdf->SetFont('sanchez', '', $fontHeight);
+    $pdf->Write($lineHeight, ', Sun / Sun, 2015.');
+    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Avec Guillaume Bullat');
+    $pdf->Ln();
+    $pdf->Ln();
+    $pdf->SetFont('sanchez', 'I', $fontHeight);
+    $pdf->Write($lineHeight, 'matcH');
+    // $pdf->Ln();
+    $pdf->SetFont('sanchez', '', $fontHeight);
+    $pdf->Write($lineHeight, ', Atelier B A I E, 2013');
+    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Avec Éric des Garets');
+    $pdf->Ln();
+    $pdf->Ln();
+    $pdf->SetFont('sanchez', 'I', $fontHeight);
+    $pdf->Write($lineHeight, 'GEANTs');
+    // $pdf->Ln();
+    $pdf->SetFont('sanchez', '', $fontHeight);
+    $pdf->Write($lineHeight, 'Voix édition, Collection Fireboox 2010 Avec Guillaume Bullat');
+
+    $pdf->Ln();
+    $pdf->Ln();
+    $pdf->Ln();
+    $pdf->SetFont('sanchez', '', 7);
+    $pdf->Write($lineHeight, 'DOCUMENTAIRES');
+    $pdf->Ln();
+    $pdf->Ln();
+    $pdf->SetFont('sanchez', 'I', $fontHeight);
+    $pdf->Write($lineHeight, 'Gueule d’Hexagone');
+    // $pdf->Ln();
+    $pdf->SetFont('sanchez', '', $fontHeight);
+    $pdf->Write($lineHeight, ', Intervalles, 2012.');
+    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Avec le Collectif Argos');
+    $pdf->Ln();
+    $pdf->Ln();
+    $pdf->SetFont('sanchez', 'I', $fontHeight);
+    $pdf->Write($lineHeight, 'Réfugiés climatiques');
+    // $pdf->Ln();
+    $pdf->SetFont('sanchez', '', $fontHeight);
+    $pdf->Write($lineHeight, ', Dominique Carré, 2010.');
+    $pdf->Ln();
+    $pdf->Write($lineHeight, 'Avec le Collectif Argos');
+
+    //Achevé le
+    $pdf->SetMargins(25, 0, 0);
+    $pdf->AddPage();
+    $pdf->SetXY(14, 100);
+    $pdf->SetFont('sanchez', '', 6);
+    $pdf->MultiCell(80, 0, "Le nombre de parcours possibles dans l’Arbre Intégral s’élève à
+13609281768511352141614530021521537575061761777958692042875.
+Le parcours constituant ce livre correspond à la ".$edition_id."e possibilité.
+Il a été achevé le ".date('d/m/Y')." par le ".$visitorId."e lecteur de l’ensemble du poème.
+
+Projet soutenu dans le cadre de La Fabrique #2015 - Région Aquitaine", 0, 'C');
+    $pdf->ImageSVG($aiBooksSrc."region_aquitaine.svg", 15, 120, '', 6, '', '', 1, false);
+    $pdf->ImageSVG($aiBooksSrc."cultures_connectees.svg", 47, 120, '', 6, '', '', 1, false);
+    $pdf->ImageSVG($aiBooksSrc."poeme_volume.svg", 63, 120, '', 6, '', '', 1, false);
 
     //Close and output PDF document
     $pdf->Output($pdfFile, 'F');
