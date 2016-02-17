@@ -259,6 +259,7 @@ function getLeafPath($leafid){
 
 function createCover($id, $svg){
   global $aiBooksDir;
+  global $aiBooksSrc;
 
   $pdfFile = $aiBooksDir.'ArbreIntegral-'.$id.'-couverture.pdf';
   if (!file_exists($pdfFile)){
@@ -292,31 +293,30 @@ function createCover($id, $svg){
 
     // add a page
     $pdf->AddPage();
-    // $pdf->Cell(float w [, float h [, string txt [, mixed border [, int ln [, string align [, boolean fill [, mixed link]]]]]]])
+    $pdf->SetFillColor(171,208,184);
+    $pdf->Cell(0 , $docHeight * 2 / 3 , '', 0, 0, 'C', true);
 
-    $pdf->SetFillColor(190,207,195);
-    $pdf->Cell(0 , $docHeight / 2 , '', 0, 0, 'C', true);
-
-    $pdf->SetY($docHeight / 2);
+    $pdf->SetY($docHeight * 2 / 3);
     $pdf->SetFillColor(0, 0, 0);
-    $pdf->Cell(0 , $docHeight / 2 , '', 0, 0, 'C', true);
+    $pdf->Cell(0 , $docHeight / 3 , '', 0, 0, 'C', true);
 
-    $pdf->SetY(15);
-    $pdf->SetFont('sanchez', 'I', 8);
-    $pdf->Cell(0, 10, 'parcours '.$id, 0, false, 'C', 0, '', 0, false, 'T', 'M');
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_arbre.svg", 15, 17, '', 12, '', '', 1, false);
+    $pdf->ImageSVG($aiBooksSrc."ai_typo_integral.svg", 15, 32, '', 12, '', '', 1, false);
 
-    // NOTE: Uncomment the following line to rasterize SVG image using the ImageMagick library.
-    //$pdf->setRasterizeVectorImages(true);
+    $pdf->ImageSVG($aiBooksSrc."logo_white.svg", 92, 8, '', 10, '', '', 1, false);
 
     $svgSize = 90;
-    $pdf->ImageSVG($svgFile, ($docWidth -$svgSize)/2, ($docHeight - $svgSize)/2, '', '', '', '', 1, false);
+    $pdf->ImageSVG($svgFile, ($docWidth -$svgSize)/2, 54 , '', '', '', '', 1, false);
 
     // $pdf->SetFont('helvetica', '', 8);
+    $pdf->SetXY(15, 50);
+    $pdf->SetFont('sanchez', '', 14);
+    $pdf->Write(0, 'Donatien Garnier', '', 0, 'L', true, 0, false, false, 0);
+
+    $pdf->SetY(135);
     $pdf->SetTextColor(250,250,250);
-    $pdf->SetY(120);
-    $pdf->Write(0, 'L\'Arbre Intégral', '', 0, 'C', true, 0, false, false, 0);
-    $pdf->SetFont('sanchez', '', 10);
-    $pdf->Write(0, 'par Donatien Garnier', '', 0, 'C', true, 0, false, false, 0);
+    $pdf->SetFont('sanchez', '', 8);
+    $pdf->Cell(0, 10, 'parcours '.$id, 0, false, 'C', 0, '', 0, false, 'T', 'M');
 
     // ---------------------------------------------------------
 
