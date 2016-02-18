@@ -1,6 +1,6 @@
 <?php 
 
-/*############  Admin Menu Class for Coming Soon  ################*/
+/*############  Admin Menu Class for Coming Soon and Maintenance Mode plugin  ################*/
 
 class coming_soon_admin_menu{
 	
@@ -78,7 +78,7 @@ class coming_soon_admin_menu{
 		if(isset($_POST['coming_soon_options_nonce']) && wp_verify_nonce( $_POST['coming_soon_options_nonce'],'coming_soon_options_nonce')){
 			foreach($this->databese_parametrs[$_POST['curent_page']] as $key => $value){
 				if(isset($_POST[$key]))
-					update_option($key,$_POST[$key]);
+					update_option($key,stripslashes_deep($_POST[$key]));
 				else{
 					$kk=0;
 					printf($this->text_parametrs['error_in_saving'],$key);
@@ -164,7 +164,7 @@ class coming_soon_admin_menu{
 	}
 	
 	
-	/*#########################  LOGO   #################################*/
+	/*#########################  LOGO Section   #################################*/
 	public function generete_logo_section($page_parametrs){
 
 		?>
@@ -262,7 +262,7 @@ class coming_soon_admin_menu{
 		</div>        
 		<?php	
 	}
-	/*#########################  Title   #################################*/
+	/*#########################  Title Section   #################################*/
 	public function generete_title_section($page_parametrs){
 
 		?>
@@ -368,7 +368,7 @@ class coming_soon_admin_menu{
 		</div>        
 		<?php	
 	}
-	/*#########################  MESSAGE   #################################*/
+	/*#########################  MESSAGE Section  #################################*/
 	public function generete_message_section($page_parametrs){
 
 		?>
@@ -447,7 +447,7 @@ class coming_soon_admin_menu{
 		</div>        
 		<?php	
 	}
-	/*#########################  Countdown   #################################*/
+	/*#########################  Countdown Section  #################################*/
 	public function generete_countdown_section($page_parametrs){
 
 		?>

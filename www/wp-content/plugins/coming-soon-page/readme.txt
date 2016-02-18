@@ -1,10 +1,10 @@
 === Coming soon and Maintenance mode ===
 Contributors: maintenance mode GG, wpdevart, big ben keeper
 Donate link: http://wpdevart.com/wordpress-coming-soon-plugin/
-Tags: widget, Post , plugin, admin, twitter, page, coming soon, coming soon page, construction, landing page, launch, launch page, maintenance, maintenance mode, newsletter, offline, unavailable, under construction, wordpress coming soon, wordpress maintenance mode, wordpress under construction, landing page, underconstruction, squeeze page, countdown, maintenance page, site offline, wordpress maintenance plugin, wordpress maintenance mode. wordpress under constructio, email, gmail, message, notify, preview, subscriber, user, meta, under maintenance, site maintenance, schedule maintenance, admin maintenance, Maintenance Checklist, mode, custom maintenence mode, responsive, video background, yahoo    
+Tags: widget, Post , plugin, admin, page, coming soon, coming soon page, construction, landing page, launch, launch page, maintenance, maintenance mode, newsletter, offline, unavailable, under construction, wordpress coming soon, wordpress maintenance mode, wordpress under construction, landing page, underconstruction, squeeze page, countdown, maintenance page, site offline, wordpress maintenance plugin, wordpress maintenance mode. wordpress under constructio, email, gmail, message, notify, preview, subscriber, user, meta, under maintenance, site maintenance, schedule maintenance, admin maintenance, Maintenance Checklist, mode, custom maintenence mode, responsive, video background, under construction page, slider      
 Requires at least: 3.4.0
 Tested up to: 4.2.3
-Stable tag: 2.2.7
+Stable tag: 2.3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -99,8 +99,8 @@ You can upgrade WordPress Coming Soon and Maintenance mode plugin to [Coming soo
 *   **You can also change Link To Admin text and color**
 *   **Built in 31 fonts for Title, Countdown, Link To Admin, Subscribe Form texts**
 *   **Ability to set content maximum width**
-*   **Ability to set content padding**
-*   **Ability to set content margin**
+*   **Ability to set padding for content**
+*   **Ability to set margin for content**
 *   **Drag and drop ordering for coming soon page content elements** 
 
 ### If you found any bug in our WordPress Coming soon and Maintenance mode plugin or have a question contact us at support@wpdevart.com.
@@ -277,6 +277,26 @@ We recommend you to take a look for this useful plugins - [WordPress booking cal
 = 2.2.6 =
 
 *  Added new featured plugin.
+
+= 2.2.7 =
+
+*  Some changes.
+
+= 2.2.8 =
+
+*  Some changes.
+
+= 2.2.9 =
+
+*  Fixed animation bug.
+
+= 2.3.0 =
+
+*  Corrected some texts(comments) for developers.
+
+= 2.3.1 =
+
+*  Corrected comments in code.
 
 ==Wordpress Coming soon step by step guide==
 

@@ -1,6 +1,6 @@
 <?php 
 
-/// here is the install databese class
+/// Here is the install databese class
 
 class install_database{
 	

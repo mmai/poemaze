@@ -39,7 +39,7 @@ class coming_soon_front_end{
 				//if user not logged in, page will redirect user to coming soon page
 				if ( (!is_user_logged_in() && !$this->is_in_except()) || (isset($_GET['special_variable_for_live_previev']) && $_GET['special_variable_for_live_previev']=='sdfg564sfdh645fds4ghs515vsr5g48strh846sd6g41513btsd') )
 				{				
-					//get path of our coming soon plugin display page and then redirecting
+					//get path of our Coming Soon display page and then redirecting
 					$this->generete_front_end_html();
 					exit();
 				}
@@ -106,7 +106,7 @@ class coming_soon_front_end{
 	}
 
 
-	/*################################################################################### Except Pages ###########################################################################*/	
+	/*################################################################################### Except Pages Part ###########################################################################*/	
 	private function is_in_except(){
 		$ips=json_decode(stripslashes($this->params['coming_soon_page_showed_ips']), true);
 		if(!$ips)
@@ -150,7 +150,7 @@ class coming_soon_front_end{
 	}
 
 	
-	/*################################################################################### Content ###########################################################################*/
+	/*################################################################################### Content Part ###########################################################################*/
 	private function content_html(){
 		// open content conteiner
 		echo '<div id="main_inform_div"><span class="aligment"><div class="information"><center>';
@@ -171,7 +171,7 @@ class coming_soon_front_end{
 	}
 	private function content_javascript(){
 	}
-	/*################################################################################### LOGO ###########################################################################*/
+	/*################################################################################### LOGO Part ###########################################################################*/
 	private function create_logo_html(){
 		if($this->params['coming_soon_page_logo_enable']){
 		?><div id="logo"  >
@@ -186,7 +186,7 @@ class coming_soon_front_end{
 	}
 	private function generete_logo_javascript(){		
 	}
-	/*################################################################################### Title ###########################################################################*/
+	/*################################################################################### Title Part ###########################################################################*/
 	private function create_title_html(){
 		if($this->params['coming_soon_page_title_enable']){
 		?>
@@ -204,7 +204,7 @@ class coming_soon_front_end{
 	private function generete_title_javascript(){		
 			
 	}
-	/*################################################################################### Message ###########################################################################*/
+	/*################################################################################### Message Part ###########################################################################*/
 	private function create_message_html(){
 		if($this->params['coming_soon_page_message_enable']){
 		?>
@@ -226,7 +226,7 @@ class coming_soon_front_end{
 	
 	
 
-	/*################################################################################### Socialis ###########################################################################*/
+	/*################################################################################### Socialism Part ###########################################################################*/
 	private function create_socialis_html(){
 		if($this->params['coming_soon_page_socialis_enable']){
 		?>
