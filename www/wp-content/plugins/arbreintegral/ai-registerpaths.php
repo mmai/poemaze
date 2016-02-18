@@ -47,10 +47,10 @@ function registerVisitorForPath($pathId, $visitorId){
       'pathid' => $pathId,
       'visitor' => $visitorId,
       'date' => date('Y-m-d h:i:s')
-    ), array( '%d', '%s', '%s'));
+     ), array( '%d', '%s', '%s'));
     $id = $wpdb->insert_id;
   } else {
-    $id = $res['id'];
+    $id = $res->id;
   }
   return $id;
 }
