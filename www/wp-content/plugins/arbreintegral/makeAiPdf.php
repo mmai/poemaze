@@ -231,12 +231,12 @@ function createContent($id, $path, $visitorId){
     $pdf->AddPage();
     $pdf->SetXY(14, 100);
     $pdf->SetFont('sanchez', '', 6);
-    $pdf->MultiCell(80, 0, "Le nombre de parcours possibles dans l’Arbre Intégral s’élève à
-13609281768511352141614530021521537575061761777958692042875.
-Le parcours constituant ce livre correspond à la ".$edition_id."e possibilité.
-Il a été achevé le ".date('d/m/Y')." par le ".$visitorId."e lecteur de l’ensemble du poème.
-
-Projet soutenu dans le cadre de La Fabrique #2015 - Région Aquitaine", 0, 'C');
+    $pdf->WriteHTMLCell(80, 0, 14, 100, "Le nombre de parcours possibles dans l’Arbre Intégral s’élève à
+13609281768511352141614530021521537575061761777958692042875.<br>
+Le parcours constituant ce livre correspond à la ".$edition_id."<sup>e</sup> possibilité.<br>
+Il a été achevé le ".date('d/m/Y')." par le ".$visitorId."<sup>e</sup> lecteur de l’ensemble du poème.
+<br><br>
+Projet soutenu dans le cadre de La Fabrique #2015 - Région Aquitaine", 0, 0, false, true, 'C');
     $pdf->ImageSVG($aiBooksSrc."region_aquitaine.svg", 15, 120, '', 6, '', '', 1, false);
     $pdf->ImageSVG($aiBooksSrc."cultures_connectees.svg", 47, 120, '', 6, '', '', 1, false);
     $pdf->ImageSVG($aiBooksSrc."poeme_volume.svg", 63, 120, '', 6, '', '', 1, false);
