@@ -8,11 +8,9 @@ $edition_id = "?";
 class AIPDF extends TCPDF {
 	public function Header() {}
 	public function Footer() {
-		// $this->SetFont('sanchez', '', 6);
 		$this->SetY(-10);
 		$this->SetX($this->isOdd ? 5 : 100 - $this->getStringWidth($this->currentLeafPath));
 		$this->Cell(0, 10, $this->currentLeafPath, 0, false, 'L', 0, '', 0, false, 'T', 'M');
-		// $this->Cell(0, 10, $this->getAliasNumPage(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
 	}
 }
 
@@ -129,8 +127,7 @@ function createContent($id, $path, $visitorId){
       //Display main text
       // $pdf->SetY(40);
       $pdf->SetFont('sanchez', '', 11);
-      // $html = '<div style="line-height: 0.7cm;">'.str_replace('-', ' - ', $content).'</div>';
-      $html = '<div style="line-height: 0.7cm;">'.$content.'</div>';
+      $html = '<div style="line-height: 0.7cm;">'.str_replace('-', ' - ', $content).'</div>';
       $pdf->WriteHTMLCell(60, 15, 22, 35, $html,  0,  0,  false,  true, 'C', true);
 
       //Set infos for footer

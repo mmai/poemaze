@@ -24,7 +24,6 @@ import {cleanSvgCover} from './views/pdf';
 
 import {env} from 'settings'
 
-const basetime = Date.now();
 const xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = () => {
   if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {

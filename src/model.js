@@ -1,7 +1,5 @@
 import {Observable} from 'rx';
 
-let debugCount = 0;
-
 export function makeModel(AI) {
   return function model(initialState$, editionIdFromPdfAPI$, actions){
     const mod$ = modifications(actions)

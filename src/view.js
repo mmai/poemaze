@@ -6,8 +6,6 @@ import {renderPoem}      from './views/poem';
 import {renderEnd}       from './views/end'
 import {renderPdf}       from './views/pdf';
 
-const basetime = Date.now();
-
 // export default function view(state, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
 export default function view(dashboardView, state){
   let views = [];

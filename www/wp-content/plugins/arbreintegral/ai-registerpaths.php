@@ -72,8 +72,7 @@ function getVisitorId(){
  * @return boolean 
  */
 function isPath($path){
-  // return (sizeof(explode('-', $path)) == 126);
-  return true;
+  return (sizeof(explode('-', $path)) == 126);
 }
 
 add_action( 'rest_api_init', function () {

@@ -1,0 +1,3 @@
+www/* linguist-vendored
+www/wp-content/plugins/arbre-integral/*.php linguist-vendored=false
+www/wp-content/themes/arbre-integral/* linguist-vendored=false
