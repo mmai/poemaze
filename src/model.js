@@ -59,11 +59,16 @@ export function makeModel(AI) {
       }).share()
 
     const readPoemMod$ = actions.readPoem$.map(click => {
-        return function(state){
+      return function(state){
         const currentLeafId = click.pathname || "0"
+        let history = state.history
+
+        if (!canVisit(currentLeafId, click.from, state)) {
+          return state;
+        }    
+
         const leaf = AI.getLeaf(currentLeafId);
 
-        let history = state.history
         let fromId = state.leafInfos.fromId;
 
         if (undefined === state.history.find(leafLink => leafLink.pathname === currentLeafId)){
@@ -107,6 +112,14 @@ export function makeModel(AI) {
     // return readPoemMod$.merge([dashboardOpenMod$, dashboardCloseMod$, makePdfMod$]) // do not work, why ?
     return Observable.merge([ readPoemMod$, makePdfMod$, dashboardOpenMod$, dashboardCloseMod$, resetMod$ ])
     .share()
+  }
+
+  function canVisit(id, from, state){
+    //TODO check if 'id' belongs to 'from' neighbors
+    return ["0.0", "0.1"].indexOf(id) !== -1 
+        || undefined !== state.history.find(leafLink =>
+          leafLink.pathname === id || leafLink.pathname === from
+        )
   }
 
 }

@@ -5,7 +5,7 @@ import {Observable} from 'rx';
 import {run} from '@cycle/core';
 import storageDriver from '@cycle/storage';
 import {makeDOMDriver} from '@cycle/dom';
-// import {makeHistoryDriver} from '@cycle/history';
+import {makeHistoryDriver} from '@cycle/history';
 import {makeHTTPDriver} from '@cycle/http';
 import isolate from '@cycle/isolate';
 
@@ -81,14 +81,14 @@ function startAI(json) {
     color_skeleton: "#DFDFDF",
   })
 
-  function main({DOM, HTTP, storage}) {
+function main({DOM, History, HTTP, storage}) {
     const editionIdFromPdfAPI$ = HTTP.mergeAll().map(res => res.body).share()
     const initialState$ = deserialize(
       storage.local.getItem('arbreintegralState'),
       AI.makeInitialState()
     ).take(1)
 
-    const actions = intent(DOM)
+    const actions = intent(DOM, History)
     const state$ = model(initialState$, editionIdFromPdfAPI$, actions)
 
     //XXX side effect to avoid all the cycle.js driver boilerplate for a single variable 
@@ -197,17 +197,32 @@ function startAI(json) {
           key: 'arbreintegralState', value: state
         }));
 
+      const redirect$ = state$.map(s => {
+          let url = `#${s.currentLeafId}`
+          if (undefined !== s.leafInfos.fromId){
+            url += `-${s.leafInfos.fromId}`
+          }
+          return url
+        })
+      .debounce(200)
+      .withLatestFrom(History,
+        (stateUrl, history) => (stateUrl !== history.hash) ? stateUrl : null
+      )
+      .filter(url => null !== url)
+
+    const browserHistory$ = actions.gotoPoem$.merge(redirect$)
+
     return {
       DOM: view$,
       HTTP: apiCall$,
-      // History: history$,
+      History: browserHistory$,
       storage: storage$
     }
   }
 
   let drivers = {
     DOM: makeDOMDriver('#ai-page'),
-    // History: makeHistoryDriver(),
+    History: makeHistoryDriver(),
     HTTP: makeHTTPDriver(),
     storage: storageDriver,
   };

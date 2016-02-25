@@ -1,6 +1,6 @@
 import {filterLinks } from '@cycle/history';
 
-export default function intent(DOM){
+export default function intent(DOM, History){
     //TODO optimiser en remplaçant les filters par un GroupBy (http://reactivex.io/documentation/operators/groupby.html)
   const navigationClick$ = DOM
   .select('a')
@@ -27,9 +27,24 @@ export default function intent(DOM){
   const dashboardOpen$   = navigationClick$.filter(click => click.pathname === "dashboard")
   const dashboardClose$  = navigationClick$.filter(click => click.pathname === "main")
   // const dashboardClose$  = navigationClick$.do(()=>{console.log('[dashboarClose] before filter')}).filter(click => click.pathname === "main")
-  const readPoem$        = navigationClick$
+  const gotoPoem$        = navigationClick$
   .filter(click => ["reset", "pdf", "dashboard", "main"].indexOf(click.pathname) === -1)
   .merge(svgClick$)
+  .map(click => {
+      let url = `#${click.pathname}`
+      if (undefined !== click.from){
+        url += `-${click.from}`
+      }
+      return url
+    })
+  .share()
+
+  const readPoem$ = History
+  .filter(h => "" !== h.hash)
+  .map(h =>  {
+      let [pathname, from] = h.hash.slice(1).split('-');
+      return { pathname: pathname, from: from };
+    })
   .share()
 
   return {
@@ -37,6 +52,7 @@ export default function intent(DOM){
     makePdf$,
     dashboardOpen$,
     dashboardClose$,
+    gotoPoem$,
     readPoem$
   }
 }
