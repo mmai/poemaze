@@ -1,4 +1,5 @@
-import {Observable} from 'rx';
+import {Observable} from 'rx'
+import Immutable from 'immutable'
 
 export function makeModel(AI) {
   return function model(initialState$, editionIdFromPdfAPI$, actions){
@@ -58,13 +59,15 @@ export function makeModel(AI) {
         };
       }).share()
 
-    const readPoemMod$ = actions.readPoem$.map(click => {
+    const readPoemMod$ = actions.readPoem$.map(poem => {
       return function(state){
-        const currentLeafId = click.pathname || "0"
+        const currentLeafId = poem.pathname || "0"
         let history = state.history
 
-        if (!canVisit(currentLeafId, click.from, state)) {
-          return state;
+        if (!canVisit(currentLeafId, poem.from, state)) {
+          return Immutable.fromJS(state)
+          .set('needRedirect', true)
+          .toJS()
         }    
 
         const leaf = AI.getLeaf(currentLeafId);
@@ -72,7 +75,7 @@ export function makeModel(AI) {
         let fromId = state.leafInfos.fromId;
 
         if (undefined === state.history.find(leafLink => leafLink.pathname === currentLeafId)){
-          fromId = click.from
+          fromId = poem.from
           history.push({ pathname: currentLeafId, from: fromId })
         }
 
@@ -93,11 +96,12 @@ export function makeModel(AI) {
         } 
 
         return {
-          pathname: click.pathname,
+          pathname: poem.pathname,
           currentLeafId,
           history,
           isUpside,
           needRotation: (isUpside != state.isUpside),
+          needRedirect: false,
           showDashboard: false,
           editionId: state.editionId,
           leafInfos: {

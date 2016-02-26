@@ -197,18 +197,14 @@ function main({DOM, History, HTTP, storage}) {
           key: 'arbreintegralState', value: state
         }));
 
-      const redirect$ = state$.map(s => {
-          let url = `#${s.currentLeafId}`
-          if (undefined !== s.leafInfos.fromId){
-            url += `-${s.leafInfos.fromId}`
-          }
-          return url
-        })
-      .debounce(200)
-      .withLatestFrom(History,
-        (stateUrl, history) => (stateUrl !== history.hash) ? stateUrl : null
-      )
-      .filter(url => null !== url)
+    const redirect$ = state$.filter(s => s.needRedirect)
+    .map(s => {
+        let url = `#${s.currentLeafId}`
+        if (undefined !== s.leafInfos.fromId){
+          url += `-${s.leafInfos.fromId}`
+        }
+        return url
+      })
 
     const browserHistory$ = actions.gotoPoem$.merge(redirect$)
 
