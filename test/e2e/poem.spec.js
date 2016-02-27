@@ -12,7 +12,7 @@ casper.test.begin('Display poem after navigating wordpress pages', 1,  function 
     .then(function() {
         this.click('a.ai-seed-up');
       })
-    .thenOpen(pagesUrl + '/forums')
+    .thenOpen(pagesUrl + '/forums/index.html')
     .waitForSelector('#maincontainer', function(){
         this.click('a.dashboardLink');
       })

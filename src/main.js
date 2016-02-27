@@ -198,13 +198,14 @@ function main({DOM, History, HTTP, storage}) {
         }));
 
     const redirect$ = state$.filter(s => s.needRedirect)
-    .map(s => {
-        let url = `#${s.currentLeafId}`
-        if (undefined !== s.leafInfos.fromId){
-          url += `-${s.leafInfos.fromId}`
-        }
-        return url
-      })
+    .map(s => `#${s.currentLeafId}`)
+    // .map(s => {
+    //     let url = `#${s.currentLeafId}`
+    //     if (undefined !== s.leafInfos.fromId){
+    //       url += `-${s.leafInfos.fromId}`
+    //     }
+    //     return url
+    //   })
 
     const browserHistory$ = actions.gotoPoem$.merge(redirect$)
 
@@ -218,7 +219,9 @@ function main({DOM, History, HTTP, storage}) {
 
   let drivers = {
     DOM: makeDOMDriver('#ai-page'),
-    History: makeHistoryDriver(),
+    History: makeHistoryDriver({
+        // basename: '/poeme'
+      }),
     HTTP: makeHTTPDriver(),
     storage: storageDriver,
   };

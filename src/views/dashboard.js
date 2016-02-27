@@ -10,7 +10,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
         <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
           {aiLogoSvgVtree}
         </a>
-        <a href="#reset">Recommencer</a><br/>
+        <a href="reset">Recommencer</a><br/>
         {aiSvgVtree}
 
         {progressionVtree}
@@ -20,7 +20,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
           <li> Historique
           {h('ul#history', 
               history.map(url => h("li", [
-                    h(`a.${isUp(url)?'ai-word--up':'ai-word--down'}`, {href: `#${url.id}`}, `${url.word} (${url.id})`)
+                    h(`a.${isUp(url)?'ai-word--up':'ai-word--down'}`, {href: `${url.id}`}, `${url.word} (${url.id})`)
                   ])
               )
             )}

@@ -27,9 +27,11 @@ module.exports = {
       })
   ],
   devServer: {
+    //XXX webpack-dev-server do not understand dots in urls, thus e2e tests on urls with '0.0.1' will fail
     // host: "arbre-integral.net",
     host: "localhost",
     port: 1234,
+    historyApiFallback: true,
     proxy: {
       '/wp-json/*': {
                 target: 'http://arbre-integral.net',

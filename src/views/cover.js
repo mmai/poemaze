@@ -17,8 +17,8 @@ export function renderRoot(leafInfos){
   let leftchild = leafInfos.neighbors.leftChild;
   let rightchild = leafInfos.neighbors.rightChild;
 
-  let linkUp = "#" + leftchild.leaf.id + "-" + leftchild.fromId;
-  let linkDown = "#" + rightchild.leaf.id + "-" + rightchild.fromId;
+  let linkUp = leftchild.leaf.id + "?trace=" + leftchild.fromId;
+  let linkDown = rightchild.leaf.id + "?trace=" + rightchild.fromId;
   return (
       <div className="ai-root ai-text">
         <div className="circle">

@@ -1,6 +1,8 @@
 import {Observable} from 'rx'
 import Immutable from 'immutable'
 
+const lastLeafId = "0.1.1.1.1.1.1"
+
 export function makeModel(AI) {
   return function model(initialState$, editionIdFromPdfAPI$, actions){
     const mod$ = modifications(actions)
@@ -92,7 +94,7 @@ export function makeModel(AI) {
         const nbVisited = Object.keys(exclude).length;
         //Last leaf only available when all tree has been seen
         if(nbVisited < 125) {
-          exclude["0.1.1.1.1.1.1"] = "0.1.1.1.1.1.1";
+          exclude[lastLeafId] = lastLeafId
         } 
 
         return {
@@ -121,6 +123,7 @@ export function makeModel(AI) {
   function canVisit(id, from, state){
     //TODO check if 'id' belongs to 'from' neighbors
     return ["0.0", "0.1"].indexOf(id) !== -1 
+        || lastLeafId === from
         || undefined !== state.history.find(leafLink =>
           leafLink.pathname === id || leafLink.pathname === from
         )

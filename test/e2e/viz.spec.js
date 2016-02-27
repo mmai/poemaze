@@ -5,7 +5,7 @@ var settings = {
 }
 
 casper.test.begin('Display mini viz on wordpress pages', 2, function suite(test) {
-    casper.start(pagesUrl + '/forums', function(){
+    casper.start(pagesUrl + '/forums/index.html', function(){
         test.assertExists('#ai-page', 'html container is found')
       })
     .waitForSelector('#maincontainer', function(){
@@ -34,7 +34,7 @@ casper.test.begin('Display mini viz on poem pages', 3,  function suite(test) {
 })
 
 casper.test.begin('Display main viz on wordpress pages', 3, function suite(test) {
-    casper.thenOpen(pagesUrl + '/forums', function(){
+    casper.thenOpen(pagesUrl + '/forums/index.html', function(){
         test.assertExists('#ai-page', 'html container is found')
       })
     .waitForSelector('#maincontainer', function(){
@@ -57,7 +57,7 @@ casper.test.begin('Display main viz on wordpress pages', 3, function suite(test)
   })
 
 casper.test.begin('Keep poem navigation history on wordpress pages', 8,  function suite(test) {
-    casper.thenOpen(pagesUrl + '/forums')
+    casper.thenOpen(pagesUrl + '/forums/index.html')
     // .waitForSelector('a.dashboardLink')
     .waitForSelector('#maincontainer')
     .then(function() {

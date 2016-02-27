@@ -7,9 +7,14 @@ export default function intent(DOM, History){
   .events('click')
   .filter(filterLinks)
   .map(event =>  {
-      let [pathname, from] = event.currentTarget.hash.slice(1).split('-');
-      return { pathname: pathname, from: from };
+      // let [pathname, from] = event.currentTarget.hash.slice(1).split('-');
+      // .slice(event.currentTarget.search.indexOf('=') + 1)
+      const pathname = event.currentTarget.pathname.slice(event.currentTarget.pathname.lastIndexOf("/") + 1)
+      const from = getParameterByName("trace", event.currentTarget.search)
+      const display = event.currentTarget.hash.slice(1) 
+      return { pathname, from, display }
     })
+  .do(n => {console.log(n)})
   .share()
 
   // Clicks on the SVG nodes
@@ -22,29 +27,31 @@ export default function intent(DOM, History){
     })
   .share()
 
-  const reset$           = navigationClick$.filter(click => click.pathname === "reset")
+  const reset$           = navigationClick$.filter(click => click.pathname === "reset").do(()=>{console.log('reset')})
   const makePdf$         = navigationClick$.filter(click => click.pathname === "pdf")
-  const dashboardOpen$   = navigationClick$.filter(click => click.pathname === "dashboard")
-  const dashboardClose$  = navigationClick$.filter(click => click.pathname === "main")
-  // const dashboardClose$  = navigationClick$.do(()=>{console.log('[dashboarClose] before filter')}).filter(click => click.pathname === "main")
-  const gotoPoem$        = navigationClick$
-  .filter(click => ["reset", "pdf", "dashboard", "main"].indexOf(click.pathname) === -1)
+  const dashboardOpen$   = navigationClick$.filter(click => click.display === "dashboard")
+  const dashboardClose$  = navigationClick$.filter(click => click.display === "main")
+  const gotoPoem$        = navigationClick$.filter(click => (
+      ["reset", "pdf"].indexOf(click.pathname) === -1 && 
+      ["dashboard", "main"].indexOf(click.display) === -1 
+    ))
   .merge(svgClick$)
   .map(click => {
-      let url = `#${click.pathname}`
+      let url = `/${click.pathname}`
       if (undefined !== click.from){
-        url += `-${click.from}`
+        url += `?trace=${click.from}`
       }
       return url
     })
   .share()
 
   const readPoem$ = History
-  .filter(h => "" !== h.hash)
-  .map(h =>  {
-      let [pathname, from] = h.hash.slice(1).split('-');
-      return { pathname: pathname, from: from };
-    })
+  .map(h => ({ 
+        pathname: h.pathname.slice(1),
+        from: h.query.trace,
+        display: h.hash.slice(1) 
+      }))
+  .filter(h => undefined !== h.from && "" !== h.from && "" === h.display)
   .share()
 
   return {
@@ -55,4 +62,14 @@ export default function intent(DOM, History){
     gotoPoem$,
     readPoem$
   }
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }

@@ -10,10 +10,10 @@ export function renderEnd(leafInfos){
           <span class="ai-last">{leafInfos.leaf.content}</span>
           </div>
         </div>
-        <div><a href="#pdf">Conservez le livre de votre parcours</a></div>
+        <div><a href="pdf">Conservez le livre de votre parcours</a></div>
 
         <div>
-          <a href="#reset">Recommencer</a><br/>
+          <a href="reset">Recommencer</a><br/>
         </div>
 
       </div>
