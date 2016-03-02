@@ -10,14 +10,15 @@ const basetime = Date.now();
  * @return {function} - AiSvg Cycle.js component
  */
 export function makeAiSvgComponent(AI, {
-    origin, width, height,
+    origin = {x:0, y:0},
+    displayNeighbors = true,
+    fixedSize = "none",
+    width, height,
     leafRadius, circleRadius,
     color_default, color_background,
     color_up, color_down,
     color_brothers,
-    color_skeleton,
-    displayNeighbors = true,
-    fixedSize = "none"
+    color_skeleton
   }){
 
   let debugName = 'pdf'

@@ -21,6 +21,7 @@ import {renderDashboard} from './views/dashboard'
 import {cleanSvgCover} from './views/pdf';
 
 import {env} from 'settings'
+import {svgStyle, pdfStyle, logoStyle} from './vizStyles'
 
 const xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = () => {
@@ -34,52 +35,11 @@ xmlhttp.send();
 function startAI(json) {
   const AI = makeAI(json);
   const model = makeModel(AI);
-  const AiLogoSvgComponent = makeAiSvgComponent(AI, {
-      width: 120,
-      height: 120,
-      leafRadius: 1,
-      circleRadius: 8,
-      color_background: "black",
-      origin: {x:0, y:0},
-      color_up: "rgb(72,122,189)",
-      color_down: "rgb(128,120,48)",
-      color_brothers: "#BBBBBB",
-      color_default: "black",
-      color_skeleton: "#DFDFDF",
-      displayNeighbors:false
-    })
+  const AiSvgComponent = makeAiSvgComponent(AI, svgStyle)
+  const AiPdfSvgComponent = makeAiSvgComponent(AI, pdfStyle)
+  const AiLogoSvgComponent = makeAiSvgComponent(AI, logoStyle)
 
-  const AiPdfSvgComponent = makeAiSvgComponent(AI, {
-      fixedSize: '90mm',
-      width: 480,
-      height: 480,
-      leafRadius: 2,
-      circleRadius: 30,
-      color_background: "whitesmoke",
-      origin: {x:0, y:0},
-      color_up: "rgb(72,122,189)",
-      color_down: "rgb(128,120,48)",
-      color_brothers: "#BBBBBB",
-      color_default: "black",
-      color_skeleton: "#DFDFDF",
-      displayNeighbors:false
-    })
-
-  const AiSvgComponent = makeAiSvgComponent(AI, {
-    width: 480,
-    height: 480,
-    leafRadius: 3,
-    circleRadius: 30,
-    color_background: "whitesmoke",
-    origin: {x:0, y:0},
-    color_up: "rgb(72,122,189)",
-    color_down: "rgb(128,120,48)",
-    color_brothers: "#BBBBBB",
-    color_default: "black",
-    color_skeleton: "#DFDFDF",
-  })
-
-function main({DOM, History, HTTP, storage}) {
+  function main({DOM, History, HTTP, storage}) {
     const editionIdFromPdfAPI$ = HTTP.mergeAll().map(res => res.body).share()
     const initialState$ = deserialize(
       storage.local.getItem('arbreintegralState'),
@@ -195,15 +155,9 @@ function main({DOM, History, HTTP, storage}) {
           key: 'arbreintegralState', value: state
         }));
 
-    const redirect$ = state$.filter(s => s.needRedirect)
+    const redirect$ = state$
+    .filter(s => s.needRedirect)
     .map(s => `#${s.currentLeafId}`)
-    // .map(s => {
-    //     let url = `#${s.currentLeafId}`
-    //     if (undefined !== s.leafInfos.fromId){
-    //       url += `-${s.leafInfos.fromId}`
-    //     }
-    //     return url
-    //   })
 
     const browserHistory$ = actions.gotoPoem$.merge(redirect$)
 

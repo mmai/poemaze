@@ -1,5 +1,4 @@
 import {Observable} from 'rx'
-import Immutable from 'immutable'
 
 const lastLeafId = "0.1.1.1.1.1.1"
 
@@ -24,42 +23,24 @@ export function makeModel(AI) {
       () => AI.makeInitialState.bind(AI)
     ).share()
 
-    const makePdfMod$ = actions.makePdf$.map(click => function(state){
-        return {
+    const makePdfMod$ = actions.makePdf$.map(click => (
+        state => ({ ...state,
           pathname: click.pathname,
-          currentLeafId: state.currentLeafId,
-          history: state.history,
-          isUpside: state.isUpside,
-          showDashboard: state.showDashboard,
           editionId: "pending",
-          leafInfos: state.leafInfos
-        };
-      }).share()
+        })
+    )).share()
 
-    const dashboardOpenMod$ = actions.dashboardOpen$
-    .map(click => function(state){
-        return {
-          pathname: state.pathname,
-          currentLeafId: state.currentLeafId,
-          history: state.history,
-          isUpside: state.isUpside,
-          showDashboard: true,
-          editionId: state.editionId,
-          leafInfos: state.leafInfos
-        };
-      }).share()
+    const dashboardOpenMod$ = actions.dashboardOpen$.map(click => (
+        state => ({ ...state,
+            showDashboard: true
+          })
+      )).share()
 
-    const dashboardCloseMod$ = actions.dashboardClose$.map(click => function(state){
-        return {
-          pathname: state.pathname,
-          currentLeafId: state.currentLeafId,
-          history: state.history,
-          isUpside: state.isUpside,
+    const dashboardCloseMod$ = actions.dashboardClose$.map(click => (
+        state => ({ ...state,
           showDashboard: false,
-          editionId: state.editionId,
-          leafInfos: state.leafInfos
-        };
-      }).share()
+        })
+      )).share()
 
     const readPoemMod$ = actions.readPoem$.map(poem => {
       return function(state){
@@ -67,9 +48,7 @@ export function makeModel(AI) {
         let history = state.history
 
         if (!canVisit(currentLeafId, poem.from, state)) {
-          return Immutable.fromJS(state)
-          .set('needRedirect', true)
-          .toJS()
+          return {...state, needRedirect: true}
         }    
 
         const leaf = AI.getLeaf(currentLeafId);
