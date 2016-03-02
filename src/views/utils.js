@@ -11,5 +11,5 @@ export function renderNeighorLink(id, neighbor){
 
 export function isUp (leaf){
   if (!leaf.id) return true;
-  return leaf.id.split('.')[1] === '0';
+  return leaf.id.split('')[1] === '0';
 }

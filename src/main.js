@@ -62,7 +62,7 @@ function startAI(json) {
       prop$: leafLinks$.map(
         leafLinks => leafLinks.map(
           url => {
-            let elems = url.pathname.split('.');
+            let elems = url.pathname.split('');
             return (elems.length === 1) ? "" : (elems[1] === "0" )
           }
         )
@@ -189,9 +189,9 @@ function startAI(json) {
  */
 function getPathIndex(path){
   //Translate path to its binary representation:
-  //replace initial '0' by '1' and remove dots
-  //ex : "0.1.0.1" => "1101"
-  const binaryPath = "1" + path.replace(/\./g, '').slice(1);
+  //replace initial '0' by '1'
+  //ex : "0101" => "1101"
+  const binaryPath = "1" + path.slice(1);
   //Convert to decimal base integer
   return parseInt(binaryPath, 2)
 }

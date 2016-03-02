@@ -2,9 +2,9 @@ export function makeAI(aiData){
   return {
     data: aiData,
     getLeaf: function getLeaf(leafId){
-      let leaf = false;
+      let leaf = false
       if (aiData.hasOwnProperty(leafId)){
-        leaf = aiData[leafId];
+        leaf = {...(aiData[leafId]), id:leafId};
       }
       return leaf;
     },
@@ -17,7 +17,7 @@ export function makeAI(aiData){
 
   //XXX lié à la syntaxe des feuilles pour performance. Utiliser getTypeNormalized pour la version indépendante de la syntaxe 
     getType: function getType(leaf){
-      let elems = leaf.id.split('.');
+      let elems = leaf.id.split('');
       if (elems.length === 1) return 'ROOT';
       return (elems[1] === "0") ? "UP" : "DOWN"
     },
@@ -157,15 +157,19 @@ export function makeAI(aiData){
       return this.getLeaf(id);
     },
     getParent: function getParent(leaf){
-      return this.getLeaf(leaf.parent);
+      let parentId = leaf.id.slice(0, -1)
+      if (parentId === ""){
+        parentId = "0"
+      }
+      return this.getLeaf(parentId)
     },
 
 
     //XXX lié à la nomenclature choisie pour les id des fragments
     getCoords(leaf){
       if (leaf === false) throw new Error("Can't get coordinates of a 'false' leaf");
-      //Nomenclature : 0.0.1.1.0
-      let path = leaf.id.split('.');
+      //Nomenclature : 00110
+      let path = leaf.id.split('');
       if (path == 0) return {circ:0, pos:1};
 
       let circle = path.length - 1;  
@@ -194,9 +198,9 @@ export function makeAI(aiData){
       while (level > 0){
         let half = Math.pow(2, level - 1);
         if (cpos <= half) {
-          id += "." + 0;
+          id += "0";
         } else {
-          id += "." + 1;
+          id += "1";
           cpos -= half;
         }
         level -= 1;

@@ -24,7 +24,7 @@ export function renderPoem(isUpside, leafInfos){
 
 function renderLeafReversed(leafInfos){
   let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
-  let circleLevel = leafInfos.leaf.id.split('.').length - 1;
+  let circleLevel = leafInfos.leaf.id.split('').length - 1;
   return (
       <div className={"ai-text circle-" + circleLevel + " " + classUp}>
         <div>
@@ -53,7 +53,7 @@ function renderLeafReversed(leafInfos){
 
 function renderLeafUpside(leafInfos){
   let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
-  let circleLevel = leafInfos.leaf.id.split('.').length - 1;
+  let circleLevel = leafInfos.leaf.id.split('').length - 1;
   let vdom = (
       <div className={"ai-text circle-" + circleLevel + " " + classUp}>
         <div>

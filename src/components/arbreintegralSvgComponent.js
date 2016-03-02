@@ -50,7 +50,7 @@ export function makeAiSvgComponent(AI, {
 
         const newLeaf = leafInfos.leaf;
         if (leafInfos.isNewLeaf) {
-          const fromLeaf = AI.data[leafInfos.fromId];
+          const fromLeaf = AI.getLeaf(leafInfos.fromId);
           pathsVtree.push( makeJoinLine(fromLeaf, newLeaf))
         }
 
@@ -88,7 +88,7 @@ export function makeAiSvgComponent(AI, {
 
   function makePathsFromHistory(history){
     return history.slice(0, -1).map(({pathname, from}) =>
-      makeJoinLine(AI.data[from], AI.data[pathname])
+      makeJoinLine(AI.getLeaf(from), AI.getLeaf(pathname))
     )
   }
 

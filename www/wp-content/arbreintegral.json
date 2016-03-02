@@ -1,1145 +1,637 @@
 {
-    "0.1.1.1.1.1.1": {
-        "id": "0.1.1.1.1.1.1",
+    "0111111": {
         "name": "Rhizomique \/ Eschatologique \/ Un",
         "word": "out",
-        "content": "fatal-error-out-of-memory.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.1.1.1.1"
+        "content": "fatal-error-out-of-memory."
     },
-    "0.1.1.1.1.1.0": {
-        "id": "0.1.1.1.1.1.0",
+    "0111110": {
         "name": "Rhizomique \/ Politique \/ Trente-deux",
         "word": "eschatologique",
-        "content": "Rhizomique \/eschatologique",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.1.1.1.1"
+        "content": "Rhizomique \/eschatologique"
     },
-    "0.1.1.1.1.0.1": {
-        "id": "0.1.1.1.1.0.1",
+    "0111101": {
         "name": "Rhizomique \/ Politique \/ Trente-et-un",
         "word": "111101",
-        "content": "111101",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.1.1.1.0"
+        "content": "111101"
     },
-    "0.1.1.1.1.0.0": {
-        "id": "0.1.1.1.1.0.0",
+    "0111100": {
         "name": "Rhizomique \/ Politique \/ Trente",
         "word": "111100",
-        "content": "111100",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.1.1.1.0"
+        "content": "111100"
     },
-    "0.1.1.1.0.1.1": {
-        "id": "0.1.1.1.0.1.1",
+    "0111011": {
         "name": "Rhizomique \/ Politique \/ Vingt-neuf",
         "word": "111011",
-        "content": "111011",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.1.1.0.1"
+        "content": "111011"
     },
-    "0.1.1.1.0.1.0": {
-        "id": "0.1.1.1.0.1.0",
+    "0111010": {
         "name": "Rhizomique \/ Politique \/ Vingt-huit",
         "word": "111010",
-        "content": "111010",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.1.1.0.1"
+        "content": "111010"
     },
-    "0.1.1.1.0.0.1": {
-        "id": "0.1.1.1.0.0.1",
+    "0111001": {
         "name": "Rhizomique \/ Politique \/ Vingt-sept",
         "word": "0111001",
-        "content": "0111001",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.1.1.0.0"
+        "content": "0111001"
     },
-    "0.1.1.1.0.0.0": {
-        "id": "0.1.1.1.0.0.0",
+    "0111000": {
         "name": "Rhizomique \/ Politique \/ Vingt-six",
         "word": "donn\u00e9e",
-        "content": "disparition-du-texte-au-profit-de-la donn\u00e9e.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.1.1.0.0"
+        "content": "disparition-du-texte-au-profit-de-la donn\u00e9e."
     },
-    "0.1.1.0.1.1.1": {
-        "id": "0.1.1.0.1.1.1",
+    "0110111": {
         "name": "Rhizomique \/ Politique \/ Vingt-cinq",
         "word": "sid\u00e9ral",
-        "content": "le-sid\u00e9ral-virtuel-te-plait-tu-es-bien.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.1.0.1.1"
+        "content": "le-sid\u00e9ral-virtuel-te-plait-tu-es-bien."
     },
-    "0.1.1.0.1.1.0": {
-        "id": "0.1.1.0.1.1.0",
+    "0110110": {
         "name": "Rhizomique \/ Politique \/ Vingt-quatre",
         "word": "n\u00e9matodes",
-        "content": "ni-n\u00e9matodes-ni-singularit\u00e9-ni-entropie-ne-pourraient-te-convaincre-de-reprendre-ton-corps.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.1.0.1.1"
+        "content": "ni-n\u00e9matodes-ni-singularit\u00e9-ni-entropie-ne-pourraient-te-convaincre-de-reprendre-ton-corps."
     },
-    "0.1.1.0.1.0.1": {
-        "id": "0.1.1.0.1.0.1",
+    "0110101": {
         "name": "Rhizomique \/ Politique \/ Vingt-trois",
         "word": "oubli",
-        "content": "tous-tes-hiers-d\u00e9j\u00e0-tu-les-confies-aux-\u00e9lectriques-convois-de-l-immediat-premier-symptome-de-l-oubli.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.1.0.1.0"
+        "content": "tous-tes-hiers-d\u00e9j\u00e0-tu-les-confies-aux-\u00e9lectriques-convois-de-l-immediat-premier-symptome-de-l-oubli."
     },
-    "0.1.1.0.1.0.0": {
-        "id": "0.1.1.0.1.0.0",
+    "0110100": {
         "name": "Rhizomique \/ Politique \/ Vingt-deux",
         "word": "neuromantique",
-        "content": "devenir-vegetal-devenir-machine-l\u2019hesitation-neuromantique-transhume-dans-un-cable-ethernet.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.1.0.1.0"
+        "content": "devenir-vegetal-devenir-machine-l\u2019hesitation-neuromantique-transhume-dans-un-cable-ethernet."
     },
-    "0.1.1.0.0.1.1": {
-        "id": "0.1.1.0.0.1.1",
+    "0110011": {
         "name": "Rhizomique \/ Politique \/ Vingt-et-un",
         "word": "samarres",
-        "content": "et-masque-\u00e0-jet-de-samarres-l-app\u00e9tit-co\u00eftal-du-dendrite-pour-l\u2019octet.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.1.0.0.1"
+        "content": "et-masque-\u00e0-jet-de-samarres-l-app\u00e9tit-co\u00eftal-du-dendrite-pour-l\u2019octet."
     },
-    "0.1.1.0.0.1.0": {
-        "id": "0.1.1.0.0.1.0",
+    "0110010": {
         "name": "Rhizomique \/ Politique \/ Vingt",
         "word": "g\u00e9opo\u00e9tique",
-        "content": "est-ce-geopoetique-du-code-cette-errance-chronocide-dans-le-q-i-global",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.1.0.0.1"
+        "content": "est-ce-geopoetique-du-code-cette-errance-chronocide-dans-le-q-i-global"
     },
-    "0.1.1.0.0.0.1": {
-        "id": "0.1.1.0.0.0.1",
+    "0110001": {
         "name": "Rhizomique \/ Politique \/ Dix-neuf",
         "word": "solidaire",
-        "content": "juste-un-boug\u00e9-de-forme-un-autre-branchement-tout-deviendrait-possible-libre-genereux-solidaire.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.1.0.0.0"
+        "content": "juste-un-boug\u00e9-de-forme-un-autre-branchement-tout-deviendrait-possible-libre-genereux-solidaire."
     },
-    "0.1.1.0.0.0.0": {
-        "id": "0.1.1.0.0.0.0",
+    "0110000": {
         "name": "Rhizomique \/ Politique \/ Dix-huit",
         "word": "greffes",
-        "content": "fin-des-c\u00e9p\u00e9es-trognes-porte-greffes-des-matrices-g\u00e9antes-distribuent-d\u00e9sormais-les-paniers-de-savoir-le-vim-assange-est-soumarin.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.1.0.0.0"
+        "content": "fin-des-c\u00e9p\u00e9es-trognes-porte-greffes-des-matrices-g\u00e9antes-distribuent-d\u00e9sormais-les-paniers-de-savoir-le-vim-assange-est-soumarin."
     },
-    "0.1.0.1.1.1.1": {
-        "id": "0.1.0.1.1.1.1",
+    "0101111": {
         "name": "Rhizomique \/ Politique \/ Dix-sept",
         "word": "cortex",
-        "content": "le-sch\u00e9ma-du roncier-marcotte-les-plus-jeunes-cortex-epines-du-devoir-massivement-multijoueurs-baisers-de-reine-aux-facebrokers.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.0.1.1.1"
+        "content": "le-sch\u00e9ma-du roncier-marcotte-les-plus-jeunes-cortex-epines-du-devoir-massivement-multijoueurs-baisers-de-reine-aux-facebrokers."
     },
-    "0.1.0.1.1.1.0": {
-        "id": "0.1.0.1.1.1.0",
+    "0101110": {
         "name": "Rhizomique \/ Politique \/ Seize",
         "word": "cage \u00e0 poules",
-        "content": "l-innocente-cage-a-poules-de-l-enfance-l\u2019entrecroix-de-ses-barreaux-son-metal-froid-l-appel-au-meurtre-circulant-dedans.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.0.1.1.1"
+        "content": "l-innocente-cage-a-poules-de-l-enfance-l\u2019entrecroix-de-ses-barreaux-son-metal-froid-l-appel-au-meurtre-circulant-dedans."
     },
-    "0.1.0.1.1.0.1": {
-        "id": "0.1.0.1.1.0.1",
+    "0101101": {
         "name": "Rhizomique \/ Politique \/ Quinze",
         "word": "calque",
-        "content": "Klaus-katrina-sans-risque-de-calque-copie-colle-ce-meme-meme-ouragan-incendie-coupe-claire-ad-nauseam.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.0.1.1.0"
+        "content": "Klaus-katrina-sans-risque-de-calque-copie-colle-ce-meme-meme-ouragan-incendie-coupe-claire-ad-nauseam."
     },
-    "0.1.0.1.1.0.0": {
-        "id": "0.1.0.1.1.0.0",
+    "0101100": {
         "name": "Rhizomique \/ Politique \/ Quatorze",
         "word": "peupl\u00e9",
-        "content": "tout-le-monde-peut-participer-est-l-etat-le-plus-peupl\u00e9-de-la-plan\u00e8te",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.0.1.1.0"
+        "content": "tout-le-monde-peut-participer-est-l-etat-le-plus-peupl\u00e9-de-la-plan\u00e8te"
     },
-    "0.1.0.1.0.1.1": {
-        "id": "0.1.0.1.0.1.1",
+    "0101011": {
         "name": "Rhizomique \/ Politique \/ Treize",
         "word": "am\u00e9lioration",
-        "content": "chaque-am\u00e9lioration-est-utile-tatonne-encore-son-protocole-decroissant-en-forme-de-bonsa\u00ef.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.0.1.0.1"
+        "content": "chaque-am\u00e9lioration-est-utile-tatonne-encore-son-protocole-decroissant-en-forme-de-bonsa\u00ef."
     },
-    "0.1.0.1.0.1.0": {
-        "id": "0.1.0.1.0.1.0",
+    "0101010": {
         "name": "Rhizomique \/ Politique \/ Douze",
         "word": "or",
-        "content": "cet-or-benjoin-cet-or-opoponax-cet-or-digital-camphre-argente-s-extrait-avec-des-mains-manettes-des-cases-non-d\u00e9cochees.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.0.1.0.1"
+        "content": "cet-or-benjoin-cet-or-opoponax-cet-or-digital-camphre-argente-s-extrait-avec-des-mains-manettes-des-cases-non-d\u00e9cochees."
     },
-    "0.1.0.1.0.0.1": {
-        "id": "0.1.0.1.0.0.1",
+    "0101001": {
         "name": "Rhizomique \/ Politique \/ Onze",
         "word": "galactique",
-        "content": "ou-gigapole-galactique-deterre-des-campagnes-dans-le-chevron-\u00e9troit-des-gaz-d-echappement.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.0.1.0.0"
+        "content": "ou-gigapole-galactique-deterre-des-campagnes-dans-le-chevron-\u00e9troit-des-gaz-d-echappement."
     },
-    "0.1.0.1.0.0.0": {
-        "id": "0.1.0.1.0.0.0",
+    "0101000": {
         "name": "Rhizomique \/ Politique \/ Dix",
         "word": "panopticon",
-        "content": "ou-carceral-panopticon-autosecrete-ses-propres-fuites-ses-revers-clandestins-ses-guerillas-ses-f\u00eates.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.0.1.0.0"
+        "content": "ou-carceral-panopticon-autosecrete-ses-propres-fuites-ses-revers-clandestins-ses-guerillas-ses-f\u00eates."
     },
-    "0.1.0.0.1.1.1": {
-        "id": "0.1.0.0.1.1.1",
+    "0100111": {
         "name": "Rhizomique \/ Politique \/ Neuf",
         "word": "chalut",
-        "content": "acc\u00e9l\u00e9rant-la-grille-du-tissage-les-effets-du-chalut-se-presse-l-in\u00e9dit-empyreume-d-un-vin-possiblement-fraternel.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.0.0.1.1"
+        "content": "acc\u00e9l\u00e9rant-la-grille-du-tissage-les-effets-du-chalut-se-presse-l-in\u00e9dit-empyreume-d-un-vin-possiblement-fraternel."
     },
-    "0.1.0.0.1.1.0": {
-        "id": "0.1.0.0.1.1.0",
+    "0100110": {
         "name": "Rhizomique \/ Politique \/ Huit",
         "word": "restitu\u00e9e",
-        "content": "solide-revenu-au-liquide-lettre-restitu\u00e9e-au-chiffre-ouest-et-droite-passes-est-et-gauche-terme-infini-de-la-boucle-silice.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.0.0.1.1"
+        "content": "solide-revenu-au-liquide-lettre-restitu\u00e9e-au-chiffre-ouest-et-droite-passes-est-et-gauche-terme-infini-de-la-boucle-silice."
     },
-    "0.1.0.0.1.0.1": {
-        "id": "0.1.0.0.1.0.1",
+    "0100101": {
         "name": "Rhizomique \/ Politique \/ Sept",
         "word": "combien",
-        "content": "combien-coute-ce-mot-combien-coute cette-phrase-combien-rapporte-t-elle-combien-de-chiffres-sur-le-ch\u00e8que-a-valoir-tel-alphabet.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.0.0.1.0"
+        "content": "combien-coute-ce-mot-combien-coute cette-phrase-combien-rapporte-t-elle-combien-de-chiffres-sur-le-ch\u00e8que-a-valoir-tel-alphabet."
     },
-    "0.1.0.0.1.0.0": {
-        "id": "0.1.0.0.1.0.0",
+    "0100100": {
         "name": "Rhizomique \/ Politique \/ Six",
         "word": "\u00e9crans",
-        "content": "\u00e9nucleer-va-pair-a-pair-avec-cecite-tes-vieux-regards-upgrad\u00e9s-mille-prunelles-\u00e9crans-pay\u00e9es-premium-plug-in-infosynth\u00e8se-offert.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.0.0.1.0"
+        "content": "\u00e9nucleer-va-pair-a-pair-avec-cecite-tes-vieux-regards-upgrad\u00e9s-mille-prunelles-\u00e9crans-pay\u00e9es-premium-plug-in-infosynth\u00e8se-offert."
     },
-    "0.1.0.0.0.1.1": {
-        "id": "0.1.0.0.0.1.1",
+    "0100011": {
         "name": "Rhizomique \/ Politique \/ Cinq",
         "word": "titan",
-        "content": "sublime-plutonium-239-le-mur-plut\u00f4t-que-de-l-abattre-que-chaque-titan-s\u2019\u00e9tiole-depuis-sa-geole-ouverte-en-des-nodosit\u00e9s-neuves.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.0.0.0.1"
+        "content": "sublime-plutonium-239-le-mur-plut\u00f4t-que-de-l-abattre-que-chaque-titan-s\u2019\u00e9tiole-depuis-sa-geole-ouverte-en-des-nodosit\u00e9s-neuves."
     },
-    "0.1.0.0.0.1.0": {
-        "id": "0.1.0.0.0.1.0",
+    "0100010": {
         "name": "Rhizomique \/ Politique \/ Quatre",
         "word": "embolie",
-        "content": "comme-nos-deux-noyaux-matiere-antimatiere-tenteraient-de-blinder-leur-orbite-envers-toute-embolie-fusionelle-",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.0.0.0.1"
+        "content": "comme-nos-deux-noyaux-matiere-antimatiere-tenteraient-de-blinder-leur-orbite-envers-toute-embolie-fusionelle-"
     },
-    "0.1.0.0.0.0.1": {
-        "id": "0.1.0.0.0.0.1",
+    "0100001": {
         "name": "Rhizomique \/ Politique \/ Trois",
         "word": "moore",
-        "content": "la-moore-loi-de-toujours-la-moore-loi-de-toujours-accroit-le-dense-algorithmique-dans-ton-rein-de-pulsar",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.1.0.0.0.0"
+        "content": "la-moore-loi-de-toujours-la-moore-loi-de-toujours-accroit-le-dense-algorithmique-dans-ton-rein-de-pulsar"
     },
-    "0.1.0.0.0.0.0": {
-        "id": "0.1.0.0.0.0.0",
+    "0100000": {
         "name": "Rhizomique \/ Politique \/ Deux",
         "word": "exponentiel",
-        "content": "acentrique-invention-exponentiel-outil-l-utopie-du-possible-utopique-l-anarchique-bombe-rameale-fragment\u00e9e-subitement-deboure.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.1.0.0.0.0"
+        "content": "acentrique-invention-exponentiel-outil-l-utopie-du-possible-utopique-l-anarchique-bombe-rameale-fragment\u00e9e-subitement-deboure."
     },
-    "0.0.1.1.1.1.1": {
-        "id": "0.0.1.1.1.1.1",
+    "0011111": {
         "name": "Rhizomique \/ Politique \/ Un",
         "word": "femtoseconde",
-        "content": "faute-de-lime-vrille-laser-femtoseconde-l-a-capital-l-a-captif-en-gel\u00e9e-incube-l-a-caudal-l-a-d\u00e9capit\u00e9- pour fendre-sa-vesicule.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.1.1.1.1"
+        "content": "faute-de-lime-vrille-laser-femtoseconde-l-a-capital-l-a-captif-en-gel\u00e9e-incube-l-a-caudal-l-a-d\u00e9capit\u00e9- pour fendre-sa-vesicule."
     },
-    "0.0.1.1.1.1.0": {
-        "id": "0.0.1.1.1.1.0",
+    "0011110": {
         "name": "Rhizomique \/ Symbolique \/ Seize",
         "word": "transgenre",
-        "content": "sans-m\u00eame-lsd-sentir-les points-d-aiguilles-trouer-le-derme-de-l\u2019espece-rejoindre-le-solidaire-transgenre-de-l\u2019atome.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.1.1.1.1"
+        "content": "sans-m\u00eame-lsd-sentir-les points-d-aiguilles-trouer-le-derme-de-l\u2019espece-rejoindre-le-solidaire-transgenre-de-l\u2019atome."
     },
-    "0.0.1.1.1.0.1": {
-        "id": "0.0.1.1.1.0.1",
+    "0011101": {
         "name": "Rhizomique \/ Symbolique \/ Quinze",
         "word": "chaosmos",
-        "content": "par-quel-jeu-de-miroirs-cet-\u0153il-huble-exorbit\u00e9-vers-l\u2019originel-chaosmos-entre-cuisses -se-retourne-cauchemar-vers-toi.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.1.1.1.0"
+        "content": "par-quel-jeu-de-miroirs-cet-\u0153il-huble-exorbit\u00e9-vers-l\u2019originel-chaosmos-entre-cuisses -se-retourne-cauchemar-vers-toi."
     },
-    "0.0.1.1.1.0.0": {
-        "id": "0.0.1.1.1.0.0",
+    "0011100": {
         "name": "Rhizomique \/ Symbolique \/ Quatorze",
         "word": "skyline",
-        "content": "Rubiks-oblique-a-tant-de-faces-plan-de-la-ville-multi-strates-vous-etes-ici-et-n\u2019y-\u00eates-plus-\u00e9changeurs-sous-le-skyline",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.1.1.1.0"
+        "content": "Rubiks-oblique-a-tant-de-faces-plan-de-la-ville-multi-strates-vous-etes-ici-et-n\u2019y-\u00eates-plus-\u00e9changeurs-sous-le-skyline"
     },
-    "0.0.1.1.0.1.1": {
-        "id": "0.0.1.1.0.1.1",
+    "0011011": {
         "name": "Rhizomique \/ Symbolique \/ Treize",
         "word": "carnaval",
-        "content": "Ici-puis-la-le-fou-cousin-le-carnaval-perenne-detricottent-a-grandes-mailles-le-costume-president-et-sa-cravatte-hermes.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.1.1.0.1"
+        "content": "Ici-puis-la-le-fou-cousin-le-carnaval-perenne-detricottent-a-grandes-mailles-le-costume-president-et-sa-cravatte-hermes."
     },
-    "0.0.1.1.0.1.0": {
-        "id": "0.0.1.1.0.1.0",
+    "0011010": {
         "name": "Rhizomique \/ Symbolique \/ Douze",
         "word": "origami",
-        "content": "la-vitesse-est-milieu-la-profusion-levres-obturees-du-n\u00e9ant-un-pli-d-origami-releve-l-horizontal-d-une-illusion-puissante.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.1.1.0.1"
+        "content": "la-vitesse-est-milieu-la-profusion-levres-obturees-du-n\u00e9ant-un-pli-d-origami-releve-l-horizontal-d-une-illusion-puissante."
     },
-    "0.0.1.1.0.0.1": {
-        "id": "0.0.1.1.0.0.1",
+    "0011001": {
         "name": "Rhizomique \/ Symbolique \/ Onze",
         "word": "stroboscopes",
-        "content": "ce-sont-des-milliards-d-yeux-stroboscopes-sans-paupiere-sans-larme-arc-irisant-leurs-flux -via-des-missiles-solaires.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.1.1.0.0"
+        "content": "ce-sont-des-milliards-d-yeux-stroboscopes-sans-paupiere-sans-larme-arc-irisant-leurs-flux -via-des-missiles-solaires."
     },
-    "0.0.1.1.0.0.0": {
-        "id": "0.0.1.1.0.0.0",
+    "0011000": {
         "name": "Rhizomique \/ Symbolique \/ Dix",
         "word": "tabou",
-        "content": "quel-opaque-nemeton-ventre-tabou-horreur-fermente-l\u2019esprit-transcendantal-erige-en-phallus-quand-aux-lisi\u00e8res-partout-caresses.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.1.1.0.0"
+        "content": "quel-opaque-nemeton-ventre-tabou-horreur-fermente-l\u2019esprit-transcendantal-erige-en-phallus-quand-aux-lisi\u00e8res-partout-caresses."
     },
-    "0.0.1.0.1.1.1": {
-        "id": "0.0.1.0.1.1.1",
+    "0010111": {
         "name": "Rhizomique \/ Symbolique \/ Neuf",
         "word": "drupe",
-        "content": "tien-le-drupe-hemorragique-de-ton-dire-couche-de-ton-reve-branche-branche-aux-adventices-\u00e7a-moi-surmoi-hors-moi-indehiscentes.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.1.0.1.1"
+        "content": "tien-le-drupe-hemorragique-de-ton-dire-couche-de-ton-reve-branche-branche-aux-adventices-\u00e7a-moi-surmoi-hors-moi-indehiscentes."
     },
-    "0.0.1.0.1.1.0": {
-        "id": "0.0.1.0.1.1.0",
+    "0010110": {
         "name": "Rhizomique \/ Symbolique \/ Huit",
         "word": "\u6f38",
-        "content": "tsien-kapla-lego-cube-brique-agence-les-jambes-divinatoires-du-yi-king-vers -le-progres-graduel-de-la-figure-53-",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.1.0.1.1"
+        "content": "tsien-kapla-lego-cube-brique-agence-les-jambes-divinatoires-du-yi-king-vers -le-progres-graduel-de-la-figure-53-"
     },
-    "0.0.1.0.1.0.1": {
-        "id": "0.0.1.0.1.0.1",
+    "0010101": {
         "name": "Rhizomique \/ Symbolique \/ Sept",
         "word": "babel",
-        "content": "que-calculer-babel-un-livre-\u00e9crit-non-\u00e9crit-pass\u00e9-\u00e0-venir-soit-devenu-plus-simple-que-de-s-en-souvenir-crispation-aux-pages.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.1.0.1.0"
+        "content": "que-calculer-babel-un-livre-\u00e9crit-non-\u00e9crit-pass\u00e9-\u00e0-venir-soit-devenu-plus-simple-que-de-s-en-souvenir-crispation-aux-pages."
     },
-    "0.0.1.0.1.0.0": {
-        "id": "0.0.1.0.1.0.0",
+    "0010100": {
         "name": "Rhizomique \/ Symbolique \/ Six",
         "word": "effervescence",
-        "content": "effervescence-maison-de-feuilles-ce-qu-heberge-d-infini-le-fini-d-un-cerveau-escaliers-d\u00e9duits-passages.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.1.0.1.0"
+        "content": "effervescence-maison-de-feuilles-ce-qu-heberge-d-infini-le-fini-d-un-cerveau-escaliers-d\u00e9duits-passages."
     },
-    "0.0.1.0.0.1.1": {
-        "id": "0.0.1.0.0.1.1",
+    "0010011": {
         "name": "Rhizomique \/ Symbolique \/ Cinq",
         "word": "ondes",
-        "content": "ou-antenne-asexuee-dans-le-tamis-des-ondes-electro-magnetiques-gresille-l\u2019incessant-codex-decodex-de-l-hypermarche-conversation.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.1.0.0.1"
+        "content": "ou-antenne-asexuee-dans-le-tamis-des-ondes-electro-magnetiques-gresille-l\u2019incessant-codex-decodex-de-l-hypermarche-conversation."
     },
-    "0.0.1.0.0.1.0": {
-        "id": "0.0.1.0.0.1.0",
+    "0010010": {
         "name": "Rhizomique \/ Symbolique \/ Quatre",
         "word": "pylone",
-        "content": "Il-chante-le-desastreux-pylone-son-hymne-de-nudite-cours-de-frere-en-frere-sur-le-croise-frole-des-lignes-aux-contours-de-nuage.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.1.0.0.1"
+        "content": "Il-chante-le-desastreux-pylone-son-hymne-de-nudite-cours-de-frere-en-frere-sur-le-croise-frole-des-lignes-aux-contours-de-nuage."
     },
-    "0.0.1.0.0.0.1": {
-        "id": "0.0.1.0.0.0.1",
+    "0010001": {
         "name": "Rhizomique \/ Symbolique \/ Trois",
         "word": "pompe",
-        "content": "sectionne-le-c\u0153ur-enleve-la-pompe-unique-laisse-coopeerer-les-myriades-chloroplastiques-fonctionner-le timide.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.1.0.0.0"
+        "content": "sectionne-le-c\u0153ur-enleve-la-pompe-unique-laisse-coopeerer-les-myriades-chloroplastiques-fonctionner-le timide."
     },
-    "0.0.1.0.0.0.0": {
-        "id": "0.0.1.0.0.0.0",
+    "0010000": {
         "name": "Rhizomique \/ Symbolique \/ Deux",
         "word": "sephiroth",
-        "content": "joue-au-billard-avec-les-sephiroth-queue-de-drageon-s\u00e4igon-niamey-segment-de-soif-inaltere.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.1.0.0.0"
+        "content": "joue-au-billard-avec-les-sephiroth-queue-de-drageon-s\u00e4igon-niamey-segment-de-soif-inaltere."
     },
-    "0.0.0.1.1.1.1": {
-        "id": "0.0.0.1.1.1.1",
+    "0001111": {
         "name": "Rhizomique \/ Symbolique \/ Un",
         "word": "free jazz",
-        "content": "d\u00e9route-zodiacale-explosion-des-neuf-spheres-c\u00e9lestes-newton-est-un batteur-free-jazz-les-lois-sont-toujours-provisoires.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.0.1.1.1"
+        "content": "d\u00e9route-zodiacale-explosion-des-neuf-spheres-c\u00e9lestes-newton-est-un batteur-free-jazz-les-lois-sont-toujours-provisoires."
     },
-    "0.0.0.1.1.1.0": {
-        "id": "0.0.0.1.1.1.0",
+    "0001110": {
         "name": "Rhizomique \/ Symbiotique \/ Huit",
         "word": "dreamlifter",
-        "content": "l-industrie-papeti\u00e8re-et-la-c\u00f4te-dewey-decolent-boeing-747-dreamlifter-bient\u00f4t-pulverisees-par-transponding-astra.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.0.1.1.1"
+        "content": "l-industrie-papeti\u00e8re-et-la-c\u00f4te-dewey-decolent-boeing-747-dreamlifter-bient\u00f4t-pulverisees-par-transponding-astra."
     },
-    "0.0.0.1.1.0.1": {
-        "id": "0.0.0.1.1.0.1",
+    "0001101": {
         "name": "Rhizomique \/ Symbiotique \/ Sept",
         "word": "heuristique",
-        "content": "bataille-navale-echiquier-heuristique-une-caravelle-chargees-de-caisses-lexiques-grammaires-pr\u00e9cis-de-traduction-sombre.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.0.1.1.0"
+        "content": "bataille-navale-echiquier-heuristique-une-caravelle-chargees-de-caisses-lexiques-grammaires-pr\u00e9cis-de-traduction-sombre."
     },
-    "0.0.0.1.1.0.0": {
-        "id": "0.0.0.1.1.0.0",
+    "0001100": {
         "name": "Rhizomique \/ Symbiotique \/ Six",
         "word": "stridulation",
-        "content": "Ici-et-l\u00e0-encore-l\u2019homme-de-su-se-fait-synapse-bulbe-simple-relais-inspire-expire-dans-la-stridulation-forrestiere.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.0.1.1.0"
+        "content": "Ici-et-l\u00e0-encore-l\u2019homme-de-su-se-fait-synapse-bulbe-simple-relais-inspire-expire-dans-la-stridulation-forrestiere."
     },
-    "0.0.0.1.0.1.1": {
-        "id": "0.0.0.1.0.1.1",
+    "0001011": {
         "name": "Rhizomique \/ Symbiotique \/ Cinq",
         "word": "marteau",
-        "content": "\u00e0-la-r\u00e8gle-au-marteau-parcelles-m\u00e9ridiens-ponts-et-chauss\u00e9es-une-route-saigne-vers-l-oc\u00e9an-monde.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.0.1.0.1"
+        "content": "\u00e0-la-r\u00e8gle-au-marteau-parcelles-m\u00e9ridiens-ponts-et-chauss\u00e9es-une-route-saigne-vers-l-oc\u00e9an-monde."
     },
-    "0.0.0.1.0.1.0": {
-        "id": "0.0.0.1.0.1.0",
+    "0001010": {
         "name": "Rhizomique \/ Symbiotique \/ Quatre",
         "word": "circuits",
-        "content": "courant-gibier-\u00e0-travers-sentes-terriers-rus-s\u2019impriment-les-circuits-d-esquives-cartes-m\u00e9moires-chants-de-l-embsucade.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.0.1.0.1"
+        "content": "courant-gibier-\u00e0-travers-sentes-terriers-rus-s\u2019impriment-les-circuits-d-esquives-cartes-m\u00e9moires-chants-de-l-embsucade."
     },
-    "0.0.0.1.0.0.1": {
-        "id": "0.0.0.1.0.0.1",
+    "0001001": {
         "name": "Rhizomique \/ Symbiotique \/ Trois",
         "word": "effac\u00e9",
-        "content": "ombres-d-ombres-peuple-sans-trace-aucune-ni-de-passage-ni-de-halte-o\u00f9-seul-l-anc\u00eatre-se-tient-visible-dans-l\u2019effac\u00e9.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.0.1.0.0"
+        "content": "ombres-d-ombres-peuple-sans-trace-aucune-ni-de-passage-ni-de-halte-o\u00f9-seul-l-anc\u00eatre-se-tient-visible-dans-l\u2019effac\u00e9."
     },
-    "0.0.0.1.0.0.0": {
-        "id": "0.0.0.1.0.0.0",
+    "0001000": {
         "name": "Rhizomique \/ Symbiotique \/ Deux",
         "word": "liane",
-        "content": "et-lui-m\u00e9ta-baron-de-liane-en-liane-se-cavalant-dans-la-sauve.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.0.1.0.0"
+        "content": "et-lui-m\u00e9ta-baron-de-liane-en-liane-se-cavalant-dans-la-sauve."
     },
-    "0.0.0.0.1.1.1": {
-        "id": "0.0.0.0.1.1.1",
+    "0000111": {
         "name": "Rhizomique \/ Symbiotique \/ Un",
         "word": "crottes",
-        "content": "\u00e9missaires-na\u00effs-plumes-pelages-cris-crottes-hasards-app\u00e2ts-charnus-roses-d\u00e9vorent-hackent-forniquent-tombent.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.0.0.1.1"
+        "content": "\u00e9missaires-na\u00effs-plumes-pelages-cris-crottes-hasards-app\u00e2ts-charnus-roses-d\u00e9vorent-hackent-forniquent-tombent."
     },
-    "0.0.0.0.1.1.0": {
-        "id": "0.0.0.0.1.1.0",
+    "0000110": {
         "name": "Rhizomique \/ Biologique deux \/ Quatre",
         "word": "patience",
-        "content": "se-taire-la-mort-la cendre-patience-pyrophile-du-g\u00e8ne-viral-ins\u00e9min\u00e9-aux-caches-latentes-du-signal.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.0.0.1.1"
+        "content": "se-taire-la-mort-la cendre-patience-pyrophile-du-g\u00e8ne-viral-ins\u00e9min\u00e9-aux-caches-latentes-du-signal."
     },
-    "0.0.0.0.1.0.1": {
-        "id": "0.0.0.0.1.0.1",
+    "0000101": {
         "name": "Rhizomique \/ Biologique deux \/ Trois",
         "word": "frelon",
-        "content": "laisse-le-vent-r\u00e9v\u00e9ler-en-rebrousse-le-continuel-frelon-le-parle-parle-ajour\u00e9-de-clairi\u00e8res.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.0.0.1.0"
+        "content": "laisse-le-vent-r\u00e9v\u00e9ler-en-rebrousse-le-continuel-frelon-le-parle-parle-ajour\u00e9-de-clairi\u00e8res."
     },
-    "0.0.0.0.1.0.0": {
-        "id": "0.0.0.0.1.0.0",
+    "0000100": {
         "name": "Rhizomique \/ Biologique deux \/ Deux",
         "word": "flagelles",
-        "content": "attouchements-catacombes-trembl\u00e9s-de-flagelles-passe-moi-le-sel-nutriment-le-sel-anxyolitique.info",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.0.0.1.0"
+        "content": "attouchements-catacombes-trembl\u00e9s-de-flagelles-passe-moi-le-sel-nutriment-le-sel-anxyolitique.info"
     },
-    "0.0.0.0.0.1.1": {
-        "id": "0.0.0.0.0.1.1",
+    "0000011": {
         "name": "Rhizomique \/ Biologique deux \/ Un",
         "word": "canope",
-        "content": "apical-message-\u00e9tat-gazeux-de-l-alerte-canope-encapsul\u00e9e-propagation-du-programme-antidote.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.0.0.0.1"
+        "content": "apical-message-\u00e9tat-gazeux-de-l-alerte-canope-encapsul\u00e9e-propagation-du-programme-antidote."
     },
-    "0.0.0.0.0.1.0": {
-        "id": "0.0.0.0.0.1.0",
+    "0000010": {
         "name": "Rhizomique \/ Biologique un \/ Deux",
         "word": "systoles",
-        "content": "multiple-ensuite-aux-massifs-mobiles-\u00e9migrations-immigrations-aux-lentes-systoles-pal\u00e9o-climatiques.",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.0.0.0.1"
+        "content": "multiple-ensuite-aux-massifs-mobiles-\u00e9migrations-immigrations-aux-lentes-systoles-pal\u00e9o-climatiques."
     },
-    "0.0.0.0.0.0.1": {
-        "id": "0.0.0.0.0.0.1",
+    "0000001": {
         "name": "Rhizomique \/ Biologique un \/ Un",
         "word": "polype",
-        "content": "foule-d\u00e9j\u00e0-d\u00e8s-l-orbe-close-des-cellules-d\u00e8s-le-polype-individu.",
-        "circle": "cerne-6-rhizomique",
-        "position": 2,
-        "parent": "0.0.0.0.0.0"
+        "content": "foule-d\u00e9j\u00e0-d\u00e8s-l-orbe-close-des-cellules-d\u00e8s-le-polype-individu."
     },
-    "0.0.0.0.0.0.0": {
-        "id": "0.0.0.0.0.0.0",
+    "0000000": {
         "name": "Rhizomique \/ Graine",
         "word": "bozon",
-        "content": "bozon-de-higgs-impair-et-manque.arpa",
-        "circle": "cerne-6-rhizomique",
-        "position": 1,
-        "parent": "0.0.0.0.0.0"
+        "content": "bozon-de-higgs-impair-et-manque.arpa"
     },
-    "0.1.1.1.1.1": {
-        "id": "0.1.1.1.1.1",
+    "011111": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne deux",
         "word": "objet",
-        "content": "Au fond du puit on gonfle, chaque semaine, un objet neuf\u00a0: femme <em>Durex<\/em>, s\u00e9quoia <em>Sempervirens<\/em>, fl\u00e8che <em>Saint-Michel<\/em>, fus\u00e9e <em>Ariane<\/em>.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.1.1.1.1"
+        "content": "Au fond du puit on gonfle, chaque semaine, un objet neuf\u00a0: femme <em>Durex<\/em>, s\u00e9quoia <em>Sempervirens<\/em>, fl\u00e8che <em>Saint-Michel<\/em>, fus\u00e9e <em>Ariane<\/em>."
     },
-    "0.1.1.1.1.0": {
-        "id": "0.1.1.1.1.0",
+    "011110": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne trois",
         "word": "griots",
-        "content": "D\u2019ailleurs, depuis la disparition des griots, jamais la g\u00e9n\u00e9alogie ne fut si populaire.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.1.1.1.1"
+        "content": "D\u2019ailleurs, depuis la disparition des griots, jamais la g\u00e9n\u00e9alogie ne fut si populaire."
     },
-    "0.1.1.1.0.1": {
-        "id": "0.1.1.1.0.1",
+    "011101": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne deux",
         "word": "extinction",
-        "content": "Il a \u00e9t\u00e9 report\u00e9 qu\u2019en surface <em>34 %<\/em> des esp\u00e8ces conif\u00e8res non g\u00e9n\u00e9tiquement modifi\u00e9es seraient menac\u00e9es d\u2019extinction.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.1.1.1.0"
+        "content": "Il a \u00e9t\u00e9 report\u00e9 qu\u2019en surface <em>34 %<\/em> des esp\u00e8ces conif\u00e8res non g\u00e9n\u00e9tiquement modifi\u00e9es seraient menac\u00e9es d\u2019extinction."
     },
-    "0.1.1.1.0.0": {
-        "id": "0.1.1.1.0.0",
+    "011100": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne un",
         "word": "temp\u00e9rature",
-        "content": "Il a \u00e9t\u00e9 rapport\u00e9 qu\u2019en surface, la temp\u00e9rature moyenne serait mont\u00e9e d\u2019un degr\u00e9 en un si\u00e8cle.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.1.1.1.0"
+        "content": "Il a \u00e9t\u00e9 rapport\u00e9 qu\u2019en surface, la temp\u00e9rature moyenne serait mont\u00e9e d\u2019un degr\u00e9 en un si\u00e8cle."
     },
-    "0.1.1.0.1.1": {
-        "id": "0.1.1.0.1.1",
+    "011011": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 quatre",
         "word": "puits",
-        "content": "Le seul fait concret \u00e9tant que, sur les parois circulaires de l\u2019immense puits de jour, l\u2019escalator progresse.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.1.1.0.1"
+        "content": "Le seul fait concret \u00e9tant que, sur les parois circulaires de l\u2019immense puits de jour, l\u2019escalator progresse."
     },
-    "0.1.1.0.1.0": {
-        "id": "0.1.1.0.1.0",
+    "011010": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 trois",
         "word": "fra\u00eecheur",
-        "content": "Dans la fra\u00eecheur constante, - <em>18\u00b0 Celsius<\/em> - du centre commercial on ne peut \u00eatre certain de monter ou descendre.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.1.1.0.1"
+        "content": "Dans la fra\u00eecheur constante, - <em>18\u00b0 Celsius<\/em> - du centre commercial on ne peut \u00eatre certain de monter ou descendre."
     },
-    "0.1.1.0.0.1": {
-        "id": "0.1.1.0.0.1",
+    "011001": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 deux",
         "word": "linguistique",
-        "content": "Vous ne sauriez ignorer que sa s\u0153ur jumelle relisant <em>Anabase<\/em> \u00e9tudie la linguistique dans un local non loin.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.1.1.0.0"
+        "content": "Vous ne sauriez ignorer que sa s\u0153ur jumelle relisant <em>Anabase<\/em> \u00e9tudie la linguistique dans un local non loin."
     },
-    "0.1.1.0.0.0": {
-        "id": "0.1.1.0.0.0",
+    "011000": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 un",
         "word": "paisible",
-        "content": "Vous n\u2019\u00eates pas sans savoir que ce pi\u00e9ton paisible rongeant une racine vers le niveau moins cinq a pour nom <em>Ego monstre<\/em>.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.1.1.0.0"
+        "content": "Vous n\u2019\u00eates pas sans savoir que ce pi\u00e9ton paisible rongeant une racine vers le niveau moins cinq a pour nom <em>Ego monstre<\/em>."
     },
-    "0.1.0.1.1.1": {
-        "id": "0.1.0.1.1.1",
+    "010111": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps quatre",
         "word": "photo",
-        "content": "Aussi ce n\u2019est pas par les pieds qu\u2019on pendit tant de noirs et de juifs. Sans but de r\u00e9v\u00e9lation qu\u2019on les prit en photo.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.1.0.1.1"
+        "content": "Aussi ce n\u2019est pas par les pieds qu\u2019on pendit tant de noirs et de juifs. Sans but de r\u00e9v\u00e9lation qu\u2019on les prit en photo."
     },
-    "0.1.0.1.1.0": {
-        "id": "0.1.0.1.1.0",
+    "010110": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps trois",
         "word": "nuques",
-        "content": "Repense aux pyramides. Brune et rouge, hier. Transparente aujourd\u2019hui. Toutes ces nuques sous leurs bases. Qui porte le chapeau\u00a0?",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.1.0.1.1"
+        "content": "Repense aux pyramides. Brune et rouge, hier. Transparente aujourd\u2019hui. Toutes ces nuques sous leurs bases. Qui porte le chapeau\u00a0?"
     },
-    "0.1.0.1.0.1": {
-        "id": "0.1.0.1.0.1",
+    "010101": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps deux",
         "word": "engrenage",
-        "content": "L\u2019engrenage est causal, essieux, pignons, cames, pour le derviche tr\u00e9pan, ses fraises, son vertige centrifuge \u00e0 t\u00eate de cheval.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.1.0.1.0"
+        "content": "L\u2019engrenage est causal, essieux, pignons, cames, pour le derviche tr\u00e9pan, ses fraises, son vertige centrifuge \u00e0 t\u00eate de cheval."
     },
-    "0.1.0.1.0.0": {
-        "id": "0.1.0.1.0.0",
+    "010100": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps un",
         "word": "madriers",
-        "content": "Les madriers \u00e9tayent les mines de charbon et de fer. L\u2019acier tient le b\u00e9ton, les hautes fondations, les caves.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.1.0.1.0"
+        "content": "Les madriers \u00e9tayent les mines de charbon et de fer. L\u2019acier tient le b\u00e9ton, les hautes fondations, les caves."
     },
-    "0.1.0.0.1.1": {
-        "id": "0.1.0.0.1.1",
+    "010011": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver quatre",
         "word": "fossile",
-        "content": "N\u2019est-ce pas un cycle fossile qui s\u2019ach\u00e8ve, quand le serpent de naphte, <em>Standard Oil<\/em>, surgit des profondeurs\u00a0? ",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.1.0.0.1"
+        "content": "N\u2019est-ce pas un cycle fossile qui s\u2019ach\u00e8ve, quand le serpent de naphte, <em>Standard Oil<\/em>, surgit des profondeurs\u00a0? "
     },
-    "0.1.0.0.1.0": {
-        "id": "0.1.0.0.1.0",
+    "010010": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver trois",
         "word": "marchande",
-        "content": "La vraie, l\u2019unique valeur est marchande, fredonne <em>Orph\u00e9e<\/em> montant vers la surface.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.1.0.0.1"
+        "content": "La vraie, l\u2019unique valeur est marchande, fredonne <em>Orph\u00e9e<\/em> montant vers la surface."
     },
-    "0.1.0.0.0.1": {
-        "id": "0.1.0.0.0.1",
+    "010001": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver deux",
         "word": "sang",
-        "content": "L\u2019empreinte est si ancienne. Renverse une pyramide. Son sable coule, tranquille, dans le sommet  d\u2019une autre. Le sang autour.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.1.0.0.0"
+        "content": "L\u2019empreinte est si ancienne. Renverse une pyramide. Son sable coule, tranquille, dans le sommet  d\u2019une autre. Le sang autour."
     },
-    "0.1.0.0.0.0": {
-        "id": "0.1.0.0.0.0",
+    "010000": {
         "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver un",
         "word": "impasse",
-        "content": "Mais, retour \u00e0 l\u2019antith\u00e8se justifi\u00e9e par la fourche, le m\u00e9tier de douter autorise l\u2019impasse, le refus de l\u2019inverse, du double.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.1.0.0.0"
+        "content": "Mais, retour \u00e0 l\u2019antith\u00e8se justifi\u00e9e par la fourche, le m\u00e9tier de douter autorise l\u2019impasse, le refus de l\u2019inverse, du double."
     },
-    "0.0.1.1.1.1": {
-        "id": "0.0.1.1.1.1",
+    "001111": {
         "name": "Politique \/ Lumi\u00e8res \/ Automne deux",
         "word": "houx",
-        "content": "Ou d\u2019un battement d\u2019aile, surplomber le d\u00e9dale depuis <em>Cystodinium<\/em>, commun a\u00efeul, jusqu\u2019au vieux houx,  <em>Lomatia<\/em>, de Tasmanie.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.0.1.1.1"
+        "content": "Ou d\u2019un battement d\u2019aile, surplomber le d\u00e9dale depuis <em>Cystodinium<\/em>, commun a\u00efeul, jusqu\u2019au vieux houx,  <em>Lomatia<\/em>, de Tasmanie."
     },
-    "0.0.1.1.1.0": {
-        "id": "0.0.1.1.1.0",
+    "001110": {
         "name": "Politique \/ Lumi\u00e8res \/ Automne trois",
         "word": "temps",
-        "content": "Et comme il est \u00e9trange que par cet \u00e9ventail, soit r\u00e9tabli le temps, ses ann\u00e9es, bobin\u00e9es en milliards.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.0.1.1.1"
+        "content": "Et comme il est \u00e9trange que par cet \u00e9ventail, soit r\u00e9tabli le temps, ses ann\u00e9es, bobin\u00e9es en milliards."
     },
-    "0.0.1.1.0.1": {
-        "id": "0.0.1.1.0.1",
+    "001101": {
         "name": "Politique \/ Lumi\u00e8res \/ Automne deux",
         "word": "termites",
-        "content": "Ainsi, pourvu du fil exact, et suivant les termites, il n\u2019y a qu\u2019un seul chemin du monarque au soleil.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.0.1.1.0"
+        "content": "Ainsi, pourvu du fil exact, et suivant les termites, il n\u2019y a qu\u2019un seul chemin du monarque au soleil."
     },
-    "0.0.1.1.0.0": {
-        "id": "0.0.1.1.0.0",
+    "001100": {
         "name": "Politique \/ Lumi\u00e8res \/ Automne un",
         "word": "parent\u00e8le",
-        "content": "Ainsi toute la parent\u00e8le du Dieu, momentan\u00e9ment unique, circule en ascenseur dans le tronc d\u2019un platane.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.0.1.1.0"
+        "content": "Ainsi toute la parent\u00e8le du Dieu, momentan\u00e9ment unique, circule en ascenseur dans le tronc d\u2019un platane."
     },
-    "0.0.1.0.1.1": {
-        "id": "0.0.1.0.1.1",
+    "001011": {
         "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 quatre",
         "word": "vertu",
-        "content": "Et combien peut porter de mensonges, telle g\u00e9om\u00e9trie de vertu\u00a0? Combien de v\u00e9rit\u00e9\u00a0? Combien de provisoire.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.0.1.0.1"
+        "content": "Et combien peut porter de mensonges, telle g\u00e9om\u00e9trie de vertu\u00a0? Combien de v\u00e9rit\u00e9\u00a0? Combien de provisoire."
     },
-    "0.0.1.0.1.0": {
-        "id": "0.0.1.0.1.0",
+    "001010": {
         "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 trois",
         "word": "ak\u00e8ne",
-        "content": "La forme inscrite dans l\u2019ak\u00e8ne trace un chemin de logique pour la m\u00e9moire. Il est vain de chercher \u00e0 le dissoudre.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.0.1.0.1"
+        "content": "La forme inscrite dans l\u2019ak\u00e8ne trace un chemin de logique pour la m\u00e9moire. Il est vain de chercher \u00e0 le dissoudre."
     },
-    "0.0.1.0.0.1": {
-        "id": "0.0.1.0.0.1",
+    "001001": {
         "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 deux",
         "word": "\u00e9chafaudage",
-        "content": "Donc ici, derri\u00e8res les stalles, doit s\u2019\u00e9riger l\u2019\u00e9chafaudage d\u2019allure arborescente. <em>Mod\u00e8le Scarrone<\/em>.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.0.1.0.0"
+        "content": "Donc ici, derri\u00e8res les stalles, doit s\u2019\u00e9riger l\u2019\u00e9chafaudage d\u2019allure arborescente. <em>Mod\u00e8le Scarrone<\/em>."
     },
-    "0.0.1.0.0.0": {
-        "id": "0.0.1.0.0.0",
+    "001000": {
         "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 un",
         "word": "conqu\u00e9rant",
-        "content": "Alors, ce serait adroite botanique, de ne garder que celui-l\u00e0 seul, conqu\u00e9rant des lumi\u00e8res, qui surplombe et impose\u00a0?",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.0.1.0.0"
+        "content": "Alors, ce serait adroite botanique, de ne garder que celui-l\u00e0 seul, conqu\u00e9rant des lumi\u00e8res, qui surplombe et impose\u00a0?"
     },
-    "0.0.0.1.1.1": {
-        "id": "0.0.0.1.1.1",
+    "000111": {
         "name": "Politique \/ Lumi\u00e8res \/ Printemps quatre",
         "word": "justice",
-        "content": "Une justice, sous son chapeau, piqu\u00e9e d\u2019\u00e9toiles, fut sur le point d\u2019\u00e9clore.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.0.0.1.1"
+        "content": "Une justice, sous son chapeau, piqu\u00e9e d\u2019\u00e9toiles, fut sur le point d\u2019\u00e9clore."
     },
-    "0.0.0.1.1.0": {
-        "id": "0.0.0.1.1.0",
+    "000110": {
         "name": "Politique \/ Lumi\u00e8res \/ Printemps trois",
         "word": "langues",
-        "content": "C\u2019est pourtant dans son ombre que se d\u00e9li\u00e8rent les langues.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.0.0.1.1"
+        "content": "C\u2019est pourtant dans son ombre que se d\u00e9li\u00e8rent les langues."
     },
-    "0.0.0.1.0.1": {
-        "id": "0.0.0.1.0.1",
+    "000101": {
         "name": "Politique \/ Lumi\u00e8res \/ Printemps deux",
         "word": "symbole",
-        "content": "Qu\u2019\u00e9tait besoin de ce symbole\u00a0? D\u00e9j\u00e0 pourri, sonnant creux. Ce sont l\u2019insensible et le vide qui accouchent de toute science.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.0.0.1.0"
+        "content": "Qu\u2019\u00e9tait besoin de ce symbole\u00a0? D\u00e9j\u00e0 pourri, sonnant creux. Ce sont l\u2019insensible et le vide qui accouchent de toute science."
     },
-    "0.0.0.1.0.0": {
-        "id": "0.0.0.1.0.0",
+    "000100": {
         "name": "Politique \/ Lumi\u00e8res \/ Printemps un",
         "word": "vent",
-        "content": "Ce que la main dessine, gale du ch\u00eane, le vent peut l\u2019effacer.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.0.0.1.0"
+        "content": "Ce que la main dessine, gale du ch\u00eane, le vent peut l\u2019effacer."
     },
-    "0.0.0.0.1.1": {
-        "id": "0.0.0.0.1.1",
+    "000011": {
         "name": "",
         "word": "porphyre",
-        "content": "Donc ici qu\u2019un rectangle aux dalles de porphyre, s\u2019\u00e9tablisse \u00e0 la place.",
-        "circle": null,
-        "position": 2,
-        "parent": "0.0.0.0.1"
+        "content": "Donc ici qu\u2019un rectangle aux dalles de porphyre, s\u2019\u00e9tablisse \u00e0 la place."
     },
-    "0.0.0.0.1.0": {
-        "id": "0.0.0.0.1.0",
+    "000010": {
         "name": "Politique \/ Lumi\u00e8res \/ Hiver trois",
         "word": "essarteurs",
-        "content": "Ce serait saine raison que d\u2019araser la table. Et juste police, \u00e0 la lumi\u00e8re, de faire donner les essarteurs.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.0.0.0.1"
+        "content": "Ce serait saine raison que d\u2019araser la table. Et juste police, \u00e0 la lumi\u00e8re, de faire donner les essarteurs."
     },
-    "0.0.0.0.0.1": {
-        "id": "0.0.0.0.0.1",
+    "000001": {
         "name": "Politique \/ Lumi\u00e8res \/ Hiver deux",
         "word": "br\u00fbler",
-        "content": "Or c\u2019est de son propre bois, celui qu\u2019on ramasse, celui qu\u2019on fait tomber, qu\u2019on finit par br\u00fbler.",
-        "circle": "cerne-5-politique",
-        "position": 2,
-        "parent": "0.0.0.0.0"
+        "content": "Or c\u2019est de son propre bois, celui qu\u2019on ramasse, celui qu\u2019on fait tomber, qu\u2019on finit par br\u00fbler."
     },
-    "0.0.0.0.0.0": {
-        "id": "0.0.0.0.0.0",
+    "000000": {
         "name": "Politique \/ Lumi\u00e8res \/ Hiver un",
         "word": "arbor",
-        "content": "Substance dans un corps. Corps anim\u00e9, mais insensible, donc <em>arbor<\/em>, non animal, non rationnel et non humain.",
-        "circle": "cerne-5-politique",
-        "position": 1,
-        "parent": "0.0.0.0.0"
+        "content": "Substance dans un corps. Corps anim\u00e9, mais insensible, donc <em>arbor<\/em>, non animal, non rationnel et non humain."
     },
-    "0.1.1.1.1": {
-        "id": "0.1.1.1.1",
+    "01111": {
         "name": "Symbolique \/ Chtonien \/ Automne deux",
         "word": "chevilles",
-        "content": "Chevilles. D\u2019avoir vu. En l\u2019\u00e9rable. Poumons. Epaules. Ligaments. Ame. Sang. D\u00e9sespoir de singe.",
-        "circle": "cerne-4-symbolique",
-        "position": 2,
-        "parent": "0.1.1.1"
+        "content": "Chevilles. D\u2019avoir vu. En l\u2019\u00e9rable. Poumons. Epaules. Ligaments. Ame. Sang. D\u00e9sespoir de singe."
     },
-    "0.1.1.1.0": {
-        "id": "0.1.1.1.0",
+    "01110": {
         "name": "Symbolique \/ Chtonien \/ Automne un",
         "word": "clous",
-        "content": "Clous. A l\u2019endroit. De la croix. En tilleul. Loques nou\u00e9es. Gu\u00e9rir. De quoi.",
-        "circle": "cerne-4-symbolique",
-        "position": 1,
-        "parent": "0.1.1.1"
+        "content": "Clous. A l\u2019endroit. De la croix. En tilleul. Loques nou\u00e9es. Gu\u00e9rir. De quoi."
     },
-    "0.1.1.0.1": {
-        "id": "0.1.1.0.1",
+    "01101": {
         "name": "Symbolique \/ Chtonien \/ \u00c9t\u00e9 deux",
         "word": "poulies",
-        "content": "Poulies. Combien d\u2019\u00e9tages. De m\u00e9tamorphoses. Double tremble. Et. Dans quel sens.",
-        "circle": "cerne-4-symbolique",
-        "position": 2,
-        "parent": "0.1.1.0"
+        "content": "Poulies. Combien d\u2019\u00e9tages. De m\u00e9tamorphoses. Double tremble. Et. Dans quel sens."
     },
-    "0.1.1.0.0": {
-        "id": "0.1.1.0.0",
+    "01100": {
         "name": "Symbolique \/ Chtonien \/ \u00c9t\u00e9 un",
         "word": "drains",
-        "content": "Drains. Comme \u00e0 quai. Trois sources. L\u2019une d\u2019\u00e9ternit\u00e9. Attendent. L\u2019appel satellite. L\u2019\u00e9ternuement cosmique. Du fr\u00eane.",
-        "circle": "cerne-4-symbolique",
-        "position": 1,
-        "parent": "0.1.1.0"
+        "content": "Drains. Comme \u00e0 quai. Trois sources. L\u2019une d\u2019\u00e9ternit\u00e9. Attendent. L\u2019appel satellite. L\u2019\u00e9ternuement cosmique. Du fr\u00eane."
     },
-    "0.1.0.1.1": {
-        "id": "0.1.0.1.1",
+    "01011": {
         "name": "Symbolique \/ Chtonien \/ Printemps deux",
         "word": "rires",
-        "content": "Rires. Etreinte blanche. Boulot. Surgit. Par l\u2019enchev\u00eatrement. Des tunnels. Suc\u00e9e. La s\u00e8ve d\u00e9signe. L\u2019acc\u00e8s.",
-        "circle": "cerne-4-symbolique",
-        "position": 2,
-        "parent": "0.1.0.1"
+        "content": "Rires. Etreinte blanche. Boulot. Surgit. Par l\u2019enchev\u00eatrement. Des tunnels. Suc\u00e9e. La s\u00e8ve d\u00e9signe. L\u2019acc\u00e8s."
     },
-    "0.1.0.1.0": {
-        "id": "0.1.0.1.0",
+    "01010": {
         "name": "Symbolique \/ Chtonien \/ Printemps un",
         "word": "rythmes",
-        "content": "Rythmes. Le grand \u0153uvre. Pari\u00e9tal. N\u2019a pas suscit\u00e9. De ch\u00eane. Mais. Andouillers. Ecarts de doigts.",
-        "circle": "cerne-4-symbolique",
-        "position": 1,
-        "parent": "0.1.0.1"
+        "content": "Rythmes. Le grand \u0153uvre. Pari\u00e9tal. N\u2019a pas suscit\u00e9. De ch\u00eane. Mais. Andouillers. Ecarts de doigts."
     },
-    "0.1.0.0.1": {
-        "id": "0.1.0.0.1",
+    "01001": {
         "name": "Symbolique \/ Chtonien \/ Hiver deux",
         "word": "flocons",
-        "content": "Flocons. Lente patience. Des forges. Enfante au pied du pin. L\u2019hypoth\u00e8se. Le retour.",
-        "circle": "cerne-4-symbolique",
-        "position": 2,
-        "parent": "0.1.0.0"
+        "content": "Flocons. Lente patience. Des forges. Enfante au pied du pin. L\u2019hypoth\u00e8se. Le retour."
     },
-    "0.1.0.0.0": {
-        "id": "0.1.0.0.0",
+    "01000": {
         "name": "Symbolique \/ Chtonien \/ Hiver un",
         "word": "flamm\u00e8ches",
-        "content": "Flamm\u00e8ches. L\u2019id\u00e9e de miroir. D\u2019axe. Dessouch\u00e9e. De l\u2019orme mort. Jonch\u00e9e asym\u00e9trique.",
-        "circle": "cerne-4-symbolique",
-        "position": 1,
-        "parent": "0.1.0.0"
+        "content": "Flamm\u00e8ches. L\u2019id\u00e9e de miroir. D\u2019axe. Dessouch\u00e9e. De l\u2019orme mort. Jonch\u00e9e asym\u00e9trique."
     },
-    "0.0.1.1.1": {
-        "id": "0.0.1.1.1",
+    "00111": {
         "name": "Symbolique \/ Ouranien \/ Automne deux",
         "word": "noyer",
-        "content": "Murmures. Humides. Dans le m\u00e9andre. Noyer. Chaque esprit. Son rituel. Son Icario.",
-        "circle": "cerne-4-symbolique",
-        "position": 2,
-        "parent": "0.0.1.1"
+        "content": "Murmures. Humides. Dans le m\u00e9andre. Noyer. Chaque esprit. Son rituel. Son Icario."
     },
-    "0.0.1.1.0": {
-        "id": "0.0.1.1.0",
+    "00110": {
         "name": "Symbolique \/ Ouranien \/ Automne un",
         "word": "ch\u00e2taigner",
-        "content": "Sciure. A l\u2019int\u00e9rieur. Ch\u00e2taigner. D\u2019autres sons. \u00c9rotisent. Un passage.",
-        "circle": "cerne-4-symbolique",
-        "position": 1,
-        "parent": "0.0.1.1"
+        "content": "Sciure. A l\u2019int\u00e9rieur. Ch\u00e2taigner. D\u2019autres sons. \u00c9rotisent. Un passage."
     },
-    "0.0.1.0.1": {
-        "id": "0.0.1.0.1",
+    "00101": {
         "name": "Symbolique \/ Ouranien \/ \u00c9t\u00e9 deux",
         "word": "\u00e9quilibre",
-        "content": "Poussi\u00e8re. Un poteau. Dress\u00e9. Pour le savoir. Gorge s\u00e8che. Charg\u00e9 de figues. A l\u2019\u00e9quilibre.",
-        "circle": "cerne-4-symbolique",
-        "position": 2,
-        "parent": "0.0.1.0"
+        "content": "Poussi\u00e8re. Un poteau. Dress\u00e9. Pour le savoir. Gorge s\u00e8che. Charg\u00e9 de figues. A l\u2019\u00e9quilibre."
     },
-    "0.0.1.0.0": {
-        "id": "0.0.1.0.0",
+    "00100": {
         "name": "Symbolique \/ Ouranien \/ \u00c9t\u00e9 un",
         "word": "pommier",
-        "content": "Gr\u00eale. L\u2019origine. Un pommier. Ses baies. Vulves. Ses p\u00e9pins. Verges.",
-        "circle": "cerne-4-symbolique",
-        "position": 1,
-        "parent": "0.0.1.0"
+        "content": "Gr\u00eale. L\u2019origine. Un pommier. Ses baies. Vulves. Ses p\u00e9pins. Verges."
     },
-    "0.0.0.1.1": {
-        "id": "0.0.0.1.1",
+    "00011": {
         "name": "Symbolique \/ Ouranien \/ Printemps deux",
         "word": "c\u00e8dre",
-        "content": "Pollen. Petit tas. Dans un bol. L\u2019essaim migre. Aux aiguilles. C\u00e8dre.",
-        "circle": "cerne-4-symbolique",
-        "position": 2,
-        "parent": "0.0.0.1"
+        "content": "Pollen. Petit tas. Dans un bol. L\u2019essaim migre. Aux aiguilles. C\u00e8dre."
     },
-    "0.0.0.1.0": {
-        "id": "0.0.0.1.0",
+    "00010": {
         "name": "Symbolique \/ Ouranien \/ Printemps un",
         "word": "cypr\u00e8s",
-        "content": "Pluie. Le style. Cypr\u00e8s. Pr\u00e9l\u00e8ve. Un nouveau signe. Fa\u00e7onne. Un cinqui\u00e8me \u00e9l\u00e9ment. Bois.",
-        "circle": "cerne-4-symbolique",
-        "position": 1,
-        "parent": "0.0.0.1"
+        "content": "Pluie. Le style. Cypr\u00e8s. Pr\u00e9l\u00e8ve. Un nouveau signe. Fa\u00e7onne. Un cinqui\u00e8me \u00e9l\u00e9ment. Bois."
     },
-    "0.0.0.0.1": {
-        "id": "0.0.0.0.1",
+    "00001": {
         "name": "Symbolique \/ Ouranien \/ Hiver deux",
         "word": "baguette",
-        "content": "Neige. Sur le sol nu. La baguette. Saule. Trace deux lignes. Coup\u00e9es \u00e0 l\u2019angle droit.",
-        "circle": "cerne-4-symbolique",
-        "position": 2,
-        "parent": "0.0.0.0"
+        "content": "Neige. Sur le sol nu. La baguette. Saule. Trace deux lignes. Coup\u00e9es \u00e0 l\u2019angle droit."
     },
-    "0.0.0.0.0": {
-        "id": "0.0.0.0.0",
+    "00000": {
         "name": "Symbolique \/ Ouranien \/ Hiver un",
         "word": "cendres",
-        "content": "Cendres. Dans l\u2019urne. Dernier arbre. Toutes ses faines. Eteintes.",
-        "circle": "cerne-4-symbolique",
-        "position": 1,
-        "parent": "0.0.0.0"
+        "content": "Cendres. Dans l\u2019urne. Dernier arbre. Toutes ses faines. Eteintes."
     },
-    "0.1.1.1": {
-        "id": "0.1.1.1",
+    "0111": {
         "name": "Symbiotique \/ Nuit \/ Automne",
         "word": "kayak",
-        "content": "Mais tu nourris, tu soignes encore. Et tu teindras, et tu tendras, et tu parfumeras la peau de mon dernier kayak.",
-        "circle": "cerne-3-symbiotique",
-        "position": 2,
-        "parent": "0.1.1"
+        "content": "Mais tu nourris, tu soignes encore. Et tu teindras, et tu tendras, et tu parfumeras la peau de mon dernier kayak."
     },
-    "0.1.1.0": {
-        "id": "0.1.1.0",
+    "0110": {
         "name": "Symbiotique \/ Nuit \/ \u00c9t\u00e9",
         "word": "encyclop\u00e9dies",
-        "content": "Et je m\u2019incline aux encyclop\u00e9dies, quand tu \u00e9lagues et attaches, quand tu greffes et boutures, lourd de fruits.",
-        "circle": "cerne-3-symbiotique",
-        "position": 1,
-        "parent": "0.1.1"
+        "content": "Et je m\u2019incline aux encyclop\u00e9dies, quand tu \u00e9lagues et attaches, quand tu greffes et boutures, lourd de fruits."
     },
-    "0.1.0.1": {
-        "id": "0.1.0.1",
+    "0101": {
         "name": "Symbiotique \/ Nuit \/ Printemps",
         "word": "pouce",
-        "content": "Jadis, tu m\u2019abritais dans tes structures. Un pouce m\u2019est pouss\u00e9. Il maintient la cogn\u00e9e \u00e0 pr\u00e9sent et me fabrique un toit.",
-        "circle": "cerne-3-symbiotique",
-        "position": 2,
-        "parent": "0.1.0"
+        "content": "Jadis, tu m\u2019abritais dans tes structures. Un pouce m\u2019est pouss\u00e9. Il maintient la cogn\u00e9e \u00e0 pr\u00e9sent et me fabrique un toit."
     },
-    "0.1.0.0": {
-        "id": "0.1.0.0",
+    "0100": {
         "name": "Symbiotique \/ Nuit \/ Hiver",
         "word": "foudre",
-        "content": "Tu sais maintenant cueillir la foudre, ses p\u00e9tales de silex. Ami des braises, alli\u00e9 de la fum\u00e9e, tu me tors et m\u2019endurcis.",
-        "circle": "cerne-3-symbiotique",
-        "position": 1,
-        "parent": "0.1.0"
+        "content": "Tu sais maintenant cueillir la foudre, ses p\u00e9tales de silex. Ami des braises, alli\u00e9 de la fum\u00e9e, tu me tors et m\u2019endurcis."
     },
-    "0.0.1.1": {
-        "id": "0.0.1.1",
+    "0011": {
         "name": "Symbiotique \/ Jour \/ Automne",
         "word": "mac\u00e9r\u00e9",
-        "content": "Et mac\u00e9r\u00e9, et rapp\u00e9, et ferment\u00e9, ou grill\u00e9, ou s\u00e9ch\u00e9, ou fumig\u00e9,  et encore compot\u00e9, et distill\u00e9. Tu m\u2019aimes cru aussi.",
-        "circle": "cerne-3-symbiotique",
-        "position": 2,
-        "parent": "0.0.1"
+        "content": "Et mac\u00e9r\u00e9, et rapp\u00e9, et ferment\u00e9, ou grill\u00e9, ou s\u00e9ch\u00e9, ou fumig\u00e9,  et encore compot\u00e9, et distill\u00e9. Tu m\u2019aimes cru aussi."
     },
-    "0.0.1.0": {
-        "id": "0.0.1.0",
+    "0010": {
         "name": "Symbiotique \/ Jour \/ \u00c9t\u00e9",
         "word": "bouche",
-        "content": "Mais c\u2019est encore ma bouche qui te conna\u00eet le mieux\u00a0: bourgeons, pistils, r\u00e9sines, raves, drupes, amandes, pois, cosses\u2026",
-        "circle": "cerne-3-symbiotique",
-        "position": 1,
-        "parent": "0.0.1"
+        "content": "Mais c\u2019est encore ma bouche qui te conna\u00eet le mieux\u00a0: bourgeons, pistils, r\u00e9sines, raves, drupes, amandes, pois, cosses\u2026"
     },
-    "0.0.0.1": {
-        "id": "0.0.0.1",
+    "0001": {
         "name": "Symbiotique \/ Jour \/ Printemps",
         "word": "mobile",
-        "content": "Le feu te ressemble d\u2019avantage. Tu es si mobile\u00a0! Le d\u00e9li\u00e9 de ta main conserve mon image. Comme le liber ton pens\u00e9.",
-        "circle": "cerne-3-symbiotique",
-        "position": 2,
-        "parent": "0.0.0"
+        "content": "Le feu te ressemble d\u2019avantage. Tu es si mobile\u00a0! Le d\u00e9li\u00e9 de ta main conserve mon image. Comme le liber ton pens\u00e9."
     },
-    "0.0.0.0": {
-        "id": "0.0.0.0",
+    "0000": {
         "name": "Symbiotique \/ Jour \/ Hiver",
         "word": "brindille",
-        "content": "Le feu te ressemble dans ses \u00e9chelles. La brindille puis le rameau, puis la souche puis le tronc. Ainsi, tu nous ouvre l\u2019hiver.",
-        "circle": "cerne-3-symbiotique",
-        "position": 1,
-        "parent": "0.0.0"
+        "content": "Le feu te ressemble dans ses \u00e9chelles. La brindille puis le rameau, puis la souche puis le tronc. Ainsi, tu nous ouvre l\u2019hiver."
     },
-    "0.1.1": {
-        "id": "0.1.1",
+    "011": {
         "name": "Biologique deux \/ Souterrain deux",
         "word": "chute",
-        "content": "Vient le consentement \u00e0 l\u2019\u00e9lan, la chute dans l\u2019opacit\u00e9 sans odeur, l\u2019euphorie silencieuse du for\u00eat. Est-il un autre centre\u00a0?",
-        "circle": "cerne-2-biologique",
-        "position": 2,
-        "parent": "0.1"
+        "content": "Vient le consentement \u00e0 l\u2019\u00e9lan, la chute dans l\u2019opacit\u00e9 sans odeur, l\u2019euphorie silencieuse du for\u00eat. Est-il un autre centre\u00a0?"
     },
-    "0.1.0": {
-        "id": "0.1.0",
+    "010": {
         "name": "Biologique deux \/ Souterrain un",
         "word": "agripper",
-        "content": "R\u00e9sister m\u00eame aux graisses de l\u2019humus. Tenir encore un peu \u00e0 la clart\u00e9. Jouer l\u2019envergure. Agripper les failles, le roc.",
-        "circle": "cerne-2-biologique",
-        "position": 1,
-        "parent": "0.1"
+        "content": "R\u00e9sister m\u00eame aux graisses de l\u2019humus. Tenir encore un peu \u00e0 la clart\u00e9. Jouer l\u2019envergure. Agripper les failles, le roc."
     },
-    "0.0.1": {
-        "id": "0.0.1",
+    "001": {
         "name": "Biologique deux \/ A\u00e9rien deux",
         "word": "foug\u00e8re",
-        "content": "Est-il d\u2019autres choix\u00a0? franchir trois dimensions d\u2019un seul coup de ciseaux\u00a0? Tant contient de fini la crosse d\u2019une foug\u00e8re.",
-        "circle": "cerne-2-biologique",
-        "position": 2,
-        "parent": "0.0"
+        "content": "Est-il d\u2019autres choix\u00a0? franchir trois dimensions d\u2019un seul coup de ciseaux\u00a0? Tant contient de fini la crosse d\u2019une foug\u00e8re."
     },
-    "0.0.0": {
-        "id": "0.0.0",
+    "000": {
         "name": "Biologique deux \/ A\u00e9rien un",
         "word": "subdiviser",
-        "content": "Quand est perdu le meilleur du noyau, ce sym\u00e9trique \u00e9blouissement, cet endog\u00e8ne vital retourn\u00e9 par l\u2019obscur, subdiviser fait loi.",
-        "circle": "cerne-2-biologique",
-        "position": 1,
-        "parent": "0.0"
+        "content": "Quand est perdu le meilleur du noyau, ce sym\u00e9trique \u00e9blouissement, cet endog\u00e8ne vital retourn\u00e9 par l\u2019obscur, subdiviser fait loi."
     },
-    "0.1": {
-        "id": "0.1",
+    "01": {
         "name": "Biologique un \/ Bas",
         "word": "perfore",
-        "content": "Perfore, plonge, instance du d\u00e9pli, \u00e9bauche du fractal, sombre veine sous la glace, vers le bas.",
-        "circle": "cerne-1-biologique",
-        "position": 2,
-        "parent": "0"
+        "content": "Perfore, plonge, instance du d\u00e9pli, \u00e9bauche du fractal, sombre veine sous la glace, vers le bas."
     },
-    "0.0": {
-        "id": "0.0",
+    "00": {
         "name": "Biologique un \/ Haut",
         "word": "persiste",
-        "content": "Persiste, perce, aisselle magn\u00e9tique, embryon clair, dans le feu dess\u00e9ch\u00e9, vers le haut.",
-        "circle": "cerne-1-biologique",
-        "position": 1,
-        "parent": "0"
+        "content": "Persiste, perce, aisselle magn\u00e9tique, embryon clair, dans le feu dess\u00e9ch\u00e9, vers le haut."
     },
     "0": {
-        "id": "0",
         "name": "Graine",
         "word": "o",
-        "content": ".",
-        "circle": "graine",
-        "position": 0,
-        "parent": "0"
+        "content": "."
     }
 }

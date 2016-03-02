@@ -61,7 +61,7 @@ export function makeModel(AI) {
         }
 
         let isUpside = state.isUpside;
-        let elems = currentLeafId.split('.');
+        let elems = currentLeafId.split('');
         if (elems.length === 5){
           isUpside = elems[1] == 0;
         }
@@ -101,7 +101,7 @@ export function makeModel(AI) {
 
   function canVisit(id, from, state){
     //TODO check if 'id' belongs to 'from' neighbors
-    return ["0.0", "0.1"].indexOf(id) !== -1 
+    return ["00", "01"].indexOf(id) !== -1 
         || lastLeafId === from
         || undefined !== state.history.find(leafLink =>
           leafLink.pathname === id || leafLink.pathname === from
