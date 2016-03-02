@@ -1,5 +1,3 @@
-require("./arbreintegral.scss")
-
 //Cyclejs
 import {Observable} from 'rx';
 import {run} from '@cycle/core';

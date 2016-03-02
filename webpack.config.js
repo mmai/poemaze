@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   resolve: {
@@ -17,11 +16,9 @@ module.exports = {
   module: {
     loaders: [
       { test: /.jsx?$/, include: [path.resolve(__dirname, "src")], loader: 'babel-loader' },
-      { test: /\.scss$/, include: [path.resolve(__dirname, "src")], loader: ExtractTextPlugin.extract("style-loader", "css!sass") }
     ]
   },
   plugins: [
-    new ExtractTextPlugin("bundle.css"),
     new webpack.ProvidePlugin({
         'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
       })

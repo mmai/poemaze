@@ -14,7 +14,6 @@ export default function intent(DOM, History){
       const display = event.currentTarget.hash.slice(1) 
       return { pathname, from, display }
     })
-  .do(n => {console.log(n)})
   .share()
 
   // Clicks on the SVG nodes

@@ -3,11 +3,15 @@ WEBPACK_RUNNING := $(shell pgrep -f webpack-dev-server)
 size:
 	NODE_ENV=prod webpack --json | analyze-bundle-size
 dev:
+	#due to a bug in sass, we must go to the scss directory to launch the command and have instant file updates detection (instead of ~20s )
+	cd src/scss; sass --watch arbreintegral.scss:../../www/wp-content/themes/arbre-integral/style.css &
+	cd ../..
 ifndef WEBPACK_RUNNING
 	  NODE_ENV=dev webpack-dev-server -d --progress --colors --content-base www/
 endif
 
 build: 
+	sass src/scss/arbreintegral.scss:www/wp-content/themes/arbre-integral/style.css
 	NODE_ENV=prod webpack -p
 
 testunit:
