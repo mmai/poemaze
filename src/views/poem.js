@@ -26,58 +26,41 @@ function renderLeafReversed(leafInfos){
   let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
   let circleLevel = leafInfos.leaf.id.split('').length - 1;
   return (
-      <div className={"ai-text circle-" + circleLevel + " " + classUp}>
-        <div>
-         <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
-        </div>
-
-        <div className="circle">
-          {renderNeighorLink("circle-parent", leafInfos.neighbors.parent)}
-        </div>
-
-        <div className="circle">
-          {renderNeighorLink("circle-current--left", leafInfos.neighbors.leftBrother)}
-          <div className="circle-current--content">
-          {parser(`<span>${leafInfos.leaf.content}</span>`)}
-          </div>
-          {renderNeighorLink("circle-current--right", leafInfos.neighbors.rightBrother)}
-        </div>
-
-        <div className="circle">
-          {renderNeighorLink("circle-children--right", leafInfos.neighbors.rightChild)}
-          {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
-        </div>
-      </div>
+	<div className="main-container">
+		<div className="navigate-content">
+      {renderNeighorLink("n", leafInfos.neighbors.parent)}
+      {renderNeighorLink("w", leafInfos.neighbors.leftBrother)}
+      {parser(`<blockquote>${leafInfos.leaf.content}</blockquote>`)}
+      {renderNeighorLink("e", leafInfos.neighbors.rightBrother)}
+      {renderNeighorLink("sw", leafInfos.neighbors.rightChild)}
+      {renderNeighorLink("se", leafInfos.neighbors.leftChild)}
+		</div>
+	</div>
     );
 }
+      //
+      // <div className={"ai-text circle-" + circleLevel + " " + classUp}>
+      //   <div>
+      //    <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
+      //   </div>
+      // </div>
 
 function renderLeafUpside(leafInfos){
   let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
   let circleLevel = leafInfos.leaf.id.split('').length - 1;
   let vdom = (
-      <div className={"ai-text circle-" + circleLevel + " " + classUp}>
-        <div>
-         <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
-        </div>
-        <div className="circle">
-          {renderNeighorLink("circle-children--left", leafInfos.neighbors.leftChild)}
-          {renderNeighorLink("circle-children--right", leafInfos.neighbors.rightChild)}
-        </div>
-
-        <div className="circle">
-          {renderNeighorLink("circle-current--left", leafInfos.neighbors.leftBrother)}
-          <div className="circle-current--content">
-          {parser(`<span>${leafInfos.leaf.content}</span>`)}
-          </div>
-          {renderNeighorLink("circle-current--right", leafInfos.neighbors.rightBrother)}
-        </div>
-
-        <div className="circle">
-          {renderNeighorLink("circle-parent", leafInfos.neighbors.parent)}
-        </div>
+    <div className="main-container">
+      <div className="navigate-content">
+        {renderNeighorLink("nw", leafInfos.neighbors.leftChild)}
+        {renderNeighorLink("ne", leafInfos.neighbors.rightChild)}
+        {renderNeighorLink("w", leafInfos.neighbors.leftBrother)}
+        {parser(`<blockquote>${leafInfos.leaf.content}</blockquote>`)}
+        {renderNeighorLink("e", leafInfos.neighbors.rightBrother)}
+        {renderNeighorLink("s", leafInfos.neighbors.parent)}
       </div>
-      );
+    </div>
+  );
 
-    return vdom;
-    }
+  return vdom;
+}
 

@@ -13,6 +13,8 @@ import {makeAI} from './arbreintegral';
 import {makeModel} from './model';
 import {serialize, deserialize} from './aiStateSerializer';
 
+import makeBodyStylesDriver from './drivers/bodyStyles'
+
 import ProgressionComponent from './components/progressionComponent'
 import {makeAiSvgComponent} from './components/arbreintegralSvgComponent'
 
@@ -39,15 +41,30 @@ function startAI(json) {
   const AiPdfSvgComponent = makeAiSvgComponent(AI, pdfStyle)
   const AiLogoSvgComponent = makeAiSvgComponent(AI, logoStyle)
 
-  function main({DOM, History, HTTP, storage}) {
+  function main({DOM, History, HTTP, storage, bodyStyles}) {
     const editionIdFromPdfAPI$ = HTTP.mergeAll().map(res => res.body).share()
+    const actions = intent(DOM, History)
+
     const initialState$ = deserialize(
       storage.local.getItem('arbreintegralState'),
       AI.makeInitialState()
     ).take(1)
+    // XXX theses lines because the bodyStyles driver is not executed the first time, see next comment
+    .do((s) => {
+        const bodyClasses = bodyStylesFromState(s)
+        document.body.classList.remove(...(bodyClasses.classes.toRemove))
+        document.body.classList.add(...(bodyClasses.classes.toAdd))
+      }) 
 
-    const actions = intent(DOM, History)
-    const state$ = model(initialState$, editionIdFromPdfAPI$, actions)
+
+    //XXX Can't make state$ consistent between bodyStyles and DOM drivers 
+    // if no .share(), bodyStyles is not executed for initialState, only on subsequent state updates 
+    // if .share() same result (explanation: http://stackoverflow.com/questions/25634375/rxjs-only-the-first-observer-can-see-data-from-observable-share)
+    // if shareReplay() : bodyStyles is executed, but events stops and DOM is not updated 
+    // if .delay(1) before .share(): same result as shareReplay()
+    const state$ = model(initialState$, editionIdFromPdfAPI$, actions).share()
+
+    const bodyClasses$ = state$.map(bodyStylesFromState).distinctUntilChanged()
 
     //XXX side effect to avoid all the cycle.js driver boilerplate for a single variable 
     //better put this in state$ ?
@@ -125,6 +142,8 @@ function startAI(json) {
     //XXX beware : we can't directly use state$  
     const stateInfos$ = state$.map(s => ({showDashboard: s.showDashboard, isUpside: s.isUpside}))
 
+    const log$ = state$.map(s => 'new state')
+
     const dashboardView$ = Observable.combineLatest([stateInfos$, history$, progression.DOM, aiLogoSvg.DOM, aiSvg.DOM],
       function(stateInfos, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
         return renderDashboard(stateInfos.showDashboard, stateInfos.isUpside, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree)
@@ -138,7 +157,7 @@ function startAI(json) {
     let apiCall$ = actions.makePdf$
     .withLatestFrom(aiPdfSvg.DOM, (url, svg) => cleanSvgCover(svg))
     .withLatestFrom(leafLinks$, function(svgCover, leafLinks){
-        let path = leafLinks.map(leafLink => getPathIndex(leafLink.pathname)).join('-');
+        let path = leafLinks.map(getLeafIndex).join('-');
         let url = `wp-json/arbreintegral/v1/path/${path}`;
         if (env === 'dev') { url =  'fakeapi.json'; }
         return {
@@ -163,6 +182,8 @@ function startAI(json) {
 
     return {
       DOM: view$,
+      bodyStyles: bodyClasses$,
+      log: log$,
       HTTP: apiCall$,
       History: browserHistory$,
       storage: storage$
@@ -170,7 +191,9 @@ function startAI(json) {
   }
 
   let drivers = {
-    DOM: makeDOMDriver('#ai-page'),
+    // DOM: makeDOMDriver('#ai-page'),
+    bodyStyles: makeBodyStylesDriver(),
+    DOM: makeDOMDriver('#app'),
     History: makeHistoryDriver({
         // basename: '/poeme'
       }),
@@ -184,11 +207,11 @@ function startAI(json) {
 /**
  * Translate leaf path to an integer via its binary representation
  *
- * @param {string} path
+ * @param {Object} leafLink
  * @return {number}
  */
-function getPathIndex(path){
-  //Translate path to its binary representation:
+function getLeafIndex(leafLink){
+  const path = leafLink.pathname
   //replace initial '0' by '1'
   //ex : "0101" => "1101"
   const binaryPath = "1" + path.slice(1);
@@ -227,3 +250,27 @@ function getPathIndex(path){
       (acc, vleafs) => acc.concat(vleafs)
     )
   }
+
+  /**
+   * Compute body classes from the state
+   *
+   * @param {Object} state
+   * @return {Object}
+   */
+  function bodyStylesFromState(state){
+      const l = state.leafInfos
+      let toRemove = ['circle6-page', 'day-page', 'night-page', 'other-page']
+      let toAdd = []
+      let circle = l.leaf.id.split('').length - 1
+      if (6 === circle) {
+        toAdd.push(toRemove.splice(toRemove.indexOf('circle6-page'), 1))
+      } else if (0 === circle) {
+        toAdd.push(toRemove.splice(toRemove.indexOf('other-page'), 1))
+      } else if (l.type === "UP"){
+        toAdd.push(toRemove.splice(toRemove.indexOf('day-page'), 1))
+      } else {
+        toAdd.push(toRemove.splice(toRemove.indexOf('night-page'), 1))
+      }
+      return { classes:{toAdd, toRemove} }
+  }
+

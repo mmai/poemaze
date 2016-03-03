@@ -1,0 +1,168 @@
+/* ==========================================================================
+   Main layout
+   ========================================================================== */
+
+html {
+	font-family: $default-font-family;
+}
+
+html, body {
+	height: 100%;
+}
+
+a {
+	transition: .2s ease-in-out;
+}
+
+.main-container {
+	display: flex; padding-top: 20%;
+	@media (min-width: $responsive-breakpoint) {
+		height: 100%; padding-top: 0;
+	}
+	& > * {
+		margin: auto; padding: 1em;
+	}
+}
+
+[id='side-panel'] {
+	position: fixed; top: 0; right: 0; bottom: 0; z-index: 10;
+	transform: translateX(100%);
+	background: $lightgrey;
+	transition: transform .2s ease-out;
+	&.active {
+		transform: translateX(0);
+		box-shadow: 0 0 1em black;
+	}
+	.swicth-btn {
+		position: absolute; top: 1em; right: 100%; z-index: -1; width: 3em; margin: 0; padding: 0;
+		border: 0; outline: 0;
+		background: none;
+		@media (min-width: $responsive-breakpoint) {
+			top: 2em; width: 5.125em;
+		}
+	}
+	.side-panel-content {
+		width: 15em; height: 100%; padding: 1em; overflow: auto; box-sizing: border-box;
+		@media (min-width: $responsive-breakpoint) {
+			width: 30em; padding: 3em;
+		}
+		&::after {
+			float: right; width: 3em; height: 3em; margin-top: -3em;
+			background: center / cover no-repeat url(../img/assets/logo-home.svg);
+			content: '';
+			@media (min-width: $responsive-breakpoint) {
+				bottom: 3em; right: 3em; width: 6em; height: 6em; margin-top: -6em;
+			}
+		}
+	}
+	.location {
+		margin-bottom: 1em;
+		font-family: $links-font-family; color: $pink;
+	}
+	.map {
+		width: 100%;
+	}
+	.situation {
+		display: flex; margin: 3em 0;
+		align-items: stretch;
+		& > * {
+			flex: 1;
+			background: $grey;
+			line-height: 1; text-align: center;
+			&:first-child, &:last-child {
+				padding: 0 .25em;
+				background: none;
+			}
+		}
+		.black, .blue, .brown {
+			height: .33em;
+		}
+		.black {
+			align-self: center;
+			background: $black;
+		}
+		.blue {
+			align-self: flex-start;
+			background: $blue;
+		}
+		.brown {
+			align-self: flex-end;
+			background: $brown;
+		}
+		img {
+			width: 1em;
+		}
+	}
+	[role="navigation"] {
+		padding: 0;
+		&, ul {
+			list-style: none;
+		}
+		ul {
+			max-height: 0; overflow: hidden;
+			font-family: $links-font-family; line-height: 1.5em;
+			transition: max-height .5s ease-in-out;
+			&.active {
+				max-height: 200em;
+				transition-duration: 1s;
+			}
+		}
+		li::before {
+			display: inline-block; margin-right: .25em;
+			font-size: 1em; font-weight: bold;
+			content: '\2022'; vertical-align: middle;
+		}
+		& > li::before {
+			color: $grey;
+			content: '+';
+		}
+		button, a {
+			display: inline-block;
+			color: inherit; text-decoration: none;
+			vertical-align: middle;
+			&:hover, &:focus {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.breadcrumb {
+	position: absolute; top: 1em; left: 1em; right: 1em; z-index: 9;
+	font-size: 1.25em; line-height: 1em;
+	& > * {
+		@media (min-width: $responsive-breakpoint) {
+			position: fixed; display: block; right: auto;
+			transform: rotate(-90deg) translateX(-100%); transform-origin: top left;
+		}
+	}
+}
+
+.share {
+	position: fixed; bottom: 0; left: 0; padding: 1em;
+	@media (max-width: $responsive-breakpoint) {
+		background: rgba(black, .1);
+	}
+	.share-btn {
+		font-size: 1.25em;
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+	[id='share-panel'] {
+		position: absolute; top: .8em; left: 100%; max-width: 0; overflow: hidden;
+		font-size: 1.25em; white-space: nowrap;
+		fill: currentcolor;
+		transition: max-width .2s ease-in-out;
+		&.active {
+			max-width: 5em;
+		}
+		a {
+			display: inline-block;
+			color: inherit; text-decoration: none;
+		}
+		svg {
+			display: block; width: 1.5em;
+		}
+	}
+}

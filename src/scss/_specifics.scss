@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Specifics classes
+   ========================================================================== */
+
+
+.start-page {
+	position: absolute; top: 0; right: 0; bottom: 0; left: 0; height: auto; padding-bottom: 7.5em;
+	background: black;
+	animation: appear 5s ease-out;
+}
+
+%home-ball {
+	max-width: 28.125em; max-height: 28.125em;
+}
+
+.home-content {
+	//padding: 1em; box-sizing: border-box;
+	.home-logo {
+		@extend %home-ball;
+		width: 100%;
+	}
+	.home-title {
+		height: 6.5em; overflow: hidden; margin-top: 1em;
+		text-align: center;
+		line-height: 1.2;
+		@media (max-width: $responsive-breakpoint) {
+			font-size: .75em;
+		}
+	}
+	.first-line {
+		font-size: 1.6875em;
+	}
+	.second-line {
+		font-size: 2.1875em;
+	}
+	.third-line {
+		font-size: 1.375em;
+	}
+}
+
+.start-content {
+	@extend %home-ball;
+	width: 100%;
+	.start-square {
+		position: relative; padding-top: 100%;
+	}
+	.start-inner {
+		position: absolute; display: flex; top: 0; left: 0; right: 0; bottom: 0;
+		flex-flow: row wrap; justify-content: center; align-items: center; align-content: center;
+		//border-radius: 50%;
+		//background: grey;
+		text-align: center;
+	}
+	span {
+		display: flex;
+		justify-content: center; align-items: center;
+		@media (max-width: $responsive-breakpoint) {
+			font-size: .75em;
+		}
+	}
+	.n, .s {
+		width: 100%; height: 15%;
+	}
+	.nw, .ne, .sw, .se {
+		width: 50%; height: 10%;
+	}
+	.w, .e {
+		width: 25%;
+	}
+	.c {
+		width: 50%;
+	}
+	.w, .c, .e {
+		height: 40%;
+	}
+	a {
+		display: inline-block; padding: .25em;
+		font-size: 2.75em; line-height: 1; color: $white; text-decoration: none;
+		&:hover, &:focus {
+			color: $white;
+		}
+		&.blue:hover, &.blue:focus {
+			color: $blue;
+		}
+		&.brown:hover, &.brown:focus {
+			color: $brown;
+		}
+		&.pink:hover, &.pink:focus {
+			color: $pink;
+		}
+	}
+	.big {
+		font-size: 4.5em;
+	}
+}
+
+.navigate-content {
+	display: flex; max-width: 60em;
+	flex-flow: row wrap; align-items: center;
+	@media (max-width: $responsive-breakpoint) {
+		font-size: .75em;
+	}
+	& > * {
+		box-sizing: border-box;
+		text-align: center;
+	}
+	a {
+		display: inline-block; padding: .5em;
+		font-family: $links-font-family; font-size: 1.5em; text-decoration: none;
+		&:hover, &:focus {
+			color: $pink;
+		}
+	}
+	blockquote {
+		width: 50%; margin: 0; padding: 2.5%;
+		font-family: $quote-font-family; font-size: 2.5em; line-height: 1.25;
+		@media (max-width: $responsive-breakpoint) {
+			width: 100%;
+			order: -1;
+		}
+	}
+	.item-n, .item-s {
+		width: 100%;
+	}
+	.item-ne, .item-nw, .item-se, .item-sw {
+		width: 50%;
+	}
+	.item-e, .item-w {
+		width: 25%;
+		@media (max-width: $responsive-breakpoint) {
+			width: 50%;
+		}
+	}
+	@media (max-width: $responsive-breakpoint) {
+		.item-e {
+			text-align: right;
+		}
+		.item-w {
+			text-align: left;
+		}
+	}
+}
+
+@each $page in $pages {
+	$name: map-get($page, 'name');
+	$background: map-get($page, 'background');
+	$color: map-get($page, 'color');
+
+	.#{$name}-page {
+		background: $background;
+		color: $color;
+	}
+}
+

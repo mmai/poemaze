@@ -36,7 +36,7 @@ export default function view(dashboardView, state){
       views.push(dashboardView);
     }
   }
-  return h("div#maincontainer", views)
+  return h("div#ai-page", views)
   // return h("div", 'Page non trouvée');
 }
 

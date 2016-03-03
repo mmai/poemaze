@@ -1,0 +1,33 @@
+/* ==========================================================================
+   SCSS config
+   ========================================================================== */
+
+$blue                   : rgb(72, 122, 189);
+$green                  : rgb(190, 207, 195);
+$darkbrown              : rgb(47, 46, 12);
+$brown                  : rgb(128, 120, 48);
+$lightgrey              : rgb(245, 245, 245);
+$grey                   : rgb(200, 200, 200);
+$pink                   : #ff00ff;
+$white                  : white;
+$black                  : black;
+
+$default-font-family    : 'Sanchez', serif;
+$quote-font-family      : 'Crimson Text', serif;
+$links-font-family      : 'Kite One', sans-serif;
+
+$pages                  : ((
+	'name'              : 'day',
+	'background'        : $green,
+	'color'             : $black
+),(
+	'name'              : 'night',
+	'background'        : $darkbrown,
+	'color'             : $white
+),(
+	'name'              : 'other',
+	'background'        : $white,
+	'color'             : $black
+));
+
+$responsive-breakpoint  : 40em;

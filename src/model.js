@@ -1,6 +1,6 @@
 import {Observable} from 'rx'
 
-const lastLeafId = "0.1.1.1.1.1.1"
+const lastLeafId = "0111111"
 
 export function makeModel(AI) {
   return function model(initialState$, editionIdFromPdfAPI$, actions){

@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Sass config file
+
+   Declaration chart:
+   foo {
+       line 1: box styles;
+       line 2: flex styles;
+       line 3: transform styles;
+       line 4: border styles;
+       line 5: background styles;
+       line 6: text styles;
+       line 7: animation and transition styles;
+       line 8: other styles;
+   }
+   ========================================================================== */
+
+
+// Config, variables and mixins
+@import "config";
+@import "mixins";
+@import "animations";
+
+// Reset and dependencies
+@import "vendor/normalize/_normalize";
+
+// Core CSS
+@import "fonts";
+@import "typo";
+@import "forms";
+@import "buttons";
+
+// Browser upgrade
+@import "browserupgrade";
+
+// Plugins vendors
+// …
+
+// Main CSS
+@import "layout";
+@import "specifics";
+
+// Debug
+@import "debug";
+@import "custom";
+@import "team";

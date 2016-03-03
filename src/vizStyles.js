@@ -1,7 +1,7 @@
 //Styles for the visualizations
 
 export const svgStyle = {
-    width: 480, height: 480,
+    width: 420, height: 420,
     leafRadius: 3, circleRadius: 30,
     color_background: "whitesmoke",
     color_up: "rgb(72,122,189)",
