@@ -132,7 +132,8 @@ function ai_admin_page(){
       $taxo = wp_get_post_terms($id, 'leaf_circle');
       $parent = get_post($post->post_parent);
 
-      $leaf = array(
+      //Old format 
+      /*$leaf = array(
         'id' => $post->post_title,
         'name' => $name,
         'word' => $word,
@@ -143,7 +144,18 @@ function ai_admin_page(){
       );
 
       $leafs[$post->post_title] = $leaf;
-      // array_push($leafs, $leaf);
+       */
+
+      //New lighter format
+      $leafid = str_replace('.', '',$post->post_title);
+      $leaf = array(
+        'name' => $name,
+        'word' => $word,
+        'content' => $post->post_content
+      );
+
+      $leafs[$leafid] = $leaf;
+
     }
     // $output = "window.arbreIntegralData = ".json_encode($leafs, JSON_PRETTY_PRINT).";";
     $output = json_encode($leafs, JSON_PRETTY_PRINT);

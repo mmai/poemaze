@@ -18,6 +18,7 @@ export function makeAiSvgComponent(AI, {
     color_default, color_background,
     color_up, color_down,
     color_brothers,
+    color_current,
     color_skeleton
   }){
 
@@ -102,7 +103,7 @@ export function makeAiSvgComponent(AI, {
     if (!displayNeighbors) return [];
     const coords = AI.getCoords(leaf);
     const {x, y} = getCoordsFromPos(coords);
-    return [svg('circle', {cx:x, cy:y, r:leafRadius*2, stroke: "black", fill:color_background})]
+    return [svg('circle', {cx:x, cy:y, r:leafRadius*2, stroke: color_current, fill:color_current})]
   }
 
   /**

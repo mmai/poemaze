@@ -8,6 +8,7 @@ import {pagesUrl} from 'settings'
       // <aside id="side-panel" className={showDashboard?"ai-opened":"ai-closed"}>
       // <button className="swicth-btn trigger" data-target="side-panel"> </button>
 export function renderDashboard(showDashboard, isUpside, history, progressionVtree, aiLogoSvgVtree, aiSvgVtree){
+  const currentLeafId = history.length === 0 ? "0" : history[history.length-1].id;
   return (
     <aside id="side-panel" className={showDashboard?"active":""}>
       <a href={showDashboard?"#main":"#dashboard"} className='swicth-btn'>
@@ -15,7 +16,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
       </a>
 
 		  <div className="side-panel-content">
-        <div className="location">0.1.2.2.2.2.1</div>
+        <div className="location">{currentLeafId}</div>
         <a href="reset">Recommencer</a><br/>
 
         {aiSvgVtree}
