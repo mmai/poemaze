@@ -6,6 +6,8 @@ import {renderPoem}      from './views/poem';
 import {renderEnd}       from './views/end'
 import {renderPdf}       from './views/pdf';
 
+import {shareView}       from './views/share';
+
 // export default function view(state, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
 export default function view(dashboardView, state){
   let views = [];
@@ -29,11 +31,13 @@ export default function view(dashboardView, state){
     case 126:
       views.push(renderEnd(state.leafInfos));
       views.push(dashboardView);
+      views.push(shareView)
       break;
     default:
       // views.push(renderEnd(state.leafInfos));
       views.push(renderPoem(state.isUpside, state.leafInfos))
       views.push(dashboardView);
+      views.push(shareView)
     }
   }
   return h("div#ai-page", views)

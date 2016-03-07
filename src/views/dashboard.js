@@ -25,7 +25,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
 			<ul className="navigation">
 				<li>
           {h('button.trigger.reset', {
-                attributes: {type:"button", "data-target":"list1", "onclick": "document.getElementById('historyList').classList.toggle('active')" },
+                attributes: {type:"button", "onclick": "document.getElementById('historyList').classList.toggle('active')" },
            }, 
            "Historique"
          )}
