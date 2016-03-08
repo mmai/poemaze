@@ -3,7 +3,7 @@ import {h} from '@cycle/dom';
 export default function ProgressionComponent(sources) {
   // const DOMSource = sources.DOM;
   let vtree$ = sources.prop$.map(props => {
-      let progressElems = props.map(isUp => h("span", {className: isUp?"blue":"brown"}));
+      let progressElems = props.map(isUp => h("span", {className: isUp?"ai-up":"ai-down"}));
       for (let i = props.length; i < 127 ; i++){
         progressElems.push(h("span"));
       }

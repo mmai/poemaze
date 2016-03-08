@@ -28,15 +28,15 @@ export function renderRoot(leafInfos){
 		<div className="start-content">
 			<div className="start-square">
 				<div className="start-inner">
-					<span className="n"><a className="blue" href={linkUp}>E</a></span>
-					<span className="nw"><a className="blue" href={linkUp}>L</a></span>
-					<span className="ne"><a className="blue" href={linkUp}>N</a></span>
-					<span className="w"><a className="blue" href={linkUp}>H</a></span>
+					<span className="n"><a className="ai-up" href={linkUp}>E</a></span>
+					<span className="nw"><a className="ai-up" href={linkUp}>L</a></span>
+					<span className="ne"><a className="ai-up" href={linkUp}>N</a></span>
+					<span className="w"><a className="ai-up" href={linkUp}>H</a></span>
 					<span className="c"><a className="pink big">0</a></span>
-					<span className="e"><a className="brown" href={linkDown}>M</a></span>
-					<span className="sw"><a className="brown" href={linkDown}>I</a></span>
-					<span className="se"><a className="brown" href={linkDown}>G</a></span>
-					<span className="s"><a className="brown" href={linkDown}>R</a></span>
+					<span className="e"><a className="ai-down" href={linkDown}>M</a></span>
+					<span className="sw"><a className="ai-down" href={linkDown}>I</a></span>
+					<span className="se"><a className="ai-down" href={linkDown}>G</a></span>
+					<span className="s"><a className="ai-down" href={linkDown}>R</a></span>
 				</div>
 			</div>
 		</div>

@@ -31,7 +31,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
            "Historique"
          )}
           {h('ul#historyList', 
-              history.map(url => h(`li.${isUp(url)?'blue':'brown'}`, [
+              history.map(url => h(`li.${isUp(url)?'ai-up':'ai-down'}`, [
                     h(`a`, {href: `${url.id}`}, `${url.word} (${url.id})`)
                   ])
               )
