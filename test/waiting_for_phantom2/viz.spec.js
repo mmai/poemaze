@@ -1,44 +1,48 @@
-// var settings = require('../../src/settings.dev');//aargh es6 modules
-var settings = {
-  // baseUrl: 'http://arbre-integral.net',
-  // pagesUrl: 'http://arbre-integral.net'
-  baseUrl: 'http://localhost:1234',
-  pagesUrl: 'http://localhost:1234/testpages'
-}
-var baseUrl = settings.baseUrl;
-var pagesUrl = settings.pagesUrl;
-
-casper.test.begin('Display poem after navigating wordpress pages', 1,  function suite(test) {
-    casper.start(baseUrl)
-    .waitForSelector('a.ai-up')
-    .then(function() {
-        this.click('a.ai-up');
-      })
-    .thenOpen(pagesUrl + '/forums/index.html')
-    .waitForSelector('#side-panel', function(){
-        this.click('a.dashboardLink');
-      })
-    .then(function() {
-        this.click("ul li button");
-      })
-    .waitForSelector('#historyList', function(){
-        this.click("#historyList li a");
-      })
-    .waitForSelector('.dashboardLink', function(){
-        this.click('a.dashboardLink');
-      })
-    .then(function() {
-        // test.assertElementCount(".ai-text > .circle", 3, "poem is made of 3 circles divs");
-        test.assertElementCount(".navigate-content", 1, "poem is displayed");
-      })
-    .then(function(){
-        this.evaluate(function() { localStorage.clear(); }, {});
-      })
-    .run(function(){
-          test.done()
-        })
-
+describe('Display mini viz on wordpress pages', function() {
+  before(function() {
+    casper.start('http://arbre-integral.net/forums/')
   })
+
+  it('should display the mini viz', function() {
+    casper.then(function() {
+        assert('#ai-page').to.be.inDOM
+      // '#ai-page'.should.be.inDOM
+    })
+
+    casper.waitForSelector('#maincontainer', function(){
+      '.dashboardLink'.should.be.inDOM.and.be.visible
+    })
+  })
+})
+
+describe('Display mini viz on poem pages', function() {
+  before(function() {
+    casper.open('http://arbre-integral.net:1234/')
+  })
+
+  it('should not display the mini viz on the home page', function() {
+    casper.then(function() {
+      '#ai-page'.should.be.inDOM.and.be.visible
+    })
+
+    casper.waitForSelector('#maincontainer', function(){
+      '.dashboardLink'.should.not.be.inDOM
+    })
+  })
+
+  it('should display the mini viz when poem navigation has begun', function() {
+    casper.then(function() {
+        this.click('a.ai-seed-up');
+      });
+
+    casper.then(function(){
+        this.waitForSelector('#maincontainer', function(){
+            '.dashboardLink'.should.be.inDOM.and.be.visible
+          })
+      })
+  })
+})
+
 
 // casper.options.waitTimeout = 20000;
 casper.on('remote.message', function(message) {
@@ -86,5 +90,4 @@ casper.on( 'page.initialized', function(){
         }
     });
 });
-
 

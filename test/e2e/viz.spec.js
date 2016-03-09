@@ -7,10 +7,10 @@ var settings = {
 }
 
 casper.test.begin('Display mini viz on wordpress pages', 2, function suite(test) {
-    casper.start(pagesUrl + '/forums/index.html', function(){
-        test.assertExists('#ai-page', 'html container is found')
+    casper.start(settings.pagesUrl + '/forums/index.html', function(){
+        test.assertExists('#app', 'html container is found')
       })
-    .waitForSelector('#maincontainer', function(){
+    .waitForSelector('#ai-page', function(){
         test.assertVisible('.dashboardLink', 'dashboardLink is displayed')
       })
     .run(function(){
@@ -20,14 +20,14 @@ casper.test.begin('Display mini viz on wordpress pages', 2, function suite(test)
   })
 
 casper.test.begin('Display mini viz on poem pages', 3,  function suite(test) {
-    casper.thenOpen(baseUrl, function(){
-        test.assertExists('#ai-page', 'html container is found on the home page')
+    casper.thenOpen(settings.baseUrl, function(){
+        test.assertExists('#app', 'html container is found on the home page')
       })
-    .waitForSelector('a.ai-seed-up', function(){
+    .waitForSelector('a.ai-up', function(){
         test.assertNotExists('.dashboardLink', 'dashboardLink is not displayed on the home page')
-        this.click('a.ai-seed-up');
+        this.click('a.ai-up');
       })
-    .waitForSelector('#maincontainer', function(){
+    .waitForSelector('#ai-page', function(){
         test.assertVisible('.dashboardLink', 'dashboardLink is displayed on poem pages')
       })
     .run(function(){
@@ -36,64 +36,133 @@ casper.test.begin('Display mini viz on poem pages', 3,  function suite(test) {
 })
 
 casper.test.begin('Display main viz on wordpress pages', 3, function suite(test) {
-    casper.thenOpen(pagesUrl + '/forums/index.html', function(){
-        test.assertExists('#ai-page', 'html container is found')
+    casper.thenOpen(settings.pagesUrl + '/forums/index.html', function(){
+        test.assertExists('#app', 'html container is found')
       })
-    .waitForSelector('#maincontainer', function(){
+    .waitForSelector('#ai-page', function(){
         this.click('a.dashboardLink');
       })
     .then(function() {
-        test.assertElementCount("#history li", 1, "history has one entry");
-        this.click("#history li a");
+        this.click("ul li button");
       })
-    .waitForSelector('#maincontainer', function(){
+    .waitForSelector('#historyList', function(){
+        test.assertElementCount("#historyList li", 1, "history has one entry");
+        this.click("#historyList li a");
+      })
+    .waitForSelector('.dashboardLink', function(){
         this.click('a.dashboardLink');
       })
-    .then(function() {
-        test.assertElementCount("svg", 2, "the two visualization are enabled");
+    .waitForSelector('svg', function(){
+        test.assertElementCount("svg > g", 4, "the two visualizations are enabled");
       })
     .run(function(){
           test.done()
         })
 
   })
-
 casper.test.begin('Keep poem navigation history on wordpress pages', 8,  function suite(test) {
-    casper.thenOpen(pagesUrl + '/forums/index.html')
+    casper.thenOpen(settings.pagesUrl + '/forums/index.html')
     // .waitForSelector('a.dashboardLink')
-    .waitForSelector('#maincontainer')
+    .waitForSelector('#ai-page')
     .then(function() {
-        test.assertVisible('.ai-closed', 'dashboard is closed')
+        test.assertNotVisible('#side-panel.active', 'dashboard is closed')
         this.click('a.dashboardLink');
       })
-    // .waitUntilVisible('.viz-neighbor', function(){
-    .wait(300, function(){
-        // test.assertVisible('.viz-neighbor', 'svg neighbors are visible')
-        // console.log("found neighbors : " + this.evaluate(() => __utils__.findAll('.viz-neigbhor').length))
-        test.assertElementCount("#history li", 1, "history has one entry");
+    .then(function() {
+        this.click("ul li button");
+      })
+    .waitForSelector('#historyList', function(){
+        test.assertElementCount("#historyList li", 1, "history has one entry");
         this.click('.viz-neighbor');
       })
     .then(function() { this.click('a.dashboardLink'); })
-    .then(function(){
-        test.assertVisible('#history', 'dashboard history is visible')
-        test.assertElementCount("#history li", 2, "history has two entries on forum page");
+    .then(function() {
+        this.click("ul li button");
+      })
+    .waitForSelector('#historyList', function(){
+        test.assertVisible('#historyList', 'dashboard history is visible')
+        test.assertElementCount("#historyList li", 2, "history has two entries on forum page");
       })
     .then(function() {
         this.click('a[rel~="external"]');
       })
-    .waitForSelector('#maincontainer', function(){
+    .waitForSelector('#ai-page', function(){
         test.assertUrlMatch(/forums\/forum\/.+/, 'current page is a specific forum page');
+      })
+    .thenOpen(settings.pagesUrl + '/forums/forum/suggestions/index.html', function(){//XXX needed for webpack-dev-server tests (index.html not recognized on folders)
         this.click('a.bbp-topic-permalink');
       })
-    .waitForSelector('#maincontainer', function(){
+    .waitForSelector('#ai-page', function(){
         test.assertUrlMatch(/forums\/topic\/.+/, 'current page is a topic forum page');
+      })
+    .thenOpen(settings.pagesUrl + '/forums/topic/test/index.html', function(){//XXX needed for webpack-dev-server tests (index.html not recognized on folders)
       })
     .waitForSelector('a.dashboardLink', function(){
         test.assertVisible('.dashboardLink', 'dashboardLink is displayed on internal forum pages')
         this.click('a.dashboardLink');
       })
     .then(function(){
-        test.assertElementCount("#history li", 2, "history has two entries on internal forum page");
+        test.assertElementCount("#historyList li", 2, "history has two entries on internal forum page");
+      })
+    .run(function(){
+        test.done()
+      })
+})
+
+casper.test.begin('Draw SVG paths', 6, function suite(test){
+    casper.then(function(){
+        this.evaluate(function() { localStorage.clear(); }, {});
+      })
+    .thenOpen(settings.baseUrl)
+    .waitForSelector('.ai-up', function() {
+        test.assertElementCount("a[href^='00?']", 4, 'home page has 4 links towards leaf of id 00')
+      })
+
+    casper = followPath.bind(casper)(["00", "01", "011"])
+    .then(function(){
+        test.assertElementCount('a.dashboardLink svg g path,a.dashboardLink svg g line', 3 + 1, 'logo visualization SVG has 3 steps') //One more for the init step, discarded after subsequent reloads
+      })
+    .thenOpen(settings.baseUrl)
+    .waitForSelector('.dashboardLink', function() {
+        test.assertEval(lastVizStepVisible, 'last step viz is visible')
+      })
+    
+    casper = showHistory.bind(casper)()
+    .then(function(){
+        test.assertElementCount("#historyList li", 3, "history has 3 entries")
+        this.click(`a[href='/01']`)
+      })
+    .thenOpen(settings.baseUrl)
+    .waitForSelector('.dashboardLink', function() {
+        test.assertElementCount('a.dashboardLink svg g path,a.dashboardLink svg g line', 3 , 'logo visualization SVG has 3 steps after history click')
+        test.assertEval(lastVizStepVisible, 'last step viz is visible after reloading')
+      })
+
+    //Oblique
+    casper.then(function(){
+        this.evaluate(function() { localStorage.clear(); }, {});
+      })
+    .thenOpen(settings.baseUrl)
+    .waitForSelector('.ai-up')
+    casper = followPath.bind(casper)(["00", "01", "010", "011"])
+    .then(function(){
+        test.assertElementCount('a.dashboardLink svg g path,a.dashboardLink svg g line', 4 + 1, 'logo visualization SVG has 4 steps') //One more for the init step, discarded after subsequent reloads
+      })
+    .thenOpen(settings.baseUrl)
+    .waitForSelector('.dashboardLink', function() {
+        test.assertEvalEqual(lastVizStepType, 'circle', 'last step viz is an arc circle')
+      })
+    
+    casper = showHistory.bind(casper)()
+    .then(function(){
+        test.assertElementCount("#historyList li", 4, "history has 4 entries")
+        this.click(`a[href='/00']`)
+      })
+    .thenOpen(settings.baseUrl)
+    .waitForSelector('.dashboardLink', function() {
+        test.assertElementCount('a.dashboardLink svg g path,a.dashboardLink svg g line', 4 , 'logo visualization SVG has 4 steps after history click')
+        test.assertEval(vizStepsEndDifferents(1, 4), 'last step end differs from history step end')
+        test.assertEvalEqual(lastVizStepType, 'circle', 'last step viz is an arc circle')
       })
     .then(function(){
         this.evaluate(function() { localStorage.clear(); }, {});
@@ -103,19 +172,52 @@ casper.test.begin('Keep poem navigation history on wordpress pages', 8,  functio
       })
 })
 
-/*
-//XXX  Casperjs runs in an infinite loop with this test suite ?!
-caster.test.begin('Draw SVG paths', 1, function suite(test){
-    casper.thenOpen(pagesUrl)
-    .waitForSelector('#maincontainer')
-    .then(function() {
-        test.assertElementCount('.dashboardLink line', 2, 'logo visualization SVG has 2 lines')
+function followPath(path){
+  return path.reduce(
+    function (casp, leaf) {
+      return casp.waitForSelector('#ai-page', function(){
+        this.click(`a[href^='${leaf}?']`)
       })
-    .run(function(){
-        test.done()
-      })
-})
-//*/
+    }, this)
+}
+
+function showHistory(){
+  return this
+    .then(function() { this.click('a.dashboardLink'); })
+    .then(function() { this.click("ul li button") })
+}
+
+function lastVizStepVisible(){
+  var elements = __utils__.findAll('a.dashboardLink svg g path,a.dashboardLink svg g line');
+  var lastElem = elements[elements.length - 1]
+  return lastElem.getAttribute('x1') - lastElem.getAttribute('x2') !== 0;
+}
+
+function vizStepsEndDifferents(step1, step2){
+  var s1 = step1 - 1;
+  var s2 = step2 - 1;
+  return function(){
+    var elements = __utils__.findAll('a.dashboardLink svg g path,a.dashboardLink svg g line');
+    var step1Elem = elements[s1];
+    var step2Elem = elements[s2];
+    if (step1Elem.nodeName === 'path' || step1Elem.nodeName === 'path') return true;
+    return (step1Elem.getAttribute('x1') !== step2Elem.getAttribute('x1')) &&
+    (step1Elem.getAttribute('x2') !== step2Elem.getAttribute('x2'));
+  }
+}
+
+function lastVizStepType(){
+  var stepType = undefined; 
+  var elements = __utils__.findAll('a.dashboardLink svg g path,a.dashboardLink svg g line');
+  var lastElem = elements[elements.length - 1]
+  if (lastElem.nodeName === "line") {
+    stepType = "line";
+  } else if (lastElem.nodeName === "path") {
+    stepType = "circle";
+  }
+  return stepType;
+}
+
 
 // casper.options.waitTimeout = 20000;
 casper.on('remote.message', function(message) {
