@@ -79,11 +79,11 @@
 		&:hover, &:focus {
 			color: $white;
 		}
-		&.blue:hover, &.blue:focus {
-			color: $blue;
+		&.ai-up:hover, &.ai-up:focus {
+			color: $color-up;
 		}
-		&.brown:hover, &.brown:focus {
-			color: $brown;
+		&.ai-down:hover, &.ai-down:focus {
+			color: $color-down;
 		}
 		&.pink:hover, &.pink:focus {
 			color: $pink;
@@ -93,7 +93,6 @@
 		font-size: 4.5em;
 	}
 }
-
 .navigate-content {
 	display: flex; max-width: 60em;
 	flex-flow: row wrap; align-items: center;
@@ -107,12 +106,12 @@
 	a {
 		display: inline-block; padding: .5em;
 		font-family: $links-font-family; font-size: 1.5em; text-decoration: none;
-		&:hover, &:focus {
+		&:hover {
 			color: $pink;
 		}
 	}
 	blockquote {
-		width: 50%; margin: 0; padding: 2.5%;
+		width: 54%; margin: 0; padding: 2.5%;
 		font-family: $quote-font-family; font-size: 2.5em; line-height: 1.25;
 		@media (max-width: $responsive-breakpoint) {
 			width: 100%;
@@ -126,9 +125,9 @@
 		width: 50%;
 	}
 	.item-e, .item-w {
-		width: 25%;
+		width: 23%;
 		@media (max-width: $responsive-breakpoint) {
-			width: 50%;
+			width: 46%;
 		}
 	}
 	@media (max-width: $responsive-breakpoint) {
@@ -139,6 +138,9 @@
 			text-align: left;
 		}
 	}
+}
+.circle6-page .navigate-content blockquote {
+  font-family: $quote-font-family-circle6;
 }
 
 @each $page in $pages {
@@ -152,3 +154,10 @@
 	}
 }
 
+/********* 
+ * henri *
+ *********/
+
+.viz-neighbor {
+  cursor: pointer;
+}

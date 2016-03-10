@@ -12,8 +12,13 @@ $pink                   : #ff00ff;
 $white                  : white;
 $black                  : black;
 
+$color-background-circle6: $lightgrey;
+$color-up: $blue;
+$color-down: $brown;
+
 $default-font-family    : 'Sanchez', serif;
 $quote-font-family      : 'Crimson Text', serif;
+$quote-font-family-circle6 : 'Asap', sans-serif;
 $links-font-family      : 'Kite One', sans-serif;
 
 $pages                  : ((
@@ -24,6 +29,10 @@ $pages                  : ((
 	'name'              : 'night',
 	'background'        : $darkbrown,
 	'color'             : $white
+),(
+	'name'              : 'circle6',
+	'background'        : $color-background-circle6,
+	'color'             : $black
 ),(
 	'name'              : 'other',
 	'background'        : $white,

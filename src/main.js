@@ -22,7 +22,6 @@ import view from './view'
 import {renderDashboard} from './views/dashboard'
 import {cleanSvgCover, makePdfApiParams} from './aiPdf';
 
-import {env} from 'settings'
 import {svgStyle, pdfStyle, logoStyle} from './vizStyles'
 
 const xmlhttp = new XMLHttpRequest();

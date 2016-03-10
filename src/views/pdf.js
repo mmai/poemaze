@@ -1,5 +1,4 @@
 import {h} from '@cycle/dom'
-import createElement from 'virtual-dom/create-element';
 
 export function renderPdf(editionId){
   return h('div', [ 

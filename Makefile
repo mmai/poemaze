@@ -6,7 +6,7 @@ size:
 dev:
 ifndef SASS_RUNNING
 	#due to a bug in sass, we must go to the scss directory to launch the command and have instant file updates detection (instead of ~20s )
-	cd src/scss; sass --watch arbreintegral.scss:../../www/wp-content/themes/arbre-integral/style.css &
+	cd src/scss; sass --watch main.scss:../../www/wp-content/themes/arbre-integral/css/main.css &
 	cd ../..
 endif
 ifndef WEBPACK_RUNNING
@@ -14,7 +14,7 @@ ifndef WEBPACK_RUNNING
 endif
 
 build: 
-	sass src/scss/arbreintegral.scss:www/wp-content/themes/arbre-integral/style.css
+	sass src/scss/main.scss:www/wp-content/themes/arbre-integral/css/main.css
 	NODE_ENV=prod webpack -p
 
 testunit:

@@ -1,3 +1,5 @@
+import {env} from 'settings'
+import createElement from 'virtual-dom/create-element'
 
 /**
  * Extract the svg cover representation from the global aiSvgComponent virtual-dom 
