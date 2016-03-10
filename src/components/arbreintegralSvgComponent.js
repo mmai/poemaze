@@ -46,6 +46,7 @@ export function makeAiSvgComponent(AI, {
           //Reset
           pathsVtree = []
         } else if (pathsVtree.length === 0) {
+          //Redraw from localstorage history
           pathsVtree = makePathsFromHistory(leafInfos.history)
         }
 
@@ -88,7 +89,7 @@ export function makeAiSvgComponent(AI, {
   }
 
   function makePathsFromHistory(history){
-    return history.slice(0, -1).map(({pathname, from}) =>
+    return history.map(({pathname, from}) =>
       makeJoinLine(AI.getLeaf(from), AI.getLeaf(pathname))
     )
   }

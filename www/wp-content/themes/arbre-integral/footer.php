@@ -13,7 +13,7 @@
 	</div><!-- #page -->
 
 	<?php wp_footer(); ?>
-    <div id="ai-page"></div>
+    <div id="app"></div>
     <script language="javascript">
       window.aiPageType = "wordpress";
     </script>

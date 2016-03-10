@@ -20,7 +20,7 @@ import {makeAiSvgComponent} from './components/arbreintegralSvgComponent'
 
 import view from './view'
 import {renderDashboard} from './views/dashboard'
-import {cleanSvgCover} from './views/pdf';
+import {cleanSvgCover, makePdfApiParams} from './aiPdf';
 
 import {env} from 'settings'
 import {svgStyle, pdfStyle, logoStyle} from './vizStyles'
@@ -67,7 +67,7 @@ function startAI(json) {
     const bodyClasses$ = state$.map(bodyStylesFromState).distinctUntilChanged()
 
     //XXX side effect to avoid all the cycle.js driver boilerplate for a single variable 
-    //better put this in state$ ?
+    //this variable can't be in state$ because it must be initialized outside cyclejs by wordpress pages
     actions.readPoem$.subscribe((click) => {window.aiPageType = "poem" })
 
     const leafLinks$ =  state$.map( state => state.history )
@@ -88,36 +88,21 @@ function startAI(json) {
     const progression = isolate(ProgressionComponent)(progressionSources);
 
     //State => Viz
-    const visitedLeaf$ = state$
-    .map( s => ({
+    const visitedLeaf$ = state$.map( s => ({
           history:s.history,
-          hl: s.history.length,//need a additional variable because history is an array
           leaf: s.leafInfos.leaf,
           fromId: s.leafInfos.fromId,
           neighbors: s.leafInfos.neighbors,
           isUpside: s.isUpside,
           needRotation: s.needRotation,
-          isNewLeaf: true
+          isNewLeaf:  (s.history.length === 0) || (s.history[s.history.length - 1].pathname === s.pathname)
         }))
-    .scan( (acc, vf) => {
-        return {
-          history:vf.history,
-          hl:vf.history.length,
-          leaf: vf.leaf,
-          fromId: vf.fromId,
-          neighbors: vf.neighbors,
-          isUpside: vf.isUpside,
-          needRotation: vf.needRotation,
-          isNewLeaf: vf.hl !== acc.hl //beware : do not use directly vf.history.length : array mutates during the scan
-        }
-      })
+    .distinctUntilChanged()
     .share()
+    // .do(v => {console.log(v.history.length)})
 
     //Mini viz component : show live evolution
     const aiLogoSvg = isolate(AiLogoSvgComponent)({ visitedLeaf$ })
-
-    //Svg used in pdf cover
-    const aiPdfSvg = isolate(AiPdfSvgComponent)({ visitedLeaf$ })
 
     //Main viz compononent
     const delayedVisitedLeaf$ = visitedLeaf$
@@ -142,8 +127,6 @@ function startAI(json) {
     //XXX beware : we can't directly use state$  
     const stateInfos$ = state$.map(s => ({showDashboard: s.showDashboard, isUpside: s.isUpside}))
 
-    const log$ = state$.map(s => 'new state')
-
     const dashboardView$ = Observable.combineLatest([stateInfos$, history$, progression.DOM, aiLogoSvg.DOM, aiSvg.DOM],
       function(stateInfos, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
         return renderDashboard(stateInfos.showDashboard, stateInfos.isUpside, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree)
@@ -154,21 +137,10 @@ function startAI(json) {
     const view$ = dashboardView$.withLatestFrom(state$, view)
 
     //url => HTTP (wordpress API calls)
-    let apiCall$ = actions.makePdf$
+    const aiPdfSvg = isolate(AiPdfSvgComponent)({ visitedLeaf$ })
+    const apiCall$ = actions.makePdf$
     .withLatestFrom(aiPdfSvg.DOM, (url, svg) => cleanSvgCover(svg))
-    .withLatestFrom(leafLinks$, function(svgCover, leafLinks){
-        let path = leafLinks.map(getLeafIndex).join('-');
-        let url = `wp-json/arbreintegral/v1/path/${path}`;
-        if (env === 'dev') { url =  'fakeapi.json'; }
-        return {
-          url,
-          method: 'POST',
-          eager: true, //XXX if 'eager: false', it makes  4 requests to the backend...
-          send: {
-            'svg': svgCover
-          }
-        };
-      })
+    .withLatestFrom(leafLinks$, makePdfApiParams)
 
     const storage$ = serialize(state$.filter(s => s.editionId !== 'pending')).map(state => ({
           key: 'arbreintegralState', value: state
@@ -183,7 +155,6 @@ function startAI(json) {
     return {
       DOM: view$,
       bodyStyles: bodyClasses$,
-      log: log$,
       HTTP: apiCall$,
       History: browserHistory$,
       storage: storage$
@@ -202,21 +173,6 @@ function startAI(json) {
   };
 
   run(main, drivers);
-}
-
-/**
- * Translate leaf path to an integer via its binary representation
- *
- * @param {Object} leafLink
- * @return {number}
- */
-function getLeafIndex(leafLink){
-  const path = leafLink.pathname
-  //replace initial '0' by '1'
-  //ex : "0101" => "1101"
-  const binaryPath = "1" + path.slice(1);
-  //Convert to decimal base integer
-  return parseInt(binaryPath, 2)
 }
 
 /**
@@ -242,10 +198,8 @@ function getLeafIndex(leafLink){
   */
   function addRotationAnimationDelay(visitedLeafs){
     if (visitedLeafs.length === 0) return []
-
-    const fakeLeafs = [ false, false, false, false, false ]
     return visitedLeafs.map(
-      vleaf => (vleaf.needRotation)?[vleaf, ...fakeLeafs]:[vleaf]
+      vleaf => (vleaf.needRotation)?[vleaf, false, false, false, false, false]:[vleaf]
     ).reduce(
       (acc, vleafs) => acc.concat(vleafs)
     )
@@ -259,18 +213,22 @@ function getLeafIndex(leafLink){
    */
   function bodyStylesFromState(state){
       const l = state.leafInfos
-      let toRemove = ['circle6-page', 'day-page', 'night-page', 'other-page']
+      let toRemove = ['wordpress-page', 'circle6-page', 'day-page', 'night-page', 'other-page']
       let toAdd = []
-      let circle = l.leaf.id.split('').length - 1
-      if (6 === circle) {
-        toAdd.push(toRemove.splice(toRemove.indexOf('circle6-page'), 1))
-      } else if (0 === circle) {
-        toAdd.push(toRemove.splice(toRemove.indexOf('other-page'), 1))
-      } else if (l.type === "UP"){
-        toAdd.push(toRemove.splice(toRemove.indexOf('day-page'), 1))
+      if (window.aiPageType === "wordpress") {
+        toAdd.push(toRemove.splice(toRemove.indexOf('wordpress-page'), 1))
       } else {
-        toAdd.push(toRemove.splice(toRemove.indexOf('night-page'), 1))
-      }
+        let circle = l.leaf.id.split('').length - 1
+        if (6 === circle) {
+          toAdd.push(toRemove.splice(toRemove.indexOf('circle6-page'), 1))
+        } else if (0 === circle) {
+          toAdd.push(toRemove.splice(toRemove.indexOf('other-page'), 1))
+        } else if (l.type === "UP"){
+          toAdd.push(toRemove.splice(toRemove.indexOf('day-page'), 1))
+        } else {
+          toAdd.push(toRemove.splice(toRemove.indexOf('night-page'), 1))
+        }
+      } 
       return { classes:{toAdd, toRemove} }
   }
 

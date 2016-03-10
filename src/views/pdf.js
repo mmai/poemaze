@@ -9,14 +9,3 @@ export function renderPdf(editionId){
     ]
   );
 }
-
-/**
- * Extract the svg cover representation from the global aiSvgComponent virtual-dom 
- *
- * @param {object} svgVtree aiSvgComponent virtual dom
- *
- * @return {string}
- */
-export function cleanSvgCover(svgVtree){
-  return createElement(svgVtree).outerHTML;
-}

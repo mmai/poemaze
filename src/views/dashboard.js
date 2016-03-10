@@ -4,14 +4,11 @@ import {hJSX, h} from '@cycle/dom';
 import {isUp} from './utils'
 import {pagesUrl} from 'settings'
 
-      // <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
-      // <aside id="side-panel" className={showDashboard?"ai-opened":"ai-closed"}>
-      // <button className="swicth-btn trigger" data-target="side-panel"> </button>
 export function renderDashboard(showDashboard, isUpside, history, progressionVtree, aiLogoSvgVtree, aiSvgVtree){
   const currentLeafId = history.length === 0 ? "0" : history[history.length-1].id;
   return (
     <aside id="side-panel" className={showDashboard?"active":""}>
-      <a href={showDashboard?"#main":"#dashboard"} className='swicth-btn'>
+      <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
         {aiLogoSvgVtree}
       </a>
 
@@ -32,7 +29,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
          )}
           {h('ul#historyList', 
               history.map(url => h(`li.${isUp(url)?'ai-up':'ai-down'}`, [
-                    h(`a`, {href: `${url.id}`}, `${url.word} (${url.id})`)
+                    h(`a`, {href: `/${url.id}`}, `${url.word} (${url.id})`)
                   ])
               )
             )}
