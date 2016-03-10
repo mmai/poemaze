@@ -30,11 +30,14 @@ export function makeModel(AI) {
         })
     )).share()
 
-    const dashboardOpenMod$ = actions.dashboardOpen$.map(click => (
-        state => ({ ...state,
+    const dashboardOpenMod$ = actions.dashboardOpen$.map(click => {
+        //XXX side effect scroll to top of the dashboard to display the viz animation
+        //at the opening of the dashboard
+        document.querySelector('.location').scrollIntoView();
+        return state => ({ ...state,
             showDashboard: true
           })
-      )).share()
+      }).share()
 
     const dashboardCloseMod$ = actions.dashboardClose$.map(click => (
         state => ({ ...state,

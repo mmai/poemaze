@@ -26,7 +26,7 @@ export default function intent(DOM, History){
     })
   .share()
 
-  const reset$           = navigationClick$.filter(click => click.pathname === "reset").do(()=>{console.log('reset')})
+  const reset$           = navigationClick$.filter(click => click.pathname === "reset")
   const makePdf$         = navigationClick$.filter(click => click.pathname === "pdf")
   const dashboardOpen$   = navigationClick$.filter(click => click.display === "dashboard")
   const dashboardClose$  = navigationClick$.filter(click => click.display === "main")
