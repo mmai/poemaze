@@ -52,6 +52,9 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
 				<li>
 					<a href="#">Partager</a>
 				</li>
+				<li>
+					<a rel="external"  href={pagesUrl + '/propos'}>PROPOS</a>
+				</li>
         </ul>
       </div>
     </aside>

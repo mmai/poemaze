@@ -13,6 +13,12 @@ Made with  [Cycle.js](http://cyclejs.org) and [Wordpress](http://wordpress.org)
 
 Poem contents are stored in the `www/arbreintegral.json` JSON file.
 
+## Wordpress integration
+
+TODO: export database
+
+Réglages > Options de lecture > page d'accueil affiche une page statique "AI" -> template
+
 ## Credits
 
 * Text : Donatien Garnier
