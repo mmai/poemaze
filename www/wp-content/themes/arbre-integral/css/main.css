@@ -448,7 +448,7 @@ html, body {
 .wordpress-page #ai-page, .wordpress-page #app {
   min-height: 0%; }
 
-.day-page #page, .night-page #page, .circle6-page #page, .other-page #page {
+.day-page #main, .night-page #main, .circle6-page #main, .other-page #main {
   display: none; }
 
 a {
@@ -798,6 +798,25 @@ a {
  *********/
 .viz-neighbor {
   cursor: pointer; }
+
+.wp-content {
+  display: flex;
+  max-width: 60em;
+  flex-flow: row wrap;
+  align-items: center; }
+  @media (max-width: 40em) {
+    .wp-content {
+      font-size: .75em; } }
+  .wp-content > * {
+    box-sizing: border-box; }
+  .wp-content a {
+    display: inline-block;
+    padding: .5em;
+    font-family: "Kite One", sans-serif;
+    font-size: 1.5em;
+    text-decoration: none; }
+    .wp-content a:hover {
+      color: #ff00ff; }
 
 /* ==========================================================================
    Debug styles

@@ -10,7 +10,7 @@ export default function ProgressionComponent(sources) {
       return h('div.situation-container', [
           h('div.situation-begin', "0"),
           h('div.situation', progressElems),
-          h('div.situation-end', [h('img', {src:"wp-content/themes/arbre-integral/img/assets/cross.svg"})])
+          h('div.situation-end', [h('img', {src:"/wp-content/themes/arbre-integral/img/assets/cross.svg"})])
         ])
     });
 

@@ -161,3 +161,22 @@
 .viz-neighbor {
   cursor: pointer;
 }
+
+//inspired by .navigate-content
+.wp-content {
+	display: flex; max-width: 60em;
+	flex-flow: row wrap; align-items: center;
+	@media (max-width: $responsive-breakpoint) {
+		font-size: .75em;
+	}
+	& > * {
+		box-sizing: border-box;
+	}
+	a {
+		display: inline-block; padding: .5em;
+		font-family: $links-font-family; font-size: 1.5em; text-decoration: none;
+		&:hover {
+			color: $pink;
+		}
+	}
+}
