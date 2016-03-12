@@ -180,6 +180,7 @@ a {
 		}
 	}
 	[id='share-panel'] {
+    z-index: 99;
 		position: absolute; top: .8em; left: 100%; max-width: 0; overflow: hidden;
 		font-size: 1.25em; white-space: nowrap;
 		fill: currentcolor;

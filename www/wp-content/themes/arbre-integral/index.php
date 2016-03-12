@@ -38,9 +38,7 @@ get_header(); ?>
       <?php endif; ?>
 
       </div><!-- .wp-content -->
-    <div class="breadcrumb">
-      <div><?php the_title(); ?></div>
-    </div><!-- .breadcrumb -->
+    <div class="breadcrumb"> <div><?php the_title(); ?></div> </div><!-- .breadcrumb -->
   <div class="share">
     <button type="button" onclick="document.getElementById('share-panel').classList.toggle('active')" class="share-btn trigger reset">Partager</button>
     <div id="share-panel">

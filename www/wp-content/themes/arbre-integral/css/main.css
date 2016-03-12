@@ -620,6 +620,7 @@ a {
     .share .share-btn:hover, .share .share-btn:focus {
       text-decoration: underline; }
   .share [id='share-panel'] {
+    z-index: 99;
     position: absolute;
     top: .8em;
     left: 100%;
@@ -796,6 +797,49 @@ a {
 /********* 
  * henri *
  *********/
+.ai-pdf {
+  display: block;
+  text-align: left; }
+  .ai-pdf > * {
+    text-align: left; }
+  .ai-pdf a {
+    padding: 0;
+    font-family: "Sanchez", serif;
+    font-size: 1em; }
+
+.ai-last {
+  display: block;
+  text-align: center; }
+  .ai-last > * {
+    font-size: 1.5em; }
+  .ai-last a {
+    color: black;
+    padding: 0;
+    font-size: 1em;
+    font-family: "Sanchez", serif; }
+
+.ai-last-text {
+  margin-top: 1em;
+  margin-bottom: -2em; }
+
+.ai-last-cross {
+  max-width: 70%; }
+
+.ai-last-save {
+  margin-top: -1.5em; }
+
+.ai-last-restart {
+  position: fixed;
+  bottom: 0;
+  left: 0em;
+  padding: 1em; }
+  .ai-last-restart a {
+    color: black;
+    font-size: 1.25em;
+    text-decoration: none; }
+    .ai-last-restart a:hover {
+      text-decoration: underline; }
+
 .viz-neighbor {
   cursor: pointer; }
 
@@ -817,6 +861,17 @@ a {
     text-decoration: none; }
     .wp-content a:hover {
       color: #ff00ff; }
+
+/*** Bbpress custom **/
+#bbpress-forums a {
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 1em; }
+
+.wp-content {
+  width: 100%; }
+  .wp-content article {
+    width: 100%; }
 
 /* ==========================================================================
    Debug styles

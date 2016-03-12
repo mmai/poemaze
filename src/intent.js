@@ -37,7 +37,7 @@ export default function intent(DOM, History){
   .merge(svgClick$)
   .map(click => {
       let url = `/${click.pathname}`
-      if (undefined !== click.from){
+      if ((undefined !== click.from) && (null !== click.from)){
         url += `?trace=${click.from}`
       }
       return url
@@ -50,7 +50,7 @@ export default function intent(DOM, History){
         from: h.query.trace,
         display: h.hash.slice(1) 
       }))
-  .filter(h => undefined !== h.from && "" !== h.from && "" === h.display)
+  .filter(h => "0" === h.pathname.slice(0,1) && "" === h.display)
   .share()
 
   return {

@@ -1,21 +1,20 @@
 /** @jsx hJSX */
 
 import {hJSX, h} from '@cycle/dom';
+import {renderShare} from './share'
 
 export function renderEnd(leafInfos){
   return (
-      <div className="ai-text">
-        <div id="circle-current" className="circle">
-          <div className="circle-current--content" >
-          <span class="ai-last">{leafInfos.leaf.content}</span>
-          </div>
+      <div className="main-container">
+        <div className="navigate-content ai-last">
+          <div className="ai-last-text">{leafInfos.leaf.content}</div>
+          <img className="ai-last-cross" src="/wp-content/themes/arbre-integral/img/assets/cross.svg" />
+          <div className="ai-last-save"><a href="/pdf">Sauvegarder le livre</a></div>
         </div>
-        <div><a href="pdf">Conservez le livre de votre parcours</a></div>
-
-        <div>
-          <a href="reset">Recommencer</a><br/>
+        <div className="breadcrumb">
+          <div>{leafInfos.leaf.name}</div>
         </div>
-
+        <div className="ai-last-restart"><a href="/reset">Recommencer</a></div>
       </div>
       )
 }

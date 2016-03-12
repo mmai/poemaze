@@ -34,8 +34,8 @@ export default function view(dashboardView, state){
       views.push(shareView)
       break;
     default:
-      // views.push(renderEnd(state.leafInfos));
-      views.push(renderPoem(state.isUpside, state.leafInfos))
+      views.push(renderEnd(state.leafInfos));
+      // views.push(renderPoem(state.isUpside, state.leafInfos))
       views.push(dashboardView);
       views.push(shareView)
     }

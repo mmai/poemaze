@@ -10,7 +10,7 @@ casper.test.begin('Display mini viz on wordpress pages', 2, function suite(test)
     casper.start(settings.pagesUrl + '/forums/index.html', function(){
         test.assertExists('#app', 'html container is found')
       })
-    .waitForSelector('#ai-page', function(){
+    .waitForSelector('.dashboardLink', function(){
         test.assertVisible('.dashboardLink', 'dashboardLink is displayed')
       })
     .run(function(){
