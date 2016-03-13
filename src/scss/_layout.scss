@@ -179,8 +179,7 @@ a {
 			text-decoration: underline;
 		}
 	}
-	[id='share-panel'] {
-    z-index: 99;
+	[id='share-panel'], [id='share-panelw'] {
 		position: absolute; top: .8em; left: 100%; max-width: 0; overflow: hidden;
 		font-size: 1.25em; white-space: nowrap;
 		fill: currentcolor;
@@ -188,9 +187,11 @@ a {
 		&.active {
 			max-width: 5em;
 		}
-		a {
+		a, a:visited {
+      fill: currentcolor;
 			display: inline-block;
-			color: inherit; text-decoration: none;
+			color: inherit;
+      text-decoration: none;
 		}
 		svg {
 			display: block; width: 1.5em;

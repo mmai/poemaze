@@ -247,7 +247,7 @@ function getLeafPath($leafid){
   $binary = decbin($leafid);
   $forks = str_split($binary);
   $forks[0] = 0;
-  return join('.', $forks);
+  return join('', $forks);
 }
 
 /*******************************************

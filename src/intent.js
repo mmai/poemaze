@@ -50,6 +50,7 @@ export default function intent(DOM, History){
         from: h.query.trace,
         display: h.hash.slice(1) 
       }))
+  .do(r => {console.log(r)})
   .filter(h => "0" === h.pathname.slice(0,1) && "" === h.display)
   .share()
 

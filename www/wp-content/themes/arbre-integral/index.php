@@ -40,8 +40,8 @@ get_header(); ?>
       </div><!-- .wp-content -->
     <div class="breadcrumb"> <div><?php the_title(); ?></div> </div><!-- .breadcrumb -->
   <div class="share">
-    <button type="button" onclick="document.getElementById('share-panel').classList.toggle('active')" class="share-btn trigger reset">Partager</button>
-    <div id="share-panel">
+    <button type="button" onclick="document.getElementById('share-panelw').classList.toggle('active')" class="share-btn trigger reset">Partager</button>
+    <div id="share-panelw">
       <a title="Partager sur Facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>">
         <svg width="24" height="28" viewBox="0 0 24 28"><path d="M19.5 2q1.859 0 3.18 1.32t1.32 3.18v15q0 1.859-1.32 3.18t-3.18 1.32h-2.938v-9.297h3.109l0.469-3.625h-3.578v-2.312q0-0.875 0.367-1.313t1.43-0.438l1.906-0.016v-3.234q-0.984-0.141-2.781-0.141-2.125 0-3.398 1.25t-1.273 3.531v2.672h-3.125v3.625h3.125v9.297h-8.313q-1.859 0-3.18-1.32t-1.32-3.18v-15q0-1.859 1.32-3.18t3.18-1.32h15z"></path></svg>
       </a>

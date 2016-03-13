@@ -1,4 +1,5 @@
 import {h} from '@cycle/dom';
+const lastLeafId = "0111111"
 
 import {renderDashboard} from './views/dashboard'
 import {renderCover}     from './views/cover'
@@ -16,26 +17,18 @@ export default function view(dashboardView, state){
     views.push(h('div'))//XXX if not present, it seems to harm virtual-dom (it makes fail e2e test "poem is made of 3 circles divs" for example), I don't know exactly why :-( ...
     views.push(dashboardView)
   } else if (state.pathname === 'pdf') {
-    if (state.editionId === "pending") {
-      views.push(h('div', "Edition des documents..."));
-    } else {
-      views.push(renderPdf(state.editionId));
-    }
+    views.push(renderPdf(state.editionId));
     views.push(dashboardView)
   } else {
-    switch (state.history.length){
-    case 0:
+    if ( 0 === state.history.length){
       views.push(renderPoem(state.isUpside, state.leafInfos))
       views.push(renderCover());
-      break;
-    case 126:
-      views.push(renderEnd(state.leafInfos));
-      views.push(dashboardView);
-      views.push(shareView)
-      break;
-    default:
-      views.push(renderEnd(state.leafInfos));
-      // views.push(renderPoem(state.isUpside, state.leafInfos))
+    } else {
+      if (state.leafInfos.leaf.id === lastLeafId) {
+        views.push(renderEnd(state.leafInfos));
+      } else {
+        views.push(renderPoem(state.isUpside, state.leafInfos))
+      }
       views.push(dashboardView);
       views.push(shareView)
     }
