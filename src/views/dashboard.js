@@ -14,7 +14,6 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
 
 		  <div className="side-panel-content">
         <div className="location">{currentLeafId}</div>
-        <a href="reset">Recommencer</a><br/>
 
         {aiSvgVtree}
 

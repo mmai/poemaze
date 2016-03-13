@@ -5,16 +5,18 @@ export function renderPdf(editionId){
   if (editionId === "pending") {
     content = [
       h('div.ai-pdf-pending', [
-          h('img', {src: "/wp-content/themes/arbre-integral/img/assets/spinner.svg"}),
-          h("br"),
-          "Edition des documents...",
+          h('img', {src: "/wp-content/themes/arbre-integral/img/assets/ajax-loader.gif"}),
+          h("div", "Edition des documents...")
         ])
     ]
   } else {
     content = [
       h('h2', `Edition du parcours ${editionId}`),
-      h('a', {rel: "external", download: `ArbreIntegral-${editionId}-couverture.pdf`, href: `/aibooks/ArbreIntegral-${editionId}-couverture.pdf`}, `Télécharger la couverture`),
-      h('a', {rel: "external", download: `ArbreIntegral-${editionId}.pdf`, href: `/aibooks/ArbreIntegral-${editionId}.pdf`}, `Télécharger le contenu`)
+      h("ul", [
+          h("li", [h('a', {rel: "external", download: `ArbreIntegral-${editionId}-couverture.pdf`, href: `/aibooks/ArbreIntegral-${editionId}-couverture.pdf`}, `Télécharger la couverture`)]),
+          h("li", [h('a', {rel: "external", download: `ArbreIntegral-${editionId}.pdf`, href: `/aibooks/ArbreIntegral-${editionId}.pdf`}, `Télécharger le contenu`)])
+        ]),
+      
     ]
   }
 

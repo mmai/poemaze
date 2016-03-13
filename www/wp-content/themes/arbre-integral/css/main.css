@@ -571,7 +571,7 @@ a {
       line-height: 1.5em;
       transition: max-height .5s ease-in-out; }
       [id='side-panel'] .navigation ul.active {
-        max-height: 200em;
+        max-height: 250em;
         transition-duration: 1s; }
     [id='side-panel'] .navigation li::before {
       display: inline-block;
@@ -798,6 +798,7 @@ a {
  * henri *
  *********/
 .ai-pdf {
+  height: 90%;
   display: block;
   text-align: left; }
   .ai-pdf > * {

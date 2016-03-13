@@ -133,7 +133,7 @@ a {
 			font-family: $links-font-family; line-height: 1.5em;
 			transition: max-height .5s ease-in-out;
 			&.active {
-				max-height: 200em;
+				max-height: 250em;
 				transition-duration: 1s;
 			}
 		}

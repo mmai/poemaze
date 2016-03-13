@@ -141,13 +141,14 @@ function startAI(json) {
     .withLatestFrom(aiPdfSvg.DOM, (url, svg) => cleanSvgCover(svg))
     .withLatestFrom(leafLinks$, makePdfApiParams)
 
-    const storage$ = serialize(state$.filter(s => s.editionId !== 'pending')).map(state => ({
+    const storage$ = serialize(state$.filter(s => s.editionId !== 'pending'))
+      .map(state => ({
           key: 'arbreintegralState', value: state
         }));
 
     const redirect$ = state$
     .filter(s => s.needRedirect)
-    .map(s => `#${s.currentLeafId}`)
+    .map(s => `${s.currentLeafId}`)
 
     const browserHistory$ = actions.gotoPoem$.merge(redirect$)
 
