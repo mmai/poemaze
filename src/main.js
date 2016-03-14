@@ -45,7 +45,7 @@ function startAI(json) {
     const actions = intent(DOM, History)
 
     const initialState$ = deserialize(
-      storage.local.getItem('arbreintegralState'),
+      storage.local.getItem('aiState'),
       AI.makeInitialState()
     ).take(1)
     // XXX theses lines because the bodyStyles driver is not executed the first time, see next comment
@@ -143,7 +143,7 @@ function startAI(json) {
 
     const storage$ = serialize(state$.filter(s => s.editionId !== 'pending'))
       .map(state => ({
-          key: 'arbreintegralState', value: state
+          key: 'aiState', value: state
         }));
 
     const redirect$ = state$
