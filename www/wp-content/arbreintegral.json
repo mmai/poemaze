@@ -1,563 +1,563 @@
 {
     "0111111": {
-        "name": "Rhizomique \/ Eschatologique \/ Un",
-        "word": "out",
-        "content": "fatal-error-out-of-memory."
+        "name": "Rhizomique \/ Eschatologique ",
+        "word": "fatal",
+        "content": "erreur-fatale-hors-de-m\u00e9moire."
     },
     "0111110": {
-        "name": "Rhizomique \/ Politique \/ Trente-deux",
-        "word": "eschatologique",
-        "content": "Rhizomique \/eschatologique"
+        "name": "Rhizomique \/ Politique ",
+        "word": "z\u00e9ro",
+        "content": "0.1.1.1.1.1.0"
     },
     "0111101": {
-        "name": "Rhizomique \/ Politique \/ Trente-et-un",
-        "word": "111101",
-        "content": "111101"
+        "name": "Rhizomique \/ Politique ",
+        "word": "donn\u00e9e",
+        "content": "disparition-du-texte-au-profit-de-la-donn\u00e9e."
     },
     "0111100": {
-        "name": "Rhizomique \/ Politique \/ Trente",
-        "word": "111100",
-        "content": "111100"
+        "name": "Rhizomique \/ Politique ",
+        "word": "sch\u00e8me",
+        "content": "disparition-du-sch\u00e8me-arborescent-en faveur-du-complexe."
     },
     "0111011": {
-        "name": "Rhizomique \/ Politique \/ Vingt-neuf",
-        "word": "111011",
-        "content": "111011"
+        "name": "Rhizomique \/ Politique ",
+        "word": "facteur",
+        "content": "facteur-humain-poste-tes-deux-derni\u00e8res-lettres-x-y-volume-du-po\u00e8me-non-chiffr\u00e9es."
     },
     "0111010": {
-        "name": "Rhizomique \/ Politique \/ Vingt-huit",
-        "word": "111010",
-        "content": "111010"
+        "name": "Rhizomique \/ Politique ",
+        "word": "argile",
+        "content": "d-o\u00f9-vient-cette-nostalgie-tablettes-d-argile-distinction-compt\u00e9-cont\u00e9."
     },
     "0111001": {
-        "name": "Rhizomique \/ Politique \/ Vingt-sept",
-        "word": "0111001",
-        "content": "0111001"
+        "name": "Rhizomique \/ Politique",
+        "word": "obsolescence",
+        "content": "enfin-d\u00e9sali\u00e9n\u00e9-de-toute-accumulation-de-toute-obsolescence."
     },
     "0111000": {
-        "name": "Rhizomique \/ Politique \/ Vingt-six",
-        "word": "donn\u00e9e",
-        "content": "disparition-du-texte-au-profit-de-la donn\u00e9e."
+        "name": "Rhizomique \/ Politique ",
+        "word": "buto",
+        "content": "quelle-souplesse-d-anguille-au-del\u00e0-du-quanta-silhouette-de-buto."
     },
     "0110111": {
-        "name": "Rhizomique \/ Politique \/ Vingt-cinq",
+        "name": "Rhizomique \/ Politique ",
         "word": "sid\u00e9ral",
         "content": "le-sid\u00e9ral-virtuel-te-plait-tu-es-bien."
     },
     "0110110": {
-        "name": "Rhizomique \/ Politique \/ Vingt-quatre",
+        "name": "Rhizomique \/ Politique",
         "word": "n\u00e9matodes",
         "content": "ni-n\u00e9matodes-ni-singularit\u00e9-ni-entropie-ne-pourraient-te-convaincre-de-reprendre-ton-corps."
     },
     "0110101": {
-        "name": "Rhizomique \/ Politique \/ Vingt-trois",
+        "name": "Rhizomique \/ Politique",
         "word": "oubli",
-        "content": "tous-tes-hiers-d\u00e9j\u00e0-tu-les-confies-aux-\u00e9lectriques-convois-de-l-immediat-premier-symptome-de-l-oubli."
+        "content": "ton-absolue-confiance-aux-convois-\u00e9lectriques-du-n\u00e9ant-premier-symptome-clone-de-l-oubli."
     },
     "0110100": {
-        "name": "Rhizomique \/ Politique \/ Vingt-deux",
+        "name": "Rhizomique \/ Politique",
         "word": "neuromantique",
-        "content": "devenir-vegetal-devenir-machine-l\u2019hesitation-neuromantique-transhume-dans-un-cable-ethernet."
+        "content": "devenir-v\u00e9g\u00e9tal-devenir-machine-l\u2019h\u00e9sitation-neuromantique-transhume-dans-un-c\u00e2ble-\u00e9thernet."
     },
     "0110011": {
-        "name": "Rhizomique \/ Politique \/ Vingt-et-un",
+        "name": "Rhizomique \/ Politique ",
         "word": "samarres",
-        "content": "et-masque-\u00e0-jet-de-samarres-l-app\u00e9tit-co\u00eftal-du-dendrite-pour-l\u2019octet."
+        "content": "et-masque-\u00e0-jets-de-samares-l-app\u00e9tit-co\u00eftal-du-dendrite-pour-l\u2019octet."
     },
     "0110010": {
-        "name": "Rhizomique \/ Politique \/ Vingt",
+        "name": "Rhizomique \/ Politique ",
         "word": "g\u00e9opo\u00e9tique",
-        "content": "est-ce-geopoetique-du-code-cette-errance-chronocide-dans-le-q-i-global"
+        "content": "est-ce-g\u00e9opoetique-du-code-cette-errance-chronocide-dans-le-q-i-global."
     },
     "0110001": {
-        "name": "Rhizomique \/ Politique \/ Dix-neuf",
+        "name": "Rhizomique \/ Politique ",
         "word": "solidaire",
-        "content": "juste-un-boug\u00e9-de-forme-un-autre-branchement-tout-deviendrait-possible-libre-genereux-solidaire."
+        "content": "juste-un-boug\u00e9-de-forme-un-autre-branchement-tout-deviendrait-possible-libre-g\u00e9n\u00e9reux-solidaire."
     },
     "0110000": {
-        "name": "Rhizomique \/ Politique \/ Dix-huit",
+        "name": "Rhizomique \/ Politique ",
         "word": "greffes",
         "content": "fin-des-c\u00e9p\u00e9es-trognes-porte-greffes-des-matrices-g\u00e9antes-distribuent-d\u00e9sormais-les-paniers-de-savoir-le-vim-assange-est-soumarin."
     },
     "0101111": {
-        "name": "Rhizomique \/ Politique \/ Dix-sept",
+        "name": "Rhizomique \/ Politique ",
         "word": "cortex",
-        "content": "le-sch\u00e9ma-du roncier-marcotte-les-plus-jeunes-cortex-epines-du-devoir-massivement-multijoueurs-baisers-de-reine-aux-facebrokers."
+        "content": "le-sch\u00e9ma-du roncier-marcotte-les-plus-jeunes-cortex-\u00e9pines-du-devoir-massivement-multijoueurs-baisers-de-reine-aux-facebrokers."
     },
     "0101110": {
-        "name": "Rhizomique \/ Politique \/ Seize",
-        "word": "cage \u00e0 poules",
-        "content": "l-innocente-cage-a-poules-de-l-enfance-l\u2019entrecroix-de-ses-barreaux-son-metal-froid-l-appel-au-meurtre-circulant-dedans."
+        "name": "Rhizomique \/ Politique ",
+        "word": "cage ",
+        "content": "l-innocente-cage-\u00e0-poules-de-l-enfance-l\u2019entrecroix-de-ses-barreaux-son-m\u00e9tal-froid-l-appel-au-meurtre-circulant-dedans."
     },
     "0101101": {
-        "name": "Rhizomique \/ Politique \/ Quinze",
+        "name": "Rhizomique \/ Politique",
         "word": "calque",
-        "content": "Klaus-katrina-sans-risque-de-calque-copie-colle-ce-meme-meme-ouragan-incendie-coupe-claire-ad-nauseam."
+        "content": "klaus-katrina-sans-risque-de-calque-copie-colle-ce-m\u00eame-m\u00e8me-ouragan-incendie-coupe-claire-ad-nauseam."
     },
     "0101100": {
-        "name": "Rhizomique \/ Politique \/ Quatorze",
+        "name": "Rhizomique \/ Politique ",
         "word": "peupl\u00e9",
-        "content": "tout-le-monde-peut-participer-est-l-etat-le-plus-peupl\u00e9-de-la-plan\u00e8te"
+        "content": "tout-le-monde-peut-participer-est-l-\u00e9tat-le-plus-peupl\u00e9-de-la-plan\u00e8te."
     },
     "0101011": {
-        "name": "Rhizomique \/ Politique \/ Treize",
+        "name": "Rhizomique \/ Politique ",
         "word": "am\u00e9lioration",
-        "content": "chaque-am\u00e9lioration-est-utile-tatonne-encore-son-protocole-decroissant-en-forme-de-bonsa\u00ef."
+        "content": "chaque-am\u00e9lioration-est-utile-tatonne-encore-son-protocole-d\u00e9croissant-en-forme-de-bonsa\u00ef."
     },
     "0101010": {
-        "name": "Rhizomique \/ Politique \/ Douze",
+        "name": "Rhizomique \/ Politique",
         "word": "or",
-        "content": "cet-or-benjoin-cet-or-opoponax-cet-or-digital-camphre-argente-s-extrait-avec-des-mains-manettes-des-cases-non-d\u00e9cochees."
+        "content": "cet-or-benjoin-cet-or-opoponax-cet-or-digital-camphre-argent\u00e9-s-extrait-avec-des-mains-manettes-des-cases-non-d\u00e9cochees."
     },
     "0101001": {
-        "name": "Rhizomique \/ Politique \/ Onze",
+        "name": "Rhizomique \/ Politique",
         "word": "galactique",
-        "content": "ou-gigapole-galactique-deterre-des-campagnes-dans-le-chevron-\u00e9troit-des-gaz-d-echappement."
+        "content": "ou-gigapole-galactique-d\u00e9terre-des-campagnes-dans-le-chevron-\u00e9troit-des-gaz-d-\u00e9chappement."
     },
     "0101000": {
-        "name": "Rhizomique \/ Politique \/ Dix",
+        "name": "Rhizomique \/ Politique ",
         "word": "panopticon",
-        "content": "ou-carceral-panopticon-autosecrete-ses-propres-fuites-ses-revers-clandestins-ses-guerillas-ses-f\u00eates."
+        "content": "ou-carc\u00e9ral-panopticon-autosecr\u00e8te-ses-propres-fuites-ses-revers-clandestins-ses-gu\u00e9rillas-ses-f\u00eates."
     },
     "0100111": {
-        "name": "Rhizomique \/ Politique \/ Neuf",
+        "name": "Rhizomique \/ Politique",
         "word": "chalut",
         "content": "acc\u00e9l\u00e9rant-la-grille-du-tissage-les-effets-du-chalut-se-presse-l-in\u00e9dit-empyreume-d-un-vin-possiblement-fraternel."
     },
     "0100110": {
-        "name": "Rhizomique \/ Politique \/ Huit",
+        "name": "Rhizomique \/ Politique ",
         "word": "restitu\u00e9e",
-        "content": "solide-revenu-au-liquide-lettre-restitu\u00e9e-au-chiffre-ouest-et-droite-passes-est-et-gauche-terme-infini-de-la-boucle-silice."
+        "content": "solide-revenu-au-liquide-lettre-restitu\u00e9e-au-chiffre-ouest-et-droite-pass\u00e9s-est-et-gauche-terme-intangible-de-la-boucle-silice."
     },
     "0100101": {
-        "name": "Rhizomique \/ Politique \/ Sept",
+        "name": "Rhizomique \/ Politique",
         "word": "combien",
-        "content": "combien-coute-ce-mot-combien-coute cette-phrase-combien-rapporte-t-elle-combien-de-chiffres-sur-le-ch\u00e8que-a-valoir-tel-alphabet."
+        "content": "combien-co\u00fbte-ce-mot-combien-co\u00fbte cette-phrase-combien-rapporte-t-elle-combien-de-chiffres-sur-le-ch\u00e8que-\u00e0-valoir-tel-alphabet."
     },
     "0100100": {
-        "name": "Rhizomique \/ Politique \/ Six",
+        "name": "Rhizomique \/ Politique ",
         "word": "\u00e9crans",
-        "content": "\u00e9nucleer-va-pair-a-pair-avec-cecite-tes-vieux-regards-upgrad\u00e9s-mille-prunelles-\u00e9crans-pay\u00e9es-premium-plug-in-infosynth\u00e8se-offert."
+        "content": "\u00e9nucleer-va-pair-a-pair-avec-c\u00e9cit\u00e9-tes-vieux-regards-upgrad\u00e9s-mille-prunelles-\u00e9crans-pay\u00e9es-premium-plug-in-infosynth\u00e8se-offert."
     },
     "0100011": {
-        "name": "Rhizomique \/ Politique \/ Cinq",
+        "name": "Rhizomique \/ Politique",
         "word": "titan",
         "content": "sublime-plutonium-239-le-mur-plut\u00f4t-que-de-l-abattre-que-chaque-titan-s\u2019\u00e9tiole-depuis-sa-geole-ouverte-en-des-nodosit\u00e9s-neuves."
     },
     "0100010": {
-        "name": "Rhizomique \/ Politique \/ Quatre",
+        "name": "Rhizomique \/ Politique ",
         "word": "embolie",
-        "content": "comme-nos-deux-noyaux-matiere-antimatiere-tenteraient-de-blinder-leur-orbite-envers-toute-embolie-fusionelle-"
+        "content": "comme-nos-deux-noyaux-mati\u00e8re-antimati\u00e8re-tenteraient-de-blinder-leur-orbite-envers-toute-embolie-fusionelle."
     },
     "0100001": {
-        "name": "Rhizomique \/ Politique \/ Trois",
+        "name": "Rhizomique \/ Politique",
         "word": "moore",
-        "content": "la-moore-loi-de-toujours-la-moore-loi-de-toujours-accroit-le-dense-algorithmique-dans-ton-rein-de-pulsar"
+        "content": "loi-de-moore-loi-de-moore-vibrionnant-axiome-accroit-le-dense-algorithmique-dans-ton-rein-de-pulsar"
     },
     "0100000": {
-        "name": "Rhizomique \/ Politique \/ Deux",
+        "name": "Rhizomique \/ Politique",
         "word": "exponentiel",
-        "content": "acentrique-invention-exponentiel-outil-l-utopie-du-possible-utopique-l-anarchique-bombe-rameale-fragment\u00e9e-subitement-deboure."
+        "content": "acentrique-invention-exponentiel-outil-l-utopie-du-possible-utopique-l-anarchique-bombe-ram\u00e9ale-fragment\u00e9e-subitement-d\u00e9boure."
     },
     "0011111": {
-        "name": "Rhizomique \/ Politique \/ Un",
+        "name": "Rhizomique \/ Politique ",
         "word": "femtoseconde",
-        "content": "faute-de-lime-vrille-laser-femtoseconde-l-a-capital-l-a-captif-en-gel\u00e9e-incube-l-a-caudal-l-a-d\u00e9capit\u00e9- pour fendre-sa-vesicule."
+        "content": "faute-de-lime-vrille-laser-femtoseconde-l-a-capital-l-a-captif-en-gel\u00e9e-incube-l-a-caudal-l-a-d\u00e9capit\u00e9- pour fendre-sa-v\u00e9sicule."
     },
     "0011110": {
-        "name": "Rhizomique \/ Symbolique \/ Seize",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "transgenre",
-        "content": "sans-m\u00eame-lsd-sentir-les points-d-aiguilles-trouer-le-derme-de-l\u2019espece-rejoindre-le-solidaire-transgenre-de-l\u2019atome."
+        "content": "sans-m\u00eame-lsd-sentir-les points-d-aiguilles-trouer-le-derme-de-l\u2019esp\u00e8ce-rejoindre-le-solidaire-transgenre-de-l\u2019atome."
     },
     "0011101": {
-        "name": "Rhizomique \/ Symbolique \/ Quinze",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "chaosmos",
         "content": "par-quel-jeu-de-miroirs-cet-\u0153il-huble-exorbit\u00e9-vers-l\u2019originel-chaosmos-entre-cuisses -se-retourne-cauchemar-vers-toi."
     },
     "0011100": {
-        "name": "Rhizomique \/ Symbolique \/ Quatorze",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "skyline",
-        "content": "Rubiks-oblique-a-tant-de-faces-plan-de-la-ville-multi-strates-vous-etes-ici-et-n\u2019y-\u00eates-plus-\u00e9changeurs-sous-le-skyline"
+        "content": "Rubiks-oblique-\u00e0-tant-de-faces-plan-de-la-ville-multi-strates-vous-\u00eates-ici-et-n\u2019y-\u00eates-plus-\u00e9changeurs-sous-le-skyline"
     },
     "0011011": {
-        "name": "Rhizomique \/ Symbolique \/ Treize",
+        "name": "Rhizomique \/ Symbolique",
         "word": "carnaval",
-        "content": "Ici-puis-la-le-fou-cousin-le-carnaval-perenne-detricottent-a-grandes-mailles-le-costume-president-et-sa-cravatte-hermes."
+        "content": "Ici-puis-l\u00e0-le-fou-cousin-le-carnaval-p\u00e9renne-d\u00e9tricottent-\u00e0-grandes-mailles-le-costume-pr\u00e9sident-et-sa-cravatte-hermes."
     },
     "0011010": {
-        "name": "Rhizomique \/ Symbolique \/ Douze",
+        "name": "Rhizomique \/ Symbolique",
         "word": "origami",
-        "content": "la-vitesse-est-milieu-la-profusion-levres-obturees-du-n\u00e9ant-un-pli-d-origami-releve-l-horizontal-d-une-illusion-puissante."
+        "content": "la-vitesse-est-milieu-la-profusion-l\u00e8vres-obturees-au-t\u00e9flon-un-pli-d-origami-rel\u00e8ve-l-horizontal-d-une-illusion-puissante."
     },
     "0011001": {
-        "name": "Rhizomique \/ Symbolique \/ Onze",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "stroboscopes",
-        "content": "ce-sont-des-milliards-d-yeux-stroboscopes-sans-paupiere-sans-larme-arc-irisant-leurs-flux -via-des-missiles-solaires."
+        "content": "ce-sont-des-milliards-d-yeux-stroboscopes-sans-paupi\u00e8re-sans-larme-arc-irisant-leurs-flux -via-des-missiles-sol-airs."
     },
     "0011000": {
-        "name": "Rhizomique \/ Symbolique \/ Dix",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "tabou",
-        "content": "quel-opaque-nemeton-ventre-tabou-horreur-fermente-l\u2019esprit-transcendantal-erige-en-phallus-quand-aux-lisi\u00e8res-partout-caresses."
+        "content": "quel-opaque-nemeton-ventre-tabou-horreur-fermente-l\u2019esprit-transcendantal-\u00e9rig\u00e9-en-phallus-quand-aux-lisi\u00e8res-partout-caresses."
     },
     "0010111": {
-        "name": "Rhizomique \/ Symbolique \/ Neuf",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "drupe",
-        "content": "tien-le-drupe-hemorragique-de-ton-dire-couche-de-ton-reve-branche-branche-aux-adventices-\u00e7a-moi-surmoi-hors-moi-indehiscentes."
+        "content": "tien-le-drupe-h\u00e9morragique-de-ton-dire-couch\u00e9-de-ton-r\u00eave-branche-branche-aux-adventices-\u00e7a-moi-surmoi-hors-moi-ind\u00e9hiscentes."
     },
     "0010110": {
-        "name": "Rhizomique \/ Symbolique \/ Huit",
-        "word": "\u6f38",
-        "content": "tsien-kapla-lego-cube-brique-agence-les-jambes-divinatoires-du-yi-king-vers -le-progres-graduel-de-la-figure-53-"
+        "name": "Rhizomique \/ Symbolique ",
+        "word": "divinatoires",
+        "content": "tsien-kapla-l\u00e9go-cube-brique-agence-les-jambes-divinatoires-du-yi-king-vers-le-progr\u00e8s-graduel-de-la-figure-53."
     },
     "0010101": {
-        "name": "Rhizomique \/ Symbolique \/ Sept",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "babel",
         "content": "que-calculer-babel-un-livre-\u00e9crit-non-\u00e9crit-pass\u00e9-\u00e0-venir-soit-devenu-plus-simple-que-de-s-en-souvenir-crispation-aux-pages."
     },
     "0010100": {
-        "name": "Rhizomique \/ Symbolique \/ Six",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "effervescence",
-        "content": "effervescence-maison-de-feuilles-ce-qu-heberge-d-infini-le-fini-d-un-cerveau-escaliers-d\u00e9duits-passages."
+        "content": "effervescence-maison-de-feuilles-ce-qu-h\u00e9berge-d-infini-le-fini-d-un-cerveau-escaliers-d\u00e9duits-passages."
     },
     "0010011": {
-        "name": "Rhizomique \/ Symbolique \/ Cinq",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "ondes",
-        "content": "ou-antenne-asexuee-dans-le-tamis-des-ondes-electro-magnetiques-gresille-l\u2019incessant-codex-decodex-de-l-hypermarche-conversation."
+        "content": "ou-antenne-asexu\u00e9e-dans-le-tamis-des-ondes-\u00e9lectro-magnetiques-gr\u00e9sille-l\u2019incessant-codex-decodex-de-l-hypermarch\u00e9-conversation."
     },
     "0010010": {
-        "name": "Rhizomique \/ Symbolique \/ Quatre",
+        "name": "Rhizomique \/ Symbolique",
         "word": "pylone",
-        "content": "Il-chante-le-desastreux-pylone-son-hymne-de-nudite-cours-de-frere-en-frere-sur-le-croise-frole-des-lignes-aux-contours-de-nuage."
+        "content": "Il-chante-le-d\u00e9sastreux-pylone-son-hymne-de-nudite-cours-de-fr\u00e8re-en-fr\u00e8re-sur-le-crois\u00e9-fr\u00f4l\u00e9-des-lignes-aux-contours-de-nuage."
     },
     "0010001": {
-        "name": "Rhizomique \/ Symbolique \/ Trois",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "pompe",
-        "content": "sectionne-le-c\u0153ur-enleve-la-pompe-unique-laisse-coopeerer-les-myriades-chloroplastiques-fonctionner-le timide."
+        "content": "sectionne-le-c\u0153ur-enl\u00e8ve-la-pompe-unique-laisse-coop\u00e9erer-les-myriades-chloroplastiques-fonctionner-le timide."
     },
     "0010000": {
-        "name": "Rhizomique \/ Symbolique \/ Deux",
+        "name": "Rhizomique \/ Symbolique ",
         "word": "sephiroth",
-        "content": "joue-au-billard-avec-les-sephiroth-queue-de-drageon-s\u00e4igon-niamey-segment-de-soif-inaltere."
+        "content": "joue-au-billard-avec-les-sephiroth-queue-de-drageon-s\u00e4igon-niamey-segment-de-soif-inalt\u00e9r\u00e9."
     },
     "0001111": {
-        "name": "Rhizomique \/ Symbolique \/ Un",
-        "word": "free jazz",
-        "content": "d\u00e9route-zodiacale-explosion-des-neuf-spheres-c\u00e9lestes-newton-est-un batteur-free-jazz-les-lois-sont-toujours-provisoires."
+        "name": "Rhizomique \/ Symbolique",
+        "word": "zodiacale",
+        "content": "d\u00e9route-zodiacale-explosion-des-neuf-sph\u00e8res-c\u00e9lestes-newton-est-un batteur-free-jazz-les-lois-sont-toujours-provisoires."
     },
     "0001110": {
-        "name": "Rhizomique \/ Symbiotique \/ Huit",
+        "name": "Rhizomique \/ Symbiotique",
         "word": "dreamlifter",
-        "content": "l-industrie-papeti\u00e8re-et-la-c\u00f4te-dewey-decolent-boeing-747-dreamlifter-bient\u00f4t-pulverisees-par-transponding-astra."
+        "content": "l-industrie-papeti\u00e8re-et-la-cote-dewey-d\u00e9colent-boeing-747-dreamlifter-bient\u00f4t-pulveris\u00e9es-par-transpondeur-astra."
     },
     "0001101": {
-        "name": "Rhizomique \/ Symbiotique \/ Sept",
+        "name": "Rhizomique \/ Symbiotique",
         "word": "heuristique",
         "content": "bataille-navale-echiquier-heuristique-une-caravelle-chargees-de-caisses-lexiques-grammaires-pr\u00e9cis-de-traduction-sombre."
     },
     "0001100": {
-        "name": "Rhizomique \/ Symbiotique \/ Six",
+        "name": "Rhizomique \/ Symbiotique ",
         "word": "stridulation",
-        "content": "Ici-et-l\u00e0-encore-l\u2019homme-de-su-se-fait-synapse-bulbe-simple-relais-inspire-expire-dans-la-stridulation-forrestiere."
+        "content": "Ici-et-l\u00e0-encore-l\u2019homme-d\u00e9-su-se-fait-synapse-bulbe-simple-relais-inspire-expire-dans-la-stridulation-forresti\u00e8re."
     },
     "0001011": {
-        "name": "Rhizomique \/ Symbiotique \/ Cinq",
+        "name": "Rhizomique \/ Symbiotique ",
         "word": "marteau",
         "content": "\u00e0-la-r\u00e8gle-au-marteau-parcelles-m\u00e9ridiens-ponts-et-chauss\u00e9es-une-route-saigne-vers-l-oc\u00e9an-monde."
     },
     "0001010": {
-        "name": "Rhizomique \/ Symbiotique \/ Quatre",
+        "name": "Rhizomique \/ Symbiotique",
         "word": "circuits",
         "content": "courant-gibier-\u00e0-travers-sentes-terriers-rus-s\u2019impriment-les-circuits-d-esquives-cartes-m\u00e9moires-chants-de-l-embsucade."
     },
     "0001001": {
-        "name": "Rhizomique \/ Symbiotique \/ Trois",
+        "name": "Rhizomique \/ Symbiotique ",
         "word": "effac\u00e9",
         "content": "ombres-d-ombres-peuple-sans-trace-aucune-ni-de-passage-ni-de-halte-o\u00f9-seul-l-anc\u00eatre-se-tient-visible-dans-l\u2019effac\u00e9."
     },
     "0001000": {
-        "name": "Rhizomique \/ Symbiotique \/ Deux",
+        "name": "Rhizomique \/ Symbiotique ",
         "word": "liane",
         "content": "et-lui-m\u00e9ta-baron-de-liane-en-liane-se-cavalant-dans-la-sauve."
     },
     "0000111": {
-        "name": "Rhizomique \/ Symbiotique \/ Un",
+        "name": "Rhizomique \/ Symbiotique ",
         "word": "crottes",
         "content": "\u00e9missaires-na\u00effs-plumes-pelages-cris-crottes-hasards-app\u00e2ts-charnus-roses-d\u00e9vorent-hackent-forniquent-tombent."
     },
     "0000110": {
-        "name": "Rhizomique \/ Biologique deux \/ Quatre",
+        "name": "Rhizomique \/ Biologique ",
         "word": "patience",
         "content": "se-taire-la-mort-la cendre-patience-pyrophile-du-g\u00e8ne-viral-ins\u00e9min\u00e9-aux-caches-latentes-du-signal."
     },
     "0000101": {
-        "name": "Rhizomique \/ Biologique deux \/ Trois",
+        "name": "Rhizomique \/ Biologique ",
         "word": "frelon",
         "content": "laisse-le-vent-r\u00e9v\u00e9ler-en-rebrousse-le-continuel-frelon-le-parle-parle-ajour\u00e9-de-clairi\u00e8res."
     },
     "0000100": {
-        "name": "Rhizomique \/ Biologique deux \/ Deux",
+        "name": "Rhizomique \/ Biologique ",
         "word": "flagelles",
-        "content": "attouchements-catacombes-trembl\u00e9s-de-flagelles-passe-moi-le-sel-nutriment-le-sel-anxyolitique.info"
+        "content": "attouchements-catacombes-trembl\u00e9s-de-flagelles-passe-moi-le-sel-nutriment-le-sel-anxyolitique."
     },
     "0000011": {
-        "name": "Rhizomique \/ Biologique deux \/ Un",
+        "name": "Rhizomique \/ Biologique ",
         "word": "canope",
         "content": "apical-message-\u00e9tat-gazeux-de-l-alerte-canope-encapsul\u00e9e-propagation-du-programme-antidote."
     },
     "0000010": {
-        "name": "Rhizomique \/ Biologique un \/ Deux",
+        "name": "Rhizomique \/ Biologique",
         "word": "systoles",
         "content": "multiple-ensuite-aux-massifs-mobiles-\u00e9migrations-immigrations-aux-lentes-systoles-pal\u00e9o-climatiques."
     },
     "0000001": {
-        "name": "Rhizomique \/ Biologique un \/ Un",
+        "name": "Rhizomique \/ Biologique ",
         "word": "polype",
         "content": "foule-d\u00e9j\u00e0-d\u00e8s-l-orbe-close-des-cellules-d\u00e8s-le-polype-individu."
     },
     "0000000": {
         "name": "Rhizomique \/ Graine",
         "word": "bozon",
-        "content": "bozon-de-higgs-impair-et-manque.arpa"
+        "content": "bozon-de-higgs-impair-et-manque."
     },
     "011111": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne deux",
-        "word": "objet",
-        "content": "Au fond du puit on gonfle, chaque semaine, un objet neuf\u00a0: femme <em>Durex<\/em>, s\u00e9quoia <em>Sempervirens<\/em>, fl\u00e8che <em>Saint-Michel<\/em>, fus\u00e9e <em>Ariane<\/em>."
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne ",
+        "word": "fus\u00e9e",
+        "content": "Au fond du puits on gonfle, chaque semaine, un objet neuf\u00a0: femme <em>Durex<\/em>, s\u00e9quoia <em>Sempervirens<\/em>, fl\u00e8che <em>Saint-Michel<\/em>, fus\u00e9e <em>Ariane<\/em>."
     },
     "011110": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne trois",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne ",
         "word": "griots",
         "content": "D\u2019ailleurs, depuis la disparition des griots, jamais la g\u00e9n\u00e9alogie ne fut si populaire."
     },
     "011101": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne deux",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne",
         "word": "extinction",
         "content": "Il a \u00e9t\u00e9 report\u00e9 qu\u2019en surface <em>34 %<\/em> des esp\u00e8ces conif\u00e8res non g\u00e9n\u00e9tiquement modifi\u00e9es seraient menac\u00e9es d\u2019extinction."
     },
     "011100": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne un",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Automne ",
         "word": "temp\u00e9rature",
         "content": "Il a \u00e9t\u00e9 rapport\u00e9 qu\u2019en surface, la temp\u00e9rature moyenne serait mont\u00e9e d\u2019un degr\u00e9 en un si\u00e8cle."
     },
     "011011": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 quatre",
-        "word": "puits",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 ",
+        "word": "escalator",
         "content": "Le seul fait concret \u00e9tant que, sur les parois circulaires de l\u2019immense puits de jour, l\u2019escalator progresse."
     },
     "011010": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 trois",
-        "word": "fra\u00eecheur",
-        "content": "Dans la fra\u00eecheur constante, - <em>18\u00b0 Celsius<\/em> - du centre commercial on ne peut \u00eatre certain de monter ou descendre."
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9",
+        "word": "Celsius",
+        "content": "Dans la fra\u00eecheur constante - moins 18\u00b0 Celsius<em> -<\/em> du centre commercial - <em>W.T.C -<\/em> on ne peut \u00eatre certain de monter ou descendre."
     },
     "011001": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 deux",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 ",
         "word": "linguistique",
         "content": "Vous ne sauriez ignorer que sa s\u0153ur jumelle relisant <em>Anabase<\/em> \u00e9tudie la linguistique dans un local non loin."
     },
     "011000": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 un",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ \u00c9t\u00e9 ",
         "word": "paisible",
         "content": "Vous n\u2019\u00eates pas sans savoir que ce pi\u00e9ton paisible rongeant une racine vers le niveau moins cinq a pour nom <em>Ego monstre<\/em>."
     },
     "010111": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps quatre",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps ",
         "word": "photo",
-        "content": "Aussi ce n\u2019est pas par les pieds qu\u2019on pendit tant de noirs et de juifs. Sans but de r\u00e9v\u00e9lation qu\u2019on les prit en photo."
+        "content": "Ce n\u2019est pas par les pieds qu\u2019on pendit - g\u00e9nocides \u2013 tant d\u2019hommes \u00e9b\u00e8ne, \u00e9toiles. Sans but de r\u00e9v\u00e9lation qu\u2019on les prit en photo."
     },
     "010110": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps trois",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps",
         "word": "nuques",
-        "content": "Repense aux pyramides. Brune et rouge, hier. Transparente aujourd\u2019hui. Toutes ces nuques sous leurs bases. Qui porte le chapeau\u00a0?"
+        "content": "Repense aux pyramides. Brunes ou rouges, hier. Transparentes aujourd\u2019hui. Toutes ces nuques sous leurs bases. Qui porte le chapeau\u00a0?"
     },
     "010101": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps deux",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps ",
         "word": "engrenage",
         "content": "L\u2019engrenage est causal, essieux, pignons, cames, pour le derviche tr\u00e9pan, ses fraises, son vertige centrifuge \u00e0 t\u00eate de cheval."
     },
     "010100": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps un",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Printemps ",
         "word": "madriers",
         "content": "Les madriers \u00e9tayent les mines de charbon et de fer. L\u2019acier tient le b\u00e9ton, les hautes fondations, les caves."
     },
     "010011": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver quatre",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver ",
         "word": "fossile",
-        "content": "N\u2019est-ce pas un cycle fossile qui s\u2019ach\u00e8ve, quand le serpent de naphte, <em>Standard Oil<\/em>, surgit des profondeurs\u00a0? "
+        "content": "N\u2019est-ce pas un cycle fossile qui s\u2019ach\u00e8ve, quand le serpent de naphte, <em>Standard Oil<\/em>, surgit des profondeurs\u00a0?"
     },
     "010010": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver trois",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver ",
         "word": "marchande",
         "content": "La vraie, l\u2019unique valeur est marchande, fredonne <em>Orph\u00e9e<\/em> montant vers la surface."
     },
     "010001": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver deux",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver ",
         "word": "sang",
-        "content": "L\u2019empreinte est si ancienne. Renverse une pyramide. Son sable coule, tranquille, dans le sommet  d\u2019une autre. Le sang autour."
+        "content": "L\u2019empreinte est si ancienne. Renverse une pyramide. Son sable coule, tranquille, dans le sommet d\u2019une autre. Le sang autour."
     },
     "010000": {
-        "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver un",
+        "name": "Politique \/ T\u00e9n\u00e8bres \/ Hiver ",
         "word": "impasse",
         "content": "Mais, retour \u00e0 l\u2019antith\u00e8se justifi\u00e9e par la fourche, le m\u00e9tier de douter autorise l\u2019impasse, le refus de l\u2019inverse, du double."
     },
     "001111": {
-        "name": "Politique \/ Lumi\u00e8res \/ Automne deux",
+        "name": "Politique \/ Lumi\u00e8res \/ Automne ",
         "word": "houx",
-        "content": "Ou d\u2019un battement d\u2019aile, surplomber le d\u00e9dale depuis <em>Cystodinium<\/em>, commun a\u00efeul, jusqu\u2019au vieux houx,  <em>Lomatia<\/em>, de Tasmanie."
+        "content": "Ou d\u2019un battement d\u2019aile, surplomber le d\u00e9dale depuis <em>Cystodinium<\/em>, algue initiale, jusqu\u2019au vieux houx, <em>Lomatia<\/em>, de Tasmanie."
     },
     "001110": {
-        "name": "Politique \/ Lumi\u00e8res \/ Automne trois",
+        "name": "Politique \/ Lumi\u00e8res \/ Automne ",
         "word": "temps",
-        "content": "Et comme il est \u00e9trange que par cet \u00e9ventail, soit r\u00e9tabli le temps, ses ann\u00e9es, bobin\u00e9es en milliards."
+        "content": "Et comme il est \u00e9trange que par cet \u00e9ventail soit r\u00e9tabli le temps, ses ann\u00e9es - bobin\u00e9es en milliards."
     },
     "001101": {
-        "name": "Politique \/ Lumi\u00e8res \/ Automne deux",
+        "name": "Politique \/ Lumi\u00e8res \/ Automne ",
         "word": "termites",
         "content": "Ainsi, pourvu du fil exact, et suivant les termites, il n\u2019y a qu\u2019un seul chemin du monarque au soleil."
     },
     "001100": {
-        "name": "Politique \/ Lumi\u00e8res \/ Automne un",
+        "name": "Politique \/ Lumi\u00e8res \/ Automne ",
         "word": "parent\u00e8le",
         "content": "Ainsi toute la parent\u00e8le du Dieu, momentan\u00e9ment unique, circule en ascenseur dans le tronc d\u2019un platane."
     },
     "001011": {
-        "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 quatre",
+        "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 ",
         "word": "vertu",
         "content": "Et combien peut porter de mensonges, telle g\u00e9om\u00e9trie de vertu\u00a0? Combien de v\u00e9rit\u00e9\u00a0? Combien de provisoire."
     },
     "001010": {
-        "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 trois",
+        "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 ",
         "word": "ak\u00e8ne",
         "content": "La forme inscrite dans l\u2019ak\u00e8ne trace un chemin de logique pour la m\u00e9moire. Il est vain de chercher \u00e0 le dissoudre."
     },
     "001001": {
-        "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 deux",
+        "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 ",
         "word": "\u00e9chafaudage",
-        "content": "Donc ici, derri\u00e8res les stalles, doit s\u2019\u00e9riger l\u2019\u00e9chafaudage d\u2019allure arborescente. <em>Mod\u00e8le Scarrone<\/em>."
+        "content": "Donc ici, derri\u00e8res les stalles, doit s\u2019\u00e9riger l\u2019\u00e9chafaudage d\u2019allure arborescente. Mod\u00e8le<em> Scarrone<\/em>."
     },
     "001000": {
-        "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 un",
+        "name": "Politique \/ Lumi\u00e8res \/ \u00c9t\u00e9 ",
         "word": "conqu\u00e9rant",
         "content": "Alors, ce serait adroite botanique, de ne garder que celui-l\u00e0 seul, conqu\u00e9rant des lumi\u00e8res, qui surplombe et impose\u00a0?"
     },
     "000111": {
-        "name": "Politique \/ Lumi\u00e8res \/ Printemps quatre",
+        "name": "Politique \/ Lumi\u00e8res \/ Printemps ",
         "word": "justice",
-        "content": "Une justice, sous son chapeau, piqu\u00e9e d\u2019\u00e9toiles, fut sur le point d\u2019\u00e9clore."
+        "content": "Une justice sous son chapeau, piquet\u00e9 d\u2019astres, fut sur le point d\u2019\u00e9clore."
     },
     "000110": {
-        "name": "Politique \/ Lumi\u00e8res \/ Printemps trois",
+        "name": "Politique \/ Lumi\u00e8res \/ Printemps ",
         "word": "langues",
         "content": "C\u2019est pourtant dans son ombre que se d\u00e9li\u00e8rent les langues."
     },
     "000101": {
-        "name": "Politique \/ Lumi\u00e8res \/ Printemps deux",
+        "name": "Politique \/ Lumi\u00e8res \/ Printemps ",
         "word": "symbole",
         "content": "Qu\u2019\u00e9tait besoin de ce symbole\u00a0? D\u00e9j\u00e0 pourri, sonnant creux. Ce sont l\u2019insensible et le vide qui accouchent de toute science."
     },
     "000100": {
-        "name": "Politique \/ Lumi\u00e8res \/ Printemps un",
+        "name": "Politique \/ Lumi\u00e8res \/ Printemps ",
         "word": "vent",
         "content": "Ce que la main dessine, gale du ch\u00eane, le vent peut l\u2019effacer."
     },
     "000011": {
-        "name": "",
+        "name": "Politique \/ Lumi\u00e8res \/ Hiver ",
         "word": "porphyre",
         "content": "Donc ici qu\u2019un rectangle aux dalles de porphyre, s\u2019\u00e9tablisse \u00e0 la place."
     },
     "000010": {
-        "name": "Politique \/ Lumi\u00e8res \/ Hiver trois",
+        "name": "Politique \/ Lumi\u00e8res \/ Hiver ",
         "word": "essarteurs",
         "content": "Ce serait saine raison que d\u2019araser la table. Et juste police, \u00e0 la lumi\u00e8re, de faire donner les essarteurs."
     },
     "000001": {
-        "name": "Politique \/ Lumi\u00e8res \/ Hiver deux",
+        "name": "Politique \/ Lumi\u00e8res \/ Hiver",
         "word": "br\u00fbler",
         "content": "Or c\u2019est de son propre bois, celui qu\u2019on ramasse, celui qu\u2019on fait tomber, qu\u2019on finit par br\u00fbler."
     },
     "000000": {
-        "name": "Politique \/ Lumi\u00e8res \/ Hiver un",
+        "name": "Politique \/ Lumi\u00e8res \/ Hiver",
         "word": "arbor",
         "content": "Substance dans un corps. Corps anim\u00e9, mais insensible, donc <em>arbor<\/em>, non animal, non rationnel et non humain."
     },
     "01111": {
-        "name": "Symbolique \/ Chtonien \/ Automne deux",
+        "name": "Symbolique \/ Chtonien \/ Automne",
         "word": "chevilles",
-        "content": "Chevilles. D\u2019avoir vu. En l\u2019\u00e9rable. Poumons. Epaules. Ligaments. Ame. Sang. D\u00e9sespoir de singe."
+        "content": "Chevilles. D\u2019avoir vu. En l\u2019\u00e9rable. Poumons. \u00c9paules. Ligaments. \u00c2me. Sang. D\u00e9sespoir de singe."
     },
     "01110": {
-        "name": "Symbolique \/ Chtonien \/ Automne un",
+        "name": "Symbolique \/ Chtonien \/ Automne ",
         "word": "clous",
-        "content": "Clous. A l\u2019endroit. De la croix. En tilleul. Loques nou\u00e9es. Gu\u00e9rir. De quoi."
+        "content": "Clous. \u00c0 l\u2019endroit. De la croix. En tilleul. Loques nou\u00e9es. Gu\u00e9rir. De quoi."
     },
     "01101": {
-        "name": "Symbolique \/ Chtonien \/ \u00c9t\u00e9 deux",
+        "name": "Symbolique \/ Chtonien \/ \u00c9t\u00e9 ",
         "word": "poulies",
         "content": "Poulies. Combien d\u2019\u00e9tages. De m\u00e9tamorphoses. Double tremble. Et. Dans quel sens."
     },
     "01100": {
-        "name": "Symbolique \/ Chtonien \/ \u00c9t\u00e9 un",
+        "name": "Symbolique \/ Chtonien \/ \u00c9t\u00e9 ",
         "word": "drains",
         "content": "Drains. Comme \u00e0 quai. Trois sources. L\u2019une d\u2019\u00e9ternit\u00e9. Attendent. L\u2019appel satellite. L\u2019\u00e9ternuement cosmique. Du fr\u00eane."
     },
     "01011": {
-        "name": "Symbolique \/ Chtonien \/ Printemps deux",
+        "name": "Symbolique \/ Chtonien \/ Printemps ",
         "word": "rires",
-        "content": "Rires. Etreinte blanche. Boulot. Surgit. Par l\u2019enchev\u00eatrement. Des tunnels. Suc\u00e9e. La s\u00e8ve d\u00e9signe. L\u2019acc\u00e8s."
+        "content": "Rires. \u00c9treinte blanche. Boulot. Surgit. Par l\u2019enchev\u00eatrement. Des tunnels. Suc\u00e9e. La s\u00e8ve d\u00e9signe. L\u2019acc\u00e8s."
     },
     "01010": {
-        "name": "Symbolique \/ Chtonien \/ Printemps un",
+        "name": "Symbolique \/ Chtonien \/ Printemps ",
         "word": "rythmes",
-        "content": "Rythmes. Le grand \u0153uvre. Pari\u00e9tal. N\u2019a pas suscit\u00e9. De ch\u00eane. Mais. Andouillers. Ecarts de doigts."
+        "content": "Rythmes. Le grand \u0153uvre. Pari\u00e9tal. N\u2019a pas suscit\u00e9. De ch\u00eane. Mais. Andouillers. \u00c9carts de doigts."
     },
     "01001": {
-        "name": "Symbolique \/ Chtonien \/ Hiver deux",
+        "name": "Symbolique \/ Chtonien \/ Hiver ",
         "word": "flocons",
         "content": "Flocons. Lente patience. Des forges. Enfante au pied du pin. L\u2019hypoth\u00e8se. Le retour."
     },
     "01000": {
-        "name": "Symbolique \/ Chtonien \/ Hiver un",
+        "name": "Symbolique \/ Chtonien \/ Hiver",
         "word": "flamm\u00e8ches",
         "content": "Flamm\u00e8ches. L\u2019id\u00e9e de miroir. D\u2019axe. Dessouch\u00e9e. De l\u2019orme mort. Jonch\u00e9e asym\u00e9trique."
     },
     "00111": {
-        "name": "Symbolique \/ Ouranien \/ Automne deux",
+        "name": "Symbolique \/ Ouranien \/ Automne ",
         "word": "noyer",
         "content": "Murmures. Humides. Dans le m\u00e9andre. Noyer. Chaque esprit. Son rituel. Son Icario."
     },
     "00110": {
-        "name": "Symbolique \/ Ouranien \/ Automne un",
+        "name": "Symbolique \/ Ouranien \/ Automne",
         "word": "ch\u00e2taigner",
-        "content": "Sciure. A l\u2019int\u00e9rieur. Ch\u00e2taigner. D\u2019autres sons. \u00c9rotisent. Un passage."
+        "content": "Sciure. \u00c0 l\u2019int\u00e9rieur. Ch\u00e2taigner. D\u2019autres sons. \u00c9rotisent. Un passage."
     },
     "00101": {
-        "name": "Symbolique \/ Ouranien \/ \u00c9t\u00e9 deux",
+        "name": "Symbolique \/ Ouranien \/ \u00c9t\u00e9",
         "word": "\u00e9quilibre",
-        "content": "Poussi\u00e8re. Un poteau. Dress\u00e9. Pour le savoir. Gorge s\u00e8che. Charg\u00e9 de figues. A l\u2019\u00e9quilibre."
+        "content": "Poussi\u00e8re. Un poteau. Dress\u00e9. Pour le savoir. Gorge s\u00e8che. Charg\u00e9 de figues. \u00c0 l\u2019\u00e9quilibre."
     },
     "00100": {
-        "name": "Symbolique \/ Ouranien \/ \u00c9t\u00e9 un",
+        "name": "Symbolique \/ Ouranien \/ \u00c9t\u00e9 ",
         "word": "pommier",
         "content": "Gr\u00eale. L\u2019origine. Un pommier. Ses baies. Vulves. Ses p\u00e9pins. Verges."
     },
     "00011": {
-        "name": "Symbolique \/ Ouranien \/ Printemps deux",
+        "name": "Symbolique \/ Ouranien \/ Printemps ",
         "word": "c\u00e8dre",
         "content": "Pollen. Petit tas. Dans un bol. L\u2019essaim migre. Aux aiguilles. C\u00e8dre."
     },
     "00010": {
-        "name": "Symbolique \/ Ouranien \/ Printemps un",
+        "name": "Symbolique \/ Ouranien \/ Printemps",
         "word": "cypr\u00e8s",
         "content": "Pluie. Le style. Cypr\u00e8s. Pr\u00e9l\u00e8ve. Un nouveau signe. Fa\u00e7onne. Un cinqui\u00e8me \u00e9l\u00e9ment. Bois."
     },
     "00001": {
-        "name": "Symbolique \/ Ouranien \/ Hiver deux",
+        "name": "Symbolique \/ Ouranien \/ Hiver",
         "word": "baguette",
-        "content": "Neige. Sur le sol nu. La baguette. Saule. Trace deux lignes. Coup\u00e9es \u00e0 l\u2019angle droit."
+        "content": "Neige. Sur le sol nu. La baguette. Saule. Trace deux lignes. Coup\u00e9es. \u00c0 l\u2019angle droit."
     },
     "00000": {
-        "name": "Symbolique \/ Ouranien \/ Hiver un",
+        "name": "Symbolique \/ Ouranien \/ Hiver ",
         "word": "cendres",
-        "content": "Cendres. Dans l\u2019urne. Dernier arbre. Toutes ses faines. Eteintes."
+        "content": "Cendres. Dans l\u2019urne. Dernier arbre. Toutes ses faines. \u00c9teintes."
     },
     "0111": {
         "name": "Symbiotique \/ Nuit \/ Automne",
@@ -577,12 +577,12 @@
     "0100": {
         "name": "Symbiotique \/ Nuit \/ Hiver",
         "word": "foudre",
-        "content": "Tu sais maintenant cueillir la foudre, ses p\u00e9tales de silex. Ami des braises, alli\u00e9 de la fum\u00e9e, tu me tors et m\u2019endurcis."
+        "content": "Tu sais maintenant cueillir la foudre, ses p\u00e9tales de silex. Ami des braises, alli\u00e9 de la fum\u00e9e, tu me tords et m\u2019endurcis."
     },
     "0011": {
         "name": "Symbiotique \/ Jour \/ Automne",
         "word": "mac\u00e9r\u00e9",
-        "content": "Et mac\u00e9r\u00e9, et rapp\u00e9, et ferment\u00e9, ou grill\u00e9, ou s\u00e9ch\u00e9, ou fumig\u00e9,  et encore compot\u00e9, et distill\u00e9. Tu m\u2019aimes cru aussi."
+        "content": "Et mac\u00e9r\u00e9, et r\u00e2p\u00e9, et ferment\u00e9, ou grill\u00e9, ou s\u00e9ch\u00e9, ou fumig\u00e9, et compot\u00e9, distill\u00e9, vaporis\u00e9. Tu m\u2019aimais cru aussi."
     },
     "0010": {
         "name": "Symbiotique \/ Jour \/ \u00c9t\u00e9",
@@ -597,35 +597,35 @@
     "0000": {
         "name": "Symbiotique \/ Jour \/ Hiver",
         "word": "brindille",
-        "content": "Le feu te ressemble dans ses \u00e9chelles. La brindille puis le rameau, puis la souche puis le tronc. Ainsi, tu nous ouvre l\u2019hiver."
+        "content": "Le feu te ressemble dans ses \u00e9chelles. La brindille puis le rameau, puis la souche puis le tronc. Ainsi, tu nous ouvres l\u2019hiver."
     },
     "011": {
-        "name": "Biologique deux \/ Souterrain deux",
+        "name": "Biologique \/ Souterrain ",
         "word": "chute",
         "content": "Vient le consentement \u00e0 l\u2019\u00e9lan, la chute dans l\u2019opacit\u00e9 sans odeur, l\u2019euphorie silencieuse du for\u00eat. Est-il un autre centre\u00a0?"
     },
     "010": {
-        "name": "Biologique deux \/ Souterrain un",
+        "name": "Biologique \/ Souterrain",
         "word": "agripper",
         "content": "R\u00e9sister m\u00eame aux graisses de l\u2019humus. Tenir encore un peu \u00e0 la clart\u00e9. Jouer l\u2019envergure. Agripper les failles, le roc."
     },
     "001": {
-        "name": "Biologique deux \/ A\u00e9rien deux",
+        "name": "Biologique \/ A\u00e9rien ",
         "word": "foug\u00e8re",
         "content": "Est-il d\u2019autres choix\u00a0? franchir trois dimensions d\u2019un seul coup de ciseaux\u00a0? Tant contient de fini la crosse d\u2019une foug\u00e8re."
     },
     "000": {
-        "name": "Biologique deux \/ A\u00e9rien un",
+        "name": "Biologique \/ A\u00e9rien ",
         "word": "subdiviser",
         "content": "Quand est perdu le meilleur du noyau, ce sym\u00e9trique \u00e9blouissement, cet endog\u00e8ne vital retourn\u00e9 par l\u2019obscur, subdiviser fait loi."
     },
     "01": {
-        "name": "Biologique un \/ Bas",
+        "name": "Biologique \/ Radical",
         "word": "perfore",
         "content": "Perfore, plonge, instance du d\u00e9pli, \u00e9bauche du fractal, sombre veine sous la glace, vers le bas."
     },
     "00": {
-        "name": "Biologique un \/ Haut",
+        "name": "Biologique \/ Ram\u00e9al",
         "word": "persiste",
         "content": "Persiste, perce, aisselle magn\u00e9tique, embryon clair, dans le feu dess\u00e9ch\u00e9, vers le haut."
     },
