@@ -877,15 +877,21 @@ a {
       color: #ff00ff; }
 
 /*** Bbpress custom **/
-#bbpress-forums a {
-  padding: 0;
-  font-family: sans-serif;
-  font-size: 1em; }
+#bbpress-forums {
+  font-family: "Source Sans Pro", Helvetica, sans-serif; }
+  #bbpress-forums a {
+    padding: 0;
+    font-size: 1em; }
 
 .wp-content {
   width: 100%; }
   .wp-content article {
     width: 100%; }
+
+.entry-header, .entry-content, .entry-summary, .entry-meta {
+  margin: 0 auto;
+  max-width: 604px;
+  width: 100%; }
 
 /* ==========================================================================
    Debug styles

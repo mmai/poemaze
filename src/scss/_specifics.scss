@@ -250,9 +250,10 @@
 
 /*** Bbpress custom **/
 #bbpress-forums {
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+
   a {
     padding: 0;
-    font-family:sans-serif;
     font-size:1em;
   }
 }
@@ -262,3 +263,8 @@
     width: 100%;
   }
 }
+.entry-header, .entry-content, .entry-summary, .entry-meta {
+    margin: 0 auto;
+    max-width: 604px;
+    width: 100%;
+  }
