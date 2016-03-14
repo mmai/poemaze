@@ -10,6 +10,11 @@ html, body {
 	height: 100%;
 	min-height: 100%;
 }
+#primary {
+  //Remove scrollbars on worpress pages due to html.height=100%
+  float: left;
+  width: 100%;
+}
 
 #ai-page, #app {
   height: 1px;
@@ -22,7 +27,7 @@ html, body {
   }
 }
 .day-page, .night-page, .circle6-page, .other-page {
-  #main {
+  #main, #primary {
     display:none;
   }
 }

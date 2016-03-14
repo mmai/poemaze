@@ -441,6 +441,10 @@ html, body {
   height: 100%;
   min-height: 100%; }
 
+#primary {
+  float: left;
+  width: 100%; }
+
 #ai-page, #app {
   height: 1px;
   min-height: 100%; }
@@ -448,7 +452,7 @@ html, body {
 .wordpress-page #ai-page, .wordpress-page #app {
   min-height: 0%; }
 
-.day-page #main, .night-page #main, .circle6-page #main, .other-page #main {
+.day-page #main, .day-page #primary, .night-page #main, .night-page #primary, .circle6-page #main, .circle6-page #primary, .other-page #main, .other-page #primary {
   display: none; }
 
 a {
