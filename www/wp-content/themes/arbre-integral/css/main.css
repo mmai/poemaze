@@ -607,7 +607,8 @@ a {
               flex: 1;
       background: #c8c8c8;
       line-height: 1;
-      text-align: center; }
+      text-align: center;
+      border-right: 1px solid lightgrey; }
     [id='side-panel'] .situation .ai-up, [id='side-panel'] .situation .ai-down {
       height: .35em; }
     [id='side-panel'] .situation .ai-up {
