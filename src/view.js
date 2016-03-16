@@ -19,21 +19,16 @@ export default function view(dashboardView, state){
   } else if (state.pathname === 'pdf') {
     views.push(renderPdf(state.editionId));
     views.push(dashboardView)
+  } else if ( 0 === state.history.length){
+    views.push(renderPoem(state.isUpside, state.leafInfos))
+    views.push(renderCover());
   } else {
-    if ( 0 === state.history.length){
-      views.push(renderPoem(state.isUpside, state.leafInfos))
-      views.push(renderCover());
-    } else {
-      if (state.leafInfos.leaf.id === lastLeafId) {
-        views.push(renderEnd(state.leafInfos));
-      } else {
-        views.push(renderPoem(state.isUpside, state.leafInfos))
-      }
-      views.push(dashboardView);
-      views.push(shareView)
-    }
+    // const isLastLeaf = true
+    const isLastLeaf = state.leafInfos.leaf.id === lastLeafId
+    views.push( isLastLeaf ? renderEnd(state.leafInfos) : renderPoem(state.isUpside, state.leafInfos) )
+    views.push(dashboardView);
+    views.push(shareView)
   }
   return h("div#ai-page", views)
-  // return h("div", 'Page non trouvée');
 }
 

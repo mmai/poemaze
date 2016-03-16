@@ -25,7 +25,8 @@ module.exports = {
   ],
   devServer: {
     // host: "arbre-integral.net",
-    host: "localhost",
+    // host: "localhost",
+    host: "0.0.0.0",
     port: 1234,
     historyApiFallback: true,
     proxy: {

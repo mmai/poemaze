@@ -7,11 +7,11 @@ export default function intent(DOM, History){
   .events('click')
   .filter(filterLinks)
   .map(event =>  {
-      // let [pathname, from] = event.currentTarget.hash.slice(1).split('-');
-      // .slice(event.currentTarget.search.indexOf('=') + 1)
-      const pathname = event.currentTarget.pathname.slice(event.currentTarget.pathname.lastIndexOf("/") + 1)
-      const from = getParameterByName("trace", event.currentTarget.search)
-      const display = event.currentTarget.hash.slice(1) 
+      // const target = event.currentTarget //dont work on ie
+      const target = event.ownerTarget
+      const pathname = target.pathname.slice(target.pathname.lastIndexOf("/") + 1)
+      const from = getParameterByName("trace", target.search)
+      const display = target.hash.slice(1) 
       return { pathname, from, display }
     })
   .share()

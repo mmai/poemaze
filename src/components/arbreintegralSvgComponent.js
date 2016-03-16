@@ -13,6 +13,7 @@ export function makeAiSvgComponent(AI, {
     origin = {x:0, y:0},
     displayNeighbors = true,
     fixedSize = "none",
+    viewBox = false,
     width, height,
     leafRadius, circleRadius,
     color_default, color_background,
@@ -63,14 +64,19 @@ export function makeAiSvgComponent(AI, {
           transform += `, rotate(${rotation})`
         }
 
-        const mainAttributes = (fixedSize === 'none') ? {
-          class: animationClass,
-          width,
-          height
-        } : {
-          width: fixedSize,
-          height: fixedSize,
-          viewBox: `0 0 ${width} ${height}`
+        let mainAttributes = {}
+        if (fixedSize === 'none'){
+          mainAttributes.class = animationClass
+          if (viewBox !== false) {
+            mainAttributes.viewBox = viewBox
+          } else {
+            mainAttributes.width = width
+            mainAttributes.height = height
+          }
+        } else {
+          mainAttributes.width = fixedSize
+          mainAttributes.height = fixedSize
+          mainAttributes.viewBox = viewBox
         }
 
         return svg('svg', mainAttributes, [

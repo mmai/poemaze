@@ -5,12 +5,12 @@ import {isUp} from './utils'
 import {pagesUrl} from 'settings'
 
 export function renderDashboard(showDashboard, isUpside, history, progressionVtree, aiLogoSvgVtree, aiSvgVtree){
+  //We can't put the link directly on a.dashboardLink du to a cycle-dom bug on internet explorer
   const currentLeafId = history.length === 0 ? "0" : history[history.length-1].id;
   return (
-    <aside id="side-panel" className={showDashboard?"active":""}>
-      <a href={showDashboard?"#main":"#dashboard"} className='dashboardLink'>
-        {aiLogoSvgVtree}
-      </a>
+    <aside id="side-panel" className={showDashboard?"active":"no"}>
+      <a id="dashboardToggle" href={showDashboard?"#main":"#dashboard"}></a>
+      {h("a.dashboardLink", {attributes: {onclick: "document.getElementById('dashboardToggle').click()"}}, [aiLogoSvgVtree])}
 
 		  <div className="side-panel-content">
         <div className="location">{currentLeafId}</div>
@@ -52,9 +52,12 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
 					<a href="#">Partager</a>
 				</li>
 				<li>
-					<a rel="external"  href={pagesUrl + '/propos'}>PROPOS</a>
+					<a href="/reset">Recommencer</a>
 				</li>
         </ul>
+        <a rel="external" className="about-link" href={pagesUrl + '/propos'} title="Propos">
+          <img src="/wp-content/themes/arbre-integral/img/assets/logo-home.svg" alt="Logo" />
+        </a>
       </div>
     </aside>
     );

@@ -1,3 +1,8 @@
+//code executed outside Cyclejs
+//imported here to be bundled by webpack with all javascript files
+import "./polyfills/classList";
+import "babel-polyfill";
+
 //Cyclejs
 import {Observable} from 'rx';
 import {run} from '@cycle/core';

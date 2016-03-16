@@ -1,4 +1,4 @@
-require('./classList.js') //classList polyfill 
+// require('./classList.js') //classList polyfill 
 import {Observable} from 'rx';
 
 export default function makeBodyStylesDriver() {
