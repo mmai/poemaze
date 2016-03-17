@@ -690,9 +690,11 @@ a {
   top: 1em;
   left: 1em;
   right: 1em;
-  z-index: 9;
-  font-size: 1.25em;
-  line-height: 1em; }
+  z-index: 9; }
+  @media (min-width: 40em) {
+    .breadcrumb {
+      font-size: 1.25em;
+      line-height: 1em; } }
   @media (min-width: 40em) {
     .breadcrumb > * {
       position: fixed;
@@ -887,6 +889,7 @@ a {
     line-height: 1.25; }
     @media (max-width: 40em) {
       .navigate-content blockquote {
+        font-size: 1.5em;
         width: 100%;
         -webkit-box-ordinal-group: 0;
         -webkit-order: -1;

@@ -114,6 +114,7 @@
 		width: 54%; margin: 0; padding: 2.5%;
 		font-family: $quote-font-family; font-size: 2.5em; line-height: 1.25;
 		@media (max-width: $responsive-breakpoint) {
+      font-size:1.5em;
 			width: 100%;
 			order: -1;
 		}
