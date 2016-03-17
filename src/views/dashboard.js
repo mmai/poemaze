@@ -51,13 +51,23 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
             h("li", [
               buttonForList("livreList", "Livre"),
               h('ul#livreList', [
-                  h("li", [h("a", {rel: "external", href: "/genese"}, "Genèse")]),
+                  h("li", [h("a", {rel: "external", href: "/livre/genese/"}, "Genèse")]),
+                  h("li", [h("a", {rel: "external", href: "/livre/numerique/"}, "Numérique")]),
+                  h("li", [h("a", {rel: "external", href: "/livre/open-source/"}, "Open source")]),
+                  h("li", [h("a", {rel: "external", href: "/livre/graphisme/"}, "Graphisme")]),
+                  h("li", [h("a", {rel: "external", href: "/livre/developpement/"}, "Développement")]),
               ])
             ]),
             h("li", [
               buttonForList("spectacleList", "Spectacle"),
               h('ul#spectacleList', [
-                  h("li", [h("a", {rel: "external", href: "/genese"}, "Genèse")]),
+                  h("li", [h("a", {rel: "external", href: "/un-spectacle-en-realite-augmentee/concept/"}, "Concept")]),
+                  h("li", [h("a", {rel: "external", href: "/un-spectacle-en-realite-augmentee/images/"}, "Images")]),
+                  h("li", [h("a", {rel: "external", href: "/un-spectacle-en-realite-augmentee/decor-3d/"}, "Décor 3D")]),
+                  h("li", [h("a", {rel: "external", href: "/un-spectacle-en-realite-augmentee/danse/"}, "Danse")]),
+                  h("li", [h("a", {rel: "external", href: "/un-spectacle-en-realite-augmentee/bande-son/"}, "Bande-son")]),
+                  h("li", [h("a", {rel: "external", href: "/un-spectacle-en-realite-augmentee/technologies/"}, "Technologies")]),
+                  h("li", [h("a", {rel: "external", href: "/un-spectacle-en-realite-augmentee/mediation/"}, "Médiation")]),
               ])
             ]),
             h("li", [
@@ -67,12 +77,13 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
               ])
             ]),
             h("li", [
-              buttonForList("partenairesList", "Partenaires"),
-              h('ul#partenairesList', [
-                  h("li", [h("a", {rel: "external", href: "/genese"}, "Genèse")]),
+              buttonForList("equipesList", "Équipes"),
+              h('ul#equipesList', [
+                  h("li", [h("a", {rel: "external", href: "/equipe/livre/"}, "Livre")]),
               ])
             ]),
-            h("li", [h("a", {rel: "external", href: "/contact"}, "Contact")]),
+            h("li", [h("a", {rel: "external", href: "/lauteur/"}, "L'auteur")]),
+            h("li", [h("a", {rel: "external", href: "/acceuillir-le-spectacle/"}, "Contacts")]),
             h("li", [h("a", {href: "/reset"}, "Recommencer")]),
             h("li", [h("a", {attributes:{onclick: "askFullScreen()", href: "#"}}, "Plein écran")]),
           ])}
