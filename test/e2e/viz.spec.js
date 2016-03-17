@@ -82,7 +82,7 @@ casper.test.begin('Keep poem navigation history on wordpress pages', 7,  functio
         test.assertElementCount("#historyList li", 2, "history has two entries on forum page");
       })
     .then(function() {
-        this.click('a[rel~="external"]');
+        this.click('#forumList a[rel~="external"]');
       })
     .waitForSelector('#ai-page', function(){
         test.assertUrlMatch(/forums\/forum\/.+/, 'current page is a specific forum page');

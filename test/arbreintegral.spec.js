@@ -51,7 +51,8 @@ describe( 'AI', function() {
             expect(neighbors.leftChild.leaf.id).to.equal("000");
             expect(neighbors.rightChild.leaf.id).to.equal("001");
             expect(neighbors.leftBrother.leaf).to.equal(false);
-            expect(neighbors.rightBrother.leaf.id).to.equal("01");
+            expect(neighbors.rightBrother.leaf).to.equal(false);
+            expect(neighbors.parent.leaf.id).to.equal("01");
           });
         it('should return the correct neighbors for 011', function(){
             let neighbors = AI.getNeighbors({id: "011", parent:"01"});

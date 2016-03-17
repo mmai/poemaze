@@ -52,11 +52,25 @@ export function makeAI(aiData){
       let leftBrother =  this.getNewBrother(coords, (coords) => {leftdistance += 1; return this.getLeftBrother(coords);}, options.exclude);
       let rightBrother = this.getNewBrother(coords, (coords) => {rightdistance += 1; return this.getRightBrother(coords);}, options.exclude);
 
-      if (parent.leaf && (
-        (leftBrother.leaf && leftBrother.leaf.id === parent.leaf.id) ||
-        (rightBrother.leaf && rightBrother.leaf.id === parent.leaf.id) 
-      )) {
-        parent.leaf = false;
+      //Display only the parent or the brothers when they points to the same leaf
+      if (parent.leaf){
+        if (leaf.id.length == 2){
+          //On the first circle, parent leaf has precedence over brothers leafs.
+          if (leftBrother.leaf && leftBrother.leaf.id === parent.leaf.id) {
+            leftBrother.leaf = false;
+          }
+          if (rightBrother.leaf && rightBrother.leaf.id === parent.leaf.id) {
+            rightBrother.leaf = false;
+          }
+        } else {
+          //On other circles, brother leafs have precedence
+          if (
+            (leftBrother.leaf && leftBrother.leaf.id === parent.leaf.id) ||
+            (rightBrother.leaf && rightBrother.leaf.id === parent.leaf.id) 
+          ) {
+            parent.leaf = false;
+          }
+        }
       }
 
       //Display only the right brother if the two brothers points to the same leaf
