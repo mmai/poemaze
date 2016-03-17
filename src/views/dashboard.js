@@ -19,7 +19,28 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
         {aiSvgVtree}
 
         {progressionVtree}
-        {h("script", `function aiOpenMenu(e){ document.getElementById(e.dataset.target).classList.toggle('active'); }`)}
+        {h("script", `
+            function aiOpenMenu(e){ document.getElementById(e.dataset.target).classList.toggle('active'); }
+            function askFullScreen(){
+              document.fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
+
+              function requestFullscreen(element) {
+                if (element.requestFullscreen) {
+                  element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) {
+                  element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullScreen) {
+                  element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+              }
+
+              if (document.fullscreenEnabled){
+                requestFullscreen(document.querySelector('html'));
+              } else {
+                alert('Plein écran impossible avec ce navigateur');
+              }
+            }
+            `)}
         {h('ul.navigation', [
             h("li", [
               buttonForList("historyList", "Historique"),
@@ -53,6 +74,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
             ]),
             h("li", [h("a", {rel: "external", href: "/contact"}, "Contact")]),
             h("li", [h("a", {href: "/reset"}, "Recommencer")]),
+            h("li", [h("a", {attributes:{onclick: "askFullScreen()", href: "#"}}, "Plein écran")]),
           ])}
         <a rel="external" className="about-link" href={pagesUrl + '/propos'} title="Propos">
           <img src="/wp-content/themes/arbre-integral/img/assets/logo-home.svg" alt="Logo" />
