@@ -132,13 +132,21 @@ a {
 		}
 		ul {
 			max-height: 0; overflow: hidden;
-			font-family: $links-font-family; line-height: 1.5em;
 			transition: max-height .5s ease-in-out;
 			&.active {
 				max-height: 250em;
 				transition-duration: 1s;
 			}
 		}
+    #historyList {
+			font-family: $links-font-family; line-height: 1.5em;
+      a {
+        border-bottom: 0;
+        &:hover, &:focus {
+          color: $pink;
+        }
+      }
+    }
 		li::before {
 			display: inline-block; margin-right: .25em;
 			font-size: 1em; font-weight: bold;
@@ -154,7 +162,7 @@ a {
       vertical-align: middle;
     }
 		& > li {
-			& > button, & > a {
+			& > button, &  a {
         border-bottom: 1px dotted transparent;
         &:hover {
           border-bottom-color: currentColor;
@@ -162,11 +170,6 @@ a {
         }
       }
     }
-		ul a {
-			&:hover, &:focus {
-				color: $pink;
-			}
-		}
   }
 }
 .about-link {
