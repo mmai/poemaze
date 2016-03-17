@@ -27,7 +27,7 @@ function renderLeaf(leafInfos, linksDom){
   return h("div.main-container", [
       h("div.navigate-content", linksDom),
       h("div.breadcrumb", [h("div", leafInfos.leaf.name)]),
-      renderShare()
+      renderShare("http://arbre-integral.net", leafInfos.leaf.content)
     ])
 }
       //

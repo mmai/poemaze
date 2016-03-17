@@ -1,7 +1,6 @@
 /** @jsx hJSX */
 
 import {hJSX, h} from '@cycle/dom';
-import {renderShare} from './share'
 
 export function renderEnd(leafInfos){
   return (
