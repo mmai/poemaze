@@ -10,11 +10,6 @@ html, body {
 	height: 100%;
 	min-height: 100%;
 }
-#primary {
-  //Remove scrollbars on worpress pages due to html.height=100%
-  float: left;
-  width: 100%;
-}
 
 #ai-page, #app {
   height: 1px;
@@ -43,6 +38,14 @@ a {
 	}
 	& > * {
 		margin: auto; padding: 1em;
+	}
+}
+
+.edito-container {
+	@extend .clearfix;
+	padding: 3em 1em;
+	@media (min-width: $responsive-breakpoint) {
+		max-width: 40em; margin: 0 auto; padding: 5em;
 	}
 }
 

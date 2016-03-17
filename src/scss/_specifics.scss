@@ -154,6 +154,55 @@
 	}
 }
 
+.push-right, .alignright {
+	float: right;
+}
+.push-left, .alignleft {
+	float: left;
+}
+
+.clearfix::before,
+.clearfix::after {
+    display: table;
+    content: " ";
+}
+.clearfix::after {
+    clear: both;
+}
+
+/* from wordpress */
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+figure.wp-caption.alignleft,
+img.alignleft {
+	margin: 5px 20px 5px 0;
+}
+
+.wp-caption.alignleft {
+	margin: 5px 10px 5px 0;
+}
+
+figure.wp-caption.alignright,
+img.alignright {
+	margin: 5px 0 5px 20px;
+}
+
+.wp-caption.alignright {
+	margin: 5px 0 5px 10px;
+}
+
+img.aligncenter {
+	margin: 5px auto;
+}
+
+img.alignnone {
+	margin: 5px 0;
+}
+
 /********* 
  * henri *
  *********/
@@ -265,3 +314,4 @@
     max-width: 604px;
     width: 100%;
   }
+
