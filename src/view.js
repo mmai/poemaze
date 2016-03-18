@@ -1,5 +1,5 @@
 import {h} from '@cycle/dom';
-const lastLeafId = "0111111"
+import {lastLeafId} from 'settings'
 
 import {renderDashboard} from './views/dashboard'
 import {renderCover}     from './views/cover'
