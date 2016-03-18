@@ -15,7 +15,8 @@ export const svgStyle = {
 
 export const pdfStyle = { ...svgStyle,
       fixedSize: '90mm',
-      viewBox: "0 0 420 420",
+      width: 480, height: 480,
+      viewBox: "0 0 480 480",
       leafRadius: 2,
       displayNeighbors:false
     }

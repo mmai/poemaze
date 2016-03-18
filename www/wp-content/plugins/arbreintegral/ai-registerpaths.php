@@ -8,7 +8,7 @@ require_once(dirname(__FILE__).'/makeAiPdf.php');
  * @return int Id of the path
  */
 function registerPath($data){
-  // error_log(print_r($data, true));
+  // file_put_contents("/var/www/arbre-integral/test/requestData.txt", print_r($data, true));
   global $wpdb;
   $id = null;
 
