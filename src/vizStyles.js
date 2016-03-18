@@ -2,7 +2,7 @@
 
 export const svgStyle = {
   width: 420, height: 420,
-  viewBox: "30 30 360 360",
+  viewBox: "25 25 370 370",
   leafRadius: 2, circleRadius: 30,
   color_background: "whitesmoke",
   color_up: "rgb(72,122,189)",
