@@ -1,11 +1,12 @@
 import {h} from '@cycle/dom'
+import {assetsDir} from 'settings'
 
 export function renderPdf(editionId){
   let content = []
   if (editionId === "pending") {
     content = [
       h('div.ai-pdf-pending', [
-          h('img', {src: "/wp-content/themes/arbre-integral/img/assets/ajax-loader.gif"}),
+          h('img', {src:`${assetsDir}/ajax-loader.gif`, alt:"en cours de traitement..."}),
           h("div", "Edition des documents...")
         ])
     ]

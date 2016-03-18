@@ -1,25 +1,19 @@
-/** @jsx hJSX */
-
-import {hJSX, h} from '@cycle/dom';
+import {h} from '@cycle/dom';
 import {isUp} from './utils'
 import {pagesUrl} from 'settings'
+import {assetsDir} from 'settings'
 
 export function renderDashboard(showDashboard, isUpside, history, progressionVtree, aiLogoSvgVtree, aiSvgVtree){
   //We can't put the link directly on a.dashboardLink du to a cycle-dom bug on internet explorer
   const currentLeafId = history.length === 0 ? "0" : history[history.length-1].id;
-  return (
-
-    <aside id="side-panel" className={showDashboard?"active":"no"}>
-      <a id="dashboardToggle" href={showDashboard?"#main":"#dashboard"}></a>
-      {h("a.dashboardLink", {attributes: {onclick: "document.getElementById('dashboardToggle').click()"}}, [aiLogoSvgVtree])}
-
-		  <div className="side-panel-content">
-        <div className="location">{currentLeafId}</div>
-
-        {aiSvgVtree}
-
-        {progressionVtree}
-        {h("script", `
+  return h(`aside#side-panel.${showDashboard?"active":"no"}`, [
+      h("a#dashboardToggle", {href: showDashboard?"#main":"#dashboard"}),
+      h("a.dashboardLink", {attributes: {onclick: "document.getElementById('dashboardToggle').click()"}}, [aiLogoSvgVtree]),
+      h("div.side-panel-content", [
+          h("div.location", currentLeafId),
+          aiSvgVtree,
+          progressionVtree,
+          h("script", `
             function aiOpenMenu(e){ document.getElementById(e.dataset.target).classList.toggle('active'); }
             function askFullScreen(){
               document.fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
@@ -40,8 +34,8 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
                 alert('Plein écran impossible avec ce navigateur');
               }
             }
-            `)}
-        {h('ul.navigation', [
+            `),
+        h('ul.navigation', [
             h("li", [
               buttonForList("historyList", "Historique"),
               h('ul#historyList', history.map(url =>
@@ -86,13 +80,12 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
             h("li", [h("a", {rel: "external", href: "/acceuillir-le-spectacle/"}, "Contacts")]),
             h("li", [h("a", {href: "/reset"}, "Recommencer")]),
             h("li", [h("a", {attributes:{onclick: "askFullScreen()", href: "#"}}, "Plein écran")]),
-          ])}
-        <a rel="external" className="about-link" href={pagesUrl + '/propos'} title="Propos">
-          <img src="/wp-content/themes/arbre-integral/img/assets/logo-home.svg" alt="Logo" />
-        </a>
-      </div>
-    </aside>
-    );
+          ]),
+        h("a.about-link", {attributes: {rel:"external", href: pagesUrl + '/propos', title: "Propos"}}, [
+            h('img', {src:`${assetsDir}/logo-home.svg`, alt:"Logo L'Arbre Intégral"}),
+          ])
+      ])
+  ])
 }
 
 function buttonForList(listElement, caption){

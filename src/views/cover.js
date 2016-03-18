@@ -1,20 +1,18 @@
-/** @jsx hJSX */
-
-import {hJSX, h} from '@cycle/dom';
+import {h} from '@cycle/dom';
+import {assetsDir} from 'settings'
 
 export function renderCover(){
   return (
-	<div className="main-container">
-		<div className="home-content">
-			<img className="home-logo" src="/wp-content/themes/arbre-integral/img/assets/logo-home.svg" alt="Logo L'Arbre Intégral"/>
-			<div className="home-title">
-				<div className="first-line">par</div>
-				<div className="second-line">Donatien Garnier</div>
-				<div className="third-line">graphisme Franck Tallon</div>
-			</div>
-		</div>
-    </div>
-  )
+    h("div.main-container", [
+      h("div.home-content", [
+        h('img.home-logo', {src:`${assetsDir}/logo-home.svg`}),
+        h('div.home-title', [
+          h('div.first-line', "par"),
+          h('div.second-line', "Donatien Garnier"),
+          h('div.third-line', "graphisme Franck Tallon"),
+      ])
+    ])
+  ]))
 }
 
 export function renderRoot(leafInfos){

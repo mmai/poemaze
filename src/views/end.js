@@ -1,25 +1,17 @@
-/** @jsx hJSX */
-
-import {hJSX, h} from '@cycle/dom';
+import {h} from '@cycle/dom';
+import {assetsDir} from 'settings'
 
 export function renderEnd(leafInfos){
-  return (
-	<div className="main-container">
-		<div className="end-content">
-			<div className="end-cross">
-        <div className="end-text">
-          {leafInfos.leaf.content}
-        </div>
-				<img src="/wp-content/themes/arbre-integral/img/assets/cross.svg"/>
-			</div>
-			<a href="/pdf">Sauvegarder le livre</a>
-		</div>
-        <div className="breadcrumb">
-          <div>{leafInfos.leaf.name}</div>
-        </div>
-        <div className="ai-last-restart"><a href="/reset">Recommencer</a></div>
-	</div>
-
-      )
+  return h("div.main-container", [
+      h("div.end-content", [
+          h("div.end-cross", [
+              h("div.end-text", leafInfos.leaf.content),
+              h('img', {src:`${assetsDir}/cross.svg`, alt:"Fin"})
+            ]),
+          h("a", {href: "/pdf"}, "Sauvegarder le livre" )
+        ]),
+      h("div.breadcrumb", [ h("div", leafInfos.leaf.name)]),
+      h("div.ai-last-restart", [ h("a", {href: "/reset"}, "Recommencer")]),
+    ])
 }
 
