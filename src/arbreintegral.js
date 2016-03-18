@@ -52,8 +52,9 @@ export function makeAI(aiData){
       let leftBrother =  this.getNewBrother(coords, (coords) => {leftdistance += 1; return this.getLeftBrother(coords);}, options.exclude);
       let rightBrother = this.getNewBrother(coords, (coords) => {rightdistance += 1; return this.getRightBrother(coords);}, options.exclude);
 
-      //Display only the parent or the brothers when they points to the same leaf
+      //As the parent can traverse the root, we must check possible conflicts with other neighbors
       if (parent.leaf){
+        //Display only the parent or the brothers when they points to the same leaf
         if (leaf.id.length == 2){
           //On the first circle, parent leaf has precedence over brothers leafs.
           if (leftBrother.leaf && leftBrother.leaf.id === parent.leaf.id) {
@@ -70,6 +71,13 @@ export function makeAI(aiData){
           ) {
             parent.leaf = false;
           }
+        }
+        //Childs have precedence over parent
+        if (
+          (leftChild.leaf && leftChild.leaf.id === parent.leaf.id) ||
+          (rightChild.leaf && rightChild.leaf.id === parent.leaf.id) 
+        ) {
+          parent.leaf = false;
         }
       }
 
