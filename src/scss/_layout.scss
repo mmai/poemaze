@@ -64,10 +64,12 @@ a {
       cursor: pointer;
     }
 		position: absolute; top: 1em; right: 100%; z-index: -1; width: 3em; margin: 0; padding: 0;
+    .svgLogoContainer { width: 70px; }
 		border: 0; outline: 0;
 		background: none;
 		@media (min-width: $responsive-breakpoint) {
 			top: 2em; width: 5.125em;
+      .svgLogoContainer { width: 120px; }
 		}
 	}
 	.side-panel-content {
@@ -187,7 +189,7 @@ a {
   }
 }
 .breadcrumb {
-	position: absolute; top: 1em; left: 1em; right: 1em; z-index: 9;
+	position: absolute; top: 0em; left: 0em; right: 0em; z-index: 9;
 		@media (min-width: $responsive-breakpoint) {
 	font-size: 1.25em; line-height: 1em;
 }

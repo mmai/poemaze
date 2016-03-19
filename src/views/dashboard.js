@@ -8,7 +8,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
   const currentLeafId = history.length === 0 ? "0" : history[history.length-1].id;
   return h(`aside#side-panel.${showDashboard?"active":"no"}`, [
       h("a#dashboardToggle", {href: showDashboard?"#main":"#dashboard"}),
-      h("a.dashboardLink", {attributes: {onclick: "document.getElementById('dashboardToggle').click()"}}, [aiLogoSvgVtree]),
+      h("a.dashboardLink", {attributes: {onclick: "document.getElementById('dashboardToggle').click()"}}, [h("div.svgLogoContainer", [aiLogoSvgVtree])]),
       h("div.side-panel-content", [
           h("div.location", currentLeafId),
           aiSvgVtree,

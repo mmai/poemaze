@@ -23,7 +23,7 @@ export const pdfStyle = { ...svgStyle,
 
 export const logoStyle = { ...svgStyle,
       width: 120, height: 120,
-      viewBox: false,
+      viewBox: "0 0 120 120",
       leafRadius: 1, circleRadius: 8,
       color_background: "black",
       displayNeighbors:false

@@ -531,10 +531,14 @@ a {
     background: none; }
     [id='side-panel'] .dashboardLink:hover {
       cursor: pointer; }
+    [id='side-panel'] .dashboardLink .svgLogoContainer {
+      width: 70px; }
     @media (min-width: 40em) {
       [id='side-panel'] .dashboardLink {
         top: 2em;
-        width: 5.125em; } }
+        width: 5.125em; }
+        [id='side-panel'] .dashboardLink .svgLogoContainer {
+          width: 120px; } }
   [id='side-panel'] .side-panel-content {
     background: whitesmoke;
     width: 15em;
@@ -687,9 +691,9 @@ a {
 
 .breadcrumb {
   position: absolute;
-  top: 1em;
-  left: 1em;
-  right: 1em;
+  top: 0em;
+  left: 0em;
+  right: 0em;
   z-index: 9; }
   @media (min-width: 40em) {
     .breadcrumb {
