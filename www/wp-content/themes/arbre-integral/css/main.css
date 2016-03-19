@@ -483,7 +483,7 @@ a {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 20%; }
+  padding-top: 4.5em; }
   @media (min-width: 40em) {
     .main-container {
       height: 100%;
@@ -499,6 +499,15 @@ a {
       max-width: 40em;
       margin: 0 auto;
       padding: 5em; } }
+  .edito-container a {
+    border-bottom: 1px dotted transparent;
+    text-decoration: none;
+    color: black;
+    border-bottom-color: currentColor; }
+    .edito-container a:hover, .edito-container a:focus {
+      border-bottom-color: currentColor;
+      text-decoration: none;
+      color: #ff00ff; }
 
 [id='side-panel'] {
   position: fixed;
@@ -669,7 +678,9 @@ a {
     [id='side-panel'] .navigation > li > button, [id='side-panel'] .navigation > li a {
       border-bottom: 1px dotted transparent; }
       [id='side-panel'] .navigation > li > button:hover, [id='side-panel'] .navigation > li a:hover {
-        border-bottom-color: currentColor; }
+        border-bottom-color: currentColor;
+        text-decoration: none;
+        color: black; }
 
 .about-link {
   float: right;
@@ -694,7 +705,9 @@ a {
   top: 0em;
   left: 0em;
   right: 0em;
-  z-index: 9; }
+  z-index: 9;
+  font-size: 1em;
+  line-height: 1em; }
   @media (min-width: 40em) {
     .breadcrumb {
       font-size: 1.25em;
@@ -708,6 +721,11 @@ a {
               transform: rotate(-90deg) translateX(-100%);
       -webkit-transform-origin: top left;
               transform-origin: top left; } }
+
+.wordpress-page .breadcrumb {
+  top: 1em;
+  left: 1em;
+  right: 1em; }
 
 .share {
   position: fixed;
@@ -872,7 +890,7 @@ a {
           align-items: center; }
   @media (max-width: 40em) {
     .navigate-content {
-      font-size: .75em; } }
+      font-size: .65em; } }
   .navigate-content > * {
     box-sizing: border-box;
     text-align: center; }
@@ -893,7 +911,7 @@ a {
     line-height: 1.25; }
     @media (max-width: 40em) {
       .navigate-content blockquote {
-        font-size: 1.5em;
+        font-size: 2em;
         width: 100%;
         -webkit-box-ordinal-group: 0;
         -webkit-order: -1;

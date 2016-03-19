@@ -32,7 +32,7 @@ a {
 }
 
 .main-container {
-	display: flex; padding-top: 20%;
+	display: flex; padding-top: 4.5em;
 	@media (min-width: $responsive-breakpoint) {
 		height: 100%; padding-top: 0;
 	}
@@ -46,6 +46,15 @@ a {
 	padding: 3em 1em;
 	@media (min-width: $responsive-breakpoint) {
 		max-width: 40em; margin: 0 auto; padding: 5em;
+	}
+	a {
+    border-bottom: 1px dotted transparent;
+    text-decoration: none; color: black;
+    border-bottom-color: currentColor;
+    &:hover, &:focus {
+      border-bottom-color: currentColor;
+      text-decoration: none; color: $pink;
+    }
 	}
 }
 
@@ -171,7 +180,7 @@ a {
         border-bottom: 1px dotted transparent;
         &:hover {
           border-bottom-color: currentColor;
-          // text-decoration: none; color: $pink;
+          text-decoration: none; color: black;
         }
       }
     }
@@ -190,6 +199,7 @@ a {
 }
 .breadcrumb {
 	position: absolute; top: 0em; left: 0em; right: 0em; z-index: 9;
+	font-size: 1em; line-height: 1em;
 		@media (min-width: $responsive-breakpoint) {
 	font-size: 1.25em; line-height: 1em;
 }
@@ -199,6 +209,9 @@ a {
 			transform: rotate(-90deg) translateX(-100%); transform-origin: top left;
 		}
 	}
+}
+.wordpress-page .breadcrumb {
+	top: 1em; left: 1em; right: 1em;
 }
 
 .share {

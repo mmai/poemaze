@@ -97,7 +97,7 @@
 	display: flex; max-width: 60em;
 	flex-flow: row wrap; align-items: center;
 	@media (max-width: $responsive-breakpoint) {
-		font-size: .75em;
+		font-size: .65em;
 	}
 	& > * {
 		box-sizing: border-box;
@@ -114,7 +114,7 @@
 		width: 54%; margin: 0; padding: 2.5%;
 		font-family: $quote-font-family; font-size: 2.5em; line-height: 1.25;
 		@media (max-width: $responsive-breakpoint) {
-      font-size:1.5em;
+      font-size:2em;
 			width: 100%;
 			order: -1;
 		}

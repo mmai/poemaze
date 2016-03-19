@@ -29,24 +29,31 @@ import {cleanSvgCover, makePdfApiParams} from './aiPdf';
 
 import {svgStyle, pdfStyle, logoStyle} from './vizStyles'
 
-// fix the sticky :hover style on touch devices
-if('ontouchstart' in document.documentElement) {
-  for(var sheetI = document.styleSheets.length - 1; sheetI >= 0; sheetI--) {
-    var sheet = document.styleSheets[sheetI];
-    if(sheet.cssRules) {
-      for(var ruleI = sheet.cssRules.length - 1; ruleI >= 0; ruleI--) {
-        var rule = sheet.cssRules[ruleI];
-        if(rule.selectorText) {
-          rule.selectorText = rule.selectorText.replace(":hover", ":active");
-        }
-      }
-    }
-  }
-}
+/**
+ * fix the sticky :hover style on touch devices
+ *
+ * @return {undefined}
+ */
+ function fixHover(){
+   if('ontouchstart' in document.documentElement) {
+     for(var sheetI = document.styleSheets.length - 1; sheetI >= 0; sheetI--) {
+       var sheet = document.styleSheets[sheetI];
+       if(sheet.cssRules) {
+         for(var ruleI = sheet.cssRules.length - 1; ruleI >= 0; ruleI--) {
+           var rule = sheet.cssRules[ruleI];
+           if(rule.selectorText) {
+             rule.selectorText = rule.selectorText.replace(":hover", ":active");
+           }
+         }
+       }
+     }
+   }
+ }
 
 const xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = () => {
   if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    fixHover();
     startAI(JSON.parse(xmlhttp.responseText));
   }
 };
