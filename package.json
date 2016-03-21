@@ -29,6 +29,7 @@
     "casperjs": "^1.1.0-beta3",
     "chai": "^3.4.1",
     "css-loader": "^0.23.1",
+    "cycle-snabbdom": "^1.2.0",
     "es6-promise": "^3.0.2",
     "exports-loader": "^0.6.2",
     "extract-text-webpack-plugin": "^1.0.1",

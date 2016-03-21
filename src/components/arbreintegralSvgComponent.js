@@ -1,4 +1,4 @@
-import {svg, h} from '@cycle/dom';
+import {h} from 'cycle-snabbdom'
 import {circToCartesian, cartesianToPolar} from './arbreintegralGeometry'
 
 const basetime = Date.now();
@@ -79,9 +79,9 @@ export function makeAiSvgComponent(AI, {
           mainAttributes.viewBox = viewBox
         }
 
-        return svg('svg', mainAttributes, [
+        return h('svg', {attrs: mainAttributes}, [
             skeletonVtree,
-            svg('g', {transform}, [
+            h('g', {attrs:{transform}}, [
                 ...pathsVtree,
                 ...currentPositionVtree(newLeaf),
                 ...neighborsVtree(leafInfos),
@@ -110,7 +110,7 @@ export function makeAiSvgComponent(AI, {
     if (!displayNeighbors) return [];
     const coords = AI.getCoords(leaf);
     const {x, y} = getCoordsFromPos(coords);
-    return [svg('circle', {cx:x, cy:y, r:leafRadius*2, stroke: color_current, fill:color_current})]
+    return [h('circle', {attrs:{cx:x, cy:y, r:leafRadius*2, stroke: color_current, fill:color_current}})]
   }
 
   /**
@@ -146,11 +146,11 @@ export function makeAiSvgComponent(AI, {
     const type = AI.getType(leaf);
     const color = (type == 'UP')?color_up:color_down;
 
-    return svg('circle', {
+    return h('circle', {attrs:{
         cx: x, cy: y, r: leafRadius * 2,
         stroke: color, fill: color, class: 'viz-neighbor',
-        attributes: {'data-neighbor-href': `${leaf.id}-${neighbor.fromId}`}
-      }
+        'data-neighbor-href': `${leaf.id}-${neighbor.fromId}`
+      }}
     )
   }
 
@@ -207,19 +207,19 @@ export function makeAiSvgComponent(AI, {
     let polarfrom = cartesianToPolar({x: posfrom.x - origin.x, y:origin.y - posfrom.y});
     let polarto = cartesianToPolar({x: posto.x - origin.x, y:origin.y - posto.y});
 
-    return svg('path', {
+    return h('path', {attrs:{
         d: describeSvgArc(radius, 0 - polarfrom.angle, 0 - polarto.angle),
         stroke: color,
         // fill: color_background,
         'fill-opacity': 0,
         'stroke-width': 1
-      })
+      }})
   }
 
   function makeLineBetweenLeafs (from, to, color){
     const posfrom = getCoordsFromPos(from);
     const posto = getCoordsFromPos(to);
-    return svg('line', {x1:posfrom.x, y1:posfrom.y, x2:posto.x, y2:posto.y, stroke:color, 'stroke-width':1 });
+    return h('line', {attrs:{x1:posfrom.x, y1:posfrom.y, x2:posto.x, y2:posto.y, stroke:color, 'stroke-width':1 }});
   }
 
 /**
@@ -227,20 +227,20 @@ export function makeAiSvgComponent(AI, {
  */
  function drawSkeleton(){
    //If pdf cover visualization : no skeleton
-   if  (fixedSize !== 'none') { return  svg('g'); }
+   if  (fixedSize !== 'none') { return  h('g'); }
 
    let points = []
    for (let circ = 0; circ < 7; circ++){
      const nbLeafs = Math.pow(2, circ);
      for (let pos = 1; pos <= nbLeafs; pos++){
        const {x, y} = getCoordsFromPos({circ, pos});
-       points[points.length] = svg('circle', {cx:x, cy:y, r:leafRadius, fill:color_skeleton})
+       points[points.length] = h('circle', {attrs:{cx:x, cy:y, r:leafRadius, fill:color_skeleton}})
        // circle.stroke = color_skeleton;
      }
    }
 
-   return svg('g', {transform:`translate(${width/2},${height/2})`}, [
-       svg('circle', { fill: color_background, cx: 0, cy: 0, r: circleRadius * 7 }),
+   return h('g', {attrs:{transform:`translate(${width/2},${height/2})`}}, [
+       h('circle', {attrs:{ fill: color_background, cx: 0, cy: 0, r: circleRadius * 7 }}),
        ...points
      ]);
  }

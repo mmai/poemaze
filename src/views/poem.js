@@ -1,6 +1,4 @@
-/** @jsx hJSX */
-
-import {hJSX, h} from '@cycle/dom';
+import {h} from 'cycle-snabbdom'
 import {isUp, renderNeighorLink} from './utils'
 import {renderRoot} from './cover'
 import {renderShare} from './share'
@@ -30,12 +28,6 @@ function renderLeaf(leafInfos, linksDom){
       renderShare("http://arbre-integral.net", leafInfos.leaf.content)
     ])
 }
-      //
-      // <div className={"ai-text circle-" + circleLevel + " " + classUp}>
-      //   <div>
-      //    <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
-      //   </div>
-      // </div>
 
 function renderLeafReversed(leafInfos){
   let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
@@ -43,18 +35,12 @@ function renderLeafReversed(leafInfos){
   return renderLeaf(leafInfos, [
       renderNeighorLink("n", leafInfos.neighbors.parent),
       renderNeighorLink("w", leafInfos.neighbors.leftBrother),
-      parser(`<blockquote>${leafInfos.leaf.content}</blockquote>`),
+      h("blockquote", getHtmlContents(leafInfos.leaf.content)),
       renderNeighorLink("e", leafInfos.neighbors.rightBrother),
       renderNeighorLink("sw", leafInfos.neighbors.rightChild),
       renderNeighorLink("se", leafInfos.neighbors.leftChild)
     ])
 }
-      //
-      // <div className={"ai-text circle-" + circleLevel + " " + classUp}>
-      //   <div>
-      //    <span className="tree-breadcrumb">{leafInfos.leaf.name}</span>
-      //   </div>
-      // </div>
 
 function renderLeafUpside(leafInfos){
   let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
@@ -63,9 +49,26 @@ function renderLeafUpside(leafInfos){
         renderNeighorLink("nw", leafInfos.neighbors.leftChild),
         renderNeighorLink("ne", leafInfos.neighbors.rightChild),
         renderNeighorLink("w", leafInfos.neighbors.leftBrother),
-        parser(`<blockquote>${leafInfos.leaf.content}</blockquote>`),
+        h("blockquote", getHtmlContents(leafInfos.leaf.content)),
         renderNeighorLink("e", leafInfos.neighbors.rightBrother),
         renderNeighorLink("s", leafInfos.neighbors.parent)
       ])
 }
 
+/**
+ * Convert HTML content to virtual dom elements
+ *
+ * @param {string} content HTML content
+ * @return {array} Array of virtual dom elements
+ */
+function getHtmlContents(content){
+  let wrapper = document.createElement('div')
+  wrapper.innerHTML = content
+  return [].map.call(wrapper.childNodes, (el => {
+      switch (el.nodeName){
+      case "#text": return el.nodeValue;
+      case "EM": return h('em', el.innerHTML);
+      default: return undefined;
+      }
+    }))
+}

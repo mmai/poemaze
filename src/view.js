@@ -1,4 +1,4 @@
-import {h} from '@cycle/dom';
+import {h} from 'cycle-snabbdom'
 import {lastLeafId} from 'settings'
 
 import {renderDashboard} from './views/dashboard'

@@ -7,7 +7,8 @@ import "babel-polyfill";
 import {Observable} from 'rx';
 import {run} from '@cycle/core';
 import storageDriver from '@cycle/storage';
-import {makeDOMDriver} from '@cycle/dom';
+import {modules, makeDOMDriver} from 'cycle-snabbdom'
+const {StyleModule, PropsModule, AttrsModule, ClassModule} = modules
 import {makeHistoryDriver} from '@cycle/history';
 import {makeHTTPDriver} from '@cycle/http';
 import isolate from '@cycle/isolate';
@@ -191,7 +192,7 @@ function startAI(json) {
   let drivers = {
     // DOM: makeDOMDriver('#ai-page'),
     bodyStyles: makeBodyStylesDriver(),
-    DOM: makeDOMDriver('#app'),
+    DOM: makeDOMDriver('#app', { modules: [StyleModule, PropsModule, AttrsModule, ClassModule], }),
     History: makeHistoryDriver({
         // basename: '/poeme'
       }),

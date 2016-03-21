@@ -1,4 +1,4 @@
-import {h} from '@cycle/dom';
+import {h} from 'cycle-snabbdom'
 import {assetsDir} from 'settings'
 
 export function renderEnd(leafInfos){
