@@ -12,6 +12,7 @@ const basetime = Date.now();
 export function makeAiSvgComponent(AI, {
     origin = {x:0, y:0},
     displayNeighbors = true,
+    clickable = true,
     fixedSize = "none",
     viewBox = false,
     width, height,
@@ -65,6 +66,10 @@ export function makeAiSvgComponent(AI, {
         }
 
         let mainAttributes = {}
+        if (!clickable){
+          mainAttributes["pointer-events"] = "none"
+        }
+
         if (fixedSize === 'none'){
           mainAttributes.class = animationClass
           if (viewBox !== false) {

@@ -17,8 +17,10 @@ export default function intent(DOM, History){
   .share()
 
   // Clicks on the SVG nodes
-  const svgClick$ = DOM.select('svg').events('click')
-  .map(ev => ev.target.getAttribute('data-neighbor-href'))
+  const svgClick$ = DOM.select('[data-neighbor-href]').events('click')
+  .map(ev => {
+      return ev.target.getAttribute('data-neighbor-href')
+    })
   .filter(href => href != null) 
   .map(href => {
       let [pathname, from] = href.split('-');
