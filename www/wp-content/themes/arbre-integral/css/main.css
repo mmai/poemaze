@@ -541,13 +541,15 @@ a {
     [id='side-panel'] .dashboardLink:hover {
       cursor: pointer; }
     [id='side-panel'] .dashboardLink .svgLogoContainer {
-      width: 70px; }
+      width: 70px;
+      height: 70px; }
     @media (min-width: 40em) {
       [id='side-panel'] .dashboardLink {
         top: 2em;
         width: 5.125em; }
         [id='side-panel'] .dashboardLink .svgLogoContainer {
-          width: 120px; } }
+          width: 120px;
+          height: 120px; } }
   [id='side-panel'] .side-panel-content {
     background: whitesmoke;
     width: 15em;
@@ -555,12 +557,15 @@ a {
     padding: 1em;
     overflow: auto;
     box-sizing: border-box; }
+    [id='side-panel'] .side-panel-content svg {
+      max-height: 13em; }
     @media (min-width: 40em) {
       [id='side-panel'] .side-panel-content {
         width: 30em;
-        padding: 3em; } }
+        padding: 3em; }
+        [id='side-panel'] .side-panel-content svg {
+          max-height: 28em; } }
   [id='side-panel'] .location {
-    margin-bottom: 1em;
     font-family: "Kite One", sans-serif;
     color: #ff00ff; }
   [id='side-panel'] .map {

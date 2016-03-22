@@ -73,23 +73,29 @@ a {
       cursor: pointer;
     }
 		position: absolute; top: 1em; right: 100%; z-index: -1; width: 3em; margin: 0; padding: 0;
-    .svgLogoContainer { width: 70px; }
+    .svgLogoContainer { width: 70px; height: 70px; }
 		border: 0; outline: 0;
 		background: none;
 		@media (min-width: $responsive-breakpoint) {
 			top: 2em; width: 5.125em;
-      .svgLogoContainer { width: 120px; }
+      .svgLogoContainer { width: 120px; height: 120px; }
 		}
 	}
 	.side-panel-content {
     background: $lightgrey;
 		width: 15em; height: 100%; padding: 1em; overflow: auto; box-sizing: border-box;
+    svg {
+      max-height: 13em;
+    }
 		@media (min-width: $responsive-breakpoint) {
 			width: 30em; padding: 3em;
+      svg {
+        max-height: 28em;
+      }
 		}
 	}
 	.location {
-		margin-bottom: 1em;
+		// margin-bottom: 1em;
 		font-family: $links-font-family; color: $pink;
 	}
 	.map {
