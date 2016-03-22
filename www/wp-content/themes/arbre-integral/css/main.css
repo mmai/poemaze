@@ -935,6 +935,20 @@ a {
 .circle6-page .navigate-content blockquote {
   font-family: "Asap", sans-serif; }
 
+html:not(.flexwrap) .start-content .start-inner {
+  display: block; }
+html:not(.flexwrap) .start-content span {
+  float: left; }
+html:not(.flexwrap) .navigate-content {
+  display: block; }
+  html:not(.flexwrap) .navigate-content > * {
+    float: left; }
+  @media (max-width: 40em) {
+    html:not(.flexwrap) .navigate-content blockquote {
+      width: 60%; }
+    html:not(.flexwrap) .navigate-content .item-e, html:not(.flexwrap) .navigate-content .item-w {
+      width: 20%; } }
+
 .day-page {
   background: #becfc3;
   color: black; }

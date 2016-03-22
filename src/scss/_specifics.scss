@@ -144,6 +144,33 @@
   font-family: $quote-font-family-circle6;
 }
 
+//Workaround Android < 4.3 no support for flex-wrap 
+html:not(.flexwrap) {
+  .start-content {
+    .start-inner {
+      display: block;
+    }
+    span {
+      float: left;
+    }
+  }
+
+  .navigate-content {
+    display: block;
+    & > * {
+      float: left;
+    }
+    @media (max-width: $responsive-breakpoint) {
+      blockquote {
+        width: 60%;
+      }
+      .item-e, .item-w {
+        width:20%;
+      }
+    }
+  }
+}
+
 @each $page in $pages {
 	$name: map-get($page, 'name');
 	$background: map-get($page, 'background');

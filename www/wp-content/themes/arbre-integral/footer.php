@@ -12,6 +12,7 @@
     <script language="javascript">
       window.aiPageType = "wordpress";
     </script>
+    <script src="/wp-content/themes/arbre-integral/modernizr.js"></script>
     <script src="/wp-content/themes/arbre-integral/bundle.js"></script>
 	<?php wp_footer(); ?>
 </body>
