@@ -1,5 +1,6 @@
 import {env} from 'settings'
-import createElement from 'virtual-dom/create-element'
+import toHTML from 'snabbdom-to-html'
+/* import createElement from 'virtual-dom/create-element'*/
 
 /**
  * Extract the svg cover representation from the global aiSvgComponent virtual-dom 
@@ -9,7 +10,8 @@ import createElement from 'virtual-dom/create-element'
  * @return {string}
  */
 export function cleanSvgCover(svgVtree){
-  return createElement(svgVtree).outerHTML
+  // return createElement(svgVtree).outerHTML //virtual-dom syntax
+  return toHTML(svgVtree)
 }
 
 /**
