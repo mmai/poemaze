@@ -58,12 +58,18 @@ a {
 	}
 }
 
+.flexwrap {
+  [id='side-panel'] {
+    //Android does not support well this transition : it makes disappear the svg
+  transition: transform .2s ease-out;
+}
+}
+
 [id='side-panel'] {
 	position: fixed; top: 0; right: 0; bottom: 0; z-index: 10;
 	transform: translateX(100%);
 	background: $lightgrey;
   color: $black;
-	transition: transform .2s ease-out;
 	&.active {
 		transform: translateX(0);
 		box-shadow: 0 0 1em black;
@@ -120,26 +126,30 @@ a {
   }
 	.situation {
 		display: flex;
-    margin: 0 0;
     flex-grow: 1;
-    height: 0.7em;
 		align-items: stretch;
+    margin: 0 0;
+    height: 0.7em;
 		& > * {
+      display: flex;
 			flex: 1;
 			background: $grey;
 			line-height: 1; text-align: center;
-      border-right: 1px solid lightgrey;
+			min-height: 1px;
+      // border-right: 1px solid lightgrey;
 		}
 		.ai-up, .ai-down {
-			height: .35em;
+			height: 0;
 		}
 		.ai-up {
-			align-self: flex-start;
-			background: $color-up;
+			// align-self: flex-start; background: $color-up;
+      border-top: 0.35em solid $color-up;
+      border-bottom: 0.35em solid $lightgrey;
 		}
 		.ai-down {
-			align-self: flex-end;
-			background: $color-down;
+			// align-self: flex-end; background: $color-down;
+      border-bottom: 0.35em solid $color-down;
+      border-top: 0.35em solid $lightgrey;
 		}
 		img {
 			width: 1em;
