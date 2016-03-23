@@ -6,7 +6,7 @@ export function renderPdf(editionId){
   if (editionId === "pending") {
     content = [
       h('div.ai-pdf-pending', [
-          h('img', {src:`${assetsDir}/ajax-loader.gif`, alt:"en cours de traitement..."}),
+          h('img', {attrs:{src:`${assetsDir}/ajax-loader.gif`, alt:"en cours de traitement..."}}),
           h("div", "Edition des documents...")
         ])
     ]
@@ -14,8 +14,8 @@ export function renderPdf(editionId){
     content = [
       h('h2', `Edition du parcours ${editionId}`),
       h("ul", [
-          h("li", [h('a', {rel: "external", download: `ArbreIntegral-${editionId}-couverture.pdf`, href: `/aibooks/ArbreIntegral-${editionId}-couverture.pdf`}, `Télécharger la couverture`)]),
-          h("li", [h('a', {rel: "external", download: `ArbreIntegral-${editionId}.pdf`, href: `/aibooks/ArbreIntegral-${editionId}.pdf`}, `Télécharger le contenu`)])
+          h("li", [h('a', {attrs:{rel: "external", download: `ArbreIntegral-${editionId}-couverture.pdf`, href: `/aibooks/ArbreIntegral-${editionId}-couverture.pdf`}}, `Télécharger la couverture`)]),
+          h("li", [h('a', {attrs:{rel: "external", download: `ArbreIntegral-${editionId}.pdf`, href: `/aibooks/ArbreIntegral-${editionId}.pdf`}}, `Télécharger le contenu`)])
         ]),
       
     ]

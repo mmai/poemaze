@@ -2,7 +2,6 @@ import {h} from 'cycle-snabbdom'
 import {isUp, renderNeighorLink} from './utils'
 import {renderRoot} from './cover'
 import {renderShare} from './share'
-var parser = require("vdom-parser");
 
 // export function renderLeaf(leafInfos){
 export function renderPoem(isUpside, leafInfos){
