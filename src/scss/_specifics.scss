@@ -280,7 +280,9 @@ img.alignnone {
 		border-bottom: 1px dotted transparent;
 		font-size: 1.25em; text-decoration: none; color: inherit;
 		&:hover, &:focus {
-			border-bottom-color: currentColor;
+			// border-bottom-color: currentColor;
+      color: $pink;
+      border-bottom-color: $pink;
 		}
 	}
 }
@@ -290,12 +292,16 @@ img.alignnone {
   left: 0em;
   padding: 1em;
   a {
-    color: black;
-    font-size: 1.25em;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
+		border-bottom: 1px dotted transparent;
+		// border-bottom: 1px dotted currentColor;
+		font-size: 1.25em; text-decoration: none; color: inherit;
+		&:hover, &:focus {
+      color: $pink;
+      border-bottom-color: $pink;
+		}
+
+    // color: black;
+    // font-size: 1.25em;
   }
 }
 

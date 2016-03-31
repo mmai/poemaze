@@ -57,7 +57,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
               buttonForList("spectacleList", "Spectacle"),
               h('ul#spectacleList', [
                   h("li", [h("a", {attrs:{rel: "external", href: "/un-spectacle-en-realite-augmentee/concept/"}}, "Concept")]),
-                  h("li", [h("a", {attrs:{rel: "external", href: "/un-spectacle-en-realite-augmentee/images/"}}, "Images")]),
+                  h("li", [h("a", {attrs:{rel: "external", href: "/un-spectacle-en-realite-augmentee/video/"}}, "Images")]),
                   h("li", [h("a", {attrs:{rel: "external", href: "/un-spectacle-en-realite-augmentee/decor-3d/"}}, "Décor 3D")]),
                   h("li", [h("a", {attrs:{rel: "external", href: "/un-spectacle-en-realite-augmentee/danse/"}}, "Danse")]),
                   h("li", [h("a", {attrs:{rel: "external", href: "/un-spectacle-en-realite-augmentee/bande-son/"}}, "Bande-son")]),
@@ -66,18 +66,20 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
               ])
             ]),
             h("li", [
+              buttonForList("equipesList", "Équipes"),
+              h('ul#equipesList', [
+                  h("li", [h("a", {attrs:{rel: "external", href: "/equipe/lauteur/"}}, "L'auteur")]),
+                  h("li", [h("a", {attrs:{rel: "external", href: "/equipe/livre/"}}, "Site")]),
+                  h("li", [h("a", {attrs:{rel: "external", href: "/equipe/scene/"}}, "Scène")]),
+              ])
+            ]),
+            h("li", [h("a", {attrs:{rel: "external", href: "/partenaires/"}}, "Partenaires")]),
+            h("li", [
               buttonForList("forumList", "Forum"),
               h('ul#forumList', [
                   h("li", [h("a", {attrs:{rel: "external", href: pagesUrl + '/forums/forum/suggestions'}}, "Suggestions" )]),
               ])
             ]),
-            h("li", [
-              buttonForList("equipesList", "Équipes"),
-              h('ul#equipesList', [
-                  h("li", [h("a", {attrs:{rel: "external", href: "/equipe/livre/"}}, "Livre")]),
-              ])
-            ]),
-            h("li", [h("a", {attrs:{rel: "external", href: "/lauteur/"}}, "L'auteur")]),
             h("li", [h("a", {attrs:{rel: "external", href: "/acceuillir-le-spectacle/"}}, "Contacts")]),
             h("li", [h("a", {attrs:{href: "/reset"}}, "Recommencer")]),
             h("li", [h("a", {attrs:{onclick: "askFullScreen()", href: "#"}}, "Plein écran")]),

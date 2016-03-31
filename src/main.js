@@ -97,6 +97,9 @@ function startAI(json) {
     //this variable can't be in state$ because it must be initialized outside cyclejs by wordpress pages
     actions.readPoem$.subscribe((click) => {window.aiPageType = "poem" })
 
+    //Quit worpress pages when opening sidebar (UX not really intuitive...)
+    actions.dashboardOpen$.subscribe((click) => {window.aiPageType = "poem" })
+
     const leafLinks$ =  state$.map( state => state.history )
     .share()
 

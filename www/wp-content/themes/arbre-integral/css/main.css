@@ -69,6 +69,31 @@
   to {
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg); } }
+.blink_text {
+  -webkit-animation-name: blinker;
+          animation-name: blinker;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite; }
+
+@-webkit-keyframes blinker {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
+
+@keyframes blinker {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
 /* normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -436,6 +461,10 @@ th {
 .ai-down {
   color: #807830; }
 
+h3 {
+  font-weight: normal;
+  font-size: 1.5em; }
+
 /* ==========================================================================
    Forms initialisation
    ========================================================================== */
@@ -692,18 +721,18 @@ a {
 .about-link {
   float: right;
   display: block;
-  width: 3em;
-  height: 3em;
-  margin-top: -3em;
+  width: 5em;
+  height: 5em;
+  margin-top: -5em;
   background: center/cover no-repeat url(../img/assets/logo-home.svg);
   content: ''; }
   @media (min-width: 40em) {
     .about-link {
-      bottom: 3em;
-      right: 3em;
-      width: 6em;
-      height: 6em;
-      margin-top: -6em; } }
+      bottom: 2em;
+      right: 2em;
+      width: 11em;
+      height: 11em;
+      margin-top: -11em; } }
   .about-link img {
     width: 100%; }
 
@@ -741,7 +770,9 @@ a {
   padding: 1em; }
   @media (max-width: 40em) {
     .share {
-      background: rgba(0, 0, 0, 0.1); } }
+      background: rgba(0, 0, 0, 0.1);
+      font-size: 0.6em;
+      padding: 0.6em; } }
   .share .share-btn {
     border-bottom: 1px dotted transparent;
     font-size: 1.25em; }
@@ -1060,7 +1091,8 @@ img.alignnone {
     text-decoration: none;
     color: inherit; }
     .end-content a:hover, .end-content a:focus {
-      border-bottom-color: currentColor; }
+      color: #ff00ff;
+      border-bottom-color: #ff00ff; }
 
 .ai-last-restart {
   position: fixed;
@@ -1068,11 +1100,13 @@ img.alignnone {
   left: 0em;
   padding: 1em; }
   .ai-last-restart a {
-    color: black;
+    border-bottom: 1px dotted transparent;
     font-size: 1.25em;
-    text-decoration: none; }
-    .ai-last-restart a:hover {
-      text-decoration: underline; }
+    text-decoration: none;
+    color: inherit; }
+    .ai-last-restart a:hover, .ai-last-restart a:focus {
+      color: #ff00ff;
+      border-bottom-color: #ff00ff; }
 
 .viz-neighbor {
   cursor: pointer; }
