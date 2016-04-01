@@ -6,6 +6,9 @@ export function renderNeighorLink(id, neighbor){
     let classUp = isUp(neighbor.leaf)?"ai-up":"ai-down";
     links.push(h(`a.${classUp}`, {attrs:{href: neighbor.leaf.id + "?trace=" + neighbor.fromId}}, neighbor.leaf.word));
   }  
+  if (links.length === 0) {
+    links = [h("a.txt-transparent", ".")]
+  }
   return h("span.item-" + id, links);
 }
 
