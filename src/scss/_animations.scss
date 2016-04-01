@@ -4,12 +4,12 @@
 
 @keyframes appear {
 	from {
-		visibility: hidden; opacity: 0;
+		opacity: 0;
 	}
 	40% {
-		visibility: visible; opacity: 0;
+		opacity: 0;
 	}
-	top {
+	to {
 		opacity: 1;
 	}
 }

@@ -204,7 +204,6 @@ a {
 }
 .about-link {
   float: right; display: block; width: 5em; height: 5em; margin-top: -5em;
-  background: center / cover no-repeat url(../img/assets/logo-home.svg);
   content: '';
   @media (min-width: $responsive-breakpoint) {
     bottom: 2em; right: 2em; width: 11em; height: 11em; margin-top: -11em;

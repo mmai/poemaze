@@ -24,21 +24,17 @@
    ========================================================================== */
 @-webkit-keyframes appear {
   from {
-    visibility: hidden;
     opacity: 0; }
   40% {
-    visibility: visible;
     opacity: 0; }
-  top {
+  to {
     opacity: 1; } }
 @keyframes appear {
   from {
-    visibility: hidden;
     opacity: 0; }
   40% {
-    visibility: visible;
     opacity: 0; }
-  top {
+  to {
     opacity: 1; } }
 /********* 
  * henri *
@@ -724,7 +720,6 @@ a {
   width: 5em;
   height: 5em;
   margin-top: -5em;
-  background: center/cover no-repeat url(../img/assets/logo-home.svg);
   content: ''; }
   @media (min-width: 40em) {
     .about-link {
@@ -812,13 +807,17 @@ a {
   height: auto;
   padding-bottom: 7.5em;
   background: black;
-  -webkit-animation: appear 5s ease-out;
-          animation: appear 5s ease-out; }
+  -webkit-animation: appear 5s ease-in-out;
+          animation: appear 5s ease-in-out; }
 
 .home-content .home-logo, .start-content {
   max-width: 28.125em;
   max-height: 28.125em; }
 
+@media (max-width: 40em) {
+  .home-content {
+    width: 250px;
+    height: 250px; } }
 .home-content .home-logo {
   width: 100%; }
 .home-content .home-title {

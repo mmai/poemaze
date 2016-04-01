@@ -6,7 +6,7 @@
 .start-page {
 	position: absolute; top: 0; right: 0; bottom: 0; left: 0; height: auto; padding-bottom: 7.5em;
 	background: black;
-	animation: appear 5s ease-out;
+	animation: appear 5s ease-in-out;
 }
 
 %home-ball {
@@ -14,6 +14,9 @@
 }
 
 .home-content {
+		@media (max-width: $responsive-breakpoint) {
+      width: 250px; height: 250px;
+		}
 	//padding: 1em; box-sizing: border-box;
 	.home-logo {
 		@extend %home-ball;
