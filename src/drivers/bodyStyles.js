@@ -4,8 +4,9 @@ import {Observable} from 'rx';
 export default function makeBodyStylesDriver() {
   return function bodyStyleDriver(sink$) {
     sink$.subscribe(s => {
-        document.body.classList.remove(...(s.classes.toRemove))
-        document.body.classList.add(...(s.classes.toAdd))
+        for (let c of s.classes.toRemove){ document.body.classList.remove(c) }
+        for (let c of s.classes.toAdd){ document.body.classList.add(c) }
+        // document.body.classList.add(...(s.classes.toAdd))//not working on android 4.2
       })
   }
 }
