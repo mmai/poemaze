@@ -1084,7 +1084,8 @@ img.alignnone {
     .end-content .end-cross:hover .end-text, .end-content .end-cross:focus .end-text {
       opacity: 1; }
   .end-content img {
-    width: 100%; }
+    height: 18em;
+    width: 18em; }
   .end-content a {
     display: inline-block;
     margin-top: 2em;
