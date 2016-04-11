@@ -215,9 +215,9 @@ a {
 .breadcrumb {
 	position: absolute; top: 0em; left: 0em; right: 0em; z-index: 9;
 	font-size: 1em; line-height: 1em;
-		@media (min-width: $responsive-breakpoint) {
-	font-size: 1.25em; line-height: 1em;
-}
+  @media (min-width: $responsive-breakpoint) {
+    font-size: 1.25em; line-height: 1em;
+  }
 	& > * {
 		@media (min-width: $responsive-breakpoint) {
 			position: fixed; display: block; right: auto;

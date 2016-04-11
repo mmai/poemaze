@@ -14,7 +14,7 @@ export function renderPdf(editionId){
     content = [
       h('h2', `Edition du parcours ${editionId}`),
       h("ul", [
-          h("li", [h('a', {attrs:{rel: "external", download: `ArbreIntegral-${editionId}-couverture.pdf`, href: `/aibooks/ArbreIntegral-${editionId}-couverture.pdf`}}, `Télécharger la couverture`)]),
+          h("li", [h('a', {attrs:{rel: "external", download: `ArbreIntegral-${editionId}-couverture.jpg`, href: `/aibooks/ArbreIntegral-${editionId}-couverture.jpg`}}, `Télécharger la couverture`)]),
           h("li", [h('a', {attrs:{rel: "external", download: `ArbreIntegral-${editionId}.pdf`, href: `/aibooks/ArbreIntegral-${editionId}.pdf`}}, `Télécharger le contenu`)])
         ]),
       

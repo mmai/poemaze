@@ -259,6 +259,7 @@ function createCover($id, $svg){
   global $aiBooksSrc;
 
   $pdfFile = $aiBooksDir.'ArbreIntegral-'.$id.'-couverture.pdf';
+  $imgFile = $aiBooksDir.'ArbreIntegral-'.$id.'-couverture.jpg';
   if (!file_exists($pdfFile)){
     $svgFile = $aiBooksDir.$id.'.svg';
     file_put_contents($svgFile, $svg);
@@ -319,6 +320,13 @@ function createCover($id, $svg){
 
     //Close and output PDF document
     $pdf->Output($pdfFile, 'F');
+
+    //Convert to image
+    $img = new Imagick();
+    $img->setResolution(800,800);
+    $img->readImage($pdfFile);
+    $img->setImageFormat('jpg');
+    $img->writeImage($imgFile);
 
   }
 }
