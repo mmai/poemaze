@@ -69,11 +69,17 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
               buttonForList("equipesList", "Équipes"),
               h('ul#equipesList', [
                   h("li", [h("a", {attrs:{rel: "external", href: "/equipe/lauteur/"}}, "L'auteur")]),
-                  h("li", [h("a", {attrs:{rel: "external", href: "/equipe/livre/"}}, "Site")]),
+                  h("li", [h("a", {attrs:{rel: "external", href: "/equipe/livre/"}}, "Web")]),
                   h("li", [h("a", {attrs:{rel: "external", href: "/equipe/scene/"}}, "Scène")]),
               ])
             ]),
-            h("li", [h("a", {attrs:{rel: "external", href: "/partenaires/"}}, "Partenaires")]),
+            h("li", [
+              buttonForList("partenairesList", "Partenaires"),
+              h('ul#partenairesList', [
+                  h("li", [h("a", {attrs:{rel: "external", href: "/partenaires/livre-spectacle/"}}, "Livre & spectacle")]),
+                  h("li", [h("a", {attrs:{rel: "external", href: "/partenaires/remerciements/"}}, "Remerciements")]),
+              ])
+            ]),
             h("li", [
               buttonForList("forumList", "Forum"),
               h('ul#forumList', [
