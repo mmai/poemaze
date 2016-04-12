@@ -2,7 +2,7 @@ import {h} from 'cycle-snabbdom'
 
 export function renderNeighorLink(id, neighbor){
   let links = [];
-  if (neighbor){
+  if (neighbor && neighbor.leaf){
     let classUp = isUp(neighbor.leaf)?"ai-up":"ai-down";
     links.push(h(`a.${classUp}`, {attrs:{href: neighbor.leaf.id + "?trace=" + neighbor.fromId}}, neighbor.leaf.word));
   }  
