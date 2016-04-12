@@ -938,7 +938,8 @@ a {
       font-size: .65em; } }
   .navigate-content > * {
     box-sizing: border-box;
-    text-align: center; }
+    text-align: center;
+    display: inline-block; }
   .navigate-content a {
     display: inline-block;
     padding: .5em;
