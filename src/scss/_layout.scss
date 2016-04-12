@@ -32,20 +32,27 @@ a {
 }
 
 .main-container {
-	display: flex; padding-top: 4.5em;
-	@media (min-width: $responsive-breakpoint) {
-		height: 100%; padding-top: 0;
-	}
+	display: flex;
+  height: 100%;
+  padding-top: 0;
 	& > * {
 		margin: auto; padding: 1em;
+	}
+	@media (max-width: $responsive-breakpoint) {
+    padding-top: 3em;
+    // & > * {
+    //   margin-top: inherit;
+    // }
 	}
 }
 
 .edito-container {
 	@extend .clearfix;
-	padding: 3em 1em;
-	@media (min-width: $responsive-breakpoint) {
-		max-width: 40em; margin: 0 auto; padding: 5em;
+  max-width: $responsive-breakpoint;
+  margin: 0 auto;
+  padding: 5em;
+	@media (max-width: $responsive-breakpoint) {
+    padding: 3em 1em;
 	}
 	a {
     border-bottom: 1px dotted transparent;
@@ -61,8 +68,8 @@ a {
 .flexwrap {
   [id='side-panel'] {
     //Android does not support well this transition : it makes disappear the svg
-  transition: transform .2s ease-out;
-}
+    transition: transform .2s ease-out;
+  }
 }
 
 [id='side-panel'] {
@@ -78,27 +85,26 @@ a {
     &:hover {
       cursor: pointer;
     }
-		position: absolute; top: 1em; right: 100%; z-index: -1; width: 3em; margin: 0; padding: 0;
-    .svgLogoContainer { width: 70px; height: 70px; }
+		position: absolute;
+    right: 100%; z-index: -1;  margin: 0; padding: 0;
 		border: 0; outline: 0;
-		background: none;
-		@media (min-width: $responsive-breakpoint) {
-			top: 2em; width: 5.125em;
-      .svgLogoContainer { width: 120px; height: 120px; }
-		}
+    background: none;
+    top: 2em; width: 5.125em;
+    .svgLogoContainer { width: 120px; height: 120px; }
+    @media (max-width: $responsive-breakpoint) {
+      top: 1em; width: 3em;
+      .svgLogoContainer { width: 70px; height: 70px; }
+    }
 	}
 	.side-panel-content {
     background: $lightgrey;
-		width: 15em; height: 100%; padding: 1em; overflow: auto; box-sizing: border-box;
-    svg {
-      max-height: 13em;
+    height: 100%;  overflow: auto; box-sizing: border-box;
+    width: 30em; padding: 3em;
+    svg { max-height: 28em; }
+    @media (max-width: $responsive-breakpoint) {
+      width: 15em; padding: 1em;
+      svg { max-height: 13em; }
     }
-		@media (min-width: $responsive-breakpoint) {
-			width: 30em; padding: 3em;
-      svg {
-        max-height: 28em;
-      }
-		}
 	}
 	.location {
 		// margin-bottom: 1em;
@@ -203,25 +209,30 @@ a {
   }
 }
 .about-link {
-  float: right; display: block; width: 5em; height: 5em; margin-top: -5em;
+  float: right; display: block;
   content: '';
-  @media (min-width: $responsive-breakpoint) {
-    bottom: 2em; right: 2em; width: 11em; height: 11em; margin-top: -11em;
+  bottom: 2em; right: 2em;
+  width: 11em; height: 11em; margin-top: -11em;
+  @media (max-width: $responsive-breakpoint) {
+    width: 5em; height: 5em; margin-top: -5em;
+    bottom: inherit; right: inherit;
   }
   img {
     width: 100%;
   }
 }
 .breadcrumb {
-	position: absolute; top: 0em; left: 0em; right: 0em; z-index: 9;
-	font-size: 1em; line-height: 1em;
-  @media (min-width: $responsive-breakpoint) {
-    font-size: 1.25em; line-height: 1em;
+  position: absolute; top: 0em; left: 0em; right: 0em; z-index: 9;
+  font-size: 1.25em; line-height: 1em;
+  @media (max-width: $responsive-breakpoint) {
+    font-size: 1em; line-height: 1em;
   }
 	& > * {
-		@media (min-width: $responsive-breakpoint) {
-			position: fixed; display: block; right: auto;
-			transform: rotate(-90deg) translateX(-100%); transform-origin: top left;
+    position: fixed; display: block; right: auto;
+    transform: rotate(-90deg) translateX(-100%); transform-origin: top left;
+		@media (max-width: $responsive-breakpoint) {
+			// position: fixed; display: block; right: auto;
+			transform: none;
 		}
 	}
 }

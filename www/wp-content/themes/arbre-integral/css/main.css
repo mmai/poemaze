@@ -511,22 +511,22 @@ a {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 4.5em; }
-  @media (min-width: 40em) {
-    .main-container {
-      height: 100%;
-      padding-top: 0; } }
+  height: 100%;
+  padding-top: 0; }
   .main-container > * {
     margin: auto;
     padding: 1em; }
+  @media (max-width: 40em) {
+    .main-container {
+      padding-top: 3em; } }
 
 .edito-container {
-  padding: 3em 1em; }
-  @media (min-width: 40em) {
+  max-width: 40em;
+  margin: 0 auto;
+  padding: 5em; }
+  @media (max-width: 40em) {
     .edito-container {
-      max-width: 40em;
-      margin: 0 auto;
-      padding: 5em; } }
+      padding: 3em 1em; } }
   .edito-container a {
     border-bottom: 1px dotted transparent;
     text-decoration: none;
@@ -559,42 +559,42 @@ a {
     box-shadow: 0 0 1em black; }
   [id='side-panel'] .dashboardLink {
     position: absolute;
-    top: 1em;
     right: 100%;
     z-index: -1;
-    width: 3em;
     margin: 0;
     padding: 0;
     border: 0;
     outline: 0;
-    background: none; }
+    background: none;
+    top: 2em;
+    width: 5.125em; }
     [id='side-panel'] .dashboardLink:hover {
       cursor: pointer; }
     [id='side-panel'] .dashboardLink .svgLogoContainer {
-      width: 70px;
-      height: 70px; }
-    @media (min-width: 40em) {
+      width: 120px;
+      height: 120px; }
+    @media (max-width: 40em) {
       [id='side-panel'] .dashboardLink {
-        top: 2em;
-        width: 5.125em; }
+        top: 1em;
+        width: 3em; }
         [id='side-panel'] .dashboardLink .svgLogoContainer {
-          width: 120px;
-          height: 120px; } }
+          width: 70px;
+          height: 70px; } }
   [id='side-panel'] .side-panel-content {
     background: whitesmoke;
-    width: 15em;
     height: 100%;
-    padding: 1em;
     overflow: auto;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    width: 30em;
+    padding: 3em; }
     [id='side-panel'] .side-panel-content svg {
-      max-height: 13em; }
-    @media (min-width: 40em) {
+      max-height: 28em; }
+    @media (max-width: 40em) {
       [id='side-panel'] .side-panel-content {
-        width: 30em;
-        padding: 3em; }
+        width: 15em;
+        padding: 1em; }
         [id='side-panel'] .side-panel-content svg {
-          max-height: 28em; } }
+          max-height: 13em; } }
   [id='side-panel'] .location {
     font-family: "Kite One", sans-serif;
     color: #ff00ff; }
@@ -720,17 +720,19 @@ a {
 .about-link {
   float: right;
   display: block;
-  width: 5em;
-  height: 5em;
-  margin-top: -5em;
-  content: ''; }
-  @media (min-width: 40em) {
+  content: '';
+  bottom: 2em;
+  right: 2em;
+  width: 11em;
+  height: 11em;
+  margin-top: -11em; }
+  @media (max-width: 40em) {
     .about-link {
-      bottom: 2em;
-      right: 2em;
-      width: 11em;
-      height: 11em;
-      margin-top: -11em; } }
+      width: 5em;
+      height: 5em;
+      margin-top: -5em;
+      bottom: inherit;
+      right: inherit; } }
   .about-link img {
     width: 100%; }
 
@@ -740,21 +742,24 @@ a {
   left: 0em;
   right: 0em;
   z-index: 9;
-  font-size: 1em;
+  font-size: 1.25em;
   line-height: 1em; }
-  @media (min-width: 40em) {
+  @media (max-width: 40em) {
     .breadcrumb {
-      font-size: 1.25em;
+      font-size: 1em;
       line-height: 1em; } }
-  @media (min-width: 40em) {
-    .breadcrumb > * {
-      position: fixed;
-      display: block;
-      right: auto;
-      -webkit-transform: rotate(-90deg) translateX(-100%);
-              transform: rotate(-90deg) translateX(-100%);
-      -webkit-transform-origin: top left;
-              transform-origin: top left; } }
+  .breadcrumb > * {
+    position: fixed;
+    display: block;
+    right: auto;
+    -webkit-transform: rotate(-90deg) translateX(-100%);
+            transform: rotate(-90deg) translateX(-100%);
+    -webkit-transform-origin: top left;
+            transform-origin: top left; }
+    @media (max-width: 40em) {
+      .breadcrumb > * {
+        -webkit-transform: none;
+                transform: none; } }
 
 .wordpress-page .breadcrumb {
   top: 1em;
