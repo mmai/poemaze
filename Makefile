@@ -10,7 +10,7 @@ ifndef SASS_RUNNING
 	cd ../..
 endif
 ifndef WEBPACK_RUNNING
-	  NODE_ENV=dev webpack-dev-server -d --progress --colors --content-base www/ &
+	  NODE_ENV=dev webpack-dev-server -d --progress --colors --content-base www/ 
 endif
 
 coverage: dev

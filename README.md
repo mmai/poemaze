@@ -4,7 +4,8 @@ This repository hosts the source code of [L'Arbre Intégral](http://arbre-integr
 
 Made with [Cycle.js](http://cyclejs.org) with a [Wordpress](http://wordpress.org) backend.
 
-Note : the text of the poem is not available here and has been replaced by random Shakespeare verses.
+A demo of the interface, without the backend administration, is available here [https://mmai.github.io/arbre-integral]
+The text of the poem is not available in this repository and has been replaced by random Shakespeare verses.
 
 ## Poem architecture 
 
@@ -23,12 +24,14 @@ When the reader is on a node of the third level, the map may rotate so that the 
 
 ## Code structure
 
+Note: you should look at the  'gh-pages' branch if you are only interested by the the cycle.js app. 
+
 * `src` javascript sources of the main app, a Cycle.js single page application for exploring the poem and its visualizations.
 * `www`  wordpress site 
 * `www/wp-content/themes/arbre-integral/` custom theme where the Cycle.js single page application build is copied 
 * `www/wp-content/plugins/arbre-integral/` custom plugin wich allows management of the poem contents and the generation of the final PDF documents. 
 
-Poem contents are stored in the `www/arbreintegral.json` JSON file (see `www/arbreintegral.example.json` ).
+Poem contents are stored in the `www/arbreintegral.json` JSON file (`shakespeare.json` on the gh-pages branch). The file name is defined in the src/setting.xxx.js file.
 
 ## Wordpress integration
 

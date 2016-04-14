@@ -29,6 +29,7 @@ import {renderDashboard} from './views/dashboard'
 import {cleanSvgCover, makePdfApiParams} from './aiPdf';
 
 import {svgStyle, pdfStyle, logoStyle} from './vizStyles'
+import {poemFile} from 'settings'
 
 /**
  * fix the sticky :hover style on touch devices
@@ -58,7 +59,7 @@ xmlhttp.onreadystatechange = () => {
     startAI(JSON.parse(xmlhttp.responseText));
   }
 };
-xmlhttp.open("GET", '/wp-content/arbreintegral.json', true);
+xmlhttp.open("GET",poemFile, true);
 xmlhttp.send();
 
 function startAI(json) {
