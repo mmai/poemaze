@@ -4,7 +4,7 @@ This repository hosts the source code of [L'Arbre Intégral](http://arbre-integr
 
 Made with [Cycle.js](http://cyclejs.org) with a [Wordpress](http://wordpress.org) backend.
 
-A demo of the interface, without the backend administration, is available here [https://mmai.github.io/arbre-integral]
+A demo of the interface, without the backend administration, is available here https://mmai.github.io/arbre-integral
 The text of the poem is not available in this repository and has been replaced by random Shakespeare verses.
 
 ## Poem architecture 

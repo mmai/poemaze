@@ -6,7 +6,7 @@ var settings = {
   pagesUrl: 'http://localhost:1234/testpages'
 }
 
-casper.test.begin('Draw SVG paths', 12, function suite(test){
+casper.test.begin('Draw SVG paths', 17, function suite(test){
     casper.start(settings.baseUrl)
     .then(function(){
         this.evaluate(function() { localStorage.clear(); }, {});
@@ -36,6 +36,40 @@ casper.test.begin('Draw SVG paths', 12, function suite(test){
         test.assertEval(lastVizStepVisible, 'last step viz is visible after reloading')
       })
 
+    //Animation after reset
+    casper.then(function(){
+        this.evaluate(function() { localStorage.clear(); }, {});
+      })
+    .thenOpen(settings.baseUrl)
+    .waitForSelector('.ai-up')
+    casper = followPath.bind(casper)(["01", "00", "010", "0100"])
+    .then(function(){
+        test.assertElementCount('a.dashboardLink svg g path,a.dashboardLink svg g line', 4 + 1, 'logo visualization SVG has 4 steps') //One more for the init step, discarded after subsequent reloads
+      })
+    .then(function() { this.click('a.dashboardLink'); })
+    .wait(2000)
+    .then(function(){
+        test.assertElementCount('.side-panel-content svg g path,.side-panel-content svg g line', 4 + 1, 'main visualization SVG has 4 steps') //One more for the init step, discarded after subsequent reloads
+        this.click(`a[href='/reset']`)
+      })
+    // .thenOpen(settings.baseUrl)
+    .waitForSelector('.ai-up')
+    casper = followPath.bind(casper)(["01", "00", "010", "0100"])
+    .then(function() { this.click('a.dashboardLink'); })
+    .wait(2000)
+    .then(function(){
+        test.assertElementCount('.side-panel-content svg g path,.side-panel-content svg g line', 4 , 'main visualization SVG has 4 steps after reset')
+        this.click(`a[href='/reset']`)
+      })
+    .waitForSelector('.ai-up')
+    casper = followPath.bind(casper)(["01", "00", "010", "0100"])
+    .then(function() { this.click('a.dashboardLink'); })
+    .wait(2000)
+    .then(function(){
+        //Don't remove this test: there really was a bug which made fail this one but not the prevous 
+        test.assertElementCount('.side-panel-content svg g path,.side-panel-content svg g line', 4 , 'main visualization SVG has 4 steps after 2nd reset') 
+      })
+
     //Oblique
     casper.then(function(){
         this.evaluate(function() { localStorage.clear(); }, {});
@@ -54,6 +88,7 @@ casper.test.begin('Draw SVG paths', 12, function suite(test){
     casper = showHistory.bind(casper)()
     .then(function(){
         test.assertElementCount("#historyList li", 4, "history has 4 entries")
+        test.assertElementCount('.side-panel-content svg g path,a.dashboardLink svg g line', 4 + 1, 'main visualization SVG has 4 steps') //One more for the init step, discarded after subsequent reloads
         this.click(`a[href='/00']`)
       })
     .thenOpen(settings.baseUrl)
