@@ -10,8 +10,11 @@ ifndef SASS_RUNNING
 	cd ../..
 endif
 ifndef WEBPACK_RUNNING
-	  NODE_ENV=dev webpack-dev-server -d --progress --colors --content-base www/
+	  NODE_ENV=dev webpack-dev-server -d --progress --colors --content-base www/ &
 endif
+
+coverage: dev
+	was-tested --target http://127.0.0.1:1234 --instrument bundle.js # => then open  http://127.0.0.1:5050 and  http://127.0.0.1:5050/__report
 
 build: 
 	modernizr -c modernizr-config.json -d www/wp-content/themes/arbre-integral/
