@@ -58,7 +58,7 @@ casper.test.begin('Draw SVG paths', 17, function suite(test){
     .then(function() { this.click('a.dashboardLink'); })
     .wait(2000)
     .then(function(){
-        test.assertElementCount('.side-panel-content svg g path,.side-panel-content svg g line', 4 , 'main visualization SVG has 4 steps after reset')
+        test.assertElementCount('.side-panel-content svg g path,.side-panel-content svg g line', 4 + 1, 'main visualization SVG has 4 steps after reset')
         this.click(`a[href='/reset']`)
       })
     .waitForSelector('.ai-up')
@@ -67,7 +67,7 @@ casper.test.begin('Draw SVG paths', 17, function suite(test){
     .wait(2000)
     .then(function(){
         //Don't remove this test: there really was a bug which made fail this one but not the prevous 
-        test.assertElementCount('.side-panel-content svg g path,.side-panel-content svg g line', 4 , 'main visualization SVG has 4 steps after 2nd reset') 
+        test.assertElementCount('.side-panel-content svg g path,.side-panel-content svg g line', 4 +1, 'main visualization SVG has 4 steps after 2nd reset') 
       })
 
     //Oblique

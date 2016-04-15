@@ -137,7 +137,7 @@ function startAI(json) {
 
     //Main viz compononent
     const delayedVisitedLeaf$ = visitedLeaf$
-    .buffer(actions.dashboardOpen$.startWith(true)) // Wait for the dashboard to be opened before showing progression
+    .buffer(actions.dashboardOpen$.merge(actions.reset$).startWith(true)) // Wait for the dashboard to be opened before showing progression, except for resets
     // .buffer(state$.map(s => s.showDashboard)) // Wait for the dashboard to be opened before showing progression
     .map(addRotationAnimationDelay) // add fake leafs to delay rotation animation
     .flatMap(visitedLeafs => yieldByInterval(visitedLeafs, 100)) // wait 0.1s between each line drawing (animation)
