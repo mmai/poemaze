@@ -9,8 +9,8 @@ module.exports = {
   },
   entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname, 'www/wp-content/themes/arbre-integral/'),
-    publicPath: '/wp-content/themes/arbre-integral/',
+    path: path.resolve(__dirname, 'www/'),
+    publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
@@ -24,16 +24,7 @@ module.exports = {
       })
   ],
   devServer: {
-    // host: "arbre-integral.net",
-    // host: "localhost",
     host: "0.0.0.0",
     port: 1234,
     historyApiFallback: true,
-    proxy: {
-      '/wp-json/*': {
-                target: 'http://arbre-integral.net',
-                secure: false,
-              }
-            }
-          },
-        };
+  };

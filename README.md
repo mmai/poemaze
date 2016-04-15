@@ -1,11 +1,9 @@
-# L'Arbre Intégral
+# Poemaze
 
-This repository hosts the source code of [L'Arbre Intégral](http://arbre-integral.net) website, a digital poem by Donatien Garnier.
+Poemaze is an generalization of the structure of [L'Arbre Intégral](http://arbre-integral.net) a digital poem by Donatien Garnier ([sources](https://github.com/mmai/arbre-integral)).
 
-Made with [Cycle.js](http://cyclejs.org) with a [Wordpress](http://wordpress.org) backend.
+Made with [Cycle.js](http://cyclejs.org) 
 
-A demo of the interface, without the backend administration, is available here https://mmai.github.io/arbre-integral
-The text of the poem is not available in this repository and has been replaced by random Shakespeare verses.
 
 ## Poem architecture 
 
@@ -21,35 +19,4 @@ The final node is fixed and cannot be visited unless all other nodes have been v
 The path followed by the reader is graphically rendered on a map of the poem tree. A small version is always visible on the top right of the screen and is updated live. Clicking on this mini-map opens a panel with a larger map on wich is replayed the path evolution since the panel was last open.
 
 When the reader is on a node of the third level, the map may rotate so that the current node is displayed on the upper half of the tree.
-
-## Code structure
-
-Note: you should look at the  'gh-pages' branch if you are only interested by the the cycle.js app. 
-
-* `src` javascript sources of the main app, a Cycle.js single page application for exploring the poem and its visualizations.
-* `www`  wordpress site 
-* `www/wp-content/themes/arbre-integral/` custom theme where the Cycle.js single page application build is copied 
-* `www/wp-content/plugins/arbre-integral/` custom plugin wich allows management of the poem contents and the generation of the final PDF documents. 
-
-Poem contents are stored in the `www/arbreintegral.json` JSON file (`shakespeare.json` on the gh-pages branch). The file name is defined in the src/setting.xxx.js file.
-
-## Wordpress integration
-
-TODO
-
-## Running
-
-```sh
-cp www/wp-content/arbreintegral.example.json www/wp-content/arbreintegral.json
-cd www; ln -s ../index.html ; cd -
-npm install
-make dev
-```
-Open http://localhost:1234
-
-## Credits
-
-* Design : Franck Tallon
-* HTML/CSS : [Mathieu Bué](https://github.com/twikito)
-* SVG, Javascript & PHP development : [Henri Bourcereau](https://github.com/mmai)
 

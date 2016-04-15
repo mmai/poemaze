@@ -6,19 +6,6 @@ var settings = {
   pagesUrl: 'http://localhost:1234/testpages'
 }
 
-casper.test.begin('Display mini viz on wordpress pages', 2, function suite(test) {
-    casper.start(settings.pagesUrl + '/forums/index.html', function(){
-        test.assertExists('#app', 'html container is found')
-      })
-    .waitForSelector('.dashboardLink', function(){
-        test.assertVisible('.dashboardLink', 'dashboardLink is displayed')
-      })
-    .run(function(){
-          test.done()
-        })
-
-  })
-
 casper.test.begin('Display mini viz on poem pages', 3,  function suite(test) {
     casper.thenOpen(settings.baseUrl, function(){
         test.assertExists('#app', 'html container is found on the home page')
@@ -35,8 +22,8 @@ casper.test.begin('Display mini viz on poem pages', 3,  function suite(test) {
       })
 })
 
-casper.test.begin('Display main viz on wordpress pages', 3, function suite(test) {
-    casper.thenOpen(settings.pagesUrl + '/forums/index.html', function(){
+casper.test.begin('Display main viz', 3, function suite(test) {
+    casper.thenOpen(settings.baseUrl, function(){
         test.assertExists('#app', 'html container is found')
       })
     .waitForSelector('#ai-page', function(){
@@ -61,8 +48,8 @@ casper.test.begin('Display main viz on wordpress pages', 3, function suite(test)
 
     });
 
-casper.test.begin('Keep poem navigation history on wordpress pages', 7,  function suite(test) {
-    casper.thenOpen(settings.pagesUrl + '/forums/index.html')
+casper.test.begin('Keep poem navigation history', 3,  function suite(test) {
+    casper.thenOpen(settings.baseUrl)
     // .waitForSelector('a.dashboardLink')
     .waitForSelector('#ai-page')
     .then(function() {
@@ -79,28 +66,7 @@ casper.test.begin('Keep poem navigation history on wordpress pages', 7,  functio
     .waitForSelector('a.dashboardLink', function(){ this.click('a.dashboardLink'); })
     .waitForSelector('ul li button', function(){ this.click("ul li button"); })
     .waitForSelector('#historyList', function(){
-        test.assertElementCount("#historyList li", 2, "history has two entries on forum page");
-      })
-    .then(function() {
-        this.click('#forumList a[rel~="external"]');
-      })
-    .waitForSelector('#ai-page', function(){
-        test.assertUrlMatch(/forums\/forum\/.+/, 'current page is a specific forum page');
-      })
-    .thenOpen(settings.pagesUrl + '/forums/forum/suggestions/index.html', function(){//XXX needed for webpack-dev-server tests (index.html not recognized on folders)
-        this.click('a.bbp-topic-permalink');
-      })
-    .waitForSelector('#ai-page', function(){
-        test.assertUrlMatch(/forums\/topic\/.+/, 'current page is a topic forum page');
-      })
-    .thenOpen(settings.pagesUrl + '/forums/topic/test/index.html', function(){//XXX needed for webpack-dev-server tests (index.html not recognized on folders)
-      })
-    .waitForSelector('a.dashboardLink', function(){
-        test.assertVisible('.dashboardLink', 'dashboardLink is displayed on internal forum pages')
-        this.click('a.dashboardLink');
-      })
-    .then(function(){
-        test.assertElementCount("#historyList li", 2, "history has two entries on internal forum page");
+        test.assertElementCount("#historyList li", 2, "history has two entries");
       })
     .run(function(){
         test.done()
