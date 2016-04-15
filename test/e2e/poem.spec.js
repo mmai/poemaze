@@ -1,20 +1,15 @@
 // var settings = require('../../src/settings.dev');//aargh es6 modules
 var settings = {
-  // baseUrl: 'http://arbre-integral.net',
-  // pagesUrl: 'http://arbre-integral.net'
-  baseUrl: 'http://localhost:1234',
-  pagesUrl: 'http://localhost:1234/testpages'
+  baseUrl: 'http://localhost:8080',
 }
 var baseUrl = settings.baseUrl;
-var pagesUrl = settings.pagesUrl;
 
-casper.test.begin('Display poem after navigating wordpress pages', 1,  function suite(test) {
+casper.test.begin('Display poem', 1,  function suite(test) {
     casper.start(baseUrl)
     .waitForSelector('a.ai-up')
     .then(function() {
         this.click('a.ai-up');
       })
-    .thenOpen(pagesUrl + '/forums/index.html')
     .waitForSelector('#side-panel', function(){
         this.click('a.dashboardLink');
       })

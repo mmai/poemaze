@@ -7,9 +7,9 @@ export function renderCover(){
       h("div.home-content", [
         h('img.home-logo', {attrs:{src:`${assetsDir}/logo-home.svg`}}),
         h('div.home-title', [
-          h('div.first-line', "par"),
+          h('div.first-line', "original idea by"),
           h('div.second-line', "Donatien Garnier"),
-          h('div.third-line', "graphisme Franck Tallon"),
+          h('div.third-line', "design Franck Tallon"),
       ])
     ])
   ]))

@@ -30,6 +30,7 @@ export default function intent(DOM, History){
 
   const reset$           = navigationClick$.filter(click => click.pathname === "reset")
   const makePdf$         = navigationClick$.filter(click => click.pathname === "pdf")
+  const showJourney$     = navigationClick$.filter(click => click.pathname === "journey")
   const dashboardOpen$   = navigationClick$.filter(click => click.display === "dashboard")
   const dashboardClose$  = navigationClick$.filter(click => click.display === "main")
   const gotoPoem$        = navigationClick$.filter(click => (
@@ -58,6 +59,7 @@ export default function intent(DOM, History){
   return {
     reset$,
     makePdf$,
+    showJourney$,
     dashboardOpen$,
     dashboardClose$,
     gotoPoem$,

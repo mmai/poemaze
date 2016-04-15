@@ -29,6 +29,12 @@ export function makeModel(AI) {
         })
     )).share()
 
+    const showJourneyMod$ = actions.showJourney$.map(click => (
+        state => ({ ...state,
+          pathname: click.pathname
+        })
+    )).share()
+
     const dashboardOpenMod$ = actions.dashboardOpen$.map(click => {
         //XXX side effect scroll to top of the dashboard to display the viz animation
         //at the opening of the dashboard
@@ -48,6 +54,7 @@ export function makeModel(AI) {
       return function(state){
         const currentLeafId = poem.pathname || "0"
         let history = state.history
+        let journey = state.journey || []
 
         if (!canVisit(currentLeafId, poem.from, state)) {
           return {...state, needRedirect: true}
@@ -60,6 +67,7 @@ export function makeModel(AI) {
         if (undefined === state.history.find(leafLink => leafLink.pathname === currentLeafId)){
           fromId = poem.from
           history.push({ pathname: currentLeafId, from: fromId })
+          journey.push(leaf)
         }
 
         let isUpside = state.isUpside;
@@ -82,6 +90,7 @@ export function makeModel(AI) {
           pathname: poem.pathname,
           currentLeafId,
           history,
+          journey,
           isUpside,
           needRotation: (isUpside != state.isUpside),
           needRedirect: false,
@@ -97,7 +106,7 @@ export function makeModel(AI) {
       })
 
     // return readPoemMod$.merge([dashboardOpenMod$, dashboardCloseMod$, makePdfMod$]) // do not work, why ?
-    return Observable.merge([ readPoemMod$, makePdfMod$, dashboardOpenMod$, dashboardCloseMod$, resetMod$ ])
+    return Observable.merge([ readPoemMod$, makePdfMod$, showJourneyMod$, dashboardOpenMod$, dashboardCloseMod$, resetMod$ ])
     .share()
   }
 

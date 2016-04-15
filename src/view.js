@@ -5,7 +5,7 @@ import {renderDashboard} from './views/dashboard'
 import {renderCover}     from './views/cover'
 import {renderPoem}      from './views/poem';
 import {renderEnd}       from './views/end'
-import {renderPdf}       from './views/pdf';
+import {renderJourney}       from './views/journey';
 
 // export default function view(state, history, progressionVtree, aiLogoSvgVTree, aiSvgVTree){
 export default function view(dashboardView, state){
@@ -16,6 +16,9 @@ export default function view(dashboardView, state){
     views.push(dashboardView)
   } else if (state.pathname === 'pdf') {
     views.push(renderPdf(state.editionId));
+    views.push(dashboardView)
+  } else if (state.pathname === 'journey') {
+    views.push(renderJourney(state.journey));
     views.push(dashboardView)
   } else if ( 0 === state.history.length){
     views.push(renderPoem(state.isUpside, state.leafInfos))

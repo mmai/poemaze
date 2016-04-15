@@ -1,9 +1,6 @@
 // var settings = require('../../src/settings.dev');//aargh es6 modules
 var settings = {
-  // baseUrl: 'http://arbre-integral.net',
-  // pagesUrl: 'http://arbre-integral.net'
-  baseUrl: 'http://localhost:1234',
-  pagesUrl: 'http://localhost:1234/testpages'
+  baseUrl: 'http://localhost:8080',
 }
 
 casper.test.begin('Display mini viz on poem pages', 3,  function suite(test) {

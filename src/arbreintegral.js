@@ -235,6 +235,7 @@ export function makeAI(aiData){
           pathname: '/',
           currentLeafId: "0",
           history:[],
+          journey:[],
           isUpside: true,
           needRotation: false,
           editionId: false,
