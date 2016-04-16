@@ -2,17 +2,11 @@ import {Observable} from 'rx'
 import {lastLeafId} from 'settings'
 
 export function makeModel(AI) {
-  return function model(initialState$, editionIdFromPdfAPI$, actions){
+  return function model(initialState$, actions){
     const mod$ = modifications(actions)
 
-    const modFromAPI$ = editionIdFromPdfAPI$.map(id =>
-      function(state){
-        state.editionId = id
-        return state
-      })
-
     return initialState$
-    .concat(mod$.merge(modFromAPI$))
+    .concat(mod$)
     .scan( (state, mod) => mod(state))
     .share() 
   }
@@ -21,13 +15,6 @@ export function makeModel(AI) {
     const resetMod$ = actions.reset$.map(
       () => AI.makeInitialState.bind(AI)
     ).share()
-
-    const makePdfMod$ = actions.makePdf$.map(click => (
-        state => ({ ...state,
-          pathname: click.pathname,
-          editionId: "pending",
-        })
-    )).share()
 
     const showJourneyMod$ = actions.showJourney$.map(click => (
         state => ({ ...state,
@@ -105,8 +92,8 @@ export function makeModel(AI) {
         }}
       })
 
-    // return readPoemMod$.merge([dashboardOpenMod$, dashboardCloseMod$, makePdfMod$]) // do not work, why ?
-    return Observable.merge([ readPoemMod$, makePdfMod$, showJourneyMod$, dashboardOpenMod$, dashboardCloseMod$, resetMod$ ])
+    // return readPoemMod$.merge([dashboardOpenMod$, dashboardCloseMod$]) // do not work, why ?
+    return Observable.merge([ readPoemMod$, showJourneyMod$, dashboardOpenMod$, dashboardCloseMod$, resetMod$ ])
     .share()
   }
 

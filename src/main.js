@@ -26,7 +26,6 @@ import {makeAiSvgComponent} from './components/arbreintegralSvgComponent'
 
 import view from './view'
 import {renderDashboard} from './views/dashboard'
-import {cleanSvgCover, makePdfApiParams} from './aiPdf';
 
 import {svgStyle, pdfStyle, logoStyle} from './vizStyles'
 import {poemFile} from 'settings'
@@ -70,7 +69,6 @@ function startAI(json) {
   const AiLogoSvgComponent = makeAiSvgComponent(AI, logoStyle)
 
   function main({DOM, History, HTTP, storage, bodyStyles}) {
-    const editionIdFromPdfAPI$ = HTTP.mergeAll().map(res => res.body).share()
     const actions = intent(DOM, History)
 
     const initialState$ = deserialize(
@@ -90,7 +88,7 @@ function startAI(json) {
     // if .share() same result (explanation: http://stackoverflow.com/questions/25634375/rxjs-only-the-first-observer-can-see-data-from-observable-share)
     // if shareReplay() : bodyStyles is executed, but events stops and DOM is not updated 
     // if .delay(1) before .share(): same result as shareReplay()
-    const state$ = model(initialState$, editionIdFromPdfAPI$, actions).share()
+    const state$ = model(initialState$, actions).share()
 
     const bodyClasses$ = state$.map(bodyStylesFromState).distinctUntilChanged()
 
@@ -167,12 +165,6 @@ function startAI(json) {
 
     const view$ = dashboardView$.withLatestFrom(state$, view)
 
-    //url => HTTP (wordpress API calls)
-    const aiPdfSvg = isolate(AiPdfSvgComponent)({ visitedLeaf$ })
-    const apiCall$ = actions.makePdf$
-    .withLatestFrom(aiPdfSvg.DOM, (url, svg) => cleanSvgCover(svg))
-    .withLatestFrom(leafLinks$, makePdfApiParams)
-
     const storage$ = serialize(state$.filter(s => s.editionId !== 'pending'))
       .map(state => ({
           key: 'aiState', value: state
@@ -194,7 +186,6 @@ function startAI(json) {
   }
 
   let drivers = {
-    // DOM: makeDOMDriver('#ai-page'),
     bodyStyles: makeBodyStylesDriver(),
     DOM: makeDOMDriver('#app', { modules: [StyleModule, PropsModule, AttrsModule, ClassModule], }),
     History: makeHistoryDriver({
