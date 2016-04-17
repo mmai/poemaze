@@ -15,7 +15,7 @@ export function renderCover(){
 }
 
 export function renderRoot(leafInfos){
-  return h("div.main-container", [
+  return h("div.main-container.start-page", [
       h("div.navigate-content", [
         renderNeighorLink("n", leafInfos.neighbors.leftChild),
         renderNeighorLink("w", false),
