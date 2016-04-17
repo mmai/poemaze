@@ -188,7 +188,7 @@ function startAI(json) {
     bodyStyles: makeBodyStylesDriver(),
     DOM: makeDOMDriver('#app', { modules: [StyleModule, PropsModule, AttrsModule, ClassModule], }),
     History: makeHistoryDriver({
-        // basename: '/poeme'
+        basename: '/poemaze'
       }),
     HTTP: makeHTTPDriver(),
     storage: storageDriver,

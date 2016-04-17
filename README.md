@@ -1,6 +1,6 @@
 # Poemaze
 
-Poemaze builds a random text based on the structure of [L'Arbre Intégral](http://arbre-integral.net) ([sources](https://github.com/mmai/arbre-integral)).
+[Poemaze](https://mmmai.github.io/poemaze/) builds a random text based on the structure of [L'Arbre Intégral](http://arbre-integral.net) ([sources](https://github.com/mmai/arbre-integral)).
 
 Made with [Cycle.js](http://cyclejs.org) 
 
