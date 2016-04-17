@@ -179,7 +179,6 @@ function startAI(json) {
     return {
       DOM: view$,
       bodyStyles: bodyClasses$,
-      HTTP: apiCall$,
       History: browserHistory$,
       storage: storage$
     }
