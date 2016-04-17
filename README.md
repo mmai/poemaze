@@ -1,6 +1,6 @@
 # Poemaze
 
-Poemaze is an generalization of the structure of [L'Arbre Intégral](http://arbre-integral.net) a digital poem by Donatien Garnier ([sources](https://github.com/mmai/arbre-integral)).
+Poemaze builds a random text based on the structure of [L'Arbre Intégral](http://arbre-integral.net) ([sources](https://github.com/mmai/arbre-integral)).
 
 Made with [Cycle.js](http://cyclejs.org) 
 
