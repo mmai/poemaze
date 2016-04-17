@@ -241,7 +241,7 @@ export function makeAI(aiData){
           editionId: false,
           showDashboard: false,
           leafInfos: {
-            leaf: { id: "0" },
+            leaf: this.getLeaf("0"),
             fromId: "0",
             type: "ROOT",
             neighbors: this.getNeighbors({ id: "0" })

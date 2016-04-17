@@ -21,7 +21,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
               ))
             ]),
             h("li", [h("a", {attrs:{href: "reset"}}, "Restart")]),
-            h("li", [h("a", {attrs:{rel: "external", href: "http://github.com/mmai/arbre-integral"}}, "Source code")]),
+            h("li", [h("a", {attrs:{rel: "external", href: "http://github.com/mmai/poemaze"}}, "Source code")]),
           ]),
       ])
   ])

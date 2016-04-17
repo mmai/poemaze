@@ -8,6 +8,7 @@ export function renderPoem(isUpside, leafInfos){
   let circlesView = h("div");
   switch(leafInfos.type){
   case 'ROOT':
+    // circlesView = renderLeafUpside(leafInfos);
     circlesView = renderRoot(leafInfos);
     break;
   case 'DOWN': 
@@ -24,13 +25,11 @@ function renderLeaf(leafInfos, linksDom){
   return h("div.main-container", [
       h("div.navigate-content", linksDom),
       h("div.breadcrumb", [h("div", leafInfos.leaf.name)]),
-      renderShare("http://arbre-integral.net", leafInfos.leaf.content)
+      renderShare("http://mmai.github.io/poemaze/", leafInfos.leaf.content)
     ])
 }
 
 function renderLeafReversed(leafInfos){
-  let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
-  let circleLevel = leafInfos.leaf.id.split('').length - 1;
   return renderLeaf(leafInfos, [
       renderNeighorLink("n", leafInfos.neighbors.parent),
       renderNeighorLink("w", leafInfos.neighbors.leftBrother),
@@ -42,8 +41,6 @@ function renderLeafReversed(leafInfos){
 }
 
 function renderLeafUpside(leafInfos){
-  let classUp = (leafInfos.type === "UP") ? "ai-up" : "ai-down";
-  let circleLevel = leafInfos.leaf.id.split('').length - 1;
   return renderLeaf(leafInfos, [
         renderNeighorLink("nw", leafInfos.neighbors.leftChild),
         renderNeighorLink("ne", leafInfos.neighbors.rightChild),
