@@ -32,3 +32,6 @@ teste2e: dev
 	./node_modules/.bin/casperjs --engine=slimerjs test test/e2e/*
 
 test:testunit teste2e
+
+compose:
+	node ./tools/makeJson.js ./tools/ProcreationSonnets.txt www/shakespeare.json
