@@ -9,6 +9,10 @@ export function renderCover(){
       h("div.home-content", [
         h('div.home-title', [
           h('div.second-line', "Where you will wander in a poem as in a maze"),
+          h('div.fourth-line', [
+            "a random peek inside Shakespeare's",
+            h("em", " Procreation Sonnets ")
+          ])
       ])
     ])
   ]))
