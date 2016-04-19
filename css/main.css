@@ -846,6 +846,10 @@ a {
   font-size: 2.1875em; }
 .home-content .third-line {
   font-size: 1.375em; }
+.home-content .fourth-line {
+  color: #555;
+  padding: 1em;
+  font-size: 1.2em; }
 
 .start-content {
   width: 100%; }
