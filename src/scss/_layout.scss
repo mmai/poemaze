@@ -245,12 +245,16 @@ a {
 	position: fixed; bottom: 0; left: 0; padding: 1em;
 	@media (max-width: $responsive-breakpoint) {
 		background: rgba(black, .1);
-		font-size: 0.6em;
+		// font-size: 0.6em;
     padding: 0.6em;
 	}
 	.share-btn {
 		border-bottom: 1px dotted transparent;
 		font-size: 1.25em;
+    @media (max-width: $responsive-breakpoint) {
+      padding: 0.6em;
+      font-size: 1em;
+    }
 		&:hover, &:focus {
 			border-bottom-color: currentColor;
 		}
