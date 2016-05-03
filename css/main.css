@@ -776,11 +776,14 @@ a {
   @media (max-width: 40em) {
     .share {
       background: rgba(0, 0, 0, 0.1);
-      font-size: 0.6em;
       padding: 0.6em; } }
   .share .share-btn {
     border-bottom: 1px dotted transparent;
     font-size: 1.25em; }
+    @media (max-width: 40em) {
+      .share .share-btn {
+        padding: 0.6em;
+        font-size: 1em; } }
     .share .share-btn:hover, .share .share-btn:focus {
       border-bottom-color: currentColor; }
   .share [id='share-panel'], .share [id='share-panelw'] {
