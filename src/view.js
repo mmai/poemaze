@@ -2,6 +2,7 @@ import {h} from 'cycle-snabbdom'
 import {lastLeafId} from 'settings'
 
 import {renderDashboard} from './views/dashboard'
+import {renderSourceForm} from './views/sourceForm'
 import {renderCover}     from './views/cover'
 import {renderPoem}      from './views/poem';
 import {renderEnd}       from './views/end'
@@ -16,6 +17,9 @@ export default function view(dashboardView, state){
     views.push(dashboardView)
   } else if (state.pathname === 'pdf') {
     views.push(renderPdf(state.editionId));
+    views.push(dashboardView)
+  } else if (state.pathname === 'newsource') {
+    views.push(renderSourceForm());
     views.push(dashboardView)
   } else if (state.pathname === 'journey') {
     views.push(renderJourney(state.journey));

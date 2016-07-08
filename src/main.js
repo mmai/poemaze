@@ -67,7 +67,7 @@ xmlhttp.open('GET', poemFile, true)
 xmlhttp.send()
 
 function startAI (json) {
-  const AI = makeAI(json)
+  const AI = makeAI(() => json)
   const model = makeModel(AI)
   const AiSvgComponent = makeAiSvgComponent(AI, svgStyle)
   const AiPdfSvgComponent = makeAiSvgComponent(AI, pdfStyle)

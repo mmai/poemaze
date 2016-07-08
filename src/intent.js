@@ -28,8 +28,16 @@ export default function intent(DOM, History){
     })
   .share()
 
+  // Submit new source form
+  const submitSource$    = DOM.select('#newsource-form--submit').events('click').map(
+    (click) => {
+      return document.getElementById('newsource-form--textarea').value
+    }
+  )
+
   const reset$           = navigationClick$.filter(click => click.pathname === "reset")
   const makePdf$         = navigationClick$.filter(click => click.pathname === "pdf")
+  const chooseSource$    = navigationClick$.filter(click => click.pathname === "newsource")
   const showJourney$     = navigationClick$.filter(click => click.pathname === "journey")
   const dashboardOpen$   = navigationClick$.filter(click => click.display === "dashboard")
   const dashboardClose$  = navigationClick$.filter(click => click.display === "main")
@@ -59,6 +67,8 @@ export default function intent(DOM, History){
   return {
     reset$,
     makePdf$,
+    chooseSource$,
+    submitSource$,
     showJourney$,
     dashboardOpen$,
     dashboardClose$,

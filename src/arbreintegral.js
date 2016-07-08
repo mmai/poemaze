@@ -1,12 +1,17 @@
-export function makeAI(aiData){
+export function makeAI(getAiData){
   return {
-    data: aiData,
+    getAiData,
     getLeaf: function getLeaf(leafId){
       let leaf = false
+      const aiData = this.getAiData()
       if (aiData.hasOwnProperty(leafId)){
         leaf = {...(aiData[leafId]), id:leafId};
       }
       return leaf;
+    },
+
+    updateAiDataGeter: function updateAiDataGeter(getAiData){
+      this.getAiData = getAiData
     },
 
     // getType: function getTypeNormalized(leaf){

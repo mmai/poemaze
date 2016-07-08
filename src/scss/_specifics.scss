@@ -321,6 +321,17 @@ img.alignnone {
   cursor: pointer;
 }
 
+.form-content {
+  width: 70%;
+  height: 70%;
+  color: black;
+  text-align: center;
+}
+#newsource-form--textarea {
+  width: 100%;
+  height: 100%;
+}
+
 //inspired by .navigate-content
 .wp-content {
 	display: flex; max-width: 60em;

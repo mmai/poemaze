@@ -1,5 +1,6 @@
 import {Observable} from 'rx'
 import {lastLeafId} from 'settings'
+import {dataFromTxt} from './aiDataFromTxt'
 
 export function makeModel(AI) {
   return function model(initialState$, actions){
@@ -21,6 +22,17 @@ export function makeModel(AI) {
           pathname: click.pathname
         })
     )).share()
+
+    const chooseSourceMod$ = actions.chooseSource$.map(click => (
+        state => ({ ...state,
+          pathname: click.pathname
+        })
+    )).share()
+
+    const submitSourceMod$ = actions.submitSource$.map(txt => {
+        AI.updateAiDataGeter(() => dataFromTxt(txt))
+        return () => AI.makeInitialState()
+      }).share()
 
     const dashboardOpenMod$ = actions.dashboardOpen$.map(click => {
         //XXX side effect scroll to top of the dashboard to display the viz animation
@@ -93,7 +105,7 @@ export function makeModel(AI) {
       })
 
     // return readPoemMod$.merge([dashboardOpenMod$, dashboardCloseMod$]) // do not work, why ?
-    return Observable.merge([ readPoemMod$, showJourneyMod$, dashboardOpenMod$, dashboardCloseMod$, resetMod$ ])
+    return Observable.merge([ readPoemMod$, chooseSourceMod$, submitSourceMod$, showJourneyMod$, dashboardOpenMod$, dashboardCloseMod$, resetMod$ ])
     .share()
   }
 

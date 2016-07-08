@@ -20,6 +20,7 @@ export function renderDashboard(showDashboard, isUpside, history, progressionVtr
                 h(`li.${isUp(url)?'ai-up':'ai-down'}`, [ h(`a`, {attrs: {href: `${url.id}`}}, `${url.word} (${url.id})`) ])
               ))
             ]),
+            h("li", [h("a", {attrs:{href: "newsource"}}, "Create a new poem")]),
             h("li", [h("a", {attrs:{href: "reset"}}, "Restart")]),
             h("li", [h("a", {attrs:{rel: "external", href: "http://github.com/mmai/poemaze"}}, "Source code")]),
           ]),
